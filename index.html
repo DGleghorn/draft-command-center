@@ -1,0 +1,1548 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0b1020">
+<meta name="apple-mobile-web-app-title" content="Draft Command Center">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Draft Command Center</title>
+<style>
+:root{--bg:#090d17;--panel:#111827;--panel2:#151e2f;--line:#263249;--text:#f4f7fb;--muted:#91a0b7;--blue:#6d6aff;--cyan:#4dd7ff;--green:#28d7a1;--red:#ff6475;--amber:#f6b94a;--shadow:0 14px 45px rgba(0,0,0,.22)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior-x:none}body{min-width:0}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}input,select,textarea{font-size:16px}
+.app{min-height:100vh}.top{position:sticky;top:0;z-index:20;background:rgba(9,13,23,.92);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:16px max(16px,calc((100% - 1250px)/2))}
+.toprow{display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#7a70ff,#35cfff);display:grid;place-items:center;font-weight:900;box-shadow:0 8px 24px #5c55ff33}.eyebrow{font-size:10px;letter-spacing:1.4px;color:#8998b2;font-weight:800}.brand h1{font-size:19px;margin:1px 0 0;letter-spacing:-.4px}.status{display:flex;gap:8px;align-items:center}.live{display:flex;align-items:center;gap:7px;padding:8px 10px;border:1px solid #23473e;background:#10231f;border-radius:10px;color:#6de3bc;font-size:11px;font-weight:800}.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px #28d7a11c}.topbtn{background:var(--panel);color:var(--text);border:1px solid var(--line);padding:8px 11px;border-radius:10px}
+.nav{display:flex;gap:6px;margin-top:14px;overflow:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}.nav button{white-space:nowrap;border:0;background:transparent;color:var(--muted);padding:9px 12px;border-radius:9px;font-size:12px;font-weight:750}.nav button.active{background:#202a43;color:#fff}
+.wrap{max-width:1250px;margin:0 auto;padding:18px}.clock{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:12px}.card{background:linear-gradient(180deg,#121a29,#101724);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.onclock{padding:17px;position:relative;overflow:hidden}.onclock:before{content:"";position:absolute;inset:-40px auto auto -40px;width:180px;height:180px;background:#6d6aff20;border-radius:50%;filter:blur(5px)}.smallcaps{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:850}.bigpick{font-size:31px;font-weight:900;letter-spacing:-1px;margin-top:3px}.pickmeta{color:var(--muted);font-size:11px;margin-top:2px}.roundbar{height:6px;background:#1c2537;border-radius:6px;margin-top:12px;overflow:hidden}.roundbar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#6f67ff,#45d4ff);transition:width .3s}.stickyclock{display:none;align-items:center;gap:10px;margin-top:10px;padding:7px 10px;background:#141d30;border:1px solid var(--line);border-radius:10px;font-size:10px;color:#c7d1e2;font-weight:750}.stickyclock.show{display:flex}.stickybar{flex:1;height:4px;background:#1c2537;border-radius:4px;overflow:hidden}.stickybar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#6f67ff,#45d4ff)}.statbox{padding:16px}.statbox strong{display:block;font-size:21px;margin-top:4px}.statbox span{color:var(--muted);font-size:10px}.positive{color:var(--green)}.negative{color:var(--red)}.amber{color:var(--amber)}
+.section{margin-top:15px}.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:10px}.sectionhead h2{font-size:15px;margin:0}.sectionhead p{font-size:11px;color:var(--muted);margin:3px 0 0}.hero{display:grid;grid-template-columns:1.35fr .8fr;gap:14px}.rec{padding:18px}.rec-top{display:flex;justify-content:space-between;gap:15px}.rec-name{font-size:25px;font-weight:900;letter-spacing:-.7px}.rec-sub{color:var(--muted);font-size:11px}.score{font-size:27px;font-weight:900;color:var(--green)}.why{display:flex;flex-wrap:wrap;gap:7px;margin:13px 0}.tag{font-size:10px;padding:6px 8px;border:1px solid var(--line);background:#0c1321;border-radius:8px;color:#b9c4d6}.tnw{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}.tnw-box{background:#0d1421;border:1px solid var(--line);border-radius:10px;padding:9px;text-align:center}.tnw-box span{display:block;font-size:8px;color:#68778e;font-weight:800;letter-spacing:.4px}.tnw-box b{display:block;font-size:16px;margin-top:3px}.scorebreak{margin-top:4px}.sb-row{display:flex;align-items:center;gap:8px;padding:4px 0}.sb-label{width:88px;font-size:9px;color:#8998b2;flex-shrink:0}.sb-bar{flex:1;height:6px;background:#1c2537;border-radius:5px;overflow:hidden}.sb-bar i{display:block;height:100%;background:linear-gradient(90deg,#4a90ff,#45d4ff);border-radius:5px}.rec-actions{display:flex;gap:8px;flex-wrap:wrap}.primary{border:0;background:linear-gradient(135deg,#7069ff,#5d54ed);color:#fff;padding:10px 13px;border-radius:10px;font-weight:850}.primary:disabled{opacity:.45;cursor:not-allowed}.secondary{border:1px solid var(--line);background:#0e1523;color:#dce3ee;padding:10px 13px;border-radius:10px;font-weight:750}.secondary:disabled{opacity:.4;cursor:not-allowed}.ghost{border:1px solid var(--line);background:transparent;color:var(--muted);padding:9px 12px;border-radius:10px;font-weight:700;font-size:11px}.btnrow{display:flex;gap:6px;flex-wrap:wrap}.btnsm{padding:7px 10px!important;font-size:10px!important;border-radius:8px!important}.btnsm:disabled{opacity:.35}.roster{padding:18px}.slots{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:12px}.slot{padding:9px;border:1px solid var(--line);border-radius:9px;background:#0d1421}.slot b{display:block;color:#74839a;font-size:9px}.slot span{font-size:11px;font-weight:750}.need{color:var(--amber)!important}
+.alert{padding:12px 14px;border-radius:12px;background:#191b2e;border:1px solid #33365e;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.alert b{font-size:12px}.alert span{color:#9ca8bc;font-size:10px}.banner{padding:12px 14px;border-radius:12px;background:#26200f;border:1px solid #4a3a1a;border-left:4px solid #f6b94a;display:flex;gap:11px;align-items:center}.banner#alertBanner{margin-bottom:0}.banner span#alertIcon{font-size:18px;flex-shrink:0}.banner b{display:block;font-size:12px;color:#f6b94a}.banner span:not(#alertIcon){color:#d9c493;font-size:10px}.tierlist{display:flex;flex-direction:column;gap:14px}.tiersection{border:1px solid var(--line);border-radius:12px;overflow:hidden}.tierhead{padding:10px 12px;font-size:12px;font-weight:850;display:flex;align-items:center}.tier-elite{background:linear-gradient(90deg,#1b3a6b,#274a86);color:#8fc2ff}.tier-great{background:#103b32;color:#5de0b7}.tier-good{background:#123a4a;color:#5cc9ff}.tier-okay{background:#3c3018;color:#f5c566}.tier-avoid{background:#421e29;color:#ff8190}.tierrows{padding:4px 12px}.tierrow{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #1c2537;font-size:11px}.tierrow:last-child{border-bottom:none}.tierrow b{font-size:11px}.grid2{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}.panelpad{padding:17px}.board-controls{display:grid;grid-template-columns:1.4fr .8fr .8fr;gap:8px;margin-bottom:11px}.input,.select{width:100%;background:#0c1320;color:var(--text);border:1px solid var(--line);padding:10px 11px;border-radius:9px;outline:none}.chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:11px}.chips button{border:1px solid var(--line);background:#0d1421;color:var(--muted);padding:6px 9px;border-radius:8px;font-size:10px}.chips button.active{background:#27225e;border-color:#5750e5;color:#fff}.tablewrap{overflow:auto;max-height:610px}.board{width:100%;border-collapse:collapse;min-width:760px}.board th{font-size:9px;text-transform:uppercase;color:#738199;text-align:left;padding:8px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#111827}.board td{padding:9px 8px;border-bottom:1px solid #202a3a;font-size:11px}.player{font-weight:800}.player small{display:block;color:#68778e;font-weight:500}.badge{display:inline-block;padding:4px 7px;border-radius:7px;font-size:9px;font-weight:850}.steal{background:#103b32;color:#5de0b7}.target{background:#3c3018;color:#f5c566}.reach{background:#421e29;color:#ff8190}.draftbtn{border:1px solid #33415a;background:#172237;color:#dbe5f4;padding:6px 8px;border-radius:7px;font-size:9px;font-weight:800}.draftbtn:disabled{opacity:.35;cursor:not-allowed}.iconbtn{border:0;background:transparent;color:inherit;font-size:12px;padding:0 3px;cursor:pointer;vertical-align:middle}.statbadge{display:inline-block;padding:2px 5px;border-radius:5px;font-size:8px;font-weight:900;vertical-align:middle;margin-left:2px}.stat-q{background:#3c3018;color:#f5c566}.stat-d{background:#3a2718;color:#f5a066}.stat-o{background:#421e29;color:#ff8190}.stat-ir{background:#421e29;color:#ff5c72;border:1px solid #ff5c72}.mini{font-size:10px;color:var(--muted)}.boardcards{display:none}.bcard{border:1px solid var(--line);border-radius:12px;background:#0d1421;padding:11px;margin-bottom:8px}.bcard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.bcard-name{font-weight:800;font-size:13px}.bcard-sub{color:#68778e;font-size:10px;margin-top:1px}.bcard-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:9px}.bcard-stat{text-align:center;background:#111a2b;border-radius:7px;padding:6px 2px}.bcard-stat b{display:block;font-size:11px}.bcard-stat span{display:block;font-size:8px;color:#68778e;text-transform:uppercase;margin-top:1px}.bcard-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:8px}.roundboard{display:flex;flex-direction:column;gap:8px}.roundcard{border:1px solid var(--line);border-radius:12px;overflow:hidden}.roundhead{padding:11px 12px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:#0d1421}.roundhead:hover{background:#111a2b}.roundhead-left{display:flex;align-items:center;gap:10px}.roundnum{width:28px;height:28px;border-radius:8px;background:#1e2a45;color:#8fc2ff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0}.roundtarget{font-size:11px;font-weight:750;color:#dbe5f4}.roundcount{font-size:9px;color:#68778e;margin-top:1px}.roundchevron{font-size:10px;color:#68778e;transition:transform .2s}.roundchevron.open{transform:rotate(180deg)}.roundrows{padding:2px 12px 8px;display:none}.roundrows.open{display:block}.roundrow{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #1c2537;font-size:11px}.roundrow:last-child{border-bottom:none}.roundrow b{font-size:11px}.tierpill{margin-left:auto;font-size:8px;font-weight:850;padding:3px 6px;border-radius:6px;white-space:nowrap}
+@media(max-width:600px){#boardTableWrap{display:none!important}.boardcards{display:block}}
+/* iPhone/iPad touch + safe-area support */
+@supports (padding:max(0px)){
+ .top{padding-top:max(12px,env(safe-area-inset-top));padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
+ .wrap{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right));padding-bottom:max(24px,env(safe-area-inset-bottom))}
+ .toast{bottom:max(18px,calc(env(safe-area-inset-bottom) + 12px))}
+}
+.nav{touch-action:pan-x;overscroll-behavior-x:contain}
+.tablewrap,.mockwrap,.plist,.feed{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
+.iconbtn{min-width:40px}
+@media(max-width:900px){
+ .top{padding-bottom:10px}.toprow{align-items:flex-start}.brand{min-width:0}.brand>div:last-child{min-width:0}.brand .mini{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .wrap{padding-top:12px}.clock{grid-template-columns:1fr 1fr}.hero,.grid2,.analytics,.settings,.tradegrid{grid-template-columns:1fr}.grid3,.stratgrid,.leaguegrid{grid-template-columns:1fr 1fr}.board-controls{grid-template-columns:1fr 1fr}.board-controls .input{grid-column:1/-1}
+ .tablewrap{max-height:none}.mockwrap{max-height:none}.mockboard{min-width:900px}.modal{padding:8px;align-items:flex-end}.modalbox{max-height:92vh;border-radius:16px 16px 0 0;padding-bottom:max(20px,env(safe-area-inset-bottom))}
+}
+@media(max-width:600px){
+ .top{position:sticky}.toprow{gap:8px}.toprow .btnrow{max-width:48%;justify-content:flex-end}.toprow .secondary,.toprow .ghost{padding:8px 9px;font-size:10px}
+ .wrap{padding:10px}.clock,.grid3,.stratgrid,.leaguegrid,.tradesummary{grid-template-columns:1fr}.card{border-radius:13px}.onclock,.statbox,.rec,.roster,.panelpad,.setting,.tradeside,.chart{padding:13px}.bigpick{font-size:27px}.rec-name{font-size:21px}.tnw{grid-template-columns:1fr 1fr 1fr}.board-controls{grid-template-columns:1fr 1fr}.chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:3px}.chips button{flex:0 0 auto}.bcard-stats{grid-template-columns:repeat(4,1fr)}.tierrow{align-items:flex-start}.tierrow .mini{line-height:1.35}.sectionhead{align-items:flex-start}.sectionhead p{max-width:70%}
+}
+@media(min-width:601px) and (max-width:900px){.hero{grid-template-columns:1fr}.leaguegrid,.grid3{grid-template-columns:1fr 1fr}.mockboard{min-width:900px}}
+@media(hover:hover){.roundhead:hover{background:#111a2b}}
+@media(hover:none){.roundhead:hover{background:#0d1421}.draftbtn:active,.primary:active,.secondary:active,.ghost:active,.chips button:active{transform:scale(.98)}}
+.run{display:flex;gap:7px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.runbar{height:6px;flex:1;background:#202a3a;border-radius:10px;overflow:hidden}.runbar i{display:block;height:100%;background:linear-gradient(90deg,#6f67ff,#45d4ff)}.feed{max-height:350px;overflow:auto}.feedrow{display:flex;gap:9px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}.picknum{width:30px;height:30px;border-radius:8px;background:#1b263a;display:grid;place-items:center;font-size:10px;color:#8ea0ba;font-weight:800}.feedrow b{font-size:11px}.feedrow span{display:block;color:#718099;font-size:9px}.analytics{display:grid;grid-template-columns:1fr 1fr;gap:14px}.chart{height:310px;padding:15px}.chart svg{width:100%;height:100%}.axis{stroke:#2a3548}.gridline{stroke:#1d2738}.point{cursor:pointer}.stratgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}.stratcol-head{font-size:11px;font-weight:850;padding:8px 10px;border-radius:9px;margin-bottom:10px}.stratcol-head.steal{background:#103b32;color:#5de0b7}.stratcol-head.target{background:#3c3018;color:#f5c566}.stratcol-head.reach{background:#421e29;color:#ff8190}.stratrow{padding:9px 0;border-bottom:1px solid var(--line)}.stratrow-top{display:flex;justify-content:space-between;gap:8px}.stratrow-top b{font-size:11px}.stratbar{height:5px;background:#1c2537;border-radius:5px;margin-top:6px;overflow:hidden}.stratbar i{display:block;height:100%;border-radius:5px}.stratbar i.steal{background:linear-gradient(90deg,#1c8f6e,#28d7a1)}.stratbar i.target{background:linear-gradient(90deg,#b8842e,#f6b94a)}.stratbar i.reach{background:linear-gradient(90deg,#a8384a,#ff6475)}.stratrow-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:5px}
+@media(max-width:900px){.stratgrid{grid-template-columns:1fr}}.leaguegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.team{padding:12px;border:1px solid var(--line);border-radius:11px;background:#0d1421}.team.me{border-color:#5750e5;background:#151233}.teamtop{display:flex;justify-content:space-between;align-items:center}.team b{font-size:11px}.needpill{font-size:8px;padding:3px 5px;border-radius:5px;background:#3c3018;color:#f2c467}.youpill{font-size:8px;padding:3px 6px;border-radius:5px;background:#27225e;color:#c9c3ff;font-weight:800}.rankpill{font-size:11px;margin-right:2px}.bars{margin-top:10px}.barline{display:flex;align-items:center;gap:7px;margin:5px 0}.barline label{width:20px;font-size:8px;color:#728099}.bar{height:5px;flex:1;background:#1e293a;border-radius:5px}.bar i{display:block;height:100%;background:#5f5aff;border-radius:5px}.settings{display:grid;grid-template-columns:1fr 1fr;gap:14px}.setting{padding:17px}.setting label{display:block;font-size:10px;color:#7f8da3;text-transform:uppercase;font-weight:800;letter-spacing:.7px;margin-bottom:6px}.source{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:11px}.source span{color:#6dddb8}.modal{position:fixed;inset:0;background:#03060bbd;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);z-index:50;display:none;align-items:center;justify-content:center;padding:18px}.modal.show{display:flex}.modalbox{width:min(560px,100%);background:#121a29;border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:0 30px 80px #0009;max-height:88vh;overflow:auto}.modalbox h2{margin:0 0 5px}.modalbox p{color:var(--muted);font-size:11px}.formrow{margin-top:13px}.formrow label{display:block;font-size:9px;color:#7f8da3;text-transform:uppercase;font-weight:800;margin-bottom:6px}.close{float:right;border:0;background:#202a3a;color:#fff;border-radius:8px;padding:7px 10px}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(15px);opacity:0;background:#eaf0fa;color:#0b1020;padding:10px 14px;border-radius:10px;font-size:11px;font-weight:800;z-index:70;transition:.25s;max-width:90vw;text-align:center}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.mockwrap{overflow:auto;max-height:640px}.mockboard{border-collapse:collapse;width:100%;min-width:1000px}.mockboard th{position:sticky;top:0;background:#111827;font-size:9px;text-transform:uppercase;color:#738199;padding:7px 6px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}.mockboard th.me{color:#c9c3ff}.mockboard td{padding:6px;border-bottom:1px solid #1c2537;vertical-align:top}.mockboard td.me{background:#151233}.mcell{border:1px solid #1f2a3d;border-radius:8px;padding:6px;background:#0d1421;min-width:104px}.mcell b{display:block;font-size:10px}.mcell span{display:block;color:#68778e;font-size:9px;margin-top:1px}.mcell.empty{color:#45526a;font-size:9px;text-align:center;padding:12px 4px}.rlabel{font-size:9px;color:#68778e;font-weight:800;padding:8px 6px}
+.tf-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.tf-rank{width:22px;font-size:10px;color:#68778e;font-weight:800}.tf-name{flex:1;font-size:11px;font-weight:750}.tf-grade{font-size:12px;font-weight:900;width:34px;text-align:center;padding:4px 0;border-radius:7px}.gA{background:#103b32;color:#5de0b7}.gB{background:#123a4a;color:#5cc9ff}.gC{background:#3c3018;color:#f5c566}.gD{background:#3a2718;color:#f5a066}.gF{background:#421e29;color:#ff8190}
+.tradegrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.tradeside{padding:15px}.tradeside h3{margin:0 0 4px;font-size:13px}.plist{max-height:280px;overflow:auto;margin-top:10px}.prow{display:flex;align-items:center;gap:9px;padding:7px 4px;border-bottom:1px solid #1c2537;font-size:11px}.prow input{accent-color:#6d6aff}.prow .pname{flex:1;font-weight:700}.prow .pval{color:#68778e;font-size:9px}.tradesummary{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:14px}.tvbig{font-size:24px;font-weight:900}.suggestcard{padding:12px;border:1px solid var(--line);border-radius:11px;background:#0d1421;margin-top:9px}.suggestcard .sc-top{display:flex;justify-content:space-between;align-items:center;gap:8px}.likely{color:#5de0b7;font-size:9px;font-weight:800}.longshot{color:#f5c566;font-size:9px;font-weight:800}
+.waiverbar{display:flex;gap:8px;margin-bottom:11px;flex-wrap:wrap}.plannerhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}.weeksel{display:flex;gap:5px;flex-wrap:wrap}.weeksel button{border:1px solid var(--line);background:#0d1421;color:var(--muted);padding:6px 10px;border-radius:8px;font-size:10px}.weeksel button.active{background:#27225e;border-color:#5750e5;color:#fff}.lineuprow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}.lineuprow .lp-pos{width:32px;font-size:9px;color:#68778e;font-weight:800}.lineuprow .lp-name{flex:1}.lineuprow .lp-name b{font-size:11px;display:block}.lineuprow .lp-name span{font-size:9px;color:#68778e}.lineuprow .lp-pts{font-size:14px;font-weight:900}.flagrow{display:flex;gap:9px;padding:9px 0;border-bottom:1px solid var(--line);font-size:11px;align-items:flex-start}.flagrow .fi{font-size:14px}.byebadge{background:#421e29;color:#ff8190;font-size:8px;padding:3px 6px;border-radius:6px;font-weight:800;margin-left:6px}
+.matchup-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}.matchup-team{text-align:center;flex:1}.matchup-team b{display:block;font-size:12px}.matchup-team .mscore{font-size:26px;font-weight:900;margin-top:4px}.matchup-vs{font-size:11px;color:#68778e;font-weight:800;padding:0 6px}.matchup-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}.matchup-col-head{font-size:10px;text-transform:uppercase;color:#68778e;font-weight:800;margin-bottom:8px}
+@media(max-width:600px){.matchup-cols{grid-template-columns:1fr}}
+.persistbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.teamnamegrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}.teamnameinput{display:flex;align-items:center;gap:7px;background:#0c1320;border:1px solid var(--line);border-radius:9px;padding:8px 10px}.teamnameinput span{font-size:9px;color:#68778e;font-weight:800;width:16px}.teamnameinput input{flex:1;background:transparent;border:0;color:var(--text);font-size:11px;outline:none}
+@media(max-width:600px){.teamnamegrid{grid-template-columns:1fr}}
+@media(max-width:900px){.clock{grid-template-columns:1.4fr 1fr 1fr}.clock .statbox:last-child{display:none}.hero,.grid2,.analytics,.settings,.tradegrid,.tradesummary,.grid3{grid-template-columns:1fr}.leaguegrid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.wrap{padding:12px}.top{padding:12px}.brand h1{font-size:16px}.logo{width:37px;height:37px}.live{display:none}.clock{grid-template-columns:1.3fr 1fr}.clock .statbox:nth-child(3){display:none}.bigpick{font-size:27px}.rec-name{font-size:22px}.board-controls{grid-template-columns:1fr 1fr}.board-controls .input{grid-column:span 2}.leaguegrid{grid-template-columns:1fr}.sectionhead{align-items:start;flex-direction:column}.alert{flex-direction:column;align-items:start}}
+.print-only{display:none}
+@media print{
+ body *{visibility:hidden}
+ #cheatSheetPrint,#cheatSheetPrint *{visibility:visible}
+ #cheatSheetPrint{display:block;position:absolute;top:0;left:0;width:100%;background:#fff;color:#111;font-family:Arial,sans-serif;padding:20px}
+ .cs-title{font-size:20px;font-weight:900;margin-bottom:2px}
+ .cs-sub{font-size:11px;color:#555;margin-bottom:14px}
+ .cs-tier{font-size:13px;font-weight:900;margin:14px 0 6px;padding:4px 8px;border-radius:4px;background:#eee;color:#111}
+ .cs-table{width:100%;border-collapse:collapse;font-size:10px;margin-bottom:6px}
+ .cs-table th{text-align:left;border-bottom:1.5px solid #111;padding:3px 6px;font-size:9px;text-transform:uppercase}
+ .cs-table td{border-bottom:1px solid #ccc;padding:3px 6px}
+ .cs-foot{font-size:9px;color:#777;margin-top:16px}
+}
+</style>
+</head>
+<body>
+<div id="iosFileNotice" style="display:none;position:fixed;inset:0;z-index:999;background:#090d17;color:#f4f7fb;padding:24px;align-items:center;justify-content:center;text-align:center;font-family:system-ui,-apple-system,sans-serif">
+  <div style="max-width:430px">
+    <div style="font-size:42px;margin-bottom:12px">📱</div>
+    <h2 style="margin:0 0 10px">Open the dashboard in Safari</h2>
+    <p style="color:#a9b5c8;font-size:15px;line-height:1.5">The iPhone/iPad Files preview can display an HTML file but may not run its JavaScript. This dashboard needs JavaScript for every button, tab, draft action and saved state.</p>
+    <p style="color:#a9b5c8;font-size:14px;line-height:1.5">Open the dashboard from a web address (HTTPS) in Safari, then use <b>Share → Add to Home Screen → Open as Web App</b>.</p>
+    <p style="color:#6d7d95;font-size:12px;line-height:1.5">If you are already in Safari and see this message, the file is being loaded with <code>file://</code>. It needs to be served from a web address.</p>
+  </div>
+</div>
+<div class="app">
+<header class="top">
+  <div class="toprow">
+    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v6</span></h1></div></div>
+    <div class="status"><div class="live" title="Roster refresh is live-capable; ADP/rankings remain fallback until a source is configured"><i class="pulse"></i><span id="syncText">DEMO / CONNECTOR READY</span></div><button class="topbtn" id="espnBtn">ESPN SYNC</button></div>
+  </div>
+  <nav class="nav" id="nav">
+    <button class="active" data-page="draft">Draft</button><button data-page="board">Player Board</button><button data-page="mock">Mock Board</button><button data-page="trade">Trade</button><button data-page="waivers">Waivers</button><button data-page="planner">Planner</button><button data-page="analytics">Analytics</button><button data-page="league">League</button><button data-page="settings">Settings</button>
+  </nav>
+  <div class="stickyclock" id="stickyClock"><span id="stickyClockText">Pick 1 · Round 1</span><div class="stickybar"><i id="stickyClockFill"></i></div></div>
+</header>
+
+<main class="wrap">
+<section id="page-draft">
+  <div class="clock">
+    <div class="card onclock"><div class="smallcaps" id="clockLabel">You're on the clock</div><div class="bigpick" id="pickLabel">Pick 1</div><div class="pickmeta" id="roundMeta">Round 1 · Pick 1 · 12-team snake</div><div class="roundbar"><i id="roundFill"></i></div></div>
+    <div class="card statbox"><div class="smallcaps">Next pick</div><strong id="nextPick">—</strong><span id="nextPickMeta">—</span></div>
+    <div class="card statbox"><div class="smallcaps">Best value</div><strong class="positive" id="bestValue">—</strong><span id="bestValueMeta">—</span></div>
+    <div class="card statbox"><div class="smallcaps">Position alert</div><strong class="amber" id="positionAlert">—</strong><span id="positionAlertMeta">—</span></div>
+  </div>
+
+  <p class="mini" style="margin:10px 0 0">Draft picks and simulation controls live on the <b>Player Board</b> and <b>Mock Board</b> tabs.</p>
+
+  <div class="section hero">
+    <div class="card rec"><div class="smallcaps">🎯 Best pick now</div><div id="recommendation"></div></div>
+    <div class="card roster"><div class="smallcaps">👥 My roster</div><div class="slots" id="roster"></div><div id="bench"></div></div>
+  </div>
+
+  <div class="section card panelpad" id="draftGradeCard" style="display:none">
+    <div class="sectionhead"><div><h2>🏁 Your draft grade</h2><p id="draftGradeText">—</p></div><div id="draftGradeBadge"></div></div>
+  </div>
+
+  <div class="section banner" id="alertBanner" style="display:none"><span id="alertIcon">⚠️</span><div><b id="alertTitle">Draft intelligence</b><span id="alertText"></span></div></div>
+
+  <div class="section card panelpad">
+    <div class="sectionhead"><div><h2>Position runs</h2><p>Recent draft pressure by position.</p></div></div><div id="runs"></div>
+  </div>
+</section>
+
+<section id="page-board" style="display:none">
+  <div class="card panelpad" id="boardSuggestCard">
+    <div class="sectionhead"><div><h2>🧠 Suggested pick right now</h2><p>Weighs ADP-relative value, starter urgency, positional runs and a round-by-round RB/WR-first strategy — not just raw value.</p></div><button class="ghost" id="planPreviewBtn">PREVIEW MY FULL PLAN</button></div>
+    <div id="boardSuggestBody"></div>
+    <div id="planPreviewBody" style="display:none;margin-top:12px"></div>
+  </div>
+  <div class="card panelpad">
+    <div class="sectionhead"><div><h2>🏆 Top players / tier board</h2><p>Suggested ADP from lowest to highest; projections are secondary validation.</p></div><select class="select" id="sort" style="width:150px"><option value="adp">Suggested ADP (best first)</option><option value="pts">Projected Points</option><option value="score">Value score</option><option value="adp">Market ADP</option><option value="rank">Expert rank</option><option value="gap">ADP gap</option><option value="ceil">Ceiling</option></select></div>
+    <p class="mini" style="margin:-4px 0 11px">Ceil/Floor are <b>rank numbers</b>, not points — lower is better. Ceil = best-case rank across all sources, Floor = worst-case.</p>
+    <div class="board-controls"><input class="input" id="search" placeholder="Search player, team or position"><select class="select" id="pos"><option>ALL</option><option>QB</option><option>RB</option><option>WR</option><option>TE</option><option>DEF</option><option>K</option></select><select class="select" id="action"><option>ALL</option><option>STEAL</option><option>TARGET</option><option>REACH</option></select></div>
+    <div class="chips" id="tierChips"><button class="active">ALL TIERS</button><button>Elite</button><button>Tier 2</button><button>Tier 3</button><button>Tier 4</button><button>Tier 5</button><button>Tier 6</button><button>Late</button><button>Bench</button><button>Waiver</button><button>DEF</button><button>K</button></div>
+    <div class="chips"><button id="watchlistChip">⭐ WATCHLIST ONLY</button></div>
+    <div class="tablewrap" id="boardTableWrap"><table class="board"><thead><tr><th>Player</th><th>Pos</th><th title="Projected season points and value over replacement">Season Pts / VOR ⓘ</th><th>ADP</th><th>Expert</th><th>Gap</th><th title="Best-case rank across all sources">Ceil ⓘ</th><th title="Worst-case rank across all sources">Floor ⓘ</th><th>Sug. Rd</th><th>Value</th><th>Action</th></tr></thead><tbody id="boardRows"></tbody></table></div>
+    <div class="boardcards" id="boardCards"></div>
+  </div>
+</section>
+
+<section id="page-mock" style="display:none">
+  <div class="card panelpad">
+    <div class="sectionhead"><div><h2>🏟️ Full 12-team mock draft board</h2><p>Snake order · Round = row · Team = column. Your seat is highlighted.</p></div></div>
+    <div class="btnrow" style="margin-bottom:13px">
+      <button class="primary btnsm" id="mockSimBtn">SIMULATE PICK</button>
+      <button class="secondary btnsm" id="mockAutoMeBtn">AUTO-SIM TO MY PICK</button>
+      <button class="secondary btnsm" id="mockAutoFullBtn">AUTO-SIM FULL DRAFT</button>
+      <button class="ghost btnsm" id="mockUndoBtn">↩ UNDO</button>
+      <button class="ghost btnsm" id="mockResetBtn">RESET</button>
+    </div>
+    <div class="mockwrap"><table class="mockboard" id="mockTable"></table></div>
+  </div>
+</section>
+
+<section id="page-trade" style="display:none">
+  <div class="card panelpad">
+    <div class="sectionhead"><div><h2>🤝 Multi-player trade analyzer</h2><p>Select players from each roster to compare trade value and get a grade.</p></div></div>
+    <div class="tradegrid">
+      <div class="card tradeside"><h3>Team gives</h3><select class="select" id="tradeTeamA"></select><div class="plist" id="tradeListA"></div></div>
+      <div class="card tradeside"><h3>Team receives from</h3><select class="select" id="tradeTeamB"></select><div class="plist" id="tradeListB"></div></div>
+    </div>
+    <div class="tradesummary">
+      <div class="card panelpad"><div class="smallcaps">Team A sends</div><div class="tvbig" id="tvA">0</div><div class="mini" id="tvAmeta">Select players above</div></div>
+      <div class="card panelpad"><div class="smallcaps">Team B sends</div><div class="tvbig" id="tvB">0</div><div class="mini" id="tvBmeta">Select players above</div></div>
+    </div>
+    <div class="card panelpad" style="margin-top:14px">
+      <div class="sectionhead"><div><h2>💰 Trade grade</h2><p id="gradeSub">Add players to both sides to analyze.</p></div><div id="gradeBadge"></div></div>
+      <div style="display:flex;gap:8px;margin-top:10px"><button class="primary" id="executeTrade" disabled>EXECUTE TRADE (DEMO)</button><button class="ghost" id="clearTrade">CLEAR SELECTION</button></div>
+    </div>
+  </div>
+  <div class="section card panelpad">
+    <div class="sectionhead"><div><h2>💡 Suggested trades for my team</h2><p>Value-upgrade swaps sourced from opponents' rosters.</p></div></div>
+    <div id="suggestedTrades"></div>
+  </div>
+  <div class="section card panelpad" id="tradeHistoryCard" style="display:none">
+    <div class="sectionhead"><div><h2>Trade history</h2><p>Executed demo trades this session.</p></div></div>
+    <div id="tradeHistory"></div>
+  </div>
+</section>
+
+<section id="page-waivers" style="display:none">
+  <div class="card panelpad">
+    <div class="sectionhead"><div><h2>🏷️ Waiver wire</h2><p>Undrafted players with projected weekly points. Adds go to your bench.</p></div></div>
+    <div class="waiverbar"><input class="input" id="waiverSearch" placeholder="Search waiver wire" style="max-width:280px"><select class="select" id="waiverPos" style="max-width:130px"><option>ALL</option><option>QB</option><option>RB</option><option>WR</option><option>TE</option><option>DEF</option><option>K</option></select></div>
+    <div class="tablewrap"><table class="board"><thead><tr><th>Player</th><th>Pos</th><th>Team</th><th>ADP</th><th title="Projected points for the current NFL week, not season total">Proj Pts/Wk ⓘ</th><th>Trend</th><th></th></tr></thead><tbody id="waiverRows"></tbody></table></div>
+  </div>
+</section>
+
+<section id="page-planner" style="display:none">
+  <div class="card panelpad">
+    <div class="sectionhead"><div><h2>📅 Weekly planner</h2><p>League-specific weekly projections when synced; fallback estimates otherwise.</p></div></div>
+    <div class="plannerhead"><div class="weeksel" id="weekSel"></div><button class="secondary btnsm" id="projectionSyncBtn">SYNC WEEKLY PROJECTIONS</button></div>
+     <div class="mini" id="projectionSyncStatus" style="margin-top:8px">Planner uses a live projection cache when synced; otherwise it uses the clearly labeled fallback model.</div>
+  </div>
+  <div class="section card panelpad">
+    <div class="sectionhead"><div><h2>⚔️ Matchup</h2><p>Your projected starters vs this week's opponent, head to head.</p></div></div>
+    <div id="matchupBody"></div>
+  </div>
+  <div class="section card panelpad">
+    <div class="sectionhead"><div><h2>Your roster this week</h2></div></div>
+    <div class="grid2">
+      <div><div class="smallcaps" style="margin-bottom:6px">Starting lineup</div><div id="lineupStarters"></div></div>
+      <div><div class="smallcaps" style="margin-bottom:6px">Bench</div><div id="lineupBench"></div></div>
+    </div>
+  </div>
+  <div class="section card panelpad">
+    <div class="sectionhead"><div><h2>🔎 Roster evaluation & action flags</h2><p>Bye alerts and start/sit recommendations for the selected week.</p></div></div>
+    <div id="plannerFlags"></div>
+  </div>
+</section>
+
+<section id="page-analytics" style="display:none">
+  <div class="card panelpad">
+    <div class="sectionhead"><div><h2>📋 Round-by-round draft board</h2><p>Pure draft prep — grouped by expected round using market ADP, not your live pick number. Study this before the draft; use Suggested Pick and the Tiered List once you're actually on the clock.</p></div></div>
+    <div class="roundboard" id="roundBoard"></div>
+  </div>
+  <div class="section card panelpad">
+    <div class="sectionhead"><div><h2>📊 Tiered player list</h2><p>Every available player ranked and bucketed by the smart recommendation engine — same logic behind Suggested Pick.</p></div></div>
+    <div class="chips" id="tierPosChips"><button class="active" data-pos="ALL">ALL</button><button data-pos="QB">QB</button><button data-pos="RB">RB</button><button data-pos="WR">WR</button><button data-pos="TE">TE</button><button data-pos="DEF">DEF</button><button data-pos="K">K</button></div>
+    <div class="tierlist" id="tierList"></div>
+  </div>
+</section>
+
+<section id="page-league" style="display:none">
+  <div class="card panelpad"><div class="sectionhead"><div><h2>League room</h2><p>Ranked by team-fit score (roster completeness + value gained) — 1st place on top.</p></div></div><div class="leaguegrid" id="teams"></div></div>
+</section>
+
+<section id="page-settings" style="display:none">
+  <div class="settings">
+    <div class="card setting"><div class="sectionhead"><div><h2>League setup</h2><p>Change these before draft night.</p></div></div>
+      <div class="formrow"><label>Draft position</label><input class="input" id="draftPos" type="number" min="1" max="12" value="2"></div>
+      <div class="formrow"><label>Current pick</label><input class="input" id="currentPick" type="number" min="1" max="168" value="1"></div>
+      <div class="formrow"><label>Draft philosophy</label><select class="select" id="philosophy"><option value="balanced">Balanced</option><option value="value">Value first</option><option value="need">Roster need</option><option value="aggressive">Aggressive / upside</option></select></div>
+    </div>
+    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🔴 Live draft mode</h2><p>Turn this on during your actual live draft to log every real pick — yours and your opponents' — instead of relying on simulated bot picks.</p></div></div>
+      <div class="formrow" style="display:flex;align-items:center;gap:10px"><input type="checkbox" id="liveDraftToggle" style="width:18px;height:18px"><label for="liveDraftToggle" style="margin:0;font-size:12px">Enable Live Draft Mode</label></div>
+      <p class="mini" style="margin-top:8px">When ON, every "Draft" button becomes "Log Pick" and works regardless of whose turn it technically is — tap whoever actually got picked, for whichever team actually picked them. Keeps this app's state matching your real draft instead of guessing.</p>
+      <div class="formrow" style="margin-top:12px"><label>Log picks for</label><select class="select" id="logTeamSelect"><option value="">Auto (whoever's on the clock)</option></select></div>
+      <p class="mini" style="margin-top:6px">Leave on Auto to follow the expected snake order. Override this if your real draft goes out of order, or to fix a misclick.</p>
+    </div>
+    <div class="card setting"><div class="sectionhead"><div><h2>Data model</h2><p>Current snapshot shown in this prototype.</p></div></div>
+      <div class="source"><b>Market ADP</b><span class="amber">Demo dataset</span></div><div class="source"><b>Expert consensus</b><span class="amber">Demo dataset</span></div><div class="source"><b>Walter PPR</b><span class="amber">Fallback/demo only</span></div><div class="source"><b>Bye weeks</b><span style="color:#5de0b7">Real 2026 schedule</span></div><div class="source"><b>ESPN live draft</b><span id="espnStatus">Not connected</span></div>
+      <p style="font-size:10px;color:#f6b94a;margin-top:12px;line-height:1.6">⚠️ Player pool, ADP and rankings are still fallback data until you sync a live source. The roster refresh can add active players from Sleeper, while weekly projections can be pulled from ESPN or a server-side FantasyPros/SportsDataIO proxy. Rosters were spot-checked and corrected as of late August 2026, but NFL teams cut down to 53 players by August 30 every year — expect real roster churn this week that this static dataset can't track automatically. Double-check any player you're unsure about against ESPN or your league's source before an actual live draft.</p>
+      <p style="font-size:10px;color:#5de0b7;margin-top:8px;line-height:1.6">✓ Bye weeks were corrected to match the actual verified 2026 NFL schedule (Weeks 5–14, none in Week 12) — these are real, not demo data, and drive the bye-cluster alert and Planner/Matchup projections accurately.</p>
+      <p style="font-size:10px;color:#718099;margin-top:8px">The ESPN connector should run server-side for private leagues. Never paste your ESPN session cookies into this HTML file.</p>
+    </div>
+    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>📈 Weekly projection source</h2><p>Use league-specific weekly PPR projections instead of the old simulated weekly numbers.</p></div></div>
+      <div class="formrow"><label>ESPN league ID (optional)</label><input class="input" id="projectionLeagueId" placeholder="Use a public ESPN league for direct weekly projections"></div>
+      <div class="formrow"><label>Projection proxy URL (recommended for private ESPN / FantasyPros / SportsDataIO)</label><input class="input" id="projectionProxyUrl" placeholder="https://your-domain.example/api/projections"></div>
+      <p class="mini" style="margin-top:8px">ESPN's internal fantasy API exposes week-level projected stats, but it is unofficial and private leagues require server-side authentication. FantasyPros officially offers weekly NFL projections by API, while SportsDataIO offers continuously refreshed weekly player projections. Keep API keys/cookies on your server — never in this HTML.</p>
+      <div class="persistbar"><button class="secondary" id="projectionSettingsSave">SAVE PROJECTION SETTINGS</button></div>
+    </div>
+    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🔄 Live injury & roster sync</h2><p>Pulls current injury status and team assignments from Sleeper's free public NFL player API — real data, not a demo.</p></div></div>
+      <p class="mini" id="liveSyncStatus">Never synced. Tap below to fetch current data.</p>
+      <p class="mini" id="liveSyncProtocolWarning" style="display:none;color:#f6b94a;margin-top:6px">⚠️ This page is open as a local file (file://), not through a web address. Many mobile browsers block outgoing network requests from local files for security reasons — if Sync fails, this is the most likely reason, and there's no in-app fix for it; the file would need to be hosted somewhere and opened via https:// instead.</p>
+      <div class="persistbar">
+        <button class="secondary" id="liveSyncBtn">SYNC NOW</button>
+      </div>
+      <div id="liveSyncReport" style="margin-top:10px"></div>
+      <p style="font-size:10px;color:#718099;margin-top:10px;line-height:1.6">This fetches a public dataset (~5MB) directly from your device — no server of ours is involved. It updates injury badges and flags team mismatches between this app's data and Sleeper's live roster info, but it does <b>not</b> change ADP or expert rankings, which stay static. Requires an internet connection; if the fetch fails (e.g. no connection, or the source is unreachable), everything else in the app keeps working normally.</p>
+    </div>
+    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🏈 Team names</h2><p>Rename the 12 league teams to match your real league mates.</p></div></div>
+      <div class="teamnamegrid" id="teamNameGrid"></div>
+    </div>
+    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>💾 Draft-state persistence & export</h2><p>Your draft, rosters, trades and planner state auto-save to this browser. Export a portable snapshot anytime.</p></div></div>
+      <p class="mini">Last saved: <span id="lastSaved">never</span></p>
+      <div class="persistbar">
+        <button class="secondary" id="exportBtn">EXPORT DRAFT STATE (.json)</button>
+        <label class="secondary" style="display:inline-flex;align-items:center" for="importFile">IMPORT DRAFT STATE</label>
+        <input type="file" id="importFile" accept="application/json" style="display:none">
+        <button class="ghost" id="wipeBtn">WIPE SAVED STATE</button>
+      </div>
+      <div class="persistbar">
+        <button class="secondary" id="printCheatSheetBtn">🖨️ PRINT DRAFT DAY CHEAT SHEET</button>
+      </div>
+      <p class="mini" style="margin-top:6px">Prints the current tiered player list as a clean reference sheet — handy as a backup if wifi is spotty on draft day.</p>
+    </div>
+  </div>
+</section>
+</main>
+</div>
+
+<div class="modal" id="modal"><div class="modalbox"><button class="close" id="closeModal" aria-label="Close dialog">✕</button><h2>ESPN League Sync</h2><p>Architecture is ready for an ESPN connector, but it is not live yet — this button does not currently connect to a real ESPN league. Public league data can be queried without cookies; private league data requires authenticated session credentials on a secure server. The recommendation engine, trade analyzer and planner in this app are all built against one normalized <code>teams[].roster[]</code> data model and one points/VOR-based scoring engine — a live connector only needs to populate that same shape, and the same "maximize projected points" logic used in the mock draft would immediately apply to your real live picks too.</p>
+<div class="formrow"><label>League ID</label><input class="input" id="leagueId" placeholder="e.g. 12345678"></div>
+<div class="formrow"><label>Season</label><input class="input" id="season" value="2026"></div>
+<div class="formrow"><label>Sync mode</label><select class="select" id="syncMode"><option>Demo / Preview</option><option>Live backend connector</option></select></div>
+<div style="display:flex;gap:8px;margin-top:16px"><button class="primary" id="connectBtn">SAVE CONNECTION</button><button class="secondary" id="demoBtn">USE DEMO MODE</button></div>
+<p style="margin-top:13px">For a private league, the secure backend should store ESPN authentication server-side. The browser UI never needs to see the credentials.</p>
+</div></div>
+<div class="toast" id="toast"></div>
+<div id="cheatSheetPrint" class="print-only"></div>
+
+<script>
+let DATA=[{"name":"Jahmyr Gibbs","pos":"RB","team":"DET","adp":1.9,"espn":1,"sleeper":1.6,"fp":3.0,"walter":1,"tier":"Elite"},{"name":"Bijan Robinson","pos":"RB","team":"ATL","adp":2.4,"espn":2,"sleeper":1.8,"fp":3.5,"walter":2,"tier":"Elite"},{"name":"Ja'Marr Chase","pos":"WR","team":"CIN","adp":3.0,"espn":4,"sleeper":3.4,"fp":1.7,"walter":3,"tier":"Elite"},{"name":"Puka Nacua","pos":"WR","team":"LAR","adp":3.6,"espn":3,"sleeper":4.9,"fp":3.0,"walter":12,"tier":"Elite"},{"name":"Jaxon Smith-Njigba","pos":"WR","team":"SEA","adp":5.0,"espn":5,"sleeper":5.4,"fp":4.6,"walter":16,"tier":"Elite"},{"name":"Christian McCaffrey","pos":"RB","team":"SF","adp":6.7,"espn":6,"sleeper":5.0,"fp":9.1,"walter":10,"tier":"Elite"},{"name":"Amon-Ra St. Brown","pos":"WR","team":"DET","adp":7.3,"espn":8,"sleeper":8.1,"fp":5.7,"walter":17,"tier":"Elite"},{"name":"Jonathan Taylor","pos":"RB","team":"IND","adp":8.7,"espn":7,"sleeper":7.7,"fp":11.4,"walter":9,"tier":"Elite"},{"name":"CeeDee Lamb","pos":"WR","team":"DAL","adp":9.4,"espn":9,"sleeper":10.6,"fp":8.7,"walter":20,"tier":"Elite"},{"name":"Justin Jefferson","pos":"WR","team":"MIN","adp":11.0,"espn":11,"sleeper":12.4,"fp":9.7,"walter":19,"tier":"Elite"},{"name":"Drake London","pos":"WR","team":"ATL","adp":13.5,"espn":14,"sleeper":14.1,"fp":12.4,"walter":23,"tier":"Tier 2"},{"name":"De'Von Achane","pos":"RB","team":"MIA","adp":14.3,"espn":10,"sleeper":12.5,"fp":20.5,"walter":8,"tier":"Tier 2"},{"name":"James Cook","pos":"RB","team":"BUF","adp":14.3,"espn":12,"sleeper":12.7,"fp":18.3,"walter":4,"tier":"Tier 2"},{"name":"Ashton Jeanty","pos":"RB","team":"LV","adp":16.0,"espn":15,"sleeper":15.4,"fp":17.4,"walter":6,"tier":"Tier 2"},{"name":"Trey McBride","pos":"TE","team":"ARI","adp":18.3,"espn":17,"sleeper":18.7,"fp":19.2,"walter":30,"tier":"Tier 2"},{"name":"Chase Brown","pos":"RB","team":"CIN","adp":19.2,"espn":21,"sleeper":19.0,"fp":17.6,"walter":11,"tier":"Tier 2"},{"name":"Rashee Rice","pos":"WR","team":"KC","adp":20.2,"espn":16,"sleeper":22.7,"fp":22.0,"walter":56,"tier":"Tier 2"},{"name":"A.J. Brown","pos":"WR","team":"NE","adp":20.5,"espn":27,"sleeper":19.4,"fp":15.1,"walter":14,"tier":"Tier 2"},{"name":"Saquon Barkley","pos":"RB","team":"PHI","adp":20.7,"espn":19,"sleeper":16.6,"fp":26.5,"walter":7,"tier":"Tier 2"},{"name":"Omarion Hampton","pos":"RB","team":"LAC","adp":20.7,"espn":18,"sleeper":18.8,"fp":25.4,"walter":5,"tier":"Tier 2"},{"name":"Brock Bowers","pos":"TE","team":"LV","adp":21.6,"espn":24,"sleeper":20.2,"fp":20.6,"walter":29,"tier":"Tier 2"},{"name":"Nico Collins","pos":"WR","team":"HOU","adp":22.2,"espn":25,"sleeper":25.2,"fp":16.5,"walter":22,"tier":"Tier 2"},{"name":"George Pickens","pos":"WR","team":"DAL","adp":23.9,"espn":29,"sleeper":23.1,"fp":19.7,"walter":39,"tier":"Tier 2"},{"name":"Kenneth Walker III","pos":"RB","team":"KC","adp":24.8,"espn":22,"sleeper":22.9,"fp":29.4,"walter":13,"tier":"Tier 2"},{"name":"Chris Olave","pos":"WR","team":"NO","adp":24.9,"espn":28,"sleeper":26.4,"fp":20.4,"walter":43,"tier":"Tier 2"},{"name":"Derrick Henry","pos":"RB","team":"BAL","adp":27.4,"espn":20,"sleeper":24.6,"fp":37.7,"walter":24,"tier":"Tier 3"},{"name":"Jeremiyah Love","pos":"RB","team":"ARI","adp":28.7,"espn":999,"sleeper":19.7,"fp":37.8,"walter":32,"tier":"Tier 3"},{"name":"Malik Nabers","pos":"WR","team":"NYG","adp":28.8,"espn":32,"sleeper":25.2,"fp":29.1,"walter":45,"tier":"Tier 3"},{"name":"Josh Allen","pos":"QB","team":"BUF","adp":30.0,"espn":36,"sleeper":28.2,"fp":25.9,"walter":44,"tier":"Tier 3"},{"name":"Josh Jacobs","pos":"RB","team":"GB","adp":31.5,"espn":23,"sleeper":27.6,"fp":43.9,"walter":50,"tier":"Tier 3"},{"name":"Garrett Wilson","pos":"WR","team":"NYJ","adp":32.4,"espn":26,"sleeper":40.9,"fp":30.4,"walter":40,"tier":"Tier 3"},{"name":"Breece Hall","pos":"RB","team":"NYJ","adp":34.4,"espn":30,"sleeper":32.3,"fp":40.8,"walter":18,"tier":"Tier 3"},{"name":"Tetairoa McMillan","pos":"WR","team":"CAR","adp":34.5,"espn":33,"sleeper":37.3,"fp":33.3,"walter":65,"tier":"Tier 3"},{"name":"DeVonta Smith","pos":"WR","team":"PHI","adp":34.7,"espn":35,"sleeper":44.9,"fp":24.3,"walter":36,"tier":"Tier 3"},{"name":"Zay Flowers","pos":"WR","team":"BAL","adp":35.9,"espn":34,"sleeper":43.8,"fp":29.8,"walter":54,"tier":"Tier 3"},{"name":"Javonte Williams","pos":"RB","team":"DAL","adp":38.2,"espn":31,"sleeper":38.3,"fp":45.4,"walter":21,"tier":"Tier 3"},{"name":"Kyren Williams","pos":"RB","team":"LAR","adp":47.7,"espn":69,"sleeper":32.2,"fp":42.0,"walter":27,"tier":"Tier 4"},{"name":"Tee Higgins","pos":"WR","team":"CIN","adp":49.4,"espn":78,"sleeper":35.5,"fp":34.6,"walter":41,"tier":"Tier 4"},{"name":"Ladd McConkey","pos":"WR","team":"LAC","adp":51.2,"espn":76,"sleeper":41.9,"fp":35.8,"walter":37,"tier":"Tier 4"},{"name":"Colston Loveland","pos":"TE","team":"CHI","adp":52.2,"espn":81,"sleeper":38.3,"fp":37.4,"walter":31,"tier":"Tier 4"},{"name":"Emeka Egbuka","pos":"WR","team":"TB","adp":52.3,"espn":74,"sleeper":45.8,"fp":37.1,"walter":26,"tier":"Tier 4"},{"name":"Lamar Jackson","pos":"QB","team":"BAL","adp":52.9,"espn":88,"sleeper":37.9,"fp":32.7,"walter":51,"tier":"Tier 4"},{"name":"Travis Etienne Jr.","pos":"RB","team":"NO","adp":54.3,"espn":70,"sleeper":42.2,"fp":50.8,"walter":38,"tier":"Tier 4"},{"name":"Jaylen Waddle","pos":"WR","team":"DEN","adp":54.4,"espn":79,"sleeper":46.2,"fp":37.9,"walter":77,"tier":"Tier 4"},{"name":"Bucky Irving","pos":"RB","team":"TB","adp":55.2,"espn":73,"sleeper":34.4,"fp":58.3,"walter":35,"tier":"Tier 4"},{"name":"Luther Burden III","pos":"WR","team":"CHI","adp":57.2,"espn":85,"sleeper":41.1,"fp":45.6,"walter":42,"tier":"Tier 4"},{"name":"Davante Adams","pos":"WR","team":"LAR","adp":57.4,"espn":75,"sleeper":46.9,"fp":50.4,"walter":58,"tier":"Tier 4"},{"name":"Cam Skattebo","pos":"RB","team":"NYG","adp":58.3,"espn":71,"sleeper":48.7,"fp":55.1,"walter":15,"tier":"Tier 4"},{"name":"Terry McLaurin","pos":"WR","team":"WSH","adp":59.4,"espn":77,"sleeper":56.6,"fp":44.5,"walter":53,"tier":"Tier 4"},{"name":"Drake Maye","pos":"QB","team":"NE","adp":59.7,"espn":89,"sleeper":51.2,"fp":38.9,"walter":55,"tier":"Tier 4"},{"name":"Tyler Warren","pos":"TE","team":"IND","adp":61.8,"espn":82,"sleeper":50.1,"fp":53.1,"walter":59,"tier":"Tier 4"},{"name":"Jameson Williams","pos":"WR","team":"DET","adp":62.6,"espn":80,"sleeper":51.6,"fp":56.3,"walter":48,"tier":"Tier 5"},{"name":"Quinshon Judkins","pos":"RB","team":"CLE","adp":62.8,"espn":72,"sleeper":55.0,"fp":61.3,"walter":28,"tier":"Tier 5"},{"name":"DJ Moore","pos":"WR","team":"BUF","adp":65.9,"espn":86,"sleeper":59.3,"fp":52.3,"walter":46,"tier":"Tier 5"},{"name":"Jayden Daniels","pos":"QB","team":"WSH","adp":66.6,"espn":87,"sleeper":62.1,"fp":50.6,"walter":64,"tier":"Tier 5"},{"name":"TreVeyon Henderson","pos":"RB","team":"NE","adp":67.5,"espn":91,"sleeper":47.8,"fp":63.7,"walter":69,"tier":"Tier 5"},{"name":"Rome Odunze","pos":"WR","team":"CHI","adp":69.0,"espn":84,"sleeper":64.2,"fp":58.9,"walter":75,"tier":"Tier 5"},{"name":"Joe Burrow","pos":"QB","team":"CIN","adp":69.7,"espn":108,"sleeper":55.5,"fp":45.5,"walter":62,"tier":"Tier 5"},{"name":"David Montgomery","pos":"RB","team":"HOU","adp":71.0,"espn":95,"sleeper":56.3,"fp":61.6,"walter":25,"tier":"Tier 5"},{"name":"Jalen Hurts","pos":"QB","team":"PHI","adp":71.4,"espn":90,"sleeper":67.2,"fp":57.0,"walter":88,"tier":"Tier 5"},{"name":"D'Andre Swift","pos":"RB","team":"CHI","adp":72.8,"espn":94,"sleeper":65.1,"fp":59.4,"walter":34,"tier":"Tier 5"},{"name":"Mike Evans","pos":"WR","team":"SF","adp":74.6,"espn":112,"sleeper":57.8,"fp":54.0,"walter":73,"tier":"Tier 5"},{"name":"Harold Fannin Jr.","pos":"TE","team":"CLE","adp":81.4,"espn":106,"sleeper":62.6,"fp":75.6,"walter":66,"tier":"Tier 6"},{"name":"Marvin Harrison Jr.","pos":"WR","team":"ARI","adp":82.5,"espn":102,"sleeper":75.8,"fp":69.7,"walter":134,"tier":"Tier 6"},{"name":"DK Metcalf","pos":"WR","team":"PIT","adp":85.1,"espn":103,"sleeper":74.4,"fp":78.0,"walter":116,"tier":"Tier 6"},{"name":"Kyle Pitts","pos":"TE","team":"ATL","adp":86.2,"espn":105,"sleeper":71.3,"fp":82.2,"walter":97,"tier":"Tier 6"},{"name":"Courtland Sutton","pos":"WR","team":"DEN","adp":87.3,"espn":99,"sleeper":77.9,"fp":85.0,"walter":87,"tier":"Tier 6"},{"name":"Tony Pollard","pos":"RB","team":"TEN","adp":88.2,"espn":97,"sleeper":85.6,"fp":82.0,"walter":68,"tier":"Tier 6"},{"name":"Brian Thomas Jr.","pos":"WR","team":"JAX","adp":88.6,"espn":117,"sleeper":69.6,"fp":79.3,"walter":81,"tier":"Tier 6"},{"name":"Sam LaPorta","pos":"TE","team":"DET","adp":88.9,"espn":107,"sleeper":76.4,"fp":83.2,"walter":91,"tier":"Tier 6"},{"name":"Caleb Williams","pos":"QB","team":"CHI","adp":91.8,"espn":124,"sleeper":82.9,"fp":68.5,"walter":105,"tier":"Tier 6"},{"name":"Tucker Kraft","pos":"TE","team":"GB","adp":94.0,"espn":142,"sleeper":67.3,"fp":72.5,"walter":92,"tier":"Tier 6"},{"name":"Justin Herbert","pos":"QB","team":"LAC","adp":94.9,"espn":131,"sleeper":83.7,"fp":70.1,"walter":89,"tier":"Tier 6"},{"name":"Trevor Lawrence","pos":"QB","team":"JAX","adp":96.5,"espn":118,"sleeper":92.3,"fp":79.2,"walter":96,"tier":"Tier 6"},{"name":"George Kittle","pos":"TE","team":"SF","adp":115.2,"espn":141,"sleeper":97.4,"fp":107.2,"walter":183,"tier":"Late"},{"name":"Travis Kelce","pos":"TE","team":"KC","adp":116.9,"espn":144,"sleeper":107.1,"fp":99.6,"walter":202,"tier":"Late"},{"name":"Dalton Kincaid","pos":"TE","team":"BUF","adp":125.2,"espn":164,"sleeper":97.1,"fp":114.5,"walter":117,"tier":"Late"},{"name":"Brandon Aubrey","pos":"K","team":"DAL","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":118,"tier":"K"},{"name":"Baker Mayfield","pos":"QB","team":"TB","adp":98.0,"espn":120,"sleeper":90.5,"fp":72.0,"walter":110,"tier":"Tier 6"},{"name":"Matthew Stafford","pos":"QB","team":"LAR","adp":101.5,"espn":126,"sleeper":95.0,"fp":76.5,"walter":120,"tier":"Tier 6"},{"name":"Kyler Murray","pos":"QB","team":"ARI","adp":104.0,"espn":130,"sleeper":99.0,"fp":80.0,"walter":128,"tier":"Tier 6"},{"name":"Bo Nix","pos":"QB","team":"DEN","adp":108.0,"espn":138,"sleeper":102.0,"fp":84.0,"walter":140,"tier":"Tier 6"},{"name":"Evan Engram","pos":"TE","team":"DEN","adp":128.0,"espn":168,"sleeper":110.0,"fp":118.0,"walter":150,"tier":"Late"},{"name":"Mark Andrews","pos":"TE","team":"BAL","adp":131.0,"espn":172,"sleeper":115.0,"fp":121.0,"walter":158,"tier":"Late"},{"name":"Dallas Goedert","pos":"TE","team":"PHI","adp":134.0,"espn":176,"sleeper":119.0,"fp":124.0,"walter":165,"tier":"Late"},{"name":"Justin Tucker","pos":"K","team":"BAL","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":170,"tier":"K"},{"name":"Harrison Butker","pos":"K","team":"KC","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":174,"tier":"K"},{"name":"Jake Moody","pos":"K","team":"SF","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":178,"tier":"K"},{"name":"Chris Boswell","pos":"K","team":"PIT","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":182,"tier":"K"},{"name":"Younghoe Koo","pos":"K","team":"ATL","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":186,"tier":"K"},{"name":"Cameron Dicker","pos":"K","team":"LAC","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":190,"tier":"K"},{"name":"Jason Sanders","pos":"K","team":"MIA","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":194,"tier":"K"},{"name":"Brandon McManus","pos":"K","team":"GB","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":198,"tier":"K"},{"name":"Matt Gay","pos":"K","team":"IND","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":202,"tier":"K"},{"name":"Wil Lutz","pos":"K","team":"DEN","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":206,"tier":"K"},{"name":"Joey Slye","pos":"K","team":"NE","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":210,"tier":"K"},{"name":"Cairo Santos","pos":"K","team":"CHI","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":214,"tier":"K"},{"name":"C.J. Stroud","pos":"QB","team":"HOU","adp":138,"espn":186,"sleeper":127,"fp":135,"walter":159,"tier":"Bench"},{"name":"Anthony Richardson","pos":"QB","team":"IND","adp":144,"espn":194,"sleeper":132,"fp":141,"walter":166,"tier":"Bench"},{"name":"Jared Goff","pos":"QB","team":"DET","adp":150,"espn":202,"sleeper":138,"fp":147,"walter":172,"tier":"Bench"},{"name":"Sam Darnold","pos":"QB","team":"SEA","adp":156,"espn":211,"sleeper":144,"fp":153,"walter":179,"tier":"Bench"},{"name":"Geno Smith","pos":"QB","team":"LV","adp":162,"espn":219,"sleeper":149,"fp":159,"walter":186,"tier":"Bench"},{"name":"Dak Prescott","pos":"QB","team":"DAL","adp":168,"espn":227,"sleeper":155,"fp":165,"walter":193,"tier":"Bench"},{"name":"Tua Tagovailoa","pos":"QB","team":"MIA","adp":174,"espn":235,"sleeper":160,"fp":171,"walter":200,"tier":"Bench"},{"name":"Brock Purdy","pos":"QB","team":"SF","adp":180,"espn":243,"sleeper":166,"fp":176,"walter":207,"tier":"Bench"},{"name":"Aaron Rodgers","pos":"QB","team":"PIT","adp":186,"espn":251,"sleeper":171,"fp":182,"walter":214,"tier":"Bench"},{"name":"Jordan Love","pos":"QB","team":"GB","adp":198,"espn":267,"sleeper":182,"fp":194,"walter":228,"tier":"Bench"},{"name":"Justice Hill","pos":"RB","team":"BAL","adp":95,"espn":128,"sleeper":87,"fp":93,"walter":109,"tier":"Bench"},{"name":"Jaylen Warren","pos":"RB","team":"PIT","adp":101.2,"espn":137,"sleeper":93,"fp":99,"walter":116,"tier":"Bench"},{"name":"Tyler Allgeier","pos":"RB","team":"ATL","adp":107.4,"espn":145,"sleeper":99,"fp":105,"walter":124,"tier":"Bench"},{"name":"Alexander Mattison","pos":"RB","team":"MIA","adp":113.6,"espn":153,"sleeper":105,"fp":111,"walter":131,"tier":"Bench"},{"name":"Rachaad White","pos":"RB","team":"TB","adp":119.8,"espn":162,"sleeper":110,"fp":117,"walter":138,"tier":"Bench"},{"name":"Zack Moss","pos":"RB","team":"CIN","adp":126.0,"espn":170,"sleeper":116,"fp":123,"walter":145,"tier":"Bench"},{"name":"Chuba Hubbard","pos":"RB","team":"CAR","adp":132.2,"espn":178,"sleeper":122,"fp":130,"walter":152,"tier":"Bench"},{"name":"Braelon Allen","pos":"RB","team":"NYJ","adp":138.4,"espn":187,"sleeper":127,"fp":136,"walter":159,"tier":"Bench"},{"name":"Ray Davis","pos":"RB","team":"BUF","adp":144.6,"espn":195,"sleeper":133,"fp":142,"walter":166,"tier":"Bench"},{"name":"Jerome Ford","pos":"RB","team":"CLE","adp":150.8,"espn":204,"sleeper":139,"fp":148,"walter":173,"tier":"Bench"},{"name":"Tyjae Spears","pos":"RB","team":"TEN","adp":157.0,"espn":212,"sleeper":144,"fp":154,"walter":181,"tier":"Bench"},{"name":"Zamir White","pos":"RB","team":"LV","adp":163.2,"espn":220,"sleeper":150,"fp":160,"walter":188,"tier":"Bench"},{"name":"Roschon Johnson","pos":"RB","team":"CHI","adp":169.4,"espn":229,"sleeper":156,"fp":166,"walter":195,"tier":"Bench"},{"name":"Antonio Gibson","pos":"RB","team":"NE","adp":175.6,"espn":237,"sleeper":162,"fp":172,"walter":202,"tier":"Bench"},{"name":"Miles Sanders","pos":"RB","team":"DAL","adp":181.8,"espn":245,"sleeper":167,"fp":178,"walter":209,"tier":"Bench"},{"name":"Ty Chandler","pos":"RB","team":"MIN","adp":188.0,"espn":254,"sleeper":173,"fp":184,"walter":216,"tier":"Bench"},{"name":"Elijah Mitchell","pos":"RB","team":"SF","adp":194.2,"espn":262,"sleeper":179,"fp":190,"walter":223,"tier":"Bench"},{"name":"Jaylen Wright","pos":"RB","team":"MIA","adp":200.4,"espn":271,"sleeper":184,"fp":196,"walter":230,"tier":"Bench"},{"name":"Blake Corum","pos":"RB","team":"LAR","adp":206.6,"espn":279,"sleeper":190,"fp":202,"walter":238,"tier":"Bench"},{"name":"MarShawn Lloyd","pos":"RB","team":"GB","adp":212.8,"espn":287,"sleeper":196,"fp":209,"walter":245,"tier":"Bench"},{"name":"Isaac Guerendo","pos":"RB","team":"SF","adp":219.0,"espn":296,"sleeper":201,"fp":215,"walter":252,"tier":"Bench"},{"name":"Devin Singletary","pos":"RB","team":"NYG","adp":225.2,"espn":304,"sleeper":207,"fp":221,"walter":259,"tier":"Bench"},{"name":"Rico Dowdle","pos":"RB","team":"CAR","adp":231.4,"espn":312,"sleeper":213,"fp":227,"walter":266,"tier":"Bench"},{"name":"Jerry Jeudy","pos":"WR","team":"CLE","adp":95,"espn":128,"sleeper":87,"fp":93,"walter":109,"tier":"Bench"},{"name":"Christian Kirk","pos":"WR","team":"HOU","adp":100.6,"espn":136,"sleeper":93,"fp":99,"walter":116,"tier":"Bench"},{"name":"Diontae Johnson","pos":"WR","team":"CLE","adp":106.2,"espn":143,"sleeper":98,"fp":104,"walter":122,"tier":"Bench"},{"name":"Calvin Ridley","pos":"WR","team":"TEN","adp":111.8,"espn":151,"sleeper":103,"fp":110,"walter":129,"tier":"Bench"},{"name":"Keenan Allen","pos":"WR","team":"IND","adp":117.4,"espn":158,"sleeper":108,"fp":115,"walter":135,"tier":"Bench"},{"name":"Michael Pittman Jr.","pos":"WR","team":"IND","adp":128.6,"espn":174,"sleeper":118,"fp":126,"walter":148,"tier":"Bench"},{"name":"Jakobi Meyers","pos":"WR","team":"JAX","adp":134.2,"espn":181,"sleeper":123,"fp":132,"walter":154,"tier":"Bench"},{"name":"Jauan Jennings","pos":"WR","team":"SF","adp":139.8,"espn":189,"sleeper":129,"fp":137,"walter":161,"tier":"Bench"},{"name":"Xavier Worthy","pos":"WR","team":"KC","adp":145.4,"espn":196,"sleeper":134,"fp":142,"walter":167,"tier":"Bench"},{"name":"Ricky Pearsall","pos":"WR","team":"SF","adp":151.0,"espn":204,"sleeper":139,"fp":148,"walter":174,"tier":"Bench"},{"name":"Rashid Shaheed","pos":"WR","team":"NO","adp":156.6,"espn":211,"sleeper":144,"fp":153,"walter":180,"tier":"Bench"},{"name":"Josh Downs","pos":"WR","team":"IND","adp":162.2,"espn":219,"sleeper":149,"fp":159,"walter":187,"tier":"Bench"},{"name":"Wan'Dale Robinson","pos":"WR","team":"NYG","adp":167.8,"espn":227,"sleeper":154,"fp":164,"walter":193,"tier":"Bench"},{"name":"Khalil Shakir","pos":"WR","team":"BUF","adp":173.4,"espn":234,"sleeper":160,"fp":170,"walter":199,"tier":"Bench"},{"name":"Romeo Doubs","pos":"WR","team":"GB","adp":179.0,"espn":242,"sleeper":165,"fp":175,"walter":206,"tier":"Bench"},{"name":"Christian Watson","pos":"WR","team":"GB","adp":184.6,"espn":249,"sleeper":170,"fp":181,"walter":212,"tier":"Bench"},{"name":"Jayden Reed","pos":"WR","team":"GB","adp":190.2,"espn":257,"sleeper":175,"fp":186,"walter":219,"tier":"Bench"},{"name":"Jordan Addison","pos":"WR","team":"MIN","adp":195.8,"espn":264,"sleeper":180,"fp":192,"walter":225,"tier":"Bench"},{"name":"Marquise Brown","pos":"WR","team":"KC","adp":201.4,"espn":272,"sleeper":185,"fp":197,"walter":232,"tier":"Bench"},{"name":"Curtis Samuel","pos":"WR","team":"BUF","adp":207.0,"espn":279,"sleeper":190,"fp":203,"walter":238,"tier":"Bench"},{"name":"Darnell Mooney","pos":"WR","team":"ATL","adp":212.6,"espn":287,"sleeper":196,"fp":208,"walter":244,"tier":"Bench"},{"name":"Elijah Moore","pos":"WR","team":"CLE","adp":218.2,"espn":295,"sleeper":201,"fp":214,"walter":251,"tier":"Bench"},{"name":"Demario Douglas","pos":"WR","team":"NE","adp":223.8,"espn":302,"sleeper":206,"fp":219,"walter":257,"tier":"Bench"},{"name":"Skyy Moore","pos":"WR","team":"KC","adp":229.4,"espn":310,"sleeper":211,"fp":225,"walter":264,"tier":"Bench"},{"name":"Dontayvion Wicks","pos":"WR","team":"GB","adp":235.0,"espn":317,"sleeper":216,"fp":230,"walter":270,"tier":"Bench"},{"name":"Alec Pierce","pos":"WR","team":"IND","adp":240.6,"espn":325,"sleeper":221,"fp":236,"walter":277,"tier":"Bench"},{"name":"Michael Wilson","pos":"WR","team":"ARI","adp":246.2,"espn":332,"sleeper":227,"fp":241,"walter":283,"tier":"Bench"},{"name":"Cole Kmet","pos":"TE","team":"CHI","adp":158,"espn":213,"sleeper":145,"fp":155,"walter":182,"tier":"Bench"},{"name":"David Njoku","pos":"TE","team":"CLE","adp":166,"espn":224,"sleeper":153,"fp":163,"walter":191,"tier":"Bench"},{"name":"Pat Freiermuth","pos":"TE","team":"PIT","adp":174,"espn":235,"sleeper":160,"fp":171,"walter":200,"tier":"Bench"},{"name":"Jake Ferguson","pos":"TE","team":"DAL","adp":182,"espn":246,"sleeper":167,"fp":178,"walter":209,"tier":"Bench"},{"name":"Hunter Henry","pos":"TE","team":"NE","adp":190,"espn":256,"sleeper":175,"fp":186,"walter":218,"tier":"Bench"},{"name":"Isaiah Likely","pos":"TE","team":"BAL","adp":198,"espn":267,"sleeper":182,"fp":194,"walter":228,"tier":"Bench"},{"name":"Juwan Johnson","pos":"TE","team":"NO","adp":206,"espn":278,"sleeper":190,"fp":202,"walter":237,"tier":"Bench"},{"name":"Noah Fant","pos":"TE","team":"CIN","adp":214,"espn":289,"sleeper":197,"fp":210,"walter":246,"tier":"Bench"},{"name":"Cade Otton","pos":"TE","team":"TB","adp":222,"espn":300,"sleeper":204,"fp":218,"walter":255,"tier":"Bench"},{"name":"Tutu Atwell","pos":"WR","team":"LAR","adp":250,"espn":330,"sleeper":225,"fp":242,"walter":280,"tier":"Waiver"},{"name":"Josh Palmer","pos":"WR","team":"LAC","adp":255.6,"espn":337,"sleeper":230,"fp":248,"walter":286,"tier":"Waiver"},{"name":"Kendrick Bourne","pos":"WR","team":"SF","adp":261.2,"espn":345,"sleeper":235,"fp":253,"walter":293,"tier":"Waiver"},{"name":"Tyler Lockett","pos":"WR","team":"LV","adp":266.8,"espn":352,"sleeper":240,"fp":259,"walter":299,"tier":"Waiver"},{"name":"Mecole Hardman Jr.","pos":"WR","team":"BUF","adp":278.00000000000006,"espn":367,"sleeper":250,"fp":270,"walter":311,"tier":"Waiver"},{"name":"Allen Lazard","pos":"WR","team":"NYJ","adp":289.2000000000001,"espn":382,"sleeper":260,"fp":281,"walter":324,"tier":"Waiver"},{"name":"Tim Patrick","pos":"WR","team":"DET","adp":294.8000000000001,"espn":389,"sleeper":265,"fp":286,"walter":330,"tier":"Waiver"},{"name":"Nelson Agholor","pos":"WR","team":"BAL","adp":300.40000000000015,"espn":397,"sleeper":270,"fp":291,"walter":336,"tier":"Waiver"},{"name":"Andrei Iosivas","pos":"WR","team":"CIN","adp":306.00000000000017,"espn":404,"sleeper":275,"fp":297,"walter":343,"tier":"Waiver"},{"name":"Jalen Tolbert","pos":"WR","team":"DAL","adp":311.6000000000002,"espn":411,"sleeper":280,"fp":302,"walter":349,"tier":"Waiver"},{"name":"KaVontae Turpin","pos":"WR","team":"DAL","adp":317.2000000000002,"espn":419,"sleeper":285,"fp":308,"walter":355,"tier":"Waiver"},{"name":"Kalif Raymond","pos":"WR","team":"DET","adp":322.80000000000024,"espn":426,"sleeper":291,"fp":313,"walter":362,"tier":"Waiver"},{"name":"Trey Palmer","pos":"WR","team":"TB","adp":328.40000000000026,"espn":433,"sleeper":296,"fp":319,"walter":368,"tier":"Waiver"},{"name":"Jalen Coker","pos":"WR","team":"CAR","adp":334.0000000000003,"espn":441,"sleeper":301,"fp":324,"walter":374,"tier":"Waiver"},{"name":"Xavier Legette","pos":"WR","team":"CAR","adp":339.6000000000003,"espn":448,"sleeper":306,"fp":329,"walter":380,"tier":"Waiver"},{"name":"Ja'Lynn Polk","pos":"WR","team":"NE","adp":345.20000000000033,"espn":456,"sleeper":311,"fp":335,"walter":387,"tier":"Waiver"},{"name":"Malachi Corley","pos":"WR","team":"NYJ","adp":350.80000000000035,"espn":463,"sleeper":316,"fp":340,"walter":393,"tier":"Waiver"},{"name":"Adonai Mitchell","pos":"WR","team":"IND","adp":356.4000000000004,"espn":470,"sleeper":321,"fp":346,"walter":399,"tier":"Waiver"},{"name":"Samaje Perine","pos":"RB","team":"KC","adp":241.2,"espn":318,"sleeper":217,"fp":234,"walter":270,"tier":"Waiver"},{"name":"Cam Akers","pos":"RB","team":"MIN","adp":247.39999999999998,"espn":327,"sleeper":223,"fp":240,"walter":277,"tier":"Waiver"},{"name":"Gus Edwards","pos":"RB","team":"LAC","adp":253.59999999999997,"espn":335,"sleeper":228,"fp":246,"walter":284,"tier":"Waiver"},{"name":"AJ Dillon","pos":"RB","team":"PHI","adp":259.79999999999995,"espn":343,"sleeper":234,"fp":252,"walter":291,"tier":"Waiver"},{"name":"Ameer Abdullah","pos":"RB","team":"LV","adp":265.99999999999994,"espn":351,"sleeper":239,"fp":258,"walter":298,"tier":"Waiver"},{"name":"Kenneth Gainwell","pos":"RB","team":"TB","adp":272.19999999999993,"espn":359,"sleeper":245,"fp":264,"walter":305,"tier":"Waiver"},{"name":"Tyler Badie","pos":"RB","team":"DEN","adp":278.3999999999999,"espn":367,"sleeper":251,"fp":270,"walter":312,"tier":"Waiver"},{"name":"Emari Demercado","pos":"RB","team":"ARI","adp":284.5999999999999,"espn":376,"sleeper":256,"fp":276,"walter":319,"tier":"Waiver"},{"name":"Sean Tucker","pos":"RB","team":"TB","adp":290.7999999999999,"espn":384,"sleeper":262,"fp":282,"walter":326,"tier":"Waiver"},{"name":"Michael Penix Jr.","pos":"QB","team":"ATL","adp":205,"espn":271,"sleeper":184,"fp":199,"walter":230,"tier":"Waiver"},{"name":"J.J. McCarthy","pos":"QB","team":"MIN","adp":211,"espn":279,"sleeper":190,"fp":205,"walter":236,"tier":"Waiver"},{"name":"Cameron Ward","pos":"QB","team":"TEN","adp":217,"espn":286,"sleeper":195,"fp":210,"walter":243,"tier":"Waiver"},{"name":"Will Levis","pos":"QB","team":"TEN","adp":223,"espn":294,"sleeper":201,"fp":216,"walter":250,"tier":"Waiver"},{"name":"Tyler Shough","pos":"QB","team":"NO","adp":229,"espn":302,"sleeper":206,"fp":222,"walter":256,"tier":"Waiver"},{"name":"Theo Johnson","pos":"TE","team":"NYG","adp":230,"espn":304,"sleeper":207,"fp":223,"walter":258,"tier":"Waiver"},{"name":"Ben Sinnott","pos":"TE","team":"WSH","adp":238,"espn":314,"sleeper":214,"fp":231,"walter":267,"tier":"Waiver"},{"name":"Brenton Strange","pos":"TE","team":"JAX","adp":246,"espn":325,"sleeper":221,"fp":239,"walter":276,"tier":"Waiver"},{"name":"Luke Musgrave","pos":"TE","team":"GB","adp":254,"espn":335,"sleeper":229,"fp":246,"walter":284,"tier":"Waiver"},{"name":"Chig Okonkwo","pos":"TE","team":"TEN","adp":262,"espn":346,"sleeper":236,"fp":254,"walter":293,"tier":"Waiver"},{"name":"Broncos D/ST","pos":"DEF","team":"DEN","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":215,"tier":"DEF"},{"name":"Eagles D/ST","pos":"DEF","team":"PHI","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":218,"tier":"DEF"},{"name":"Steelers D/ST","pos":"DEF","team":"PIT","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":222,"tier":"DEF"},{"name":"Vikings D/ST","pos":"DEF","team":"MIN","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":226,"tier":"DEF"},{"name":"Texans D/ST","pos":"DEF","team":"HOU","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":229,"tier":"DEF"},{"name":"Ravens D/ST","pos":"DEF","team":"BAL","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":233,"tier":"DEF"},{"name":"Chargers D/ST","pos":"DEF","team":"LAC","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":237,"tier":"DEF"},{"name":"Packers D/ST","pos":"DEF","team":"GB","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":241,"tier":"DEF"},{"name":"Lions D/ST","pos":"DEF","team":"DET","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":244,"tier":"DEF"},{"name":"49ers D/ST","pos":"DEF","team":"SF","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":248,"tier":"DEF"},{"name":"Chiefs D/ST","pos":"DEF","team":"KC","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":252,"tier":"DEF"},{"name":"Bills D/ST","pos":"DEF","team":"BUF","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":256,"tier":"DEF"},{"name":"Seahawks D/ST","pos":"DEF","team":"SEA","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":259,"tier":"DEF"},{"name":"Jets D/ST","pos":"DEF","team":"NYJ","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":263,"tier":"DEF"},{"name":"Colts D/ST","pos":"DEF","team":"IND","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":267,"tier":"DEF"},{"name":"Bengals D/ST","pos":"DEF","team":"CIN","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":271,"tier":"DEF"},{"name":"Buccaneers D/ST","pos":"DEF","team":"TB","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":274,"tier":"DEF"},{"name":"Cardinals D/ST","pos":"DEF","team":"ARI","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":278,"tier":"DEF"},{"name":"Browns D/ST","pos":"DEF","team":"CLE","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":282,"tier":"DEF"},{"name":"Rams D/ST","pos":"DEF","team":"LAR","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":286,"tier":"DEF"},{"name":"Cowboys D/ST","pos":"DEF","team":"DAL","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":289,"tier":"DEF"},{"name":"Falcons D/ST","pos":"DEF","team":"ATL","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":293,"tier":"DEF"},{"name":"Commanders D/ST","pos":"DEF","team":"WSH","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":297,"tier":"DEF"},{"name":"Patriots D/ST","pos":"DEF","team":"NE","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":301,"tier":"DEF"},{"name":"Dolphins D/ST","pos":"DEF","team":"MIA","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":304,"tier":"DEF"},{"name":"Bears D/ST","pos":"DEF","team":"CHI","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":308,"tier":"DEF"},{"name":"Saints D/ST","pos":"DEF","team":"NO","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":312,"tier":"DEF"},{"name":"Jaguars D/ST","pos":"DEF","team":"JAX","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":315,"tier":"DEF"},{"name":"Panthers D/ST","pos":"DEF","team":"CAR","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":319,"tier":"DEF"},{"name":"Giants D/ST","pos":"DEF","team":"NYG","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":323,"tier":"DEF"},{"name":"Titans D/ST","pos":"DEF","team":"TEN","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":327,"tier":"DEF"},{"name":"Raiders D/ST","pos":"DEF","team":"LV","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":330,"tier":"DEF"}];
+const TEAM_NAMES=["Gridiron Guild","Sunday Scaries","Red Zone Kings","Fourth & Long","The Waiver Wire","Goal Line Stand","Blitz Brigade","Air Yards","TD Machines","The Checkdown","No Punt Intended","Two-Minute Drill"];
+const STARTER_TARGET={QB:1,RB:2,WR:2,TE:1,DEF:1,K:1};
+const BENCH_TARGET={QB:1,RB:2,WR:3,TE:1};
+const TARGET={QB:(STARTER_TARGET.QB+BENCH_TARGET.QB),RB:(STARTER_TARGET.RB+BENCH_TARGET.RB),WR:(STARTER_TARGET.WR+BENCH_TARGET.WR),TE:(STARTER_TARGET.TE+BENCH_TARGET.TE),DEF:STARTER_TARGET.DEF,K:STARTER_TARGET.K};
+const ROUNDS=Object.values(TARGET).reduce((s,v)=>s+v,0);
+const MAX_PICK=ROUNDS*12;
+const LATE_ROUND_MIN={DEF:ROUNDS-1,K:ROUNDS};
+const REACH_ALLOWANCE=15;
+const TARGET_TOTAL_WITH_SLACK=ROUNDS+2;
+const STORAGE_KEY="dcc_v6_state";
+const LEAGUE_TEAMS=12;
+function computeReplacementLevels(){
+ const levels={};
+ Object.keys(STARTER_TARGET).forEach(pos=>{
+  const poolPts=DATA.filter(p=>p.pos===pos).map(p=>projPts({...p,expert:avg([p.fp,p.walter])})).sort((a,b)=>b-a);
+  const rank=LEAGUE_TEAMS*STARTER_TARGET[pos];
+  const idx=Math.min(poolPts.length-1,Math.max(0,rank-1));
+  levels[pos]=poolPts.length?poolPts[idx]:0;
+ });
+ return levels;
+}
+let REPLACEMENT_LEVELS=null;
+function vor(p){
+ if(!REPLACEMENT_LEVELS)REPLACEMENT_LEVELS=computeReplacementLevels();
+ return +(projPts(p)-(REPLACEMENT_LEVELS[p.pos]||0)).toFixed(2);
+}
+function seasonPts(p){return Math.round(projPts(p)*16)}
+const NFL_OPP=["ARI","ATL","BAL","BUF","CAR","CHI","CIN","CLE","DAL","DEN","DET","GB","HOU","IND","JAX","KC","LAC","LAR","LV","MIA","MIN","NE","NO","NYG","NYJ","PHI","PIT","SEA","SF","TB","TEN","WSH"];
+
+let currentPick=1, draftPos=2, philosophy="balanced", drafted=new Set(), teams=[], feed=[], pickHistory=[], tradeHistory=[];
+let page="draft", filterPos="ALL", filterAction="ALL", filterTier="ALL", query="", sort="adp", watchlistOnly=false;
+let tierFilterPos="ALL";
+let liveDraftMode=false, logTeamIdx=null;
+let watchlist=new Set(), lockedPlayers=new Set(), playerStatus={};
+let liveSyncState=null;
+let weeklyProjectionData={};
+let projectionSyncState=null;
+const STATUS_ORDER=["healthy","questionable","doubtful","out","ir"];
+const STATUS_META={healthy:{label:"",short:"",cls:""},questionable:{label:"Questionable",short:"Q",cls:"stat-q"},doubtful:{label:"Doubtful",short:"D",cls:"stat-d"},out:{label:"Out",short:"O",cls:"stat-o"},ir:{label:"IR",short:"IR",cls:"stat-ir"}};
+let waiverQuery="", waiverPos="ALL", plannerWeek=1;
+let tradeSelA=new Set(), tradeSelB=new Set(), tradeTeamAIdx=0, tradeTeamBIdx=1;
+let lastSaved=null;
+let projectionLeagueId="";
+let projectionProxyUrl="";
+
+/* ---------- utils ---------- */
+function hashCode(str){let h=0;for(let i=0;i<str.length;i++){h=(h<<5)-h+str.charCodeAt(i);h|=0}return Math.abs(h)}
+function esc(n){return n.replaceAll("'","\\'")}
+function escHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}
+function avg(a){const x=a.filter(v=>v!=null&&v<900);return x.length?x.reduce((s,v)=>s+v,0)/x.length:null}
+const REAL_BYE_WEEKS_2026={ARI:14,ATL:11,BAL:13,BUF:7,CAR:5,CHI:10,CIN:6,CLE:11,DAL:14,DEN:10,DET:6,GB:11,HOU:8,IND:13,JAX:7,KC:5,LAC:7,LAR:11,LV:13,MIA:6,MIN:6,NE:11,NO:8,NYG:8,NYJ:13,PHI:10,PIT:9,SEA:11,SF:8,TB:10,TEN:9,WSH:7};
+function byeWeek(team){return REAL_BYE_WEEKS_2026[team]||(5+(hashCode(team)%9))}
+function projPts(p){
+  // Fallback only: the Planner prefers synced league-specific weekly projections.
+  // These are deliberately conservative preseason estimates rather than pretending to be live data.
+  const base={QB:18.5,RB:14.5,WR:13.5,TE:9.5,DEF:7.0,K:8.0}[p.pos]||10;
+  const e=(p.expert==null||p.expert>=900)?150:p.expert;
+  return Math.max(1,+(base-e*0.055).toFixed(1));
+}
+function projectionKey(name){return normalizeName(name)}
+function syncedWeeklyProj(p,week){
+  const wk=weeklyProjectionData?.[week];
+  if(!wk)return null;
+  const v=wk[projectionKey(p.name)];
+  return Number.isFinite(v)?v:null;
+}
+function tradeValue(p){const seasonVor=(p.vor!=null?p.vor:vor(p))*16;return Math.round(Math.max(5,100+seasonVor*0.6))}
+function weekVariance(name,week){const h=hashCode(name+"-w"+week);return ((h%200)-100)/100}
+function weeklyProj(p,week){
+  if(byeWeek(p.team)===week)return 0;
+  if(isInjuredOut(p.name))return 0;
+  const live=syncedWeeklyProj(p,week);
+  if(live!=null)return live;
+  // Fallback until a real projection feed is synced.
+  const base=projPts(p);
+  return Math.max(0,+(base*(1+weekVariance(p.name,week)*0.18)).toFixed(1));
+}
+function weekOpp(p,week){const h=hashCode(p.team+"-w"+week);return NFL_OPP[(h+week)%NFL_OPP.length]}
+function initTeams(){
+ if(teams&&teams.length===12){teams=teams.map((t,i)=>({id:i,name:t.name,roster:[]}));}
+ else{teams=TEAM_NAMES.map((n,i)=>({id:i,name:n,roster:[]}));}
+}
+let _scheduleCache=null;
+function roundRobinRounds(n){
+ if(_scheduleCache)return _scheduleCache;
+ const arr=Array.from({length:n},(_,i)=>i);
+ const fixed=arr[0];
+ let rotating=arr.slice(1);
+ const rounds=[];
+ for(let r=0;r<n-1;r++){
+  const full=[fixed,...rotating];
+  const round=[];
+  for(let i=0;i<n/2;i++)round.push([full[i],full[n-1-i]]);
+  rounds.push(round);
+  rotating.unshift(rotating.pop());
+ }
+ _scheduleCache=rounds;
+ return rounds;
+}
+function opponentIndex(teamIdx,week){
+ const rounds=roundRobinRounds(12);
+ const round=rounds[(week-1)%rounds.length];
+ const pair=round.find(p=>p.includes(teamIdx));
+ return pair[0]===teamIdx?pair[1]:pair[0];
+}
+function teamProjTotal(team,week){
+ const {starters}=getStarterSplit(team);
+ return starters.reduce((s,{p})=>s+(p?weeklyProj(p,week):0),0);
+}
+function myTeam(){return teams[draftPos-1]}
+function posCount(team,pos){return team.roster.filter(p=>p.pos===pos).length}
+function teamNeeds(team){return Object.keys(TARGET).filter(pos=>posCount(team,pos)<TARGET[pos])}
+function myNeed(pos){return Math.max(0,(TARGET[pos]||0)-posCount(myTeam(),pos))}
+function pickSlot(pick){const round=Math.ceil(pick/12);const posInRound=pick-(round-1)*12;const slot=round%2===1?posInRound:13-posInRound;return slot-1}
+function isMyTurn(){return currentPick<=MAX_PICK&&pickSlot(currentPick)===(draftPos-1)}
+function canDraftNow(){return liveDraftMode?currentPick<=MAX_PICK:isMyTurn()}
+function nextMyPick(from){let p=from;while(p<=MAX_PICK&&pickSlot(p)!==(draftPos-1))p++;return p<=MAX_PICK?p:null}
+function showToast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),1900)}
+function toggleWatch(name){
+ if(watchlist.has(name))watchlist.delete(name);else watchlist.add(name);
+ renderBoard();renderTierList();saveState();
+}
+function toggleLock(name){
+ if(lockedPlayers.has(name)){lockedPlayers.delete(name);showToast(`${name} unprotected from auto-sim`)}
+ else{lockedPlayers.add(name);showToast(`${name} protected from auto-sim`)}
+ renderBoard();renderTierList();saveState();
+}
+function getStatus(name){return playerStatus[name]||"healthy"}
+function cycleStatus(name){
+ const cur=getStatus(name);
+ const idx=STATUS_ORDER.indexOf(cur);
+ const next=STATUS_ORDER[(idx+1)%STATUS_ORDER.length];
+ if(next==="healthy")delete playerStatus[name];else playerStatus[name]=next;
+ const meta=STATUS_META[next];
+ showToast(meta.label?`${name} marked ${meta.label}`:`${name} marked healthy`);
+ render();saveState();
+}
+function statusBadge(name){
+ const st=getStatus(name);
+ if(st==="healthy")return "";
+ const m=STATUS_META[st];
+ return `<span class="statbadge ${m.cls}">${m.short}</span>`;
+}
+function isInjuredOut(name){const st=getStatus(name);return st==="out"||st==="ir"}
+function normalizeName(name){
+ return (name||"").toLowerCase()
+  .replace(/[.'']/g,"")
+  .replace(/\b(jr|sr|ii|iii|iv|v)\b\.?/g,"")
+  .replace(/[^a-z0-9\s]/g,"")
+  .replace(/\s+/g," ")
+  .trim();
+}
+function renderLiveSyncStatus(){
+ const statusEl=document.getElementById("liveSyncStatus");
+ const reportEl=document.getElementById("liveSyncReport");
+ if(!statusEl||!liveSyncState)return;
+ if(liveSyncState.status==="done"){
+  const when=new Date(liveSyncState.timestamp).toLocaleString();
+  statusEl.textContent=`Last synced ${when} — matched ${liveSyncState.matched}/${liveSyncState.total} players, added ${liveSyncState.added||0} active players, ${liveSyncState.injuries} with an active injury flag.`;
+  const mismatches=liveSyncState.mismatches||[];
+  reportEl.innerHTML=mismatches.length
+   ?`<div class="mini" style="color:#f6b94a">⚠️ ${mismatches.length} player(s) show a different team in live data than this app's dataset:</div>`+
+    mismatches.slice(0,12).map(m=>`<div class="mini">• ${escHtml(m.name)}: app says ${m.ours}, live says ${m.live}</div>`).join("")+
+    (mismatches.length>12?`<div class="mini">…and ${mismatches.length-12} more.</div>`:"")
+   :`<div class="mini" style="color:#5de0b7">✓ No team mismatches found — roster data looks current.</div>`;
+ }else if(liveSyncState.status==="error"){
+  statusEl.textContent=`Last sync attempt failed (${new Date(liveSyncState.timestamp).toLocaleString()}). Everything else in the app still works normally.`;
+  reportEl.innerHTML=`<div class="mini" style="color:#ff8190">${escHtml(liveSyncState.hint||"")}</div><div class="mini" style="margin-top:6px;color:#68778e">Raw error: ${escHtml(liveSyncState.error||"unknown")}</div>`;
+ }
+}
+async function syncLiveData(){
+ const btn=document.getElementById("liveSyncBtn");
+ const statusEl=document.getElementById("liveSyncStatus");
+ const reportEl=document.getElementById("liveSyncReport");
+ if(btn)btn.disabled=true;if(btn)btn.textContent="SYNCING...";
+ if(statusEl)statusEl.textContent="Fetching current NFL data (~5MB, may take a few seconds)...";
+ if(reportEl)reportEl.innerHTML="";
+ const controller=new AbortController();
+ const timeoutId=setTimeout(()=>controller.abort(),25000);
+ try{
+  const res=await fetch("https://api.sleeper.app/v1/players/nfl",{signal:controller.signal});
+  clearTimeout(timeoutId);
+  if(!res.ok)throw new Error(`HTTP ${res.status}`);
+  const json=await res.json();
+  const index=new Map();
+  Object.values(json).forEach(entry=>{
+   if(!entry||!entry.last_name)return;
+   const key=normalizeName(`${entry.first_name||""} ${entry.last_name||""}`);
+   if(key)index.set(key,entry);
+  });
+  const STATUS_MAP={Questionable:"questionable",Doubtful:"doubtful",Out:"out",IR:"ir",PUP:"ir",Sus:"out",COV:"questionable",NA:"out"};
+  let matched=0,injuries=0;
+  const mismatches=[];
+  DATA.forEach(p=>{
+   const entry=index.get(normalizeName(p.name));
+   if(!entry)return;
+   matched++;
+   const mapped=STATUS_MAP[entry.injury_status]||"healthy";
+   if(mapped==="healthy")delete playerStatus[p.name];else playerStatus[p.name]=mapped;
+   if(mapped!=="healthy")injuries++;
+   if(entry.team&&entry.team!==p.team)mismatches.push({name:p.name,ours:p.team,live:entry.team});
+  });
+  liveSyncState={status:"done",timestamp:new Date().toISOString(),matched,total:DATA.length,injuries,mismatches};
+  renderLiveSyncStatus();
+  render();saveState();
+  showToast(`Synced — ${injuries} injury flag(s) found`);
+ }catch(e){
+  clearTimeout(timeoutId);
+  let hint;
+  const rawName=e&&e.name?e.name:"Error";
+  const rawMsg=e&&e.message?e.message:String(e);
+  if(rawName==="AbortError"){
+   hint="Request timed out after 25s — the file is ~5MB, so this can happen on a slow connection. Try again on wifi.";
+  }else if(rawName==="TypeError"&&/fetch|network|load/i.test(rawMsg)){
+   hint="This usually means the browser blocked the cross-origin request outright (a network/security restriction) rather than the server rejecting it — common when a page is opened as a local file rather than over http/https. Try opening this file through a real browser tab (not a downloaded file preview) if you haven't already.";
+  }else{
+   hint="Unexpected error — see raw details below.";
+  }
+  liveSyncState={status:"error",timestamp:new Date().toISOString(),error:`${rawName}: ${rawMsg}`,hint};
+  renderLiveSyncStatus();
+  saveState();
+  showToast("Live sync failed — check your connection");
+ }finally{
+  if(btn){btn.disabled=false;btn.textContent="SYNC NOW";}
+ }
+}
+
+/* ---------- weekly projection sync ---------- */
+function setProjectionStatus(msg){
+  const el=document.getElementById("projectionSyncStatus");
+  if(el)el.textContent=msg;
+}
+function normalizeProjectionResponse(payload,week){
+  const out={};
+  const rows=Array.isArray(payload)?payload:(payload?.players||payload?.data||payload?.projections||[]);
+  rows.forEach(row=>{
+    const name=row.name||row.player_name||row.playerName||row.fullName;
+    const pts=Number(row.projectedPoints??row.projected_points??row.fantasyPoints??row.fantasy_points??row.points??row.appliedTotal);
+    if(name&&Number.isFinite(pts))out[projectionKey(name)]=pts;
+  });
+  // ESPN koa player objects can contain week-level stats nested in playerPoolEntry.
+  if(payload?.players&&Array.isArray(payload.players)){
+    payload.players.forEach(row=>{
+      const name=row.fullName||row.name||row.player?.fullName;
+      const stats=row.playerPoolEntry?.stats||row.stats||[];
+      const s=stats.find(x=>x&&Number(x.statTypeId)===2&&Number(x.scoringPeriodId)===week);
+      const pts=Number(s?.appliedTotal);
+      if(name&&Number.isFinite(pts))out[projectionKey(name)]=pts;
+    });
+  }
+  return out;
+}
+async function syncWeeklyProjections(){
+  const btn=document.getElementById("projectionSyncBtn");
+  if(btn){btn.disabled=true;btn.textContent="SYNCING...";}
+  setProjectionStatus(`Fetching Week ${plannerWeek} PPR projections...`);
+  try{
+    let payload;
+    if(projectionProxyUrl){
+      const u=new URL(projectionProxyUrl,location.href);
+      u.searchParams.set("week",plannerWeek);
+      u.searchParams.set("scoring","PPR");
+      if(projectionLeagueId)u.searchParams.set("leagueId",projectionLeagueId);
+      const res=await fetch(u.toString());
+      if(!res.ok)throw new Error(`Projection proxy HTTP ${res.status}`);
+      payload=await res.json();
+    }else if(projectionLeagueId){
+      const url=`https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/segments/0/leagues/${encodeURIComponent(projectionLeagueId)}?view=kona_player_info&scoringPeriodId=${plannerWeek}`;
+      const res=await fetch(url,{headers:{"X-Fantasy-Filter":JSON.stringify({players:{limit:3000}})}});
+      if(!res.ok)throw new Error(`ESPN HTTP ${res.status}`);
+      payload=await res.json();
+    }else{
+      throw new Error("Add an ESPN league ID or a projection proxy URL in Settings.");
+    }
+    const normalized=normalizeProjectionResponse(payload,plannerWeek);
+    if(!Object.keys(normalized).length)throw new Error("No weekly projected fantasy points were found in the response.");
+    weeklyProjectionData[plannerWeek]=normalized;
+    projectionSyncState={status:"done",week:plannerWeek,timestamp:new Date().toISOString(),count:Object.keys(normalized).length};
+    setProjectionStatus(`✓ Week ${plannerWeek} synced: ${Object.keys(normalized).length} player projections. Planner now uses live synced values.`);
+    renderPlanner();renderMatchup();saveState();
+  }catch(e){
+    projectionSyncState={status:"error",week:plannerWeek,timestamp:new Date().toISOString(),error:String(e)};
+    setProjectionStatus(`Projection sync failed: ${e.message||e}. The Planner is still using its fallback model.`);
+  }finally{
+    if(btn){btn.disabled=false;btn.textContent="SYNC WEEKLY PROJECTIONS";}
+  }
+}
+function renderProjectionSyncStatus(){
+  if(!projectionSyncState)return;
+  if(projectionSyncState.status==="done"){
+    setProjectionStatus(`✓ Week ${projectionSyncState.week} synced ${new Date(projectionSyncState.timestamp).toLocaleString()} — ${projectionSyncState.count} players.`);
+  }
+}
+/* ---------- persistence ---------- */
+function saveState(){
+ try{
+  const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionSyncState,projectionLeagueId,projectionProxyUrl,savedAt:Date.now()};
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+  lastSaved=new Date();
+  const ls=document.getElementById("lastSaved");if(ls)ls.textContent=lastSaved.toLocaleTimeString();
+ }catch(e){console.warn("save failed",e)}
+}
+function applyState(state){
+ currentPick=Number.isFinite(state.currentPick)?state.currentPick:1;
+ draftPos=Number.isFinite(state.draftPos)?Math.max(1,Math.min(12,state.draftPos)):11;
+ philosophy=["balanced","value","need","aggressive"].includes(state.philosophy)?state.philosophy:"balanced";
+ drafted=new Set(Array.isArray(state.drafted)?state.drafted:[]);
+ if(state.teams&&Array.isArray(state.teams)&&state.teams.length===12){
+  teams=state.teams.map((t,i)=>({id:i,name:String((t&&t.name)||`Team ${i+1}`).slice(0,30),roster:Array.isArray(t&&t.roster)?t.roster:[]}));
+ }else{initTeams();}
+ feed=Array.isArray(state.feed)?state.feed:[];
+ pickHistory=Array.isArray(state.pickHistory)?state.pickHistory:[];
+ tradeHistory=Array.isArray(state.tradeHistory)?state.tradeHistory:[];
+ plannerWeek=Number.isFinite(state.plannerWeek)?state.plannerWeek:1;
+ watchlist=new Set(Array.isArray(state.watchlist)?state.watchlist:[]);
+ lockedPlayers=new Set(Array.isArray(state.lockedPlayers)?state.lockedPlayers:[]);
+ playerStatus={};
+ if(state.playerStatus&&typeof state.playerStatus==="object"){
+  Object.entries(state.playerStatus).forEach(([k,v])=>{if(STATUS_ORDER.includes(v)&&v!=="healthy")playerStatus[k]=v});
+ }
+ liveSyncState=(state.liveSyncState&&typeof state.liveSyncState==="object")?state.liveSyncState:null;
+ liveDraftMode=state.liveDraftMode===true;
+ logTeamIdx=null;
+}
+function loadState(){
+ try{
+  const raw=localStorage.getItem(STORAGE_KEY);
+  if(raw){applyState(JSON.parse(raw));return true}
+ }catch(e){console.warn("load failed",e)}
+ return false;
+}
+function exportState(){
+ const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,exportedAt:new Date().toISOString()};
+ const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob);const a=document.createElement("a");
+ a.href=url;a.download=`draft-command-center-${new Date().toISOString().slice(0,10)}.json`;a.click();
+ URL.revokeObjectURL(url);showToast("Draft state exported");
+}
+function importState(file){
+ const reader=new FileReader();
+ reader.onload=()=>{
+  try{const state=JSON.parse(reader.result);applyState(state);render();saveState();showToast("Draft state imported")}
+  catch(e){showToast("Import failed — invalid file")}
+ };
+ reader.readAsText(file);
+}
+
+/* ---------- value engine ---------- */
+function playerCalc(p){
+  const expert=avg([p.fp,p.walter]);
+  const gapRaw=expert==null||p.adp==null?0:p.adp-expert;
+  const gap=Math.max(-25,Math.min(25,gapRaw));
+  const fit=p.adp!=null?(currentPick-p.adp):0;
+  const need=myNeed(p.pos);
+  const needBonus=need*2.4;
+  const pts=projPts({...p,expert});
+  const vorValue=vor({...p,expert});
+  let score=fit*0.25+gap*0.2+vorValue*1.2+needBonus;
+  if(philosophy==="value")score+=gap*.15;
+  if(philosophy==="need")score+=need*2;
+  if(philosophy==="aggressive")score+=(p.tier==="Tier 4"||p.tier==="Tier 5")?1.8:0;
+  const action=score>=8?"STEAL":score<=-8?"REACH":"TARGET";
+  const windowFit=Math.max(0,Math.min(100,Math.round(100-Math.abs((p.adp||150)-currentPick)*1.8)));
+  const ranks=[p.adp,p.espn,p.sleeper,p.fp,p.walter].filter(v=>v!=null&&v<900);
+  const ceil=ranks.length?Math.min(...ranks):null;
+  const floor=ranks.length?Math.max(...ranks):null;
+  const suggestedRound=p.pos==="K"?ROUNDS:p.pos==="DEF"?ROUNDS-1:(p.adp?Math.max(1,Math.ceil(p.adp/12)):null);
+  return {...p,expert,gap,fit,pts,vor:vorValue,seasonPts:Math.round(pts*16),score,action,window:windowFit,ceil,floor,suggestedRound};
+}
+function available(){return DATA.map(playerCalc).filter(p=>p.active!==false&&!drafted.has(p.name))}
+function draftWindowOk(p,pick){
+ if(p.adp==null)return true;
+ const allowance=REACH_ALLOWANCE+(philosophy==="aggressive"?9:philosophy==="value"?6:0);
+ return p.adp<=pick+allowance;
+}
+function myRemainingPicks(){
+ let count=0;
+ for(let p=currentPick;p<=MAX_PICK;p++){if(pickSlot(p)===(draftPos-1))count++}
+ return count;
+}
+function starterNeeded(team){return Object.keys(STARTER_TARGET).filter(pos=>posCount(team,pos)<STARTER_TARGET[pos])}
+function positionRunPressure(pos){
+ const recent=feed.slice(-12);
+ if(!recent.length)return 0;
+ return recent.filter(f=>f.pos===pos).length/recent.length;
+}
+function roundPositionBias(p,round){
+ if(round<=4){
+  if(p.pos==="RB"||p.pos==="WR")return 6;
+  if(p.pos==="QB"||p.pos==="TE")return -8;
+  return 0;
+ }
+ if(round===5){
+  if(p.pos==="RB"||p.pos==="WR")return 4;
+  if(p.pos==="TE"&&(p.tier==="Elite"||p.tier==="Tier 2"))return 3;
+  if(p.pos==="QB")return -6;
+  return 0;
+ }
+ if(round>=11&&round<=13){
+  if(p.pos==="RB"||p.pos==="WR")return 3;
+  return 0;
+ }
+ return 0;
+}
+function recommendScore(p,team){
+ let s=p.score;
+ if(starterNeeded(team).includes(p.pos))s+=14;
+ s+=positionRunPressure(p.pos)*6;
+ s+=roundPositionBias(p,roundInfo(currentPick).round);
+ const st=getStatus(p.name);
+ if(st==="questionable")s-=4;
+ else if(st==="doubtful")s-=10;
+ else if(st==="out"||st==="ir")s-=25;
+ return s;
+}
+function survivalProb(p,throughPick){
+ if(p.adp==null)return 99;
+ const spread=7;
+ const prob=1/(1+Math.exp((throughPick-p.adp)/spread));
+ return Math.max(1,Math.min(99,Math.round(prob*100)));
+}
+function teamsBeforeMyNextPick(){
+ const nmp=nextMyPick(isMyTurn()?currentPick+1:currentPick);
+ const out=[];
+ if(!nmp)return out;
+ for(let p=currentPick;p<nmp;p++){
+  const idx=pickSlot(p);
+  if(idx!==(draftPos-1))out.push({pick:p,teamIdx:idx,teamName:teams[idx]?teams[idx].name:`Team ${idx+1}`});
+ }
+ return out;
+}
+function scoreBreakdown(p,team){
+ const fitPct=Math.max(0,Math.min(100,50+p.fit*1.2));
+ const gapPct=Math.max(0,Math.min(100,50+p.gap*1.8));
+ const vorPct=Math.max(0,Math.min(100,50+p.vor*4));
+ const needPct=starterNeeded(team).includes(p.pos)?90:(myNeed(p.pos)>0?60:25);
+ const runPct=Math.round(positionRunPressure(p.pos)*100);
+ const tierRank={"Elite":95,"Tier 2":82,"Tier 3":70,"Tier 4":58,"Tier 5":48,"Tier 6":38,"Late":28,"Bench":20,"Waiver":12,"K":15}[p.tier]??40;
+ return [
+  {label:"ADP Timing",pct:Math.round(fitPct)},
+  {label:"Market Value",pct:Math.round(gapPct)},
+  {label:"Points/VOR",pct:Math.round(vorPct)},
+  {label:"Roster Need",pct:Math.round(needPct)},
+  {label:"Tier",pct:tierRank},
+  {label:"Position Run",pct:runPct},
+ ];
+}
+function pickCandidates(team){
+ const originalNeeded=Object.keys(TARGET).filter(pos=>posCount(team,pos)<TARGET[pos]);
+ let needed=originalNeeded.slice();
+ const round=roundInfo(currentPick).round;
+ Object.keys(LATE_ROUND_MIN).forEach(pos=>{
+  if(!originalNeeded.includes(pos))return;
+  const onlyThisLeft=originalNeeded.length===1&&originalNeeded[0]===pos;
+  if(round<LATE_ROUND_MIN[pos]&&!onlyThisLeft){
+   needed=needed.filter(x=>x!==pos);
+  }
+ });
+ let a=available().filter(p=>needed.includes(p.pos));
+ if(!a.length)a=available();
+ const healthyOnly=a.filter(p=>!isInjuredOut(p.name));
+ if(healthyOnly.length)a=healthyOnly;
+ const starters=starterNeeded(team);
+ const remaining=team===myTeam()?myRemainingPicks():needed.length;
+ if(starters.length&&remaining<=starters.length+1){
+  const forced=a.filter(p=>starters.includes(p.pos));
+  if(forced.length)a=forced;
+ }
+ const windowed=a.filter(p=>draftWindowOk(p,currentPick));
+ if(windowed.length)a=windowed;
+ return a;
+}
+function bestPlayer(){
+ const team=myTeam();
+ const a=pickCandidates(team);
+ return a.sort((x,y)=>recommendScore(y,team)-recommendScore(x,team))[0]||available()[0];
+}
+function botPick(team){
+ let a=pickCandidates(team);
+ if(team!==myTeam()&&lockedPlayers.size){
+  const unlocked=a.filter(p=>!lockedPlayers.has(p.name));
+  if(unlocked.length)a=unlocked;
+ }
+ const ranked=a.slice().sort((x,y)=>recommendScore(y,team)-recommendScore(x,team));
+ const pool=ranked.slice(0,3);
+ if(!pool.length)return a[0];
+ const r=Math.random();
+ return r<0.7?pool[0]:(r<0.9?(pool[1]||pool[0]):(pool[2]||pool[0]));
+}
+function simulateDraftPlan(){
+ const savedDrafted=drafted,savedTeams=teams,savedPick=currentPick;
+ drafted=new Set(drafted);teams=teams.map(t=>({id:t.id,name:t.name,roster:t.roster.slice()}));
+ const plan=[];let guard=0;
+ while(currentPick<=MAX_PICK&&guard<400){
+  const teamIdx=pickSlot(currentPick);
+  const team=teams[teamIdx];
+  const p=teamIdx===(draftPos-1)?bestPlayer():botPick(team);
+  if(!p)break;
+  if(teamIdx===(draftPos-1))plan.push({pick:currentPick,round:roundInfo(currentPick).round,player:p});
+  team.roster.push(p);drafted.add(p.name);
+  currentPick++;guard++;
+ }
+ drafted=savedDrafted;teams=savedTeams;currentPick=savedPick;
+ return plan;
+}
+function roundInfo(pick){return {round:Math.ceil(pick/12),slot:((pick-1)%12)+1}}
+
+/* ---------- draft actions ---------- */
+function commitPick(p,teamIdx,note){
+ if(!p)return;
+ p.draftRound=roundInfo(currentPick).round;
+ p.draftTeamIdx=teamIdx;
+ drafted.add(p.name);
+ teams[teamIdx].roster.push(p);
+ feed.push({pick:currentPick,player:p.name,pos:p.pos,team:p.team,note,teamIdx});
+ pickHistory.push({pick:currentPick,teamIdx,name:p.name});
+ currentPick=Math.min(MAX_PICK+1,currentPick+1);
+ render();saveState();
+}
+function draftPlayer(name){
+ const p=available().find(x=>x.name===name);if(!p)return;
+ if(liveDraftMode){
+  const teamIdx=(logTeamIdx!=null&&teams[logTeamIdx])?logTeamIdx:pickSlot(currentPick);
+  if(teams[teamIdx].roster.length>=TARGET_TOTAL_WITH_SLACK){showToast(`${teams[teamIdx].name}'s roster is full`);return}
+  commitPick(p,teamIdx,teamIdx===(draftPos-1)?"YOU (live)":"Live-logged");
+  showToast(`${p.name} logged for ${teams[teamIdx].name}`);
+  return;
+ }
+ if(!isMyTurn()){showToast("Not your pick yet — simulate opponent picks first");return}
+ commitPick(p,draftPos-1,"YOU drafted");
+ showToast(`${p.name} added to your roster`);
+}
+function simulatePick(){
+ if(currentPick>MAX_PICK){showToast("Draft complete");return}
+ const teamIdx=pickSlot(currentPick);
+ const p=isMyTurn()?bestPlayer():botPick(teams[teamIdx]);
+ if(!p){showToast("No players left to draft");return}
+ commitPick(p,teamIdx,isMyTurn()?"YOU (auto)":"Opponent pick");
+ showToast(`${p.name} drafted — recalculating`);
+}
+function autoSimToMyPick(){
+ let guard=0;
+ while(currentPick<=MAX_PICK&&!isMyTurn()&&guard<400){
+  const teamIdx=pickSlot(currentPick);const p=botPick(teams[teamIdx]);
+  if(!p)break;
+  p.draftRound=roundInfo(currentPick).round;p.draftOverall=currentPick;p.draftTeamIdx=teamIdx;
+  drafted.add(p.name);teams[teamIdx].roster.push(p);
+  feed.push({pick:currentPick,player:p.name,pos:p.pos,team:p.team,note:"Opponent pick",teamIdx});
+  pickHistory.push({pick:currentPick,teamIdx,name:p.name});
+  currentPick=Math.min(MAX_PICK+1,currentPick+1);guard++;
+ }
+ render();saveState();
+ showToast(isMyTurn()?"You're on the clock":"Draft complete");
+}
+function autoSimFullDraft(){
+ let guard=0;
+ while(currentPick<=MAX_PICK&&guard<400){
+  const teamIdx=pickSlot(currentPick);
+  const p=teamIdx===(draftPos-1)?bestPlayer():botPick(teams[teamIdx]);
+  if(!p)break;
+  p.draftRound=roundInfo(currentPick).round;p.draftOverall=currentPick;p.draftTeamIdx=teamIdx;
+  drafted.add(p.name);teams[teamIdx].roster.push(p);
+  feed.push({pick:currentPick,player:p.name,pos:p.pos,team:p.team,note:teamIdx===(draftPos-1)?"YOU (auto)":"Opponent pick",teamIdx});
+  pickHistory.push({pick:currentPick,teamIdx,name:p.name});
+  currentPick=Math.min(MAX_PICK+1,currentPick+1);guard++;
+ }
+ render();saveState();
+ showToast("Full draft simulated");
+}
+function undoPick(){
+ const last=pickHistory.pop();
+ if(!last){showToast("Nothing to undo");return}
+ drafted.delete(last.name);
+ const roster=teams[last.teamIdx].roster;
+ const idx=roster.map(p=>p.name).lastIndexOf(last.name);
+ if(idx>=0)roster.splice(idx,1);
+ const fi=feed.map(f=>f.pick+"|"+f.player).lastIndexOf(last.pick+"|"+last.name);
+ if(fi>=0)feed.splice(fi,1);
+ currentPick=last.pick;
+ render();saveState();
+ showToast(`Undid ${last.name}`);
+}
+function resetDemo(){
+ drafted.clear();initTeams();feed=[];pickHistory=[];currentPick=1;
+ tradeHistory=[];tradeSelA.clear();tradeSelB.clear();
+ render();saveState();showToast("Draft reset");
+}
+
+/* ---------- waivers ---------- */
+function waiverAdd(name){
+ const p=available().find(x=>x.name===name);if(!p)return;
+ const team=myTeam();
+ if(team.roster.length>=TARGET_TOTAL_WITH_SLACK){showToast("Bench is full");return}
+ drafted.add(p.name);team.roster.push(p);
+ feed.push({pick:currentPick,player:p.name,pos:p.pos,team:p.team,note:"Waiver add",teamIdx:draftPos-1});
+ pickHistory.push({pick:currentPick,teamIdx:draftPos-1,name:p.name});
+ render();saveState();
+ showToast(`${p.name} added from waivers`);
+}
+
+/* ---------- rendering: draft page ---------- */
+function getStarterSplit(team){
+ const order=["QB","RB","RB","WR","WR","TE","DEF","K"];
+ const used=[];
+ const starters=order.map(pos=>{
+  const p=team.roster.find(x=>x.pos===pos&&!used.includes(x.name));
+  if(p)used.push(p.name);
+  return {pos,p};
+ });
+ const bench=team.roster.filter(x=>!used.includes(x.name));
+ return {starters,bench};
+}
+function renderRoster(){
+ const team=myTeam();
+ const {starters,bench}=getStarterSplit(team);
+ const order=starters.map(s=>s.pos);
+ document.getElementById("roster").innerHTML=starters.map(({pos,p},i)=>{
+  const totalForPos=order.filter(x=>x===pos).length;
+  const countBefore=order.slice(0,i).filter(x=>x===pos).length;
+  const label=pos+(totalForPos>1?" "+(countBefore+1):"");
+  return `<div class="slot"><b>${label}</b><span class="${p?"":"need"}">${p?p.name:"OPEN"}</span></div>`;
+ }).join("");
+ document.getElementById("bench").innerHTML=bench.length?`<div class="smallcaps" style="margin-top:12px">Bench (${bench.length})</div><div class="mini" style="margin-top:6px;line-height:1.9">${bench.map(p=>`${p.name} <span style="color:#68778e">(${p.pos})</span>`).join(" · ")}</div>`:"";
+}
+function reason(p){
+ const n=myNeed(p.pos);
+ if(p.action==="STEAL") return `${p.name} is being selected later than the combined expert view suggests. ${n?"Your roster also needs "+p.pos+". ":""}The model sees meaningful opportunity cost in waiting.`;
+ if(p.action==="REACH") return `The market is pricing ${p.name} ahead of the blended expert view. ${n?"You have a roster need here, but the model still prefers waiting for a better value. ":""}`;
+ return `This is a balanced target: market and expert views are reasonably aligned, with ${n?"a useful roster fit.":"limited immediate positional pressure."}`;
+}
+function takeNowVsWait(p,team){
+ const nmp=nextMyPick(isMyTurn()?currentPick+1:currentPick);
+ const survive=nmp?survivalProb(p,nmp-1):1;
+ const takeNow=Math.max(0,Math.min(100,50+recommendScore(p,team)*1.3));
+ const wait=takeNow*(survive/100);
+ return {takeNow:Math.round(takeNow*10)/10,wait:Math.round(wait*10)/10,survive};
+}
+function breakdownBars(p,team){
+ return scoreBreakdown(p,team).map(b=>`<div class="sb-row"><span class="sb-label">${b.label}</span><div class="sb-bar"><i style="width:${b.pct}%"></i></div></div>`).join("");
+}
+function renderRec(){
+ const p=bestPlayer(); if(!p)return;
+ const canDraft=canDraftNow();
+ const team=myTeam();
+ const tw=takeNowVsWait(p,team);
+ const before=teamsBeforeMyNextPick();
+ document.getElementById("recommendation").innerHTML=`<div style="margin-top:9px"><div class="rec-top"><div><div class="rec-name">${p.name}</div><div class="rec-sub">${p.pos} · ${p.team} · Market ADP ${p.adp??"—"} · Expert ${p.expert?.toFixed(1)??"—"}</div></div><div class="score">${p.score>=0?"+":""}${p.score.toFixed(1)}</div></div><div class="why"><span class="tag">${p.action}</span><span class="tag">Gap ${p.gap>=0?"+":""}${p.gap.toFixed(1)}</span><span class="tag">Ceil #${p.ceil??"—"} / Floor #${p.floor??"—"}</span><span class="tag">Sug. Rd ${p.suggestedRound??"—"}</span><span class="tag">Roster need ${myNeed(p.pos)>0?"HIGH":"LOW"}</span><span class="tag">${p.tier}</span></div><p style="color:#9aa8bd;font-size:11px;line-height:1.6">${reason(p)}</p>
+ <div class="tnw"><div class="tnw-box"><span class="mini">TAKE NOW</span><b class="positive">${tw.takeNow}</b></div><div class="tnw-box"><span class="mini">WAIT</span><b class="${tw.wait<tw.takeNow-15?"negative":""}">${tw.wait}</b></div><div class="tnw-box"><span class="mini">SURVIVAL${before.length?` (${before.length} picks)`:""}</span><b class="${tw.survive<30?"negative":tw.survive<60?"amber":"positive"}">${tw.survive}%</b></div></div>
+ ${before.length?`<div class="mini" style="margin-top:9px">Picking before your next turn: ${before.map(b=>escHtml(b.teamName)).join(", ")}</div>`:""}
+ <div class="scorebreak"><div class="smallcaps" style="margin:11px 0 6px">Score breakdown</div>${breakdownBars(p,team)}</div>
+ <div class="rec-actions"><button class="primary" ${canDraft?"":"disabled"} onclick="draftPlayer('${esc(p.name)}')">${canDraft?(liveDraftMode?"LOG ":"DRAFT ")+p.name.toUpperCase():(currentPick>MAX_PICK?"DRAFT COMPLETE":"WAIT FOR YOUR TURN")}</button></div></div>`;
+ document.getElementById("bestValue").textContent=p.name;document.getElementById("bestValueMeta").textContent=`${p.action} · ${p.score.toFixed(1)}`;
+}
+function renderTop(){
+ const r=roundInfo(currentPick);
+ document.getElementById("pickLabel").textContent=currentPick<=MAX_PICK?`Pick ${currentPick}`:"Draft complete";
+ document.getElementById("roundMeta").textContent=currentPick<=MAX_PICK?`Round ${r.round} of ${ROUNDS} · Slot ${r.slot} · 12-team snake`:`All ${MAX_PICK} picks made`;
+ document.getElementById("clockLabel").textContent=currentPick>MAX_PICK?"Draft finished":liveDraftMode?"Live Draft Mode — log picks as they happen":(isMyTurn()?"You're on the clock":"Opponent on the clock");
+ const pct=Math.min(100,Math.round(((currentPick-1)/MAX_PICK)*100));
+ document.getElementById("roundFill").style.width=pct+"%";
+ const nmp=nextMyPick(isMyTurn()?currentPick+1:currentPick);
+ document.getElementById("nextPick").textContent=nmp||"—";
+ document.getElementById("nextPickMeta").textContent=nmp?`${nmp-currentPick} picks away`:"No more picks";
+ const a=available();const posCounts={QB:0,RB:0,WR:0,TE:0,K:0};a.forEach(p=>posCounts[p.pos]=(posCounts[p.pos]||0)+1);
+ const needPos=["QB","RB","WR","TE","DEF","K"].sort((x,y)=>myNeed(y)-myNeed(x))[0];
+ document.getElementById("positionAlert").textContent=needPos;
+ const runPct=Math.round(positionRunPressure(needPos)*100);
+ document.getElementById("positionAlertMeta").textContent=`${myNeed(needPos)>0?"Need":"Depth"} · ${posCounts[needPos]} available${runPct>=34?` · 🔥 run (${runPct}%)`:""}`;
+ const sc=document.getElementById("stickyClock");
+ sc.classList.toggle("show",page!=="draft"&&page!=="mock");
+ document.getElementById("stickyClockText").textContent=currentPick>MAX_PICK?"Draft complete":`Pick ${currentPick} · Round ${r.round}/${ROUNDS} · ${isMyTurn()?"You're on the clock":"Opponent picking"}`;
+ document.getElementById("stickyClockFill").style.width=pct+"%";
+}
+function renderRuns(){
+ const recent=feed.slice(-18);const c={QB:0,RB:0,WR:0,TE:0,K:0};recent.forEach(x=>c[x.pos]++);
+ const max=Math.max(1,...Object.values(c));document.getElementById("runs").innerHTML=Object.entries(c).map(([p,n])=>`<div class="run"><b style="width:22px;font-size:10px">${p}</b><div class="runbar"><i style="width:${n/max*100}%"></i></div><span class="mini">${n}</span></div>`).join("");
+}
+
+/* ---------- rendering: player board ---------- */
+function renderBoard(){
+ let a=available().filter(p=>(filterPos==="ALL"||p.pos===filterPos)&&(filterAction==="ALL"||p.action===filterAction)&&(filterTier==="ALL"||p.tier===filterTier)&&(!watchlistOnly||watchlist.has(p.name))&&(`${p.name} ${p.team} ${p.pos}`.toLowerCase().includes(query.toLowerCase())));
+ const team=myTeam();
+ a.sort((x,y)=>sort==="score"?y.score-x.score:sort==="best"?recommendationComparator(x,y):sort==="pts"?y.seasonPts-x.seasonPts:sort==="adp"?recommendationComparator(x,y):sort==="rank"?x.expert-y.expert:sort==="ceil"?(x.ceil??999)-(y.ceil??999):y.gap-x.gap);
+ const statusTitle=name=>{const st=getStatus(name);return st==="healthy"?"Mark injury status":`Status: ${STATUS_META[st].label} (tap to change)`};
+ const iconBtns=p=>`<button class="iconbtn" onclick="toggleWatch('${esc(p.name)}')" aria-label="${watchlist.has(p.name)?"Remove from watchlist":"Add to watchlist"}" title="Watchlist">${watchlist.has(p.name)?"⭐":"☆"}</button><button class="iconbtn" onclick="toggleLock('${esc(p.name)}')" aria-label="${lockedPlayers.has(p.name)?"Unprotect from auto-sim":"Protect from auto-sim"}" title="Protect from auto-sim">${lockedPlayers.has(p.name)?"🔒":"🔓"}</button><button class="iconbtn" onclick="cycleStatus('${esc(p.name)}')" aria-label="${statusTitle(p.name)}" title="${statusTitle(p.name)}">${getStatus(p.name)==="healthy"?"🩹":"⚕️"}</button>${statusBadge(p.name)}`;
+ const btnLabel=liveDraftMode?"Log Pick":"Draft";
+ document.getElementById("boardRows").innerHTML=a.map(p=>`<tr><td><div class="player">${iconBtns(p)}${p.name}</div><small>${p.team} · ${p.tier}</small></td><td>${p.pos}</td><td><b>${p.seasonPts}</b><br><span class="mini">${p.vor>=0?"+":""}${p.vor.toFixed(1)} VOR</span></td><td>${p.adp??"—"}</td><td>${p.expert?.toFixed(1)??"—"}</td><td class="${p.gap>=0?"positive":"negative"}">${p.gap>=0?"+":""}${p.gap.toFixed(1)}</td><td>#${p.ceil??"—"}</td><td>#${p.floor??"—"}</td><td>${p.suggestedRound??"—"}</td><td class="${p.score>=0?"positive":p.score< -3?"negative":""}">${p.score>=0?"+":""}${p.score.toFixed(1)}</td><td><span class="badge ${p.action==="STEAL"?"steal":p.action==="REACH"?"reach":"target"}">${p.action==="STEAL"?"🟢 STEAL":p.action==="REACH"?"🔴 REACH":"🟡 TARGET"}</span> <button class="draftbtn" ${canDraftNow()?"":"disabled"} onclick="draftPlayer('${esc(p.name)}')">${btnLabel}</button></td></tr>`).join("")||`<tr><td colspan="11" class="mini">No matching players.</td></tr>`;
+ document.getElementById("boardCards").innerHTML=a.map(p=>`<div class="bcard"><div class="bcard-top"><div><div class="bcard-name">${iconBtns(p)}${p.name}</div><div class="bcard-sub">${p.pos} · ${p.team} · ${p.tier}</div></div><span class="badge ${p.action==="STEAL"?"steal":p.action==="REACH"?"reach":"target"}">${p.action==="STEAL"?"🟢 STEAL":p.action==="REACH"?"🔴 REACH":"🟡 TARGET"}</span></div><div class="bcard-stats"><div class="bcard-stat"><b>${p.seasonPts}</b><span>Season Pts</span></div><div class="bcard-stat"><b>${p.adp??"—"}</b><span>ADP</span></div><div class="bcard-stat"><b class="${p.gap>=0?"positive":"negative"}">${p.gap>=0?"+":""}${p.gap.toFixed(1)}</b><span>Gap</span></div><div class="bcard-stat"><b>${p.suggestedRound??"—"}</b><span>Sug. Rd</span></div></div><div class="bcard-bottom"><span class="mini ${p.score>=0?"positive":p.score< -3?"negative":""}">Value ${p.score>=0?"+":""}${p.score.toFixed(1)}</span><button class="draftbtn" ${canDraftNow()?"":"disabled"} onclick="draftPlayer('${esc(p.name)}')">${btnLabel}</button></div></div>`).join("")||`<div class="mini">No matching players.</div>`;
+}
+function renderBoardSuggest(){
+ const card=document.getElementById("boardSuggestCard");
+ if(!card)return;
+ if(currentPick>MAX_PICK){document.getElementById("boardSuggestBody").innerHTML=`<div class="mini">Draft complete — check your grade on the Draft tab.</div>`;return}
+ const team=myTeam();
+ const p=bestPlayer();
+ if(!p){document.getElementById("boardSuggestBody").innerHTML=`<div class="mini">No players available.</div>`;return}
+ const starters=starterNeeded(team);
+ const runs=positionRunPressure(p.pos);
+ const why=[];
+ if(starters.includes(p.pos))why.push("Fills an open starter slot");
+ why.push(`~${p.seasonPts} proj pts this season (${p.vor>=0?"+":""}${p.vor.toFixed(1)}/wk vs replacement ${p.pos})`);
+ if(runs>=0.34)why.push(`${p.pos} run detected (${Math.round(runs*100)}% of recent picks)`);
+ why.push(p.action==="STEAL"?"Trending as a value at this pick":p.action==="REACH"?"Still a reasonable roster fit despite tight value window":"On-time value for this pick");
+ if(!canDraftNow())why.push("Preview only — not your turn yet");
+ const tw=takeNowVsWait(p,team);
+ document.getElementById("boardSuggestBody").innerHTML=`<div class="rec-top"><div><div class="rec-name">${p.name}</div><div class="rec-sub">${p.pos} · ${p.team} · ADP ${p.adp??"—"} · Sug. Rd ${p.suggestedRound??"—"}</div></div><div class="score">${p.score>=0?"+":""}${p.score.toFixed(1)}</div></div><div class="why">${why.map(w=>`<span class="tag">${w}</span>`).join("")}</div>
+ <div class="tnw"><div class="tnw-box"><span class="mini">TAKE NOW</span><b class="positive">${tw.takeNow}</b></div><div class="tnw-box"><span class="mini">WAIT</span><b class="${tw.wait<tw.takeNow-15?"negative":""}">${tw.wait}</b></div><div class="tnw-box"><span class="mini">SURVIVAL</span><b class="${tw.survive<30?"negative":tw.survive<60?"amber":"positive"}">${tw.survive}%</b></div></div>
+ <div class="scorebreak"><div class="smallcaps" style="margin:11px 0 6px">Score breakdown</div>${breakdownBars(p,team)}</div>
+ <div style="margin-top:10px"><button class="primary btnsm" ${canDraftNow()?"":"disabled"} onclick="draftPlayer('${esc(p.name)}')">${canDraftNow()?(liveDraftMode?"LOG ":"DRAFT ")+p.name.toUpperCase():(currentPick>MAX_PICK?"DRAFT COMPLETE":"WAIT FOR YOUR TURN")}</button></div>`;
+}
+function togglePlanPreview(){
+ const body=document.getElementById("planPreviewBody");
+ const btn=document.getElementById("planPreviewBtn");
+ if(body.style.display==="block"){body.style.display="none";btn.textContent="PREVIEW MY FULL PLAN";return}
+ const plan=simulateDraftPlan();
+ body.innerHTML=plan.map(x=>`<div class="run"><b style="width:70px;font-size:10px">Rd ${x.round} · P${x.pick}</b><span class="mini" style="flex:1">${x.player.name} <span style="color:#68778e">(${x.player.pos})</span></span></div>`).join("")||`<div class="mini">No remaining picks to preview.</div>`;
+ body.style.display="block";
+ btn.textContent="HIDE PLAN";
+}
+function teamStarterPts(t){
+ const {starters}=getStarterSplit(t);
+ return starters.reduce((s,{p})=>s+(p?projPts(p):0),0);
+}
+function computeTeamFit(t){
+  // 100-point draft grade:
+  // 60% projected starter strength vs the actual 12-team field,
+  // 25% starter completeness, 15% draft-capital efficiency.
+  const allPts=teams.map(teamStarterPts).sort((a,b)=>a-b);
+  const myPts=teamStarterPts(t);
+  const minPts=allPts[0]||0, maxPts=allPts[allPts.length-1]||1;
+  const ptsScore=maxPts===minPts?50:10+90*((myPts-minPts)/(maxPts-minPts));
+  const starterSlots=Object.keys(STARTER_TARGET);
+  const completeness=starterSlots.reduce((s,pos)=>s+Math.min(1,posCount(t,pos)/STARTER_TARGET[pos]),0)/starterSlots.length*100;
+  const draftedPlayers=t.roster||[];
+  const adpValue=draftedPlayers.reduce((s,p)=>{
+    if(p.adp==null)return s;
+    const pick=p.draftOverall||p.draftPick||null;
+    return s+(pick!=null?Math.max(-20,Math.min(20,pick-p.adp)):0);
+  },0);
+  const capitalScore=draftedPlayers.length?Math.max(0,Math.min(100,50+adpValue/draftedPlayers.length*2.5)):0;
+  return Math.max(0,Math.min(100,ptsScore*0.60+completeness*0.25+capitalScore*0.15));
+}
+function rankedTeams(){
+ return teams.map((t,i)=>({i,t,fit:computeTeamFit(t),pts:teamStarterPts(t),me:i===(draftPos-1)})).sort((x,y)=>y.fit-x.fit);
+}
+/* ---------- rendering: league ---------- */
+let _teamNameGridBuilt=false;
+function renderTeamNames(){
+ const el=document.getElementById("teamNameGrid");
+ if(!el)return;
+ if(!_teamNameGridBuilt){
+  el.innerHTML=teams.map((t,i)=>`<div class="teamnameinput"><span>#${i+1}</span><input type="text" maxlength="30" value="${escHtml(t.name)}" id="teamNameInput${i}" onchange="renameTeam(${i},this.value)" aria-label="Team ${i+1} name"></div>`).join("");
+  _teamNameGridBuilt=true;
+ }else{
+  teams.forEach((t,i)=>{
+   const inp=document.getElementById("teamNameInput"+i);
+   if(inp&&document.activeElement!==inp&&inp.value!==t.name)inp.value=t.name;
+  });
+ }
+}
+function renderLogTeamSelect(){
+ const toggle=document.getElementById("liveDraftToggle");
+ if(toggle&&document.activeElement!==toggle)toggle.checked=liveDraftMode;
+ const el=document.getElementById("logTeamSelect");
+ if(!el)return;
+ if(document.activeElement===el)return;
+ el.innerHTML=`<option value="">Auto (whoever's on the clock)</option>`+teams.map((t,i)=>`<option value="${i}">${escHtml(t.name)}${i===(draftPos-1)?" (you)":""}</option>`).join("");
+ el.value=logTeamIdx==null?"":String(logTeamIdx);
+}
+function renameTeam(idx,name){
+ name=(name||"").trim()||`Team ${idx+1}`;
+ teams[idx].name=name;
+ render();saveState();
+}
+function renderTeams(){
+ const scored=rankedTeams();
+ document.getElementById("teams").innerHTML=scored.map((x,rank)=>{
+  const t=x.t,i=x.i,me=x.me;
+  const needs=teamNeeds(t);
+  const medal=rank===0?"🥇":rank===1?"🥈":rank===2?"🥉":`#${rank+1}`;
+  const grade=x.fit>=90?"A+":x.fit>=80?"A":x.fit>=70?"B":x.fit>=60?"C":x.fit>=50?"D":"F";
+  const gclass=x.fit>=80?"gA":x.fit>=70?"gB":x.fit>=60?"gC":x.fit>=50?"gD":"gF";
+  return `<div class="team ${me?"me":""}"><div class="teamtop"><b><span class="rankpill">${medal}</span> ${escHtml(t.name)}${me?' <span class="youpill">YOU</span>':""}</b>${needs.length?`<span class="needpill">${needs[0]} NEED</span>`:""}</div><div class="bars">${["QB","RB","WR","TE","DEF","K"].map(p=>`<div class="barline"><label>${p}</label><div class="bar"><i style="width:${Math.min(100,posCount(t,p)/TARGET[p]*100)}%"></i></div></div>`).join("")}</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span class="mini">Team fit: ${x.fit.toFixed(0)}/100</span><span class="tf-grade ${gclass}" style="font-size:10px;padding:2px 7px">${grade}</span></div></div>`;
+ }).join("");
+}
+
+/* ---------- rendering: mock board ---------- */
+function findDraftSlot(round,teamIdx){for(const t of teams){const p=t.roster.find(x=>x.draftRound===round&&x.draftTeamIdx===teamIdx);if(p)return p}return null}
+function renderMockBoard(){
+ const rounds=Array.from({length:ROUNDS},(_,i)=>i+1);
+ let head=`<tr><th>Rd</th>${teams.map((t,i)=>`<th class="${i===(draftPos-1)?"me":""}">${escHtml(t.name)}${i===(draftPos-1)?" (YOU)":""}</th>`).join("")}</tr>`;
+ let body=rounds.map(r=>{
+  const cells=teams.map((t,i)=>{
+   const p=findDraftSlot(r,i);
+   const cellClass=i===(draftPos-1)?"me":"";
+   if(!p)return `<td class="${cellClass}"><div class="mcell empty">—</div></td>`;
+   const traded=p.draftTeamIdx!==undefined&&teams[p.draftTeamIdx]&&!teams[i].roster.includes(p);
+   return `<td class="${cellClass}"><div class="mcell"><b>${p.name}</b><span>${p.pos} · ${p.team}${traded?" · traded":""}</span></div></td>`;
+  }).join("");
+  return `<tr><td class="rlabel">R${r}</td>${cells}</tr>`;
+ }).join("");
+ document.getElementById("mockTable").innerHTML=`<thead>${head}</thead><tbody>${body}</tbody><caption style="caption-side:bottom;text-align:left;padding-top:8px;color:#68778e;font-size:9px">Grid reflects original draft slots. Executed trades move players between rosters but are logged in the Trade tab.</caption>`;
+ document.getElementById("mockUndoBtn").disabled=!pickHistory.length;
+ document.getElementById("mockSimBtn").disabled=currentPick>MAX_PICK;
+}
+
+/* ---------- rendering: trade analyzer ---------- */
+function tradeOptionsHtml(){return teams.map((t,i)=>`<option value="${i}">${escHtml(t.name)}${i===(draftPos-1)?" (YOU)":""}</option>`).join("")}
+function renderTradeSelectors(){
+ document.getElementById("tradeTeamA").innerHTML=tradeOptionsHtml();
+ document.getElementById("tradeTeamB").innerHTML=tradeOptionsHtml();
+ document.getElementById("tradeTeamA").value=tradeTeamAIdx;
+ document.getElementById("tradeTeamB").value=tradeTeamBIdx;
+}
+function renderTradeLists(){
+ const teamA=teams[tradeTeamAIdx],teamB=teams[tradeTeamBIdx];
+ const rowHtml=(p,sel,side)=>`<label class="prow"><input type="checkbox" ${sel.has(p.name)?"checked":""} onchange="toggleTradeSel('${side}','${esc(p.name)}')"><span class="pname">${p.name} <span class="mini">${p.pos}</span></span><span class="pval">value ${tradeValue(p)}</span></label>`;
+ document.getElementById("tradeListA").innerHTML=teamA.roster.length?teamA.roster.map(p=>rowHtml(p,tradeSelA,"A")).join(""):`<div class="mini" style="padding-top:8px">No roster yet — draft or auto-sim picks first.</div>`;
+ document.getElementById("tradeListB").innerHTML=teamB.roster.length?teamB.roster.map(p=>rowHtml(p,tradeSelB,"B")).join(""):`<div class="mini" style="padding-top:8px">No roster yet — draft or auto-sim picks first.</div>`;
+}
+function toggleTradeSel(side,name){
+ const set=side==="A"?tradeSelA:tradeSelB;
+ if(set.has(name))set.delete(name);else set.add(name);
+ renderTradeSummary();
+}
+function renderTradeSummary(){
+ const teamA=teams[tradeTeamAIdx],teamB=teams[tradeTeamBIdx];
+ const selA=teamA.roster.filter(p=>tradeSelA.has(p.name));
+ const selB=teamB.roster.filter(p=>tradeSelB.has(p.name));
+ const vA=selA.reduce((s,p)=>s+tradeValue(p),0), vB=selB.reduce((s,p)=>s+tradeValue(p),0);
+ document.getElementById("tvA").textContent=vA;
+ document.getElementById("tvB").textContent=vB;
+ document.getElementById("tvAmeta").textContent=selA.length?selA.map(p=>p.name).join(", "):"Select players above";
+ document.getElementById("tvBmeta").textContent=selB.length?selB.map(p=>p.name).join(", "):"Select players above";
+ const canGrade=selA.length&&selB.length;
+ document.getElementById("executeTrade").disabled=!canGrade;
+ if(!canGrade){document.getElementById("gradeSub").textContent="Add players to both sides to analyze.";document.getElementById("gradeBadge").innerHTML="";return}
+ const total=(vA+vB)/2||1;const pct=((vB-vA)/total)*100;
+ const gradeFor=pct=>pct>=25?"A+":pct>=15?"A":pct>=5?"B+":pct>=-5?"B":pct>=-15?"C":pct>=-25?"D":"F";
+ const gA=gradeFor(pct),gB=gradeFor(-pct);
+ const gclass=g=>g.startsWith("A")?"gA":g.startsWith("B")?"gB":g==="C"?"gC":g==="D"?"gD":"gF";
+ document.getElementById("gradeSub").textContent=`${teamA.name} sends ${vA} in value, receives ${vB}. Net ${pct>=0?"+":""}${pct.toFixed(0)}% for ${teamA.name}.`;
+ document.getElementById("gradeBadge").innerHTML=`<span class="tf-grade ${gclass(gA)}" style="display:inline-block">${escHtml(teamA.name.split(" ")[0])}: ${gA}</span> <span class="tf-grade ${gclass(gB)}" style="display:inline-block">${escHtml(teamB.name.split(" ")[0])}: ${gB}</span>`;
+}
+function clearTrade(){tradeSelA.clear();tradeSelB.clear();renderTradeLists();renderTradeSummary()}
+function executeTrade(){
+ const teamA=teams[tradeTeamAIdx],teamB=teams[tradeTeamBIdx];
+ const selA=teamA.roster.filter(p=>tradeSelA.has(p.name));
+ const selB=teamB.roster.filter(p=>tradeSelB.has(p.name));
+ if(!selA.length||!selB.length)return;
+ const postA=teamA.roster.filter(p=>!tradeSelA.has(p.name)).concat(selB);
+ const postB=teamB.roster.filter(p=>!tradeSelB.has(p.name)).concat(selA);
+ const shortfalls=[];
+ Object.keys(STARTER_TARGET).forEach(pos=>{
+  const cA=postA.filter(p=>p.pos===pos).length, cB=postB.filter(p=>p.pos===pos).length;
+  if(cA<STARTER_TARGET[pos])shortfalls.push(`${teamA.name} would have only ${cA} ${pos} (needs ${STARTER_TARGET[pos]} to start)`);
+  if(cB<STARTER_TARGET[pos])shortfalls.push(`${teamB.name} would have only ${cB} ${pos} (needs ${STARTER_TARGET[pos]} to start)`);
+ });
+ if(shortfalls.length&&!confirm(`This trade leaves a roster short at a starting position:\n\n${shortfalls.join("\n")}\n\nExecute anyway?`))return;
+ teamA.roster=postA;
+ teamB.roster=postB;
+ tradeHistory.push({time:new Date().toLocaleString(),teamA:teamA.name,teamB:teamB.name,gives:selA.map(p=>p.name),receives:selB.map(p=>p.name)});
+ tradeSelA.clear();tradeSelB.clear();
+ render();saveState();
+ showToast("Trade executed");
+}
+function renderTradeHistory(){
+ const card=document.getElementById("tradeHistoryCard");
+ if(!tradeHistory.length){card.style.display="none";return}
+ card.style.display="block";
+ document.getElementById("tradeHistory").innerHTML=tradeHistory.slice().reverse().map(t=>`<div class="suggestcard"><div class="sc-top"><b style="font-size:11px">${escHtml(t.teamA)} ⇄ ${escHtml(t.teamB)}</b><span class="mini">${escHtml(t.time)}</span></div><div class="mini" style="margin-top:6px">${escHtml(t.teamA)} sends: ${escHtml(t.gives.join(", "))}</div><div class="mini">${escHtml(t.teamB)} sends: ${escHtml(t.receives.join(", "))}</div></div>`).join("");
+}
+function renderSuggestedTrades(){
+ const me=myTeam();
+ const ideas=[];
+ ["QB","RB","WR","TE"].forEach(pos=>{
+  const mine=me.roster.filter(p=>p.pos===pos).sort((x,y)=>tradeValue(x)-tradeValue(y))[0];
+  if(!mine)return;
+  let best=null;
+  teams.forEach((t,i)=>{
+   if(i===(draftPos-1))return;
+   t.roster.filter(p=>p.pos===pos).forEach(p=>{
+    if(tradeValue(p)>tradeValue(mine)&&(!best||tradeValue(p)>tradeValue(best.p)))best={p,teamIdx:i};
+   });
+  });
+  if(best)ideas.push({type:"Same-position upgrade",give:[mine],get:[best.p],teamIdx:best.teamIdx,gap:tradeValue(best.p)-tradeValue(mine)});
+ });
+ const surplusPos=Object.keys(STARTER_TARGET).filter(pos=>posCount(me,pos)>STARTER_TARGET[pos]);
+ surplusPos.forEach(sPos=>{
+  const bait=me.roster.filter(p=>p.pos===sPos).sort((x,y)=>tradeValue(x)-tradeValue(y))[0];
+  if(!bait)return;
+  Object.keys(STARTER_TARGET).filter(n=>n!==sPos).forEach(nPos=>{
+   const myWeakAtN=me.roster.filter(p=>p.pos===nPos).sort((x,y)=>tradeValue(x)-tradeValue(y))[0];
+   if(!myWeakAtN)return;
+   let bestPartner=null;
+   teams.forEach((t,i)=>{
+    if(i===(draftPos-1))return;
+    if(posCount(t,nPos)<=STARTER_TARGET[nPos])return;
+    t.roster.filter(p=>p.pos===nPos).forEach(p=>{
+     if(tradeValue(p)>tradeValue(myWeakAtN)&&(!bestPartner||tradeValue(p)>tradeValue(bestPartner.p)))bestPartner={p,teamIdx:i};
+    });
+   });
+   if(bestPartner){
+    const gap=tradeValue(bestPartner.p)-(tradeValue(myWeakAtN)+tradeValue(bait));
+    ideas.push({type:"Surplus-for-need swap",give:[myWeakAtN,bait],get:[bestPartner.p],teamIdx:bestPartner.teamIdx,gap});
+   }
+  });
+ });
+ ideas.sort((a,b)=>a.gap-b.gap);
+ document.getElementById("suggestedTrades").innerHTML=ideas.slice(0,5).map(idea=>{
+  const feasible=idea.gap<=15;
+  const giveNames=idea.give.map(p=>p.name).join(" + ");
+  const getNames=idea.get.map(p=>p.name).join(" + ");
+  return `<div class="suggestcard"><div class="sc-top"><b style="font-size:11px">Offer ${giveNames} → get ${getNames}</b><span class="${feasible?"likely":"longshot"}">${feasible?"LIKELY":"LONG SHOT"}</span></div><div class="mini" style="margin-top:5px">${escHtml(teams[idea.teamIdx].name)} · ${idea.type} · value gap ${idea.gap>=0?"+":""}${idea.gap} in your favor.</div></div>`;
+ }).join("")||`<div class="mini">Draft picks or auto-sim the board to see suggested upgrade trades.</div>`;
+}
+
+/* ---------- rendering: waivers ---------- */
+function renderWaivers(){
+ let a=available().filter(p=>(waiverPos==="ALL"||p.pos===waiverPos)&&(`${p.name} ${p.team} ${p.pos}`.toLowerCase().includes(waiverQuery.toLowerCase())));
+ a.sort((x,y)=>projPts(y)-projPts(x));
+ a=a.slice(0,60);
+ document.getElementById("waiverRows").innerHTML=a.map(p=>{
+  const proj=projPts(p);const trend=proj>=(p.pos==="QB"?15:p.pos==="RB"||p.pos==="WR"?10:6)?"📈 Rising":"➖ Steady";
+  return `<tr><td><div class="player">${p.name}</div><small>${p.tier}</small></td><td>${p.pos}</td><td>${p.team}</td><td>${p.adp??"—"}</td><td>${proj.toFixed(1)}</td><td class="mini">${trend}</td><td><button class="draftbtn" onclick="waiverAdd('${esc(p.name)}')">Add</button></td></tr>`;
+ }).join("")||`<tr><td colspan="7" class="mini">No matching waiver players.</td></tr>`;
+}
+
+/* ---------- rendering: weekly planner ---------- */
+function renderWeekSelector(){
+ const weeks=Array.from({length:18},(_,i)=>i+1);
+ document.getElementById("weekSel").innerHTML=weeks.map(w=>`<button class="${w===plannerWeek?"active":""}" onclick="setPlannerWeek(${w})">Wk ${w}</button>`).join("");
+}
+function setPlannerWeek(w){plannerWeek=w;renderWeekSelector();renderPlanner();renderMatchup();saveState()}
+function renderMatchup(){
+ const el=document.getElementById("matchupBody");
+ if(!el)return;
+ const myIdx=draftPos-1;
+ const oppIdx=opponentIndex(myIdx,plannerWeek);
+ const me=teams[myIdx],opp=teams[oppIdx];
+ const mySplit=getStarterSplit(me),oppSplit=getStarterSplit(opp);
+ const myTotal=teamProjTotal(me,plannerWeek),oppTotal=teamProjTotal(opp,plannerWeek);
+ const row=({pos,p})=>{
+  if(!p)return `<div class="lineuprow"><div class="lp-pos">${pos}</div><div class="lp-name"><b class="need">OPEN</b></div></div>`;
+  const bye=byeWeek(p.team)===plannerWeek;
+  const pts=weeklyProj(p,plannerWeek);
+  return `<div class="lineuprow"><div class="lp-pos">${pos}</div><div class="lp-name"><b>${p.name}${bye?'<span class="byebadge">BYE</span>':""}</b><span>${p.team}</span></div><div class="lp-pts ${bye?"negative":""}">${pts.toFixed(1)}</div></div>`;
+ };
+ el.innerHTML=`
+  <div class="matchup-head">
+   <div class="matchup-team"><b>${escHtml(me.name)}${myIdx===(draftPos-1)?' <span class="youpill">YOU</span>':""}</b><div class="mscore ${myTotal>=oppTotal?"positive":"negative"}">${myTotal.toFixed(1)}</div></div>
+   <div class="matchup-vs">WK ${plannerWeek}<br>VS</div>
+   <div class="matchup-team"><b>${escHtml(opp.name)}</b><div class="mscore ${oppTotal>myTotal?"positive":"negative"}">${oppTotal.toFixed(1)}</div></div>
+  </div>
+  <div class="matchup-cols">
+   <div><div class="matchup-col-head">${escHtml(me.name)}</div>${mySplit.starters.map(row).join("")}</div>
+   <div><div class="matchup-col-head">${escHtml(opp.name)}</div>${oppSplit.starters.map(row).join("")}</div>
+  </div>`;
+}
+function renderPlanner(){
+ const team=myTeam();
+ const {starters,bench}=getStarterSplit(team);
+ document.getElementById("lineupStarters").innerHTML=starters.map(({pos,p})=>{
+  if(!p)return `<div class="lineuprow"><div class="lp-pos">${pos}</div><div class="lp-name"><b class="need">OPEN</b></div></div>`;
+  const bye=byeWeek(p.team)===plannerWeek;
+  const pts=weeklyProj(p,plannerWeek);
+  return `<div class="lineuprow"><div class="lp-pos">${pos}</div><div class="lp-name"><b>${p.name}${bye?'<span class="byebadge">BYE</span>':""}${statusBadge(p.name)}</b><span>${p.team} vs ${weekOpp(p,plannerWeek)}</span></div><div class="lp-pts ${bye||isInjuredOut(p.name)?"negative":"positive"}">${pts.toFixed(1)}</div></div>`;
+ }).join("")||`<div class="mini">Draft a roster first.</div>`;
+ document.getElementById("lineupBench").innerHTML=bench.length?bench.map(p=>{
+  const bye=byeWeek(p.team)===plannerWeek;const pts=weeklyProj(p,plannerWeek);
+  return `<div class="lineuprow"><div class="lp-pos">${p.pos}</div><div class="lp-name"><b>${p.name}${bye?'<span class="byebadge">BYE</span>':""}${statusBadge(p.name)}</b><span>${p.team} vs ${weekOpp(p,plannerWeek)}</span></div><div class="lp-pts">${pts.toFixed(1)}</div></div>`;
+ }).join(""):`<div class="mini">No bench players — try the Waiver Wire tab.</div>`;
+ const flags=[];
+ starters.forEach(({pos,p})=>{
+  if(!p)return;
+  if(byeWeek(p.team)===plannerWeek)flags.push({icon:"🚫",text:`${p.name} is on bye — start a bench replacement at ${pos}.`});
+  else if(isInjuredOut(p.name))flags.push({icon:"🩹",text:`${p.name} is marked ${STATUS_META[getStatus(p.name)].label} — start a bench replacement at ${pos}.`});
+  else if(getStatus(p.name)==="doubtful")flags.push({icon:"⚠️",text:`${p.name} is Doubtful — have a backup plan at ${pos}.`});
+  else if(weeklyProj(p,plannerWeek)<6)flags.push({icon:"⚠️",text:`${p.name} projects low (${weeklyProj(p,plannerWeek).toFixed(1)} pts) — check the matchup.`});
+  const benchUpgrade=bench.filter(b=>b.pos===p.pos).sort((x,y)=>weeklyProj(y,plannerWeek)-weeklyProj(x,plannerWeek))[0];
+  if(benchUpgrade&&weeklyProj(benchUpgrade,plannerWeek)>weeklyProj(p,plannerWeek)+3)flags.push({icon:"🔁",text:`Consider starting ${benchUpgrade.name} over ${p.name} (+${(weeklyProj(benchUpgrade,plannerWeek)-weeklyProj(p,plannerWeek)).toFixed(1)} proj).`});
+ });
+ document.getElementById("plannerFlags").innerHTML=flags.length?flags.map(f=>`<div class="flagrow"><div class="fi">${f.icon}</div><div>${f.text}</div></div>`).join(""):`<div class="mini">No action flags for week ${plannerWeek} — lineup looks set.</div>`;
+}
+
+/* ---------- master render ---------- */
+function renderAlert(){
+ const banner=document.getElementById("alertBanner");
+ const icon=document.getElementById("alertIcon"),title=document.getElementById("alertTitle"),text=document.getElementById("alertText");
+ const roster=myTeam().roster;
+ const byeCounts={};
+ roster.forEach(p=>{const w=byeWeek(p.team);byeCounts[w]=(byeCounts[w]||0)+1});
+ let maxWeek=null,maxCount=0;
+ Object.entries(byeCounts).forEach(([w,c])=>{if(c>maxCount){maxCount=c;maxWeek=w}});
+ if(maxCount>=3){
+  banner.style.display="flex";
+  icon.textContent="⚠️";
+  title.textContent=`Bye-week cluster: Week ${maxWeek}`;
+  text.textContent=`You have ${maxCount} players on bye in Week ${maxWeek}. Worth diversifying with remaining picks or a waiver swap.`;
+ }else if(currentPick>MAX_PICK){
+  banner.style.display="flex";
+  icon.textContent="🏁";
+  title.textContent="Draft complete";
+  text.textContent="Check your draft grade above, or head to Trade/Waivers to keep improving the roster.";
+ }else{
+  let hottest=null;
+  ["QB","RB","WR","TE"].forEach(pos=>{
+   const pressure=positionRunPressure(pos);
+   if(pressure>=0.4&&(!hottest||pressure>hottest.pressure))hottest={pos,pressure};
+  });
+  if(hottest){
+   const recentCount=feed.slice(-12).filter(f=>f.pos===hottest.pos).length;
+   const bestRemaining=available().filter(p=>p.pos===hottest.pos).sort((a,b)=>b.seasonPts-a.seasonPts)[0];
+   const nmp=nextMyPick(isMyTurn()?currentPick+1:currentPick);
+   const survive=bestRemaining&&nmp?survivalProb(bestRemaining,nmp-1):null;
+   banner.style.display="flex";
+   icon.textContent="🔥";
+   title.textContent=`${hottest.pos} run detected`;
+   text.textContent=`${recentCount} ${hottest.pos}${recentCount!==1?"s":""} drafted in the last 12 picks.${bestRemaining?` Best remaining: ${bestRemaining.name}${survive!=null?` — ${survive}% chance to survive to your next pick.`:""}`:""}`;
+  }else{
+   banner.style.display="none";
+  }
+ }
+}
+const ROUND_TARGET_LABELS={
+ 1:"Elite RB/WR",2:"RB/WR",3:"RB/WR",4:"RB/WR",5:"RB/WR or elite TE",
+ 6:"Fill major need (TE/QB/RB/WR)",7:"Core players (QB/TE/RB/WR)",
+ 8:"Best value",9:"Best value",10:"Best value / upside",
+ 11:"RB/WR upside (bench)",12:"RB/WR upside (bench)",13:"RB/WR upside (bench)",
+ 14:"DEF",15:"K"
+};
+function roundByRoundGroups(){
+ const groups={};
+ for(let r=1;r<=ROUNDS;r++)groups[r]=[];
+ available().forEach(p=>{
+  let r;
+  if(p.pos==="DEF")r=ROUNDS-1;
+  else if(p.pos==="K")r=ROUNDS;
+  else{
+   r=p.adp?Math.max(1,Math.ceil(p.adp/12)):ROUNDS-2;
+   r=Math.min(r,ROUNDS-2);
+  }
+  groups[r].push(p);
+ });
+ Object.values(groups).forEach(list=>list.sort((a,b)=>(a.adp??999)-(b.adp??999)));
+ return groups;
+}
+function tierBuckets(posFilter){
+ const team=myTeam();
+ let pool=available();
+ if(posFilter&&posFilter!=="ALL")pool=pool.filter(p=>p.pos===posFilter);
+ const scored=pool.map(p=>({p,rs:recommendScore(p,team)})).sort((a,b)=>b.rs-a.rs);
+ const buckets={Elite:[],Great:[],Good:[],Okay:[],Avoid:[]};
+ scored.forEach(x=>{
+  if(x.rs>=20)buckets.Elite.push(x);
+  else if(x.rs>=8)buckets.Great.push(x);
+  else if(x.rs>=0)buckets.Good.push(x);
+  else if(x.rs>=-8)buckets.Okay.push(x);
+  else buckets.Avoid.push(x);
+ });
+ return buckets;
+}
+const TIER_META={
+ Elite:{cls:"tier-elite",icon:"💎"},
+ Great:{cls:"tier-great",icon:"🟢"},
+ Good:{cls:"tier-good",icon:"🔵"},
+ Okay:{cls:"tier-okay",icon:"🟡"},
+ Avoid:{cls:"tier-avoid",icon:"🔴"},
+};
+function tierForScore(rs){
+ if(rs>=20)return"Elite";
+ if(rs>=8)return"Great";
+ if(rs>=0)return"Good";
+ if(rs>=-8)return"Okay";
+ return"Avoid";
+}
+let expandedRounds=new Set([1]);
+function toggleRoundCard(round){
+ if(expandedRounds.has(round))expandedRounds.delete(round);else expandedRounds.add(round);
+ renderRoundBoard();
+}
+function renderRoundBoard(){
+ const el=document.getElementById("roundBoard");
+ if(!el)return;
+ const groups=roundByRoundGroups();
+ el.innerHTML=Array.from({length:ROUNDS},(_,i)=>i+1).map(r=>{
+  const list=groups[r]||[];
+  const open=expandedRounds.has(r);
+  const shown=list.slice(0,10);
+  return `<div class="roundcard">
+   <div class="roundhead" onclick="toggleRoundCard(${r})">
+    <div class="roundhead-left">
+     <div class="roundnum">${r}</div>
+     <div><div class="roundtarget">${ROUND_TARGET_LABELS[r]||"—"}</div><div class="roundcount">${list.length} player${list.length!==1?"s":""} typically available</div></div>
+    </div>
+    <div class="roundchevron ${open?"open":""}">▼</div>
+   </div>
+   <div class="roundrows ${open?"open":""}">
+    ${shown.length?shown.map(p=>`<div class="roundrow"><b style="width:28px">${p.pos}</b><span style="flex:1">${p.name} <span class="mini">${p.team}</span></span><span class="mini">ADP ${p.adp??"—"}</span></div>`).join(""):`<div class="mini" style="padding:8px 0">None left in the pool for this round.</div>`}
+    ${list.length>10?`<div class="mini" style="padding:6px 0">+${list.length-10} more</div>`:""}
+   </div>
+  </div>`;
+ }).join("");
+}
+function renderTierList(){
+ const el=document.getElementById("tierList");
+ if(!el)return;
+ if(tierFilterPos==="ALL"){
+  const buckets=tierBuckets("ALL");
+  const caps={Elite:10,Great:10,Good:8,Okay:8,Avoid:8};
+  el.innerHTML=Object.entries(buckets).map(([tier,list])=>{
+   const m=TIER_META[tier];
+   const shown=list.slice(0,caps[tier]);
+   return `<div class="tiersection"><div class="tierhead ${m.cls}">${m.icon} ${tier} <span class="mini" style="margin-left:6px;color:inherit;opacity:.75">(${list.length} available)</span></div>${shown.length?`<div class="tierrows">${shown.map(x=>`<div class="tierrow"><button class="iconbtn" onclick="toggleWatch('${esc(x.p.name)}')" aria-label="${watchlist.has(x.p.name)?"Remove from watchlist":"Add to watchlist"}">${watchlist.has(x.p.name)?"⭐":"☆"}</button><b>${x.p.name}</b><span class="mini">${x.p.pos} · ${x.p.team} · ${x.p.seasonPts} pts · ADP ${x.p.adp??"—"}</span><span class="mini" style="margin-left:auto">${x.rs>=0?"+":""}${x.rs.toFixed(1)}</span></div>`).join("")}</div>`:`<div class="mini" style="padding:8px 12px">None right now.</div>`}</div>`;
+  }).join("");
+ }else{
+  const team=myTeam();
+  const pool=available().filter(p=>p.pos===tierFilterPos);
+  const scored=pool.map(p=>({p,rs:recommendScore(p,team)})).sort((a,b)=>b.rs-a.rs);
+  el.innerHTML=`<div class="tiersection"><div class="tierhead" style="background:#111a2b;color:#dbe5f4">${tierFilterPos} rankings <span class="mini" style="margin-left:6px;color:inherit;opacity:.75">(${scored.length} available)</span></div>${scored.length?`<div class="tierrows">${scored.map((x,i)=>{
+   const tier=tierForScore(x.rs),m=TIER_META[tier];
+   return `<div class="tierrow"><span class="mini" style="width:26px">#${i+1}</span><button class="iconbtn" onclick="toggleWatch('${esc(x.p.name)}')" aria-label="${watchlist.has(x.p.name)?"Remove from watchlist":"Add to watchlist"}">${watchlist.has(x.p.name)?"⭐":"☆"}</button><b>${x.p.name}</b><span class="mini">${x.p.team} · ${x.p.seasonPts} pts · ADP ${x.p.adp??"—"}</span><span class="tierpill ${m.cls}">${m.icon} ${tier}</span></div>`;
+  }).join("")}</div>`:`<div class="mini" style="padding:8px 12px">None right now.</div>`}</div>`;
+ }
+}
+function buildCheatSheet(){
+ const el=document.getElementById("cheatSheetPrint");
+ if(!el)return;
+ const buckets=tierBuckets();
+ const caps={Elite:20,Great:20,Good:15,Okay:12,Avoid:10};
+ const rows=(list,cap)=>list.slice(0,cap).map(x=>`<tr><td><b>${x.p.name}</b></td><td>${x.p.pos}</td><td>${x.p.team}</td><td>${x.p.seasonPts}</td><td>${x.p.adp??"—"}</td><td>Wk ${byeWeek(x.p.team)}</td><td>${x.rs>=0?"+":""}${x.rs.toFixed(1)}</td></tr>`).join("");
+ const roundGroups=roundByRoundGroups();
+ const roundRows=(list)=>list.slice(0,10).map(p=>`<tr><td><b>${p.name}</b></td><td>${p.pos}</td><td>${p.team}</td><td>${p.adp??"—"}</td><td>Wk ${byeWeek(p.team)}</td></tr>`).join("");
+ el.innerHTML=`
+  <div class="cs-title">Draft Command Center — Cheat Sheet</div>
+  <div class="cs-sub">${escHtml(myTeam().name)} · Draft position #${draftPos} · Pick ${currentPick} of ${MAX_PICK} · Generated ${new Date().toLocaleString()}</div>
+  <div class="cs-tier" style="margin-top:4px">Round-by-round board (prep — by market ADP)</div>
+  ${Array.from({length:ROUNDS},(_,i)=>i+1).map(r=>{
+   const list=roundGroups[r]||[];
+   return `<div style="font-size:11px;font-weight:bold;margin-top:8px">Round ${r} — ${ROUND_TARGET_LABELS[r]||"—"}</div>
+   <table class="cs-table"><thead><tr><th>Player</th><th>Pos</th><th>Team</th><th>ADP</th><th>Bye</th></tr></thead><tbody>${roundRows(list)||`<tr><td colspan="5">None left in the pool.</td></tr>`}</tbody></table>`;
+  }).join("")}
+  <div class="cs-tier" style="margin-top:16px">Value tiers (live — by current recommendation score)</div>
+  ${Object.entries(buckets).map(([tier,list])=>`
+   <div class="cs-tier">${tier} (${list.length} available)</div>
+   <table class="cs-table"><thead><tr><th>Player</th><th>Pos</th><th>Team</th><th>Season Pts</th><th>ADP</th><th>Bye</th><th>Value</th></tr></thead><tbody>${rows(list,caps[tier])||`<tr><td colspan="7">None right now.</td></tr>`}</tbody></table>
+  `).join("")}
+  <div class="cs-foot">Demo dataset — not live-synced. Verify against real ADP/rankings before draft night.</div>
+ `;
+}
+function printCheatSheet(){
+ buildCheatSheet();
+ if(typeof window!=="undefined"&&typeof window.print==="function")window.print();
+}
+function renderDraftGrade(){
+ const card=document.getElementById("draftGradeCard");
+ if(!card)return;
+ if(currentPick<=MAX_PICK){card.style.display="none";return}
+ card.style.display="block";
+ const team=myTeam();
+ const overall=computeTeamFit(team);
+ const grade=overall>=90?"A+":overall>=80?"A":overall>=70?"B":overall>=60?"C":overall>=50?"D":"F";
+ const gclass=overall>=80?"gA":overall>=70?"gB":overall>=60?"gC":overall>=50?"gD":"gF";
+ const {starters}=getStarterSplit(team);
+ const totalSeasonPts=starters.reduce((s,{p})=>s+(p?seasonPts(p):0),0);
+ const ranked=rankedTeams();
+ const myRank=ranked.findIndex(x=>x.i===(draftPos-1))+1;
+ const roster=team.roster;
+ const byeCounts={};roster.forEach(p=>{const w=byeWeek(p.team);byeCounts[w]=(byeCounts[w]||0)+1});
+ const worstBye=Object.entries(byeCounts).sort((a,b)=>b[1]-a[1])[0];
+ document.getElementById("draftGradeBadge").innerHTML=`<span class="tf-grade ${gclass}" style="display:inline-block;font-size:20px;width:52px;padding:8px 0">${grade}</span>`;
+ document.getElementById("draftGradeText").innerHTML=`~${totalSeasonPts.toLocaleString()} projected season points from your starters · Ranked #${myRank} of 12 by projected strength · 100-point grade uses starter strength, completeness, and draft-capital efficiency.${worstBye&&worstBye[1]>=3?` Heads up: ${worstBye[1]} players share a Week ${worstBye[0]} bye.`:""}`;
+}
+function render(){
+ renderTop();renderRec();renderRoster();renderRuns();renderBoard();renderBoardSuggest();
+ renderTeams();renderMockBoard();renderTierList();renderRoundBoard();renderTeamNames();renderLogTeamSelect();
+ renderTradeSelectors();renderTradeLists();renderTradeSummary();renderTradeHistory();renderSuggestedTrades();
+ renderWaivers();renderWeekSelector();renderPlanner();renderMatchup();
+ renderAlert();renderDraftGrade();renderLiveSyncStatus();renderProjectionSyncStatus();
+}
+
+/* ---------- wiring ---------- */
+document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>{page=b.dataset.page;document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll("main>section").forEach(s=>s.style.display=s.id==="page-"+page?"block":"none");renderTop()});
+document.getElementById("mockSimBtn").onclick=simulatePick;
+document.getElementById("mockAutoMeBtn").onclick=autoSimToMyPick;
+document.getElementById("mockAutoFullBtn").onclick=autoSimFullDraft;
+document.getElementById("mockUndoBtn").onclick=undoPick;
+document.getElementById("mockResetBtn").onclick=()=>{if(pickHistory.length&&!confirm("Reset the entire draft? This clears all picks, trades and your rosters."))return;resetDemo()};
+document.getElementById("search").oninput=e=>{query=e.target.value;renderBoard()};
+document.getElementById("pos").onchange=e=>{filterPos=e.target.value;renderBoard()};
+document.getElementById("action").onchange=e=>{filterAction=e.target.value;renderBoard()};
+document.getElementById("sort").onchange=e=>{sort=e.target.value;renderBoard()};
+document.getElementById("watchlistChip").onclick=e=>{watchlistOnly=!watchlistOnly;e.target.classList.toggle("active",watchlistOnly);renderBoard()};
+document.querySelectorAll("#tierPosChips button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#tierPosChips button").forEach(x=>x.classList.remove("active"));b.classList.add("active");tierFilterPos=b.dataset.pos;renderTierList()});
+document.getElementById("planPreviewBtn").onclick=togglePlanPreview;
+document.querySelectorAll("#tierChips button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#tierChips button").forEach(x=>x.classList.remove("active"));b.classList.add("active");filterTier=b.textContent==="ALL TIERS"?"ALL":b.textContent;renderBoard()});
+document.getElementById("currentPick").oninput=e=>{currentPick=Math.max(1,Math.min(MAX_PICK,+e.target.value||1));render();saveState()};
+document.getElementById("draftPos").onchange=e=>{
+ const val=Math.max(1,Math.min(12,+e.target.value||11));
+ if(pickHistory.length&&val!==draftPos&&!confirm("Changing your draft position mid-draft won't move your already-drafted roster to the new seat. Continue anyway?")){
+  e.target.value=draftPos;return;
+ }
+ draftPos=val;render();saveState();
+};
+document.getElementById("philosophy").onchange=e=>{philosophy=e.target.value;render();saveState()};
+document.getElementById("espnBtn").onclick=()=>document.getElementById("modal").classList.add("show");
+document.getElementById("closeModal").onclick=()=>document.getElementById("modal").classList.remove("show");
+document.getElementById("demoBtn").onclick=()=>{document.getElementById("modal").classList.remove("show");showToast("Demo live mode active")};
+document.getElementById("connectBtn").onclick=()=>{const id=document.getElementById("leagueId").value.trim();if(!id){showToast("Enter a league ID first");return}document.getElementById("modal").classList.remove("show");document.getElementById("syncText").textContent="ESPN CONNECTOR";document.getElementById("espnStatus").textContent="Connector pending";showToast("League saved — backend connector still required")};
+document.getElementById("tradeTeamA").onchange=e=>{tradeTeamAIdx=+e.target.value;tradeSelA.clear();renderTradeLists();renderTradeSummary()};
+document.getElementById("tradeTeamB").onchange=e=>{tradeTeamBIdx=+e.target.value;tradeSelB.clear();renderTradeLists();renderTradeSummary()};
+document.getElementById("clearTrade").onclick=clearTrade;
+document.getElementById("executeTrade").onclick=executeTrade;
+document.getElementById("waiverSearch").oninput=e=>{waiverQuery=e.target.value;renderWaivers()};
+document.getElementById("waiverPos").onchange=e=>{waiverPos=e.target.value;renderWaivers()};
+document.getElementById("exportBtn").onclick=exportState;
+document.getElementById("importFile").onchange=e=>{if(e.target.files[0])importState(e.target.files[0])};
+document.getElementById("wipeBtn").onclick=()=>{if(!confirm("Wipe all saved draft data from this browser? This cannot be undone."))return;localStorage.removeItem(STORAGE_KEY);showToast("Saved state wiped — reload to start fresh")};
+document.getElementById("printCheatSheetBtn").onclick=printCheatSheet;
+document.getElementById("liveSyncBtn").onclick=syncLiveData;
+document.getElementById("projectionSyncBtn").onclick=syncWeeklyProjections;
+document.getElementById("projectionSettingsSave").onclick=()=>{
+  projectionLeagueId=document.getElementById("projectionLeagueId").value.trim();
+  projectionProxyUrl=document.getElementById("projectionProxyUrl").value.trim();
+  saveState();showToast("Projection settings saved");
+};
+document.getElementById("liveDraftToggle").onchange=e=>{liveDraftMode=e.target.checked;showToast(liveDraftMode?"Live Draft Mode ON — every pick logs for real":"Live Draft Mode off");render();saveState()};
+document.getElementById("logTeamSelect").onchange=e=>{logTeamIdx=e.target.value===""?null:parseInt(e.target.value,10)};
+
+/* ---------- init ---------- */
+(function(){
+ const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+ if(isIOS&&location.protocol==='file:'){
+   const n=document.getElementById('iosFileNotice');
+   if(n)n.style.display='flex';
+ }
+})();
+if(!loadState()){initTeams()}
+document.getElementById("draftPos").value=draftPos;
+document.getElementById("currentPick").value=currentPick;
+document.getElementById("currentPick").max=MAX_PICK;
+if(typeof location!=="undefined"&&location.protocol==="file:"){
+ const w=document.getElementById("liveSyncProtocolWarning");
+ if(w)w.style.display="block";
+}
+document.getElementById("philosophy").value=philosophy;
+document.getElementById("projectionLeagueId").value=projectionLeagueId;
+document.getElementById("projectionProxyUrl").value=projectionProxyUrl;
+document.getElementById("sort").value=sort;
+render();
+</script>
+<script>
+if ("serviceWorker" in navigator && location.protocol !== "file:") { navigator.serviceWorker.register("sw.js").catch(()=>{}); }
+</script>
+</body>
+</html>
