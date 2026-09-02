@@ -1,16 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0b1020">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b1020">
-<title>Draft Command Center v8</title>
+<title>Draft Command Center v10</title>
 <style>
 :root{--bg:#090d17;--panel:#111827;--panel2:#151e2f;--line:#263249;--text:#f4f7fb;--muted:#91a0b7;--blue:#6d6aff;--cyan:#4dd7ff;--green:#28d7a1;--red:#ff6475;--amber:#f6b94a;--shadow:0 14px 45px rgba(0,0,0,.22)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior-x:none}body{min-width:0}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}input,select,textarea{font-size:16px}
@@ -68,7 +65,12 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
  .cs-table td{border-bottom:1px solid #ccc;padding:3px 6px}
  .cs-foot{font-size:9px;color:#777;margin-top:16px}
 }
+
+/* v11 Draft Night Mode */
+.dn-grid{display:grid;grid-template-columns:1.35fr .85fr;gap:12px;margin-top:12px}.dn-card{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:14px}.dn-title{font-size:10px;letter-spacing:1.2px;font-weight:900;color:#9aa8bd;text-transform:uppercase}.dn-big{font-size:25px;font-weight:950;letter-spacing:-.7px;margin-top:4px}.dn-sub{font-size:11px;color:#8291a9;margin-top:3px}.dn-list{display:grid;gap:7px;margin-top:10px}.dn-row{display:flex;align-items:center;gap:8px;padding:9px 10px;border:1px solid #243047;border-radius:11px;background:#0d1524}.dn-rank{width:24px;text-align:center;font-size:10px;font-weight:900;color:#7e8da6}.dn-player{flex:1;min-width:0}.dn-player b{font-size:12px}.dn-meta{font-size:10px;color:#7f8da3;margin-top:2px}.dn-tag{font-size:9px;font-weight:900;padding:4px 6px;border-radius:7px;background:#17243a;color:#b8c6dc}.dn-danger{border-color:#5a3a25;background:#19150f}.dn-danger .dn-tag{color:#f6c56b}.dn-safe{border-color:#23473e}.dn-policy{display:flex;gap:9px;align-items:flex-start;margin-top:10px;padding:10px;border:1px solid #23473e;background:#10231f;border-radius:11px;font-size:10px;color:#a8d9cb;line-height:1.5}.dn-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.dn-minigrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.dn-minibox{padding:9px;border:1px solid #243047;border-radius:10px;background:#0d1524}.dn-minibox b{display:block;font-size:13px;margin-top:2px}.dn-minibox span{font-size:9px;color:#7f8da3;text-transform:uppercase;font-weight:800}@media(max-width:760px){.dn-grid{grid-template-columns:1fr}.dn-minigrid{grid-template-columns:1fr 1fr}.dn-big{font-size:22px}}
 </style>
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
 </head>
 <body>
 <div id="iosFileNotice" style="display:none;position:fixed;inset:0;z-index:999;background:#090d17;color:#f4f7fb;padding:24px;align-items:center;justify-content:center;text-align:center;font-family:system-ui,-apple-system,sans-serif">
@@ -83,7 +85,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 <div class="app">
 <header class="top">
   <div class="toprow">
-    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v7</span></h1></div></div>
+    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v11</span></h1></div></div>
     <div class="status"><div class="live" title="Roster refresh is live-capable; ADP/rankings remain fallback until a source is configured"><i class="pulse"></i><span id="syncText">DEMO / CONNECTOR READY</span></div><button class="topbtn" id="espnBtn">ESPN SYNC</button></div>
   </div>
   <nav class="nav" id="nav">
@@ -102,6 +104,27 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
   </div>
 
   <p class="mini" style="margin:10px 0 0">Draft picks and simulation controls live on the <b>Player Board</b> and <b>Mock Board</b> tabs.</p>
+  <div class="section banner" id="draftPolicyBanner"><span>🛡️</span><div><b>Draft policy locked</b><span>Rounds 1–14: Skill Players only (QB/RB/WR/TE). Round 15: Defense. Round 16: Kicker. If DEF/K is already filled, the engine safely returns to skill players.</span></div></div>
+
+  <div class="dn-grid" id="draftNightPanel">
+    <div class="dn-card">
+      <div class="dn-title">⚡ Draft Night Command Center</div>
+      <div class="dn-big" id="dnHeadline">Best pick now</div>
+      <div class="dn-sub" id="dnHeadlineSub">—</div>
+      <div class="dn-minigrid">
+        <div class="dn-minibox"><span>Next turn</span><b id="dnNextTurn">—</b></div>
+        <div class="dn-minibox"><span>Picks to wait</span><b id="dnWait">—</b></div>
+        <div class="dn-minibox"><span>Roster filled</span><b id="dnRoster">0/16</b></div>
+      </div>
+      <div class="dn-actions"><button class="primary btnsm" id="dnDraftBtn">DRAFT BEST PICK</button><button class="secondary btnsm" id="dnRefreshBtn">REFRESH BOARD</button></div>
+    </div>
+    <div class="dn-card">
+      <div class="dn-title">🚨 Players most at risk before your next pick</div>
+      <div class="dn-sub">Based on ADP and the number of opponents picking before you.</div>
+      <div class="dn-list" id="dnRiskList"></div>
+      <div class="dn-policy"><span>🛡️</span><span><b>Draft rule:</b> prioritize RB/WR/TE/QB through Round 14. DEF belongs in Round 15 and K belongs in Round 16.</span></div>
+    </div>
+  </div>
 
   <div class="section hero">
     <div class="card rec"><div class="smallcaps">🎯 Best pick now</div><div id="recommendation"></div></div>
@@ -121,12 +144,12 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 
 <section id="page-board" style="display:none">
   <div class="card panelpad" id="boardSuggestCard">
-    <div class="sectionhead"><div><h2>🧠 Suggested pick right now</h2><p>Uses a draft-priority hierarchy: ADP first, projected points second, roster need third. Value-gap scores are informational only and cannot push a worse-ADP/lower-projection player above a better one.</p></div><button class="ghost" id="planPreviewBtn">PREVIEW MY FULL PLAN</button></div>
+    <div class="sectionhead"><div><h2>🧠 Suggested pick right now</h2><p>Uses the draft-night hierarchy: ADP first, then expert rank, then projections. Roster need and value-gap are context only. DEF/K are locked to the final two rounds.</p></div><button class="ghost" id="planPreviewBtn">PREVIEW MY FULL PLAN</button></div>
     <div id="boardSuggestBody"></div>
     <div id="planPreviewBody" style="display:none;margin-top:12px"></div>
   </div>
   <div class="card panelpad">
-    <div class="sectionhead"><div><h2>🏆 Top players / tier board</h2><p>Suggested ADP from lowest to highest. Projected points are a secondary tie-breaker; value-gap scores never override a materially better ADP.</p></div><select class="select" id="sort" style="width:150px"><option value="adp">Suggested ADP (best first)</option><option value="pts">Projected Points</option><option value="score">Value score</option><option value="adp">Market ADP</option><option value="rank">Expert rank</option><option value="gap">ADP gap</option><option value="ceil">Ceiling</option></select></div>
+    <div class="sectionhead"><div><h2>🏆 Top players / tier board</h2><p>Market ADP from lowest to highest. Expert rank and projections are tie-breakers only; value-gap scores never override a better ADP. DEF/K are reserved for Rounds 15–16.</p></div><select class="select" id="sort" style="width:150px"><option value="adp">Suggested ADP (best first)</option><option value="pts">Projected Points</option><option value="score">Value score</option><option value="adp">Market ADP</option><option value="rank">Expert rank</option><option value="gap">ADP gap</option><option value="ceil">Ceiling</option></select></div>
     <p class="mini" style="margin:-4px 0 11px">Ceil/Floor are <b>rank numbers</b>, not points — lower is better. Ceil = best-case rank across all sources, Floor = worst-case.</p>
     <div class="board-controls"><input class="input" id="search" placeholder="Search player, team or position"><select class="select" id="pos"><option>ALL</option><option>QB</option><option>RB</option><option>WR</option><option>TE</option><option>DEF</option><option>K</option></select><select class="select" id="action"><option>ALL</option><option>STEAL</option><option>TARGET</option><option>REACH</option></select></div>
     <div class="chips" id="tierChips"><button class="active">ALL TIERS</button><button>Elite</button><button>Tier 2</button><button>Tier 3</button><button>Tier 4</button><button>Tier 5</button><button>Tier 6</button><button>Late</button><button>Bench</button><button>Waiver</button><button>DEF</button><button>K</button></div>
@@ -227,7 +250,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
   <div class="settings">
     <div class="card setting"><div class="sectionhead"><div><h2>League setup</h2><p>Change these before draft night.</p></div></div>
       <div class="formrow"><label>Draft position</label><input class="input" id="draftPos" type="number" min="1" max="12" value="2"></div>
-      <div class="formrow"><label>Current pick</label><input class="input" id="currentPick" type="number" min="1" max="168" value="1"></div>
+      <div class="formrow"><label>Current pick</label><input class="input" id="currentPick" type="number" min="1" max="192" value="1"></div>
       <div class="formrow"><label>Draft philosophy</label><select class="select" id="philosophy"><option value="balanced">Balanced</option><option value="value">Value first</option><option value="need">Roster need</option><option value="aggressive">Aggressive / upside</option></select></div>
     </div>
     <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🔴 Live draft mode</h2><p>Turn this on during your actual live draft to log every real pick — yours and your opponents' — instead of relying on simulated bot picks.</p></div></div>
@@ -294,12 +317,14 @@ const TEAM_NAMES=["Gridiron Guild","Sunday Scaries","Red Zone Kings","Fourth & L
 const STARTER_TARGET={QB:1,RB:2,WR:2,TE:1,DEF:1,K:1};
 const BENCH_TARGET={QB:1,RB:2,WR:3,TE:1};
 const TARGET={QB:(STARTER_TARGET.QB+BENCH_TARGET.QB),RB:(STARTER_TARGET.RB+BENCH_TARGET.RB),WR:(STARTER_TARGET.WR+BENCH_TARGET.WR),TE:(STARTER_TARGET.TE+BENCH_TARGET.TE),DEF:STARTER_TARGET.DEF,K:STARTER_TARGET.K};
+const ROSTER_SIZE=16;
 const ROUNDS=16;
+const SKILL_POSITIONS=["QB","RB","WR","TE"];
 const MAX_PICK=ROUNDS*12;
 const LATE_ROUND_MIN={DEF:ROUNDS-1,K:ROUNDS};
 const REACH_ALLOWANCE=15;
-const TARGET_TOTAL_WITH_SLACK=ROUNDS+2;
-const STORAGE_KEY="dcc_v6_state";
+const TARGET_TOTAL_WITH_SLACK=ROSTER_SIZE;
+const STORAGE_KEY="dcc_v11_state";
 const LEAGUE_TEAMS=12;
 function computeReplacementLevels(){
  const levels={};
@@ -698,13 +723,12 @@ function roundPositionBias(p,round){
 }
 function recommendationComparator(a,b){
  const adpA=a.adp==null?999:a.adp, adpB=b.adp==null?999:b.adp;
+ if(adpA!==adpB)return adpA-adpB;
+ const expertA=a.expert??999, expertB=b.expert??999;
+ if(expertA!==expertB)return expertA-expertB;
  const ptsA=a.seasonPts??0, ptsB=b.seasonPts??0;
- if(adpA!==adpB && ptsA>=ptsB && adpA<adpB)return -1;
- if(adpA!==adpB && ptsB>=ptsA && adpB<adpA)return 1;
- const priorityA=adpA-(ptsA*0.035)-(starterNeeded(myTeam()).includes(a.pos)?2.5:0)-(positionRunPressure(a.pos)*1.5);
- const priorityB=adpB-(ptsB*0.035)-(starterNeeded(myTeam()).includes(b.pos)?2.5:0)-(positionRunPressure(b.pos)*1.5);
- if(priorityA!==priorityB)return priorityA-priorityB;
- return ptsB-ptsA;
+ if(ptsA!==ptsB)return ptsB-ptsA;
+ return String(a.name).localeCompare(String(b.name));
 }
 function recommendScore(p,team){
  const adpPenalty=(p.adp==null?999:p.adp); const ptsBonus=(p.seasonPts||0)*0.035;
@@ -749,26 +773,25 @@ function scoreBreakdown(p,team){
  ];
 }
 function pickCandidates(team){
- const originalNeeded=Object.keys(TARGET).filter(pos=>posCount(team,pos)<TARGET[pos]);
- let needed=originalNeeded.slice();
  const round=roundInfo(currentPick).round;
- Object.keys(LATE_ROUND_MIN).forEach(pos=>{
-  if(!originalNeeded.includes(pos))return;
-  const onlyThisLeft=originalNeeded.length===1&&originalNeeded[0]===pos;
-  const finalRound=round>=LATE_ROUND_MIN[pos];
-  if(!finalRound&&!onlyThisLeft)needed=needed.filter(x=>x!==pos);
-  // In Round 15, fill remaining skill-position bench needs before DEF.
-  if(finalRound&&round===ROUNDS-1&&pos==="DEF"&&originalNeeded.some(x=>["QB","RB","WR","TE"].includes(x)))needed=needed.filter(x=>x!==pos);
- });
- let a=available().filter(p=>needed.includes(p.pos));
- if(!a.length)a=available();
+ const hasDef=posCount(team,"DEF")>0;
+ const hasK=posCount(team,"K")>0;
+ let allowed;
+ if(round<ROUNDS-1) allowed=SKILL_POSITIONS.slice();
+ else if(round===ROUNDS-1) allowed=hasDef?SKILL_POSITIONS.slice():["DEF"];
+ else allowed=hasK?SKILL_POSITIONS.slice():["K"];
+ let a=available().filter(p=>allowed.includes(p.pos));
+ if(!a.length){
+   a=available().filter(p=>SKILL_POSITIONS.includes(p.pos));
+   if(!a.length)a=available();
+ }
  const healthyOnly=a.filter(p=>!isInjuredOut(p.name));
  if(healthyOnly.length)a=healthyOnly;
  const starters=starterNeeded(team);
- const remaining=team===myTeam()?myRemainingPicks():needed.length;
- if(starters.length&&remaining<=starters.length+1){
-  const forced=a.filter(p=>starters.includes(p.pos));
-  if(forced.length)a=forced;
+ const remaining=team===myTeam()?myRemainingPicks():Math.max(1,ROSTER_SIZE-team.roster.length);
+ if(round<ROUNDS-1 && starters.length && remaining<=starters.length+1){
+   const forced=a.filter(p=>starters.includes(p.pos));
+   if(forced.length)a=forced;
  }
  const windowed=a.filter(p=>draftWindowOk(p,currentPick));
  if(windowed.length)a=windowed;
@@ -967,7 +990,8 @@ function renderTop(){
  document.getElementById("nextPick").textContent=nmp||"—";
  document.getElementById("nextPickMeta").textContent=nmp?`${nmp-currentPick} picks away`:"No more picks";
  const a=available();const posCounts={QB:0,RB:0,WR:0,TE:0,K:0};a.forEach(p=>posCounts[p.pos]=(posCounts[p.pos]||0)+1);
- const needPos=["QB","RB","WR","TE","DEF","K"].sort((x,y)=>myNeed(y)-myNeed(x))[0];
+ const alertPool=currentPick>=((ROUNDS-1)*12)+1?["QB","RB","WR","TE","DEF","K"]:["QB","RB","WR","TE"];
+  const needPos=alertPool.sort((x,y)=>myNeed(y)-myNeed(x))[0]||"RB";
  document.getElementById("positionAlert").textContent=needPos;
  const runPct=Math.round(positionRunPressure(needPos)*100);
  document.getElementById("positionAlertMeta").textContent=`${myNeed(needPos)>0?"Need":"Depth"} · ${posCounts[needPos]} available${runPct>=34?` · 🔥 run (${runPct}%)`:""}`;
@@ -977,7 +1001,7 @@ function renderTop(){
  document.getElementById("stickyClockFill").style.width=pct+"%";
 }
 function renderRuns(){
- const recent=feed.slice(-18);const c={QB:0,RB:0,WR:0,TE:0,K:0};recent.forEach(x=>c[x.pos]++);
+ const recent=feed.slice(-18);const c={QB:0,RB:0,WR:0,TE:0,DEF:0,K:0};recent.forEach(x=>c[x.pos]++);
  const max=Math.max(1,...Object.values(c));document.getElementById("runs").innerHTML=Object.entries(c).map(([p,n])=>`<div class="run"><b style="width:22px;font-size:10px">${p}</b><div class="runbar"><i style="width:${n/max*100}%"></i></div><span class="mini">${n}</span></div>`).join("");
 }
 
@@ -1183,7 +1207,7 @@ function renderSuggestedTrades(){
     if(tradeValue(p)>tradeValue(mine)&&(!best||tradeValue(p)>tradeValue(best.p)))best={p,teamIdx:i};
    });
   });
-  if(best)ideas.push({type:"Same-position upgrade",give:[mine],get:[best.p],teamIdx:best.teamIdx,gap:tradeValue(best.p)-tradeValue(mine)});
+  if(best){const gap=tradeValue(best.p)-tradeValue(mine);if(gap>0)ideas.push({type:"Same-position upgrade",give:[mine],get:[best.p],teamIdx:best.teamIdx,gap});}
  });
  const surplusPos=Object.keys(STARTER_TARGET).filter(pos=>posCount(me,pos)>STARTER_TARGET[pos]);
  surplusPos.forEach(sPos=>{
@@ -1206,7 +1230,7 @@ function renderSuggestedTrades(){
    }
   });
  });
- ideas.sort((a,b)=>a.gap-b.gap);
+ ideas.splice(0,ideas.length,...ideas.filter(idea=>idea.gap>0).sort((a,b)=>b.gap-a.gap));
  document.getElementById("suggestedTrades").innerHTML=ideas.slice(0,5).map(idea=>{
   const feasible=idea.gap<=15;
   const giveNames=idea.give.map(p=>p.name).join(" + ");
@@ -1218,11 +1242,11 @@ function renderSuggestedTrades(){
 /* ---------- rendering: waivers ---------- */
 function renderWaivers(){
  let a=available().filter(p=>(waiverPos==="ALL"||p.pos===waiverPos)&&(`${p.name} ${p.team} ${p.pos}`.toLowerCase().includes(waiverQuery.toLowerCase())));
- a.sort((x,y)=>projPts(y)-projPts(x));
+ a.sort((x,y)=>{const py=syncedWeeklyProj(y,plannerWeek)??weeklyProj(y,plannerWeek);const px=syncedWeeklyProj(x,plannerWeek)??weeklyProj(x,plannerWeek);return py-px;});
  a=a.slice(0,60);
  document.getElementById("waiverRows").innerHTML=a.map(p=>{
-  const proj=projPts(p);const trend=proj>=(p.pos==="QB"?15:p.pos==="RB"||p.pos==="WR"?10:6)?"📈 Rising":"➖ Steady";
-  return `<tr><td><div class="player">${p.name}</div><small>${p.tier}</small></td><td>${p.pos}</td><td>${p.team}</td><td>${p.adp??"—"}</td><td>${proj.toFixed(1)}</td><td class="mini">${trend}</td><td><button class="draftbtn" onclick="waiverAdd('${esc(p.name)}')">Add</button></td></tr>`;
+  const live=syncedWeeklyProj(p,plannerWeek); const proj=live!=null?live:weeklyProj(p,plannerWeek); const trend=proj>=(p.pos==="QB"?15:p.pos==="RB"||p.pos==="WR"?10:6)?"📈 Rising":"➖ Steady";
+  return `<tr><td><div class="player">${p.name}</div><small>${p.tier}</small></td><td>${p.pos}</td><td>${p.team}</td><td>${p.adp??"—"}</td><td>${proj.toFixed(1)}${live!=null?' <span class="mini">LIVE</span>':' <span class="mini">EST</span>'}</td><td class="mini">${trend}</td><td><button class="draftbtn" onclick="waiverAdd('${esc(p.name)}')">Add</button></td></tr>`;
  }).join("")||`<tr><td colspan="7" class="mini">No matching waiver players.</td></tr>`;
 }
 
@@ -1264,11 +1288,11 @@ function renderPlanner(){
   if(!p)return `<div class="lineuprow"><div class="lp-pos">${pos}</div><div class="lp-name"><b class="need">OPEN</b></div></div>`;
   const bye=byeWeek(p.team)===plannerWeek;
   const pts=weeklyProj(p,plannerWeek);
-  return `<div class="lineuprow"><div class="lp-pos">${pos}</div><div class="lp-name"><b>${p.name}${bye?'<span class="byebadge">BYE</span>':""}${statusBadge(p.name)}</b><span>${p.team} vs ${weekOpp(p,plannerWeek)}</span></div><div class="lp-pts ${bye||isInjuredOut(p.name)?"negative":"positive"}">${pts.toFixed(1)}</div></div>`;
+  return `<div class="lineuprow"><div class="lp-pos">${pos}</div><div class="lp-name"><b>${p.name}${bye?'<span class="byebadge">BYE</span>':""}${statusBadge(p.name)}</b><span>${weekOpp(p,plannerWeek)==="BYE"?"BYE":`${p.team} ${weekOpp(p,plannerWeek)}`}</span></div><div class="lp-pts ${bye||isInjuredOut(p.name)?"negative":"positive"}">${pts.toFixed(1)}</div></div>`;
  }).join("")||`<div class="mini">Draft a roster first.</div>`;
  document.getElementById("lineupBench").innerHTML=bench.length?bench.map(p=>{
   const bye=byeWeek(p.team)===plannerWeek;const pts=weeklyProj(p,plannerWeek);
-  return `<div class="lineuprow"><div class="lp-pos">${p.pos}</div><div class="lp-name"><b>${p.name}${bye?'<span class="byebadge">BYE</span>':""}${statusBadge(p.name)}</b><span>${p.team} vs ${weekOpp(p,plannerWeek)}</span></div><div class="lp-pts">${pts.toFixed(1)}</div></div>`;
+  return `<div class="lineuprow"><div class="lp-pos">${p.pos}</div><div class="lp-name"><b>${p.name}${bye?'<span class="byebadge">BYE</span>':""}${statusBadge(p.name)}</b><span>${weekOpp(p,plannerWeek)==="BYE"?"BYE":`${p.team} ${weekOpp(p,plannerWeek)}`}</span></div><div class="lp-pts">${pts.toFixed(1)}</div></div>`;
  }).join(""):`<div class="mini">No bench players — try the Waiver Wire tab.</div>`;
  const flags=[];
  starters.forEach(({pos,p})=>{
@@ -1327,7 +1351,7 @@ const ROUND_TARGET_LABELS={
  6:"Fill major need (TE/QB/RB/WR)",7:"Core players (QB/TE/RB/WR)",
  8:"Best value",9:"Best value",10:"Best value / upside",
  11:"RB/WR upside (bench)",12:"RB/WR upside (bench)",13:"RB/WR upside (bench)",
- 14:"Bench / upside",15:"DEF",16:"K"
+ 14:"Skill-player bench / upside",15:"DEF only",16:"K only"
 };
 function roundByRoundGroups(){
  const groups={};
@@ -1445,7 +1469,7 @@ function buildCheatSheet(){
    <div class="cs-tier">${tier} (${list.length} available)</div>
    <table class="cs-table"><thead><tr><th>Player</th><th>Pos</th><th>Team</th><th>Season Pts</th><th>ADP</th><th>Bye</th><th>Value</th></tr></thead><tbody>${rows(list,caps[tier])||`<tr><td colspan="7">None right now.</td></tr>`}</tbody></table>
   `).join("")}
-  <div class="cs-foot">Demo dataset — not live-synced. Verify against real ADP/rankings before draft night.</div>
+  <div class="cs-foot">ADP/rankings shown from the embedded dataset unless a live source has been synced. Weekly projections are labeled LIVE or EST. Draft policy reserves DEF/K for the final two rounds. Verify live league data before drafting.</div>
  `;
 }
 function printCheatSheet(){
@@ -1469,10 +1493,27 @@ function renderDraftGrade(){
  const byeCounts={};roster.forEach(p=>{const w=byeWeek(p.team);byeCounts[w]=(byeCounts[w]||0)+1});
  const worstBye=Object.entries(byeCounts).sort((a,b)=>b[1]-a[1])[0];
  document.getElementById("draftGradeBadge").innerHTML=`<span class="tf-grade ${gclass}" style="display:inline-block;font-size:20px;width:52px;padding:8px 0">${grade}</span>`;
- document.getElementById("draftGradeText").innerHTML=`~${totalSeasonPts.toLocaleString()} projected season points from your starters · Ranked #${myRank} of 12 by projected strength · 100-point grade uses starter strength (55%), completeness (20%), positional balance (10%), and draft-capital efficiency (15%).${worstBye&&worstBye[1]>=3?` Heads up: ${worstBye[1]} players share a Week ${worstBye[0]} bye.`:""}`;
+ document.getElementById("draftGradeText").innerHTML=`~${totalSeasonPts.toLocaleString()} projected season points from your starters · Ranked #${myRank} of 12 by projected strength · 100-point grade uses starter strength (60%), completeness (20%), positional balance (10%), and draft-capital efficiency (10%).${worstBye&&worstBye[1]>=3?` Heads up: ${worstBye[1]} players share a Week ${worstBye[0]} bye.`:""}`;
+}
+function renderDraftNight(){
+ const headline=document.getElementById("dnHeadline"), sub=document.getElementById("dnHeadlineSub"), next=document.getElementById("dnNextTurn"), wait=document.getElementById("dnWait"), rosterEl=document.getElementById("dnRoster"), risk=document.getElementById("dnRiskList"), btn=document.getElementById("dnDraftBtn");
+ if(!headline)return;
+ const me=myTeam(), p=bestPlayer(), nextTurn=nextMyPick(currentPick+1), picksAway=nextTurn?Math.max(0,nextTurn-currentPick):0;
+ rosterEl.textContent=`${me.roster.length}/${ROSTER_SIZE}`;
+ next.textContent=nextTurn||"—"; wait.textContent=nextTurn?`${picksAway}`:"—";
+ if(currentPick>MAX_PICK){headline.textContent="Draft complete";sub.textContent="Review your grade, roster balance and waiver priorities.";btn.disabled=true;return;}
+ if(p){headline.textContent=p.name;sub.textContent=`${p.pos} · ${p.team} · ADP ${p.adp??"—"} · ${isMyTurn()?"YOU ARE ON THE CLOCK":"Previewing the best next selection"}`;btn.disabled=!canDraftNow();btn.textContent=liveDraftMode?"LOG BEST PICK":"DRAFT BEST PICK";}else{headline.textContent="No players available";sub.textContent="Refresh your live player data or check the Player Board.";btn.disabled=true;}
+ const before=teamsBeforeMyNextPick();
+ const candidates=available().filter(x=>SKILL_POSITIONS.includes(x.pos)).filter(x=>x!==p).filter(x=>x.adp!=null).filter(x=>x.adp<=currentPick+Math.max(10,picksAway*1.15)).sort((a,b)=>{
+   const da=survivalProb(a,nextTurn?nextTurn-1:currentPick), db=survivalProb(b,nextTurn?nextTurn-1:currentPick);
+   return da-db || recommendationComparator(a,b);
+ }).slice(0,5);
+ if(!before.length){risk.innerHTML=`<div class="dn-row dn-safe"><div class="dn-player"><b>No opponent picks before your next turn</b><div class="dn-meta">Use the full board and take the best player available.</div></div><span class="dn-tag">SAFE</span></div>`;}
+ else if(!candidates.length){risk.innerHTML=`<div class="dn-row"><div class="dn-player"><b>No major ADP danger detected</b><div class="dn-meta">Keep following the ADP-first hierarchy.</div></div><span class="dn-tag">CLEAR</span></div>`;}
+ else risk.innerHTML=candidates.map((x,i)=>{const sp=survivalProb(x,nextTurn-1);return `<div class="dn-row ${sp<35?"dn-danger":""}"><div class="dn-rank">${i+1}</div><div class="dn-player"><b>${escHtml(x.name)}</b><div class="dn-meta">${x.pos} · ${x.team} · ADP ${x.adp} · ${sp}% survival estimate</div></div><span class="dn-tag">${sp<35?"HIGH RISK":"WATCH"}</span></div>`}).join("");
 }
 function render(){
- renderTop();renderRec();renderRoster();renderRuns();renderBoard();renderBoardSuggest();
+ renderTop();renderDraftNight();renderRec();renderRoster();renderRuns();renderBoard();renderBoardSuggest();
  renderTeams();renderMockBoard();renderTierList();renderRoundBoard();renderTeamNames();renderLogTeamSelect();
  renderTradeSelectors();renderTradeLists();renderTradeSummary();renderTradeHistory();renderSuggestedTrades();
  renderWaivers();renderWeekSelector();renderPlanner();renderMatchup();
@@ -1494,6 +1535,8 @@ document.getElementById("watchlistChip").onclick=e=>{watchlistOnly=!watchlistOnl
 document.querySelectorAll("#tierPosChips button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#tierPosChips button").forEach(x=>x.classList.remove("active"));b.classList.add("active");tierFilterPos=b.dataset.pos;renderTierList()});
 document.getElementById("planPreviewBtn").onclick=togglePlanPreview;
 document.querySelectorAll("#tierChips button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#tierChips button").forEach(x=>x.classList.remove("active"));b.classList.add("active");filterTier=b.textContent==="ALL TIERS"?"ALL":b.textContent;renderBoard()});
+document.getElementById("dnDraftBtn").onclick=()=>{const p=bestPlayer();if(p&&canDraftNow())draftPlayer(p.name);};
+document.getElementById("dnRefreshBtn").onclick=()=>{render();showToast("Draft board refreshed")};
 document.getElementById("currentPick").oninput=e=>{currentPick=Math.max(1,Math.min(MAX_PICK,+e.target.value||1));render();saveState()};
 document.getElementById("draftPos").onchange=e=>{
  const val=Math.max(1,Math.min(12,+e.target.value||11));
@@ -1506,7 +1549,7 @@ document.getElementById("philosophy").onchange=e=>{philosophy=e.target.value;ren
 document.getElementById("espnBtn").onclick=()=>document.getElementById("modal").classList.add("show");
 document.getElementById("closeModal").onclick=()=>document.getElementById("modal").classList.remove("show");
 document.getElementById("demoBtn").onclick=()=>{document.getElementById("modal").classList.remove("show");showToast("Demo live mode active")};
-document.getElementById("connectBtn").onclick=()=>{const id=document.getElementById("leagueId").value.trim();if(!id){showToast("Enter a league ID first");return}document.getElementById("modal").classList.remove("show");document.getElementById("syncText").textContent="ESPN CONNECTOR";document.getElementById("espnStatus").textContent="Connector pending";showToast("League saved — backend connector still required")};
+document.getElementById("connectBtn").onclick=()=>{const id=document.getElementById("leagueId").value.trim();if(!id){showToast("Enter a league ID first");return}document.getElementById("modal").classList.remove("show");document.getElementById("syncText").textContent="ESPN CONNECTOR";document.getElementById("espnStatus").textContent="Saved — backend sync not connected";showToast("League ID saved — live ESPN sync requires the server connector")};
 document.getElementById("tradeTeamA").onchange=e=>{tradeTeamAIdx=+e.target.value;tradeSelA.clear();renderTradeLists();renderTradeSummary()};
 document.getElementById("tradeTeamB").onchange=e=>{tradeTeamBIdx=+e.target.value;tradeSelB.clear();renderTradeLists();renderTradeSummary()};
 document.getElementById("clearTrade").onclick=clearTrade;
@@ -1549,6 +1592,10 @@ document.getElementById("projectionProxyUrl").value=projectionProxyUrl;
 document.getElementById("sort").value=sort;
 render();
 </script>
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));}</script>
+<script>
+if('serviceWorker' in navigator && location.protocol.startsWith('http')){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(()=>{}));
+}
+</script>
 </body>
 </html>

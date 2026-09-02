@@ -1,6 +1,6 @@
 {
-  "name": "Draft Command Center",
-  "short_name": "Draft Center",
+  "name": "Draft Command Center v10",
+  "short_name": "Draft Command Center",
   "description": "12-team PPR fantasy football draft, player board, planner and league command center.",
   "start_url": "./",
   "scope": "./",
