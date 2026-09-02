@@ -1,16 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b1020">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b1020">
-<meta name="apple-mobile-web-app-title" content="Draft Command Center">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<title>Draft Command Center</title>
+<title>Draft Command Center v8</title>
 <style>
 :root{--bg:#090d17;--panel:#111827;--panel2:#151e2f;--line:#263249;--text:#f4f7fb;--muted:#91a0b7;--blue:#6d6aff;--cyan:#4dd7ff;--green:#28d7a1;--red:#ff6475;--amber:#f6b94a;--shadow:0 14px 45px rgba(0,0,0,.22)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior-x:none}body{min-width:0}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}input,select,textarea{font-size:16px}
@@ -83,7 +83,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 <div class="app">
 <header class="top">
   <div class="toprow">
-    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v6</span></h1></div></div>
+    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v7</span></h1></div></div>
     <div class="status"><div class="live" title="Roster refresh is live-capable; ADP/rankings remain fallback until a source is configured"><i class="pulse"></i><span id="syncText">DEMO / CONNECTOR READY</span></div><button class="topbtn" id="espnBtn">ESPN SYNC</button></div>
   </div>
   <nav class="nav" id="nav">
@@ -121,12 +121,12 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 
 <section id="page-board" style="display:none">
   <div class="card panelpad" id="boardSuggestCard">
-    <div class="sectionhead"><div><h2>🧠 Suggested pick right now</h2><p>Weighs ADP-relative value, starter urgency, positional runs and a round-by-round RB/WR-first strategy — not just raw value.</p></div><button class="ghost" id="planPreviewBtn">PREVIEW MY FULL PLAN</button></div>
+    <div class="sectionhead"><div><h2>🧠 Suggested pick right now</h2><p>Uses a draft-priority hierarchy: ADP first, projected points second, roster need third. Value-gap scores are informational only and cannot push a worse-ADP/lower-projection player above a better one.</p></div><button class="ghost" id="planPreviewBtn">PREVIEW MY FULL PLAN</button></div>
     <div id="boardSuggestBody"></div>
     <div id="planPreviewBody" style="display:none;margin-top:12px"></div>
   </div>
   <div class="card panelpad">
-    <div class="sectionhead"><div><h2>🏆 Top players / tier board</h2><p>Suggested ADP from lowest to highest; projections are secondary validation.</p></div><select class="select" id="sort" style="width:150px"><option value="adp">Suggested ADP (best first)</option><option value="pts">Projected Points</option><option value="score">Value score</option><option value="adp">Market ADP</option><option value="rank">Expert rank</option><option value="gap">ADP gap</option><option value="ceil">Ceiling</option></select></div>
+    <div class="sectionhead"><div><h2>🏆 Top players / tier board</h2><p>Suggested ADP from lowest to highest. Projected points are a secondary tie-breaker; value-gap scores never override a materially better ADP.</p></div><select class="select" id="sort" style="width:150px"><option value="adp">Suggested ADP (best first)</option><option value="pts">Projected Points</option><option value="score">Value score</option><option value="adp">Market ADP</option><option value="rank">Expert rank</option><option value="gap">ADP gap</option><option value="ceil">Ceiling</option></select></div>
     <p class="mini" style="margin:-4px 0 11px">Ceil/Floor are <b>rank numbers</b>, not points — lower is better. Ceil = best-case rank across all sources, Floor = worst-case.</p>
     <div class="board-controls"><input class="input" id="search" placeholder="Search player, team or position"><select class="select" id="pos"><option>ALL</option><option>QB</option><option>RB</option><option>WR</option><option>TE</option><option>DEF</option><option>K</option></select><select class="select" id="action"><option>ALL</option><option>STEAL</option><option>TARGET</option><option>REACH</option></select></div>
     <div class="chips" id="tierChips"><button class="active">ALL TIERS</button><button>Elite</button><button>Tier 2</button><button>Tier 3</button><button>Tier 4</button><button>Tier 5</button><button>Tier 6</button><button>Late</button><button>Bench</button><button>Waiver</button><button>DEF</button><button>K</button></div>
@@ -188,7 +188,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
   <div class="card panelpad">
     <div class="sectionhead"><div><h2>📅 Weekly planner</h2><p>League-specific weekly projections when synced; fallback estimates otherwise.</p></div></div>
     <div class="plannerhead"><div class="weeksel" id="weekSel"></div><button class="secondary btnsm" id="projectionSyncBtn">SYNC WEEKLY PROJECTIONS</button></div>
-     <div class="mini" id="projectionSyncStatus" style="margin-top:8px">Planner uses a live projection cache when synced; otherwise it uses the clearly labeled fallback model.</div>
+     <div class="mini" id="projectionSyncStatus" style="margin-top:8px">Planner uses live league-specific PPR projections when synced. Without a feed, it uses a clearly labeled fallback estimate — never presented as live/accurate projections.</div>
   </div>
   <div class="section card panelpad">
     <div class="sectionhead"><div><h2>⚔️ Matchup</h2><p>Your projected starters vs this week's opponent, head to head.</p></div></div>
@@ -220,7 +220,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 </section>
 
 <section id="page-league" style="display:none">
-  <div class="card panelpad"><div class="sectionhead"><div><h2>League room</h2><p>Ranked by team-fit score (roster completeness + value gained) — 1st place on top.</p></div></div><div class="leaguegrid" id="teams"></div></div>
+  <div class="card panelpad"><div class="sectionhead"><div><h2>League room</h2><p>Ranked by starter strength, roster completeness, positional balance and draft efficiency — 1st place on top.</p></div></div><div class="leaguegrid" id="teams"></div></div>
 </section>
 
 <section id="page-settings" style="display:none">
@@ -238,7 +238,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
     </div>
     <div class="card setting"><div class="sectionhead"><div><h2>Data model</h2><p>Current snapshot shown in this prototype.</p></div></div>
       <div class="source"><b>Market ADP</b><span class="amber">Demo dataset</span></div><div class="source"><b>Expert consensus</b><span class="amber">Demo dataset</span></div><div class="source"><b>Walter PPR</b><span class="amber">Fallback/demo only</span></div><div class="source"><b>Bye weeks</b><span style="color:#5de0b7">Real 2026 schedule</span></div><div class="source"><b>ESPN live draft</b><span id="espnStatus">Not connected</span></div>
-      <p style="font-size:10px;color:#f6b94a;margin-top:12px;line-height:1.6">⚠️ Player pool, ADP and rankings are still fallback data until you sync a live source. The roster refresh can add active players from Sleeper, while weekly projections can be pulled from ESPN or a server-side FantasyPros/SportsDataIO proxy. Rosters were spot-checked and corrected as of late August 2026, but NFL teams cut down to 53 players by August 30 every year — expect real roster churn this week that this static dataset can't track automatically. Double-check any player you're unsure about against ESPN or your league's source before an actual live draft.</p>
+      <p style="font-size:10px;color:#f6b94a;margin-top:12px;line-height:1.6">⚠️ Player pool, ADP and rankings are still fallback data until you sync a live source. The roster refresh now adds active players from Sleeper, while weekly projections can be pulled from ESPN or a server-side FantasyPros/SportsDataIO proxy. Rosters were spot-checked and corrected as of late August 2026, but NFL teams cut down to 53 players by August 30 every year — expect real roster churn this week that this static dataset can't track automatically. Double-check any player you're unsure about against ESPN or your league's source before an actual live draft.</p>
       <p style="font-size:10px;color:#5de0b7;margin-top:8px;line-height:1.6">✓ Bye weeks were corrected to match the actual verified 2026 NFL schedule (Weeks 5–14, none in Week 12) — these are real, not demo data, and drive the bye-cluster alert and Planner/Matchup projections accurately.</p>
       <p style="font-size:10px;color:#718099;margin-top:8px">The ESPN connector should run server-side for private leagues. Never paste your ESPN session cookies into this HTML file.</p>
     </div>
@@ -294,7 +294,7 @@ const TEAM_NAMES=["Gridiron Guild","Sunday Scaries","Red Zone Kings","Fourth & L
 const STARTER_TARGET={QB:1,RB:2,WR:2,TE:1,DEF:1,K:1};
 const BENCH_TARGET={QB:1,RB:2,WR:3,TE:1};
 const TARGET={QB:(STARTER_TARGET.QB+BENCH_TARGET.QB),RB:(STARTER_TARGET.RB+BENCH_TARGET.RB),WR:(STARTER_TARGET.WR+BENCH_TARGET.WR),TE:(STARTER_TARGET.TE+BENCH_TARGET.TE),DEF:STARTER_TARGET.DEF,K:STARTER_TARGET.K};
-const ROUNDS=Object.values(TARGET).reduce((s,v)=>s+v,0);
+const ROUNDS=16;
 const MAX_PICK=ROUNDS*12;
 const LATE_ROUND_MIN={DEF:ROUNDS-1,K:ROUNDS};
 const REACH_ALLOWANCE=15;
@@ -343,11 +343,12 @@ function avg(a){const x=a.filter(v=>v!=null&&v<900);return x.length?x.reduce((s,
 const REAL_BYE_WEEKS_2026={ARI:14,ATL:11,BAL:13,BUF:7,CAR:5,CHI:10,CIN:6,CLE:11,DAL:14,DEN:10,DET:6,GB:11,HOU:8,IND:13,JAX:7,KC:5,LAC:7,LAR:11,LV:13,MIA:6,MIN:6,NE:11,NO:8,NYG:8,NYJ:13,PHI:10,PIT:9,SEA:11,SF:8,TB:10,TEN:9,WSH:7};
 function byeWeek(team){return REAL_BYE_WEEKS_2026[team]||(5+(hashCode(team)%9))}
 function projPts(p){
-  // Fallback only: the Planner prefers synced league-specific weekly projections.
-  // These are deliberately conservative preseason estimates rather than pretending to be live data.
-  const base={QB:18.5,RB:14.5,WR:13.5,TE:9.5,DEF:7.0,K:8.0}[p.pos]||10;
-  const e=(p.expert==null||p.expert>=900)?150:p.expert;
-  return Math.max(1,+(base-e*0.055).toFixed(1));
+  // Fallback only. A real weekly PPR feed should be used for draft-day/weekly decisions.
+  // This is intentionally a reasonable PPR estimate, not a claim of live accuracy.
+  const base={QB:18.5,RB:15.5,WR:15.0,TE:11.5,DEF:7.0,K:8.0}[p.pos]||10;
+  const e=(p.expert==null||p.expert>=900)?180:p.expert;
+  const rankBoost=Math.max(-4.5,Math.min(4.5,(90-e)*0.018));
+  return Math.max(1,+(base+rankBoost).toFixed(1));
 }
 function projectionKey(name){return normalizeName(name)}
 function syncedWeeklyProj(p,week){
@@ -465,24 +466,28 @@ async function syncLiveData(){
  const statusEl=document.getElementById("liveSyncStatus");
  const reportEl=document.getElementById("liveSyncReport");
  if(btn)btn.disabled=true;if(btn)btn.textContent="SYNCING...";
- if(statusEl)statusEl.textContent="Fetching current NFL data (~5MB, may take a few seconds)...";
+ if(statusEl)statusEl.textContent="Fetching active NFL player data...";
  if(reportEl)reportEl.innerHTML="";
  const controller=new AbortController();
  const timeoutId=setTimeout(()=>controller.abort(),25000);
  try{
-  const res=await fetch("https://api.sleeper.app/v1/players/nfl",{signal:controller.signal});
+  const res=await fetch("https://api.sleeper.app/v1/players/nfl?active=true",{signal:controller.signal});
   clearTimeout(timeoutId);
   if(!res.ok)throw new Error(`HTTP ${res.status}`);
   const json=await res.json();
   const index=new Map();
   Object.values(json).forEach(entry=>{
    if(!entry||!entry.last_name)return;
+   const positions=Array.isArray(entry.fantasy_positions)?entry.fantasy_positions:[entry.position];
+   const pos=positions.find(x=>["QB","RB","WR","TE","K","DEF"].includes(x));
+   if(!pos)return;
    const key=normalizeName(`${entry.first_name||""} ${entry.last_name||""}`);
-   if(key)index.set(key,entry);
+   if(key)index.set(key,{...entry,pos});
   });
   const STATUS_MAP={Questionable:"questionable",Doubtful:"doubtful",Out:"out",IR:"ir",PUP:"ir",Sus:"out",COV:"questionable",NA:"out"};
-  let matched=0,injuries=0;
+  let matched=0,injuries=0,added=0;
   const mismatches=[];
+  const existing=new Map(DATA.map(p=>[normalizeName(p.name),p]));
   DATA.forEach(p=>{
    const entry=index.get(normalizeName(p.name));
    if(!entry)return;
@@ -491,30 +496,27 @@ async function syncLiveData(){
    if(mapped==="healthy")delete playerStatus[p.name];else playerStatus[p.name]=mapped;
    if(mapped!=="healthy")injuries++;
    if(entry.team&&entry.team!==p.team)mismatches.push({name:p.name,ours:p.team,live:entry.team});
+   p.team=entry.team||"FA";
+   p.active=true;
   });
-  liveSyncState={status:"done",timestamp:new Date().toISOString(),matched,total:DATA.length,injuries,mismatches};
-  renderLiveSyncStatus();
-  render();saveState();
-  showToast(`Synced — ${injuries} injury flag(s) found`);
+  index.forEach((entry,key)=>{
+   if(existing.has(key))return;
+   const name=`${entry.first_name||""} ${entry.last_name||""}`.trim();
+   if(!name)return;
+   DATA.push({name,pos:entry.pos,team:entry.team||"FA",adp:null,espn:999,sleeper:999,fp:999,walter:999,tier:"Waiver",active:true,sleeperId:entry.player_id||null});
+   added++;
+  });
+  REPLACEMENT_LEVELS=null;
+  liveSyncState={status:"done",timestamp:new Date().toISOString(),matched,total:DATA.length,added,injuries,mismatches};
+  renderLiveSyncStatus(); render(); saveState();
+  showToast(`Roster refreshed — ${added} active player(s) added`);
  }catch(e){
   clearTimeout(timeoutId);
-  let hint;
-  const rawName=e&&e.name?e.name:"Error";
-  const rawMsg=e&&e.message?e.message:String(e);
-  if(rawName==="AbortError"){
-   hint="Request timed out after 25s — the file is ~5MB, so this can happen on a slow connection. Try again on wifi.";
-  }else if(rawName==="TypeError"&&/fetch|network|load/i.test(rawMsg)){
-   hint="This usually means the browser blocked the cross-origin request outright (a network/security restriction) rather than the server rejecting it — common when a page is opened as a local file rather than over http/https. Try opening this file through a real browser tab (not a downloaded file preview) if you haven't already.";
-  }else{
-   hint="Unexpected error — see raw details below.";
-  }
+  const rawName=e&&e.name?e.name:"Error"; const rawMsg=e&&e.message?e.message:String(e);
+  const hint=rawName==="AbortError"?"Request timed out after 25s. Try again on wifi.":(rawName==="TypeError"&&/fetch|network|load/i.test(rawMsg)?"The browser likely blocked the cross-origin request. Open the dashboard over HTTPS (not a file:// preview).":"Unexpected error — see raw details below.");
   liveSyncState={status:"error",timestamp:new Date().toISOString(),error:`${rawName}: ${rawMsg}`,hint};
-  renderLiveSyncStatus();
-  saveState();
-  showToast("Live sync failed — check your connection");
- }finally{
-  if(btn){btn.disabled=false;btn.textContent="SYNC NOW";}
- }
+  renderLiveSyncStatus(); saveState(); showToast("Live roster sync failed");
+ }finally{ if(btn){btn.disabled=false;btn.textContent="SYNC NOW";} }
 }
 
 /* ---------- weekly projection sync ---------- */
@@ -580,7 +582,7 @@ async function syncWeeklyProjections(){
 function renderProjectionSyncStatus(){
   if(!projectionSyncState)return;
   if(projectionSyncState.status==="done"){
-    setProjectionStatus(`✓ Week ${projectionSyncState.week} synced ${new Date(projectionSyncState.timestamp).toLocaleString()} — ${projectionSyncState.count} players.`);
+    setProjectionStatus(`✓ Week ${projectionSyncState.week} synced ${new Date(projectionSyncState.timestamp).toLocaleString()} — ${projectionSyncState.count} PPR players. Live feed active.`);
   }
 }
 /* ---------- persistence ---------- */
@@ -622,7 +624,7 @@ function loadState(){
  return false;
 }
 function exportState(){
- const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,exportedAt:new Date().toISOString()};
+ const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionSyncState,projectionLeagueId,projectionProxyUrl,exportedAt:new Date().toISOString()};
  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
  const url=URL.createObjectURL(blob);const a=document.createElement("a");
  a.href=url;a.download=`draft-command-center-${new Date().toISOString().slice(0,10)}.json`;a.click();
@@ -694,15 +696,24 @@ function roundPositionBias(p,round){
  }
  return 0;
 }
+function recommendationComparator(a,b){
+ const adpA=a.adp==null?999:a.adp, adpB=b.adp==null?999:b.adp;
+ const ptsA=a.seasonPts??0, ptsB=b.seasonPts??0;
+ if(adpA!==adpB && ptsA>=ptsB && adpA<adpB)return -1;
+ if(adpA!==adpB && ptsB>=ptsA && adpB<adpA)return 1;
+ const priorityA=adpA-(ptsA*0.035)-(starterNeeded(myTeam()).includes(a.pos)?2.5:0)-(positionRunPressure(a.pos)*1.5);
+ const priorityB=adpB-(ptsB*0.035)-(starterNeeded(myTeam()).includes(b.pos)?2.5:0)-(positionRunPressure(b.pos)*1.5);
+ if(priorityA!==priorityB)return priorityA-priorityB;
+ return ptsB-ptsA;
+}
 function recommendScore(p,team){
- let s=p.score;
- if(starterNeeded(team).includes(p.pos))s+=14;
- s+=positionRunPressure(p.pos)*6;
- s+=roundPositionBias(p,roundInfo(currentPick).round);
+ const adpPenalty=(p.adp==null?999:p.adp); const ptsBonus=(p.seasonPts||0)*0.035;
+ let s=100-adpPenalty+ptsBonus;
+ if(starterNeeded(team).includes(p.pos))s+=2.5;
+ s+=positionRunPressure(p.pos)*1.5;
+ s+=roundPositionBias(p,roundInfo(currentPick).round)*0.25;
  const st=getStatus(p.name);
- if(st==="questionable")s-=4;
- else if(st==="doubtful")s-=10;
- else if(st==="out"||st==="ir")s-=25;
+ if(st==="questionable")s-=4; else if(st==="doubtful")s-=10; else if(st==="out"||st==="ir")s-=25;
  return s;
 }
 function survivalProb(p,throughPick){
@@ -744,9 +755,10 @@ function pickCandidates(team){
  Object.keys(LATE_ROUND_MIN).forEach(pos=>{
   if(!originalNeeded.includes(pos))return;
   const onlyThisLeft=originalNeeded.length===1&&originalNeeded[0]===pos;
-  if(round<LATE_ROUND_MIN[pos]&&!onlyThisLeft){
-   needed=needed.filter(x=>x!==pos);
-  }
+  const finalRound=round>=LATE_ROUND_MIN[pos];
+  if(!finalRound&&!onlyThisLeft)needed=needed.filter(x=>x!==pos);
+  // In Round 15, fill remaining skill-position bench needs before DEF.
+  if(finalRound&&round===ROUNDS-1&&pos==="DEF"&&originalNeeded.some(x=>["QB","RB","WR","TE"].includes(x)))needed=needed.filter(x=>x!==pos);
  });
  let a=available().filter(p=>needed.includes(p.pos));
  if(!a.length)a=available();
@@ -765,7 +777,7 @@ function pickCandidates(team){
 function bestPlayer(){
  const team=myTeam();
  const a=pickCandidates(team);
- return a.sort((x,y)=>recommendScore(y,team)-recommendScore(x,team))[0]||available()[0];
+ return a.slice().sort(recommendationComparator)[0]||available()[0];
 }
 function botPick(team){
  let a=pickCandidates(team);
@@ -801,6 +813,7 @@ function roundInfo(pick){return {round:Math.ceil(pick/12),slot:((pick-1)%12)+1}}
 function commitPick(p,teamIdx,note){
  if(!p)return;
  p.draftRound=roundInfo(currentPick).round;
+ p.draftOverall=currentPick;
  p.draftTeamIdx=teamIdx;
  drafted.add(p.name);
  teams[teamIdx].roster.push(p);
@@ -972,7 +985,7 @@ function renderRuns(){
 function renderBoard(){
  let a=available().filter(p=>(filterPos==="ALL"||p.pos===filterPos)&&(filterAction==="ALL"||p.action===filterAction)&&(filterTier==="ALL"||p.tier===filterTier)&&(!watchlistOnly||watchlist.has(p.name))&&(`${p.name} ${p.team} ${p.pos}`.toLowerCase().includes(query.toLowerCase())));
  const team=myTeam();
- a.sort((x,y)=>sort==="score"?y.score-x.score:sort==="best"?recommendationComparator(x,y):sort==="pts"?y.seasonPts-x.seasonPts:sort==="adp"?recommendationComparator(x,y):sort==="rank"?x.expert-y.expert:sort==="ceil"?(x.ceil??999)-(y.ceil??999):y.gap-x.gap);
+ a.sort((x,y)=>sort==="score"?y.score-x.score:sort==="best"?recommendationComparator(x,y):sort==="pts"?y.seasonPts-x.seasonPts:sort==="adp"?((x.adp??999)-(y.adp??999)||(y.seasonPts-x.seasonPts)):sort==="rank"?x.expert-y.expert:sort==="ceil"?(x.ceil??999)-(y.ceil??999):y.gap-x.gap);
  const statusTitle=name=>{const st=getStatus(name);return st==="healthy"?"Mark injury status":`Status: ${STATUS_META[st].label} (tap to change)`};
  const iconBtns=p=>`<button class="iconbtn" onclick="toggleWatch('${esc(p.name)}')" aria-label="${watchlist.has(p.name)?"Remove from watchlist":"Add to watchlist"}" title="Watchlist">${watchlist.has(p.name)?"⭐":"☆"}</button><button class="iconbtn" onclick="toggleLock('${esc(p.name)}')" aria-label="${lockedPlayers.has(p.name)?"Unprotect from auto-sim":"Protect from auto-sim"}" title="Protect from auto-sim">${lockedPlayers.has(p.name)?"🔒":"🔓"}</button><button class="iconbtn" onclick="cycleStatus('${esc(p.name)}')" aria-label="${statusTitle(p.name)}" title="${statusTitle(p.name)}">${getStatus(p.name)==="healthy"?"🩹":"⚕️"}</button>${statusBadge(p.name)}`;
  const btnLabel=liveDraftMode?"Log Pick":"Draft";
@@ -1014,23 +1027,18 @@ function teamStarterPts(t){
  return starters.reduce((s,{p})=>s+(p?projPts(p):0),0);
 }
 function computeTeamFit(t){
-  // 100-point draft grade:
-  // 60% projected starter strength vs the actual 12-team field,
-  // 25% starter completeness, 15% draft-capital efficiency.
-  const allPts=teams.map(teamStarterPts).sort((a,b)=>a-b);
-  const myPts=teamStarterPts(t);
-  const minPts=allPts[0]||0, maxPts=allPts[allPts.length-1]||1;
-  const ptsScore=maxPts===minPts?50:10+90*((myPts-minPts)/(maxPts-minPts));
-  const starterSlots=Object.keys(STARTER_TARGET);
-  const completeness=starterSlots.reduce((s,pos)=>s+Math.min(1,posCount(t,pos)/STARTER_TARGET[pos]),0)/starterSlots.length*100;
-  const draftedPlayers=t.roster||[];
-  const adpValue=draftedPlayers.reduce((s,p)=>{
-    if(p.adp==null)return s;
-    const pick=p.draftOverall||p.draftPick||null;
-    return s+(pick!=null?Math.max(-20,Math.min(20,pick-p.adp)):0);
-  },0);
-  const capitalScore=draftedPlayers.length?Math.max(0,Math.min(100,50+adpValue/draftedPlayers.length*2.5)):0;
-  return Math.max(0,Math.min(100,ptsScore*0.60+completeness*0.25+capitalScore*0.15));
+  const all=teams.map(team=>({
+    pts:teamStarterPts(team),
+    complete:Object.keys(STARTER_TARGET).reduce((s,pos)=>s+Math.min(1,posCount(team,pos)/STARTER_TARGET[pos]),0)/Object.keys(STARTER_TARGET).length,
+    balance:Object.keys(STARTER_TARGET).reduce((s,pos)=>{const c=posCount(team,pos),target=STARTER_TARGET[pos];return s+(c>=target?1:Math.max(0,c/target));},0)/Object.keys(STARTER_TARGET).length
+  }));
+  const ptsVals=all.map(x=>x.pts), minPts=Math.min(...ptsVals),maxPts=Math.max(...ptsVals),avgPts=ptsVals.reduce((a,b)=>a+b,0)/(ptsVals.length||1);
+  const ptsRelative=maxPts===minPts?50:50+40*((teamStarterPts(t)-avgPts)/(maxPts-minPts));
+  const idx=teams.indexOf(t), completeness=(all[idx]?.complete??0)*100, balance=(all[idx]?.balance??0)*100;
+  const capitalDeltas=(t.roster||[]).map(p=>{const pick=p.draftOverall??p.draftPick,adp=p.adp;return (pick!=null&&adp!=null&&adp<900)?Math.max(-30,Math.min(30,pick-adp)):0;});
+  const capitalAvg=capitalDeltas.length?capitalDeltas.reduce((a,b)=>a+b,0)/capitalDeltas.length:0;
+  const capitalScore=Math.max(0,Math.min(100,50+capitalAvg*1.15));
+  return Math.max(0,Math.min(100,ptsRelative*0.55+completeness*0.20+balance*0.10+capitalScore*0.15));
 }
 function rankedTeams(){
  return teams.map((t,i)=>({i,t,fit:computeTeamFit(t),pts:teamStarterPts(t),me:i===(draftPos-1)})).sort((x,y)=>y.fit-x.fit);
@@ -1070,8 +1078,8 @@ function renderTeams(){
   const t=x.t,i=x.i,me=x.me;
   const needs=teamNeeds(t);
   const medal=rank===0?"🥇":rank===1?"🥈":rank===2?"🥉":`#${rank+1}`;
-  const grade=x.fit>=90?"A+":x.fit>=80?"A":x.fit>=70?"B":x.fit>=60?"C":x.fit>=50?"D":"F";
-  const gclass=x.fit>=80?"gA":x.fit>=70?"gB":x.fit>=60?"gC":x.fit>=50?"gD":"gF";
+  const grade=x.fit>=95?"A+":x.fit>=90?"A":x.fit>=82?"B":x.fit>=74?"C":x.fit>=65?"D":"F";
+  const gclass=x.fit>=90?"gA":x.fit>=82?"gB":x.fit>=74?"gC":x.fit>=65?"gD":"gF";
   return `<div class="team ${me?"me":""}"><div class="teamtop"><b><span class="rankpill">${medal}</span> ${escHtml(t.name)}${me?' <span class="youpill">YOU</span>':""}</b>${needs.length?`<span class="needpill">${needs[0]} NEED</span>`:""}</div><div class="bars">${["QB","RB","WR","TE","DEF","K"].map(p=>`<div class="barline"><label>${p}</label><div class="bar"><i style="width:${Math.min(100,posCount(t,p)/TARGET[p]*100)}%"></i></div></div>`).join("")}</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span class="mini">Team fit: ${x.fit.toFixed(0)}/100</span><span class="tf-grade ${gclass}" style="font-size:10px;padding:2px 7px">${grade}</span></div></div>`;
  }).join("");
 }
@@ -1319,7 +1327,7 @@ const ROUND_TARGET_LABELS={
  6:"Fill major need (TE/QB/RB/WR)",7:"Core players (QB/TE/RB/WR)",
  8:"Best value",9:"Best value",10:"Best value / upside",
  11:"RB/WR upside (bench)",12:"RB/WR upside (bench)",13:"RB/WR upside (bench)",
- 14:"DEF",15:"K"
+ 14:"Bench / upside",15:"DEF",16:"K"
 };
 function roundByRoundGroups(){
  const groups={};
@@ -1451,8 +1459,8 @@ function renderDraftGrade(){
  card.style.display="block";
  const team=myTeam();
  const overall=computeTeamFit(team);
- const grade=overall>=90?"A+":overall>=80?"A":overall>=70?"B":overall>=60?"C":overall>=50?"D":"F";
- const gclass=overall>=80?"gA":overall>=70?"gB":overall>=60?"gC":overall>=50?"gD":"gF";
+ const grade=overall>=95?"A+":overall>=90?"A":overall>=82?"B":overall>=74?"C":overall>=65?"D":"F";
+ const gclass=overall>=90?"gA":overall>=82?"gB":overall>=74?"gC":overall>=65?"gD":"gF";
  const {starters}=getStarterSplit(team);
  const totalSeasonPts=starters.reduce((s,{p})=>s+(p?seasonPts(p):0),0);
  const ranked=rankedTeams();
@@ -1461,7 +1469,7 @@ function renderDraftGrade(){
  const byeCounts={};roster.forEach(p=>{const w=byeWeek(p.team);byeCounts[w]=(byeCounts[w]||0)+1});
  const worstBye=Object.entries(byeCounts).sort((a,b)=>b[1]-a[1])[0];
  document.getElementById("draftGradeBadge").innerHTML=`<span class="tf-grade ${gclass}" style="display:inline-block;font-size:20px;width:52px;padding:8px 0">${grade}</span>`;
- document.getElementById("draftGradeText").innerHTML=`~${totalSeasonPts.toLocaleString()} projected season points from your starters · Ranked #${myRank} of 12 by projected strength · 100-point grade uses starter strength, completeness, and draft-capital efficiency.${worstBye&&worstBye[1]>=3?` Heads up: ${worstBye[1]} players share a Week ${worstBye[0]} bye.`:""}`;
+ document.getElementById("draftGradeText").innerHTML=`~${totalSeasonPts.toLocaleString()} projected season points from your starters · Ranked #${myRank} of 12 by projected strength · 100-point grade uses starter strength (55%), completeness (20%), positional balance (10%), and draft-capital efficiency (15%).${worstBye&&worstBye[1]>=3?` Heads up: ${worstBye[1]} players share a Week ${worstBye[0]} bye.`:""}`;
 }
 function render(){
  renderTop();renderRec();renderRoster();renderRuns();renderBoard();renderBoardSuggest();
@@ -1541,8 +1549,6 @@ document.getElementById("projectionProxyUrl").value=projectionProxyUrl;
 document.getElementById("sort").value=sort;
 render();
 </script>
-<script>
-if ("serviceWorker" in navigator && location.protocol !== "file:") { navigator.serviceWorker.register("sw.js").catch(()=>{}); }
-</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));}</script>
 </body>
 </html>
