@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b1020">
-<title>Draft Command Center v13</title>
+<title>Draft Command Center v17</title>
 <style>
 :root{--bg:#090d17;--panel:#111827;--panel2:#151e2f;--line:#263249;--text:#f4f7fb;--muted:#91a0b7;--blue:#6d6aff;--cyan:#4dd7ff;--green:#28d7a1;--red:#ff6475;--amber:#f6b94a;--shadow:0 14px 45px rgba(0,0,0,.22)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior-x:none}body{min-width:0}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}input,select,textarea{font-size:16px}
@@ -69,8 +69,8 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 /* v11 Draft Night Mode */
 .dn-grid{display:grid;grid-template-columns:1.35fr .85fr;gap:12px;margin-top:12px}.dn-card{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:14px}.dn-title{font-size:10px;letter-spacing:1.2px;font-weight:900;color:#9aa8bd;text-transform:uppercase}.dn-big{font-size:25px;font-weight:950;letter-spacing:-.7px;margin-top:4px}.dn-sub{font-size:11px;color:#8291a9;margin-top:3px}.dn-list{display:grid;gap:7px;margin-top:10px}.dn-row{display:flex;align-items:center;gap:8px;padding:9px 10px;border:1px solid #243047;border-radius:11px;background:#0d1524}.dn-rank{width:24px;text-align:center;font-size:10px;font-weight:900;color:#7e8da6}.dn-player{flex:1;min-width:0}.dn-player b{font-size:12px}.dn-meta{font-size:10px;color:#7f8da3;margin-top:2px}.dn-tag{font-size:9px;font-weight:900;padding:4px 6px;border-radius:7px;background:#17243a;color:#b8c6dc}.dn-danger{border-color:#5a3a25;background:#19150f}.dn-danger .dn-tag{color:#f6c56b}.dn-safe{border-color:#23473e}.dn-policy{display:flex;gap:9px;align-items:flex-start;margin-top:10px;padding:10px;border:1px solid #23473e;background:#10231f;border-radius:11px;font-size:10px;color:#a8d9cb;line-height:1.5}.dn-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.dn-minigrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.dn-minibox{padding:9px;border:1px solid #243047;border-radius:10px;background:#0d1524}.dn-minibox b{display:block;font-size:13px;margin-top:2px}.dn-minibox span{font-size:9px;color:#7f8da3;text-transform:uppercase;font-weight:800}@media(max-width:760px){.dn-grid{grid-template-columns:1fr}.dn-minigrid{grid-template-columns:1fr 1fr}.dn-big{font-size:22px}}
 
-/* v13 decision engine */
-.v13-decision{border-color:#313a62;background:linear-gradient(135deg,#12182b,#101522)}.decision-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;margin-top:12px}.decision-main,.decision-side{border:1px solid var(--line);border-radius:12px;padding:12px;background:#0d1421}.decision-player{font-size:24px;font-weight:950;margin-top:5px}.decision-reasons{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.decision-reasons .tag{font-size:9px}.decision-side{font-size:11px;line-height:1.5}.decision-badge{font-size:9px;font-weight:900;padding:5px 8px;border-radius:8px;background:#27225e;color:#d8d4ff}.decision-badge.good{background:#103b32;color:#5de0b7}.decision-badge.warn{background:#3c3018;color:#f6c56b}.decision-badge.danger{background:#421e29;color:#ff8190}.gp-row{display:grid;grid-template-columns:42px 1fr auto;gap:9px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}.gp-pick{font-size:10px;font-weight:900;color:#68778e}.gp-main b{font-size:11px}.gp-main span{display:block;font-size:9px;color:#718099;margin-top:2px}.gp-tag{font-size:8px;padding:4px 6px;border-radius:7px;background:#17243a;color:#aab8cc;font-weight:900}.qualitygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.qrow{padding:10px;border:1px solid var(--line);border-radius:10px;background:#0d1421}.qrow b{display:block;font-size:11px}.qrow span{font-size:9px;color:#718099}.qok{color:#5de0b7}.qwarn{color:#f6c56b}.qbad{color:#ff8190}@media(max-width:700px){.decision-grid{grid-template-columns:1fr}.qualitygrid{grid-template-columns:1fr 1fr}}
+/* v17 decision engine */
+.v17-decision{border-color:#313a62;background:linear-gradient(135deg,#12182b,#101522)}.decision-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;margin-top:12px}.decision-main,.decision-side{border:1px solid var(--line);border-radius:12px;padding:12px;background:#0d1421}.decision-player{font-size:24px;font-weight:950;margin-top:5px}.decision-reasons{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.decision-reasons .tag{font-size:9px}.decision-side{font-size:11px;line-height:1.5}.decision-badge{font-size:9px;font-weight:900;padding:5px 8px;border-radius:8px;background:#27225e;color:#d8d4ff}.decision-badge.good{background:#103b32;color:#5de0b7}.decision-badge.warn{background:#3c3018;color:#f6c56b}.decision-badge.danger{background:#421e29;color:#ff8190}.gp-row{display:grid;grid-template-columns:42px 1fr auto;gap:9px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}.gp-pick{font-size:10px;font-weight:900;color:#68778e}.gp-main b{font-size:11px}.gp-main span{display:block;font-size:9px;color:#718099;margin-top:2px}.gp-tag{font-size:8px;padding:4px 6px;border-radius:7px;background:#17243a;color:#aab8cc;font-weight:900}.decision-impact{font-size:10px;color:#a9b5c8;line-height:1.5;margin-top:4px}.impact-pos{color:#5de0b7;font-weight:900}.impact-neg{color:#ff8190;font-weight:900}.decision-impact{font-size:10px;color:#a9b5c8;line-height:1.5;margin-top:4px}.impact-pos{color:#5de0b7;font-weight:900}.impact-neg{color:#ff8190;font-weight:900}.qualitygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.qrow{padding:10px;border:1px solid var(--line);border-radius:10px;background:#0d1421}.qrow b{display:block;font-size:11px}.qrow span{font-size:9px;color:#718099}.qok{color:#5de0b7}.qwarn{color:#f6c56b}.qbad{color:#ff8190}@media(max-width:700px){.decision-grid{grid-template-columns:1fr}.qualitygrid{grid-template-columns:1fr 1fr}}
 </style>
 <link rel="manifest" href="./manifest.json">
 <link rel="apple-touch-icon" href="./icon-192.png">
@@ -88,7 +88,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 <div class="app">
 <header class="top">
   <div class="toprow">
-    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v13</span></h1></div></div>
+    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v17</span></h1></div></div>
     <div class="status"><div class="live" title="Roster refresh is live-capable; ADP/rankings remain fallback until a source is configured"><i class="pulse"></i><span id="syncText">DEMO / CONNECTOR READY</span></div><button class="topbtn" id="espnBtn">ESPN SYNC</button></div>
   </div>
   <nav class="nav" id="nav">
@@ -129,11 +129,11 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
     </div>
   </div>
 
-  <div class="section card panelpad v13-decision" id="draftDecisionCard">
-    <div class="sectionhead"><div><h2>🧠 Draft Decision Engine</h2><p id="decisionSummary">Your pick-specific recommendation, risk level and fallback plan.</p></div><span class="decision-badge" id="decisionBadge">—</span></div>
+  <div class="section card panelpad v17-decision" id="draftDecisionCard">
+    <div class="sectionhead"><div><h2>🧠 Draft Decision Engine</h2><p id="decisionSummary">Pick-specific recommendation using ADP, tier cliffs, next-pick loss, scarcity and roster construction.</p></div><span class="decision-badge" id="decisionBadge">—</span></div>
     <div class="decision-grid">
-      <div class="decision-main"><div class="smallcaps">RECOMMENDED ACTION</div><div class="decision-player" id="decisionPlayer">—</div><div class="decision-reasons" id="decisionReasons"></div></div>
-      <div class="decision-side"><div class="smallcaps">IF YOU WAIT</div><div id="decisionFallback">—</div><div class="smallcaps" style="margin-top:12px">POSITION RUN</div><div id="decisionRun">—</div></div>
+      <div class="decision-main"><div class="smallcaps">RECOMMENDED ACTION</div><div class="decision-player" id="decisionPlayer">—</div><div class="decision-reasons" id="decisionReasons"></div><div class="mini" id="decisionWhy" style="margin-top:10px;line-height:1.55">—</div></div>
+      <div class="decision-side"><div class="smallcaps">IF YOU WAIT</div><div id="decisionFallback">—</div><div class="smallcaps" style="margin-top:12px">POSITION / TIER PRESSURE</div><div id="decisionRun">—</div><div class="smallcaps" style="margin-top:12px">DRAFT IMPACT VS #2</div><div id="decisionImpact">—</div></div>
     </div>
   </div>
 
@@ -277,10 +277,21 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
       <p class="mini" style="margin-top:6px">Leave on Auto to follow the expected snake order. Override this if your real draft goes out of order, or to fix a misclick.</p>
     </div>
     <div class="card setting"><div class="sectionhead"><div><h2>Data model</h2><p>Current snapshot shown in this prototype.</p></div></div>
-      <div class="source"><b>Market ADP</b><span class="amber">Demo dataset</span></div><div class="source"><b>Expert consensus</b><span class="amber">Demo dataset</span></div><div class="source"><b>Walter PPR</b><span class="amber">Fallback/demo only</span></div><div class="source"><b>Bye weeks</b><span style="color:#5de0b7">Real 2026 schedule</span></div><div class="source"><b>ESPN live draft</b><span id="espnStatus">Not connected</span></div>
-      <p style="font-size:10px;color:#f6b94a;margin-top:12px;line-height:1.6">⚠️ Player pool, ADP and rankings are still fallback data until you sync a live source. The roster refresh now adds active players from Sleeper, while weekly projections can be pulled from ESPN or a server-side FantasyPros/SportsDataIO proxy. Rosters were spot-checked and corrected as of late August 2026, but NFL teams cut down to 53 players by August 30 every year — expect real roster churn this week that this static dataset can't track automatically. Double-check any player you're unsure about against ESPN or your league's source before an actual live draft.</p>
+      <div class="source"><b>Market ADP</b><span class="amber">Fallback snapshot / live proxy supported</span></div><div class="source"><b>Expert consensus</b><span class="amber">Fallback snapshot / live proxy supported</span></div><div class="source"><b>Walter PPR</b><span class="amber">Fallback/demo only</span></div><div class="source"><b>Bye weeks</b><span style="color:#5de0b7">Real 2026 schedule</span></div><div class="source"><b>ESPN live draft</b><span id="espnStatus">Not connected</span></div>
+      <p style="font-size:10px;color:#f6b94a;margin-top:12px;line-height:1.6">⚠️ Player pool, ADP and rankings are still fallback data until you sync a live source. The roster refresh now adds active players from Sleeper, while weekly projections can be pulled from ESPN or a server-side FantasyPros/SportsDataIO proxy. The embedded player snapshot is a fallback only; use the live ADP/roster syncs before draft night, but NFL teams cut down to 53 players by August 30 every year — expect real roster churn this week that this static dataset can't track automatically. Double-check any player you're unsure about against ESPN or your league's source before an actual live draft.</p>
       <p style="font-size:10px;color:#5de0b7;margin-top:8px;line-height:1.6">✓ Bye weeks were corrected to match the actual verified 2026 NFL schedule (Weeks 5–14, none in Week 12) — these are real, not demo data, and drive the bye-cluster alert and Planner/Matchup projections accurately.</p>
       <p style="font-size:10px;color:#718099;margin-top:8px">The ESPN connector should run server-side for private leagues. Never paste your ESPN session cookies into this HTML file.</p>
+    </div>
+    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>📊 Live market ADP</h2><p>Use a server-side FantasyPros-compatible feed for current PPR ADP without exposing an API key in the browser.</p></div></div>
+      <div class="formrow"><label>ADP proxy URL (recommended)</label><input class="input" id="adpProxyUrl" placeholder="https://your-domain.example/api/adp"></div>
+      <div class="persistbar"><button class="secondary" id="adpSyncBtn">SYNC MARKET ADP</button><label class="secondary" style="display:inline-flex;align-items:center" for="adpCsvFile">IMPORT ADP CSV</label><input type="file" id="adpCsvFile" accept=".csv,text/csv" style="display:none"><a class="secondary" href="https://www.fantasypros.com/nfl/rankings/?scoring=PPR&type=draft" target="_blank" rel="noopener">OPEN CURRENT FANTASYPROS ADP</a></div>
+      <p class="mini" id="adpSyncStatus">Fallback market snapshot is embedded. Live sync requires your server-side FantasyPros API/proxy endpoint.</p>
+      <p class="mini" style="margin-top:6px">FantasyPros officially provides consensus rankings/ADP through its API. Keep the API key on your server; this app only consumes normalized JSON. If the live feed is unavailable, the embedded snapshot remains usable and is clearly treated as fallback data.</p>
+    </div>
+    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🏈 Real NFL schedule</h2><p>Player opponents and bye weeks come from a real 2026 NFL schedule feed — never a hash/random opponent.</p></div></div>
+      <div class="persistbar"><button class="secondary" id="scheduleSyncBtn">SYNC NFL SCHEDULE</button></div>
+      <p class="mini" id="scheduleSyncStatus">Schedule not synced yet. The app will use verified 2026 bye weeks but will not invent an opponent if the schedule feed is unavailable.</p>
+      <p class="mini" style="margin-top:6px">Fantasy matchup opponents are still simulated until an ESPN league connector is connected. NFL player matchups shown in Planner are real schedule data.</p>
     </div>
     <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>📈 Weekly projection source</h2><p>Use league-specific weekly PPR projections instead of the old simulated weekly numbers.</p></div></div>
       <div class="formrow"><label>ESPN league ID (optional)</label><input class="input" id="projectionLeagueId" placeholder="Use a public ESPN league for direct weekly projections"></div>
@@ -295,7 +306,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
         <button class="secondary" id="liveSyncBtn">SYNC NOW</button>
       </div>
       <div id="liveSyncReport" style="margin-top:10px"></div>
-      <p style="font-size:10px;color:#718099;margin-top:10px;line-height:1.6">This fetches a public dataset (~5MB) directly from your device — no server of ours is involved. It updates injury badges and flags team mismatches between this app's data and Sleeper's live roster info, but it does <b>not</b> change ADP or expert rankings, which stay static. Requires an internet connection; if the fetch fails (e.g. no connection, or the source is unreachable), everything else in the app keeps working normally.</p>
+      <p style="font-size:10px;color:#718099;margin-top:10px;line-height:1.6">This fetches a public dataset (~5MB) directly from your device — no server of ours is involved. It updates injury badges and flags team mismatches between this app's data and Sleeper's live roster info, but it does <b>not</b> replace market ADP or expert rankings unless you also sync the live ADP feed. Requires an internet connection; if the fetch fails (e.g. no connection, or the source is unreachable), everything else in the app keeps working normally.</p>
     </div>
     <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🏈 Team names</h2><p>Rename the 12 league teams to match your real league mates.</p></div></div>
       <div class="teamnamegrid" id="teamNameGrid"></div>
@@ -306,7 +317,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
         <button class="secondary" id="exportBtn">EXPORT DRAFT STATE (.json)</button>
         <label class="secondary" style="display:inline-flex;align-items:center" for="importFile">IMPORT DRAFT STATE</label>
         <input type="file" id="importFile" accept="application/json" style="display:none">
-        <button class="ghost" id="wipeBtn">WIPE SAVED STATE</button>
+        <button class="ghost" id="wipeBtn">WIPE ALL SAVED STATE</button>
       </div>
       <div class="persistbar">
         <button class="secondary" id="printCheatSheetBtn">🖨️ PRINT DRAFT DAY CHEAT SHEET</button>
@@ -341,7 +352,7 @@ const MAX_PICK=ROUNDS*12;
 const LATE_ROUND_MIN={DEF:ROUNDS-1,K:ROUNDS};
 const REACH_ALLOWANCE=15;
 const TARGET_TOTAL_WITH_SLACK=ROSTER_SIZE;
-const STORAGE_KEY="dcc_v13_state";
+const STORAGE_KEY="dcc_v17_state";
 const BOT_PERSONALITIES=["Balanced","RB Heavy","WR Heavy","Zero RB","Hero RB","Early QB","Early TE","BPA / ADP","Aggressive","Value Hunter"];
 const BOT_PERSONALITY_BIAS={
  Balanced:{},"RB Heavy":{RB:2.2,WR:-.5},"WR Heavy":{WR:2.2,RB:-.5},"Zero RB":{RB:-2.4,WR:2.0},"Hero RB":{RB:3.2,WR:-.8},"Early QB":{QB:4.2},"Early TE":{TE:4.2},"BPA / ADP":{},Aggressive:{},"Value Hunter":{}
@@ -363,7 +374,7 @@ function vor(p){
  return +(projPts(p)-(REPLACEMENT_LEVELS[p.pos]||0)).toFixed(2);
 }
 function seasonPts(p){return Math.round(projPts(p)*16)}
-const NFL_OPP=["ARI","ATL","BAL","BUF","CAR","CHI","CIN","CLE","DAL","DEN","DET","GB","HOU","IND","JAX","KC","LAC","LAR","LV","MIA","MIN","NE","NO","NYG","NYJ","PHI","PIT","SEA","SF","TB","TEN","WSH"];
+
 
 let currentPick=1, draftPos=2, philosophy="balanced", drafted=new Set(), teams=[], feed=[], pickHistory=[], tradeHistory=[];
 let page="draft", filterPos="ALL", filterAction="ALL", filterTier="ALL", query="", sort="adp", watchlistOnly=false;
@@ -381,6 +392,11 @@ let tradeSelA=new Set(), tradeSelB=new Set(), tradeTeamAIdx=0, tradeTeamBIdx=1;
 let lastSaved=null;
 let projectionLeagueId="";
 let projectionProxyUrl="";
+let adpProxyUrl="";
+let adpSyncState=null;
+let scheduleSyncState=null;
+let nflScheduleByTeamWeek={};
+const NFL_SCHEDULE_URL="https://cdn.jsdelivr.net/gh/antonwilms/sleeper-dashboard-data@main/nflverse/schedule/2026.json";
 
 /* ---------- utils ---------- */
 function hashCode(str){let h=0;for(let i=0;i<str.length;i++){h=(h<<5)-h+str.charCodeAt(i);h|=0}return Math.abs(h)}
@@ -388,7 +404,24 @@ function esc(n){return n.replaceAll("'","\\'")}
 function escHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}
 function avg(a){const x=a.filter(v=>v!=null&&v<900);return x.length?x.reduce((s,v)=>s+v,0)/x.length:null}
 const REAL_BYE_WEEKS_2026={ARI:14,ATL:11,BAL:13,BUF:7,CAR:5,CHI:10,CIN:6,CLE:11,DAL:14,DEN:10,DET:6,GB:11,HOU:8,IND:13,JAX:7,KC:5,LAC:7,LAR:11,LV:13,MIA:6,MIN:6,NE:11,NO:8,NYG:8,NYJ:13,PHI:10,PIT:9,SEA:11,SF:8,TB:10,TEN:9,WSH:7};
-function byeWeek(team){return REAL_BYE_WEEKS_2026[team]||(5+(hashCode(team)%9))}
+function byeWeek(team){
+  const games=nflScheduleByTeamWeek?.[team]||{};
+  for(let w=1;w<=18;w++)if(games[w]?.bye)return w;
+  return REAL_BYE_WEEKS_2026[team]??null;
+}
+function weekGame(p,week){
+  const g=nflScheduleByTeamWeek?.[p?.team]?.[week];
+  if(g)return g;
+  if(byeWeek(p?.team)===week)return {bye:true,week};
+  return null;
+}
+function weekMatchupLabel(p,week){
+  const g=weekGame(p,week);
+  if(!g)return "Schedule unavailable";
+  if(g.bye)return "BYE";
+  return `${g.home===p.team?"vs":"@"} ${g.opponent}`;
+}
+
 function projPts(p){
   // Fallback only. A real weekly PPR feed should be used for draft-day/weekly decisions.
   // This is intentionally a reasonable PPR estimate, not a claim of live accuracy.
@@ -415,7 +448,7 @@ function weeklyProj(p,week){
   const base=projPts(p);
   return Math.max(0,+(base*(1+weekVariance(p.name,week)*0.18)).toFixed(1));
 }
-function weekOpp(p,week){const h=hashCode(p.team+"-w"+week);return NFL_OPP[(h+week)%NFL_OPP.length]}
+function weekOpp(p,week){const g=weekGame(p,week);return g?.bye?"BYE":(g?.opponent||"—")}
 function initTeams(){
  if(teams&&teams.length===12){teams=teams.map((t,i)=>({id:i,name:t.name,roster:[],personality:botProfiles[i]||BOT_PERSONALITIES[i%BOT_PERSONALITIES.length]}));}
  else{teams=TEAM_NAMES.map((n,i)=>({id:i,name:n,roster:[],personality:BOT_PERSONALITIES[i%BOT_PERSONALITIES.length]}));}
@@ -566,6 +599,132 @@ async function syncLiveData(){
  }finally{ if(btn){btn.disabled=false;btn.textContent="SYNC NOW";} }
 }
 
+/* ---------- real NFL schedule sync ---------- */
+function normalizeScheduleResponse(payload){
+ const rows=Array.isArray(payload)?payload:(Array.isArray(payload?.games)?payload.games:(Array.isArray(payload?.schedule)?payload.schedule:[]));
+ const map={};
+ rows.forEach(row=>{
+  const season=Number(row.season??row.seasonYear??2026);
+  const week=Number(row.week??row.weekNumber??row.scoringPeriodId);
+  const type=String(row.gameType??row.game_type??row.seasonType??"REG").toUpperCase();
+  const home=String(row.homeTeam??row.home_team??row.home??"").toUpperCase();
+  const away=String(row.awayTeam??row.away_team??row.away??"").toUpperCase();
+  if(season!==2026||!Number.isInteger(week)||week<1||week>18||!home||!away)return;
+  if(type&&type!=="REG")return;
+  [[home,away],[away,home]].forEach(([team,opp])=>{
+   map[team]??={};
+   map[team][week]={week,opponent:opp,home,away,bye:false,date:row.gameDate??row.game_date??null};
+  });
+ });
+ // A team with no game in a regular-season week is on bye.
+ Object.keys(REAL_BYE_WEEKS_2026).forEach(team=>{
+  map[team]??={};
+  for(let w=1;w<=18;w++)if(!map[team][w])map[team][w]={week:w,bye:true};
+ });
+ return map;
+}
+async function syncNFLSchedule(silent=false){
+ const btn=document.getElementById("scheduleSyncBtn");
+ if(btn){btn.disabled=true;btn.textContent="SYNCING...";}
+ if(!silent)setScheduleStatus("Fetching the real 2026 NFL regular-season schedule...");
+ try{
+  const res=await fetch(NFL_SCHEDULE_URL,{cache:"no-store"});
+  if(!res.ok)throw new Error(`HTTP ${res.status}`);
+  const payload=await res.json();
+  const normalized=normalizeScheduleResponse(payload);
+  const teamCount=Object.keys(normalized).length;
+  if(teamCount<32)throw new Error(`Only ${teamCount} teams were found in the schedule feed.`);
+  nflScheduleByTeamWeek=normalized;
+  scheduleSyncState={status:"done",timestamp:new Date().toISOString(),source:NFL_SCHEDULE_URL,teams:teamCount};
+  setScheduleStatus(`✓ Real 2026 NFL schedule loaded ${new Date().toLocaleString()}. Player matchups and bye weeks now use the schedule feed.`);
+  renderPlanner();renderMatchup();render();saveState();
+ }catch(e){
+  scheduleSyncState={status:"error",timestamp:new Date().toISOString(),error:String(e)};
+  setScheduleStatus(`Schedule sync failed: ${e.message||e}. The dashboard will use its verified bye-week fallback, but will not invent opponents.`);
+  if(!silent)showToast("NFL schedule sync failed — fallback active");
+ }finally{if(btn){btn.disabled=false;btn.textContent="SYNC NFL SCHEDULE";}}
+}
+function setScheduleStatus(msg){const el=document.getElementById("scheduleSyncStatus");if(el)el.textContent=msg}
+/* ---------- live market ADP sync ---------- */
+function normalizeADPResponse(payload){
+ const rows=Array.isArray(payload)?payload:(payload?.players||payload?.data||payload?.rankings||payload?.results||[]);
+ return rows.map(row=>({
+  name:String(row.name??row.player_name??row.playerName??row.fullName??"").trim(),
+  pos:String(row.pos??row.position??row.player_position??"").toUpperCase(),
+  team:String(row.team??row.player_team_id??row.playerTeam??"").toUpperCase(),
+  adp:Number(row.adp??row.averageDraftPosition??row.average_draft_position),
+  ecr:Number(row.rank_ecr??row.ecr??row.rank??row.overall_rank)
+ })).filter(x=>x.name&&["QB","RB","WR","TE","K","DST","DEF"].includes(x.pos)&&Number.isFinite(x.adp));
+}
+function applyADPRows(rows){
+ const byName=new Map(DATA.map(p=>[normalizeName(p.name),p]));
+ let matched=0,added=0;
+ rows.forEach(r=>{
+  const key=normalizeName(r.name);let p=byName.get(key);
+  if(!p){
+   p={name:r.name,pos:r.pos==="DST"?"DEF":r.pos,team:r.team||"FA",adp:r.adp,espn:999,sleeper:999,fp:Number.isFinite(r.ecr)?r.ecr:999,walter:999,tier:"Waiver",active:true};
+   DATA.push(p);byName.set(key,p);added++;
+  }else{
+   matched++;p.adp=r.adp;if(r.team)p.team=r.team;if(Number.isFinite(r.ecr))p.fp=r.ecr;
+   if(p.tier==="Waiver")p.tier="Tier 6";
+  }
+ });
+ REPLACEMENT_LEVELS=null;
+ return {matched,added,totalRows:rows.length};
+}
+async function syncLiveADP(silent=false){
+ const btn=document.getElementById("adpSyncBtn");
+ if(btn){btn.disabled=true;btn.textContent="SYNCING...";}
+ if(!silent)setADPStatus("Fetching current FantasyPros-compatible market ADP...");
+ try{
+  const input=document.getElementById("adpProxyUrl");
+  if(input)adpProxyUrl=input.value.trim();
+  if(!adpProxyUrl)throw new Error("Add an ADP proxy URL in Settings. FantasyPros' official API requires an API key, which should remain server-side rather than being embedded in this app.");
+  const u=new URL(adpProxyUrl,location.href);u.searchParams.set("season","2026");u.searchParams.set("scoring","PPR");
+  const res=await fetch(u.toString(),{cache:"no-store"});
+  if(!res.ok)throw new Error(`HTTP ${res.status}`);
+  const payload=await res.json();const rows=normalizeADPResponse(payload);
+  if(rows.length<20)throw new Error(`Only ${rows.length} usable ADP rows were returned.`);
+  const result=applyADPRows(rows);
+  adpSyncState={status:"done",timestamp:new Date().toISOString(),count:rows.length,...result};
+  setADPStatus(`✓ Live market data synced ${new Date().toLocaleString()} — ${rows.length} ADP rows, ${result.matched} matched, ${result.added} new.`);
+  render();saveState();showToast("Live ADP refreshed");
+ }catch(e){
+  adpSyncState={status:"error",timestamp:new Date().toISOString(),error:String(e)};
+  setADPStatus(`ADP sync failed: ${e.message||e}. Fallback snapshot remains active.`);
+  if(!silent)showToast("ADP sync failed — fallback active");
+ }finally{if(btn){btn.disabled=false;btn.textContent="SYNC MARKET ADP";}}
+}
+function parseCSV(text){
+ const rows=[];let row=[],cell="",quoted=false;
+ for(let i=0;i<text.length;i++){
+  const ch=text[i],next=text[i+1];
+  if(ch==='"'){if(quoted&&next==='"'){cell+='"';i++;}else quoted=!quoted;}
+  else if(ch===','&&!quoted){row.push(cell.trim());cell="";}
+  else if((ch==='\n'||ch==='\r')&&!quoted){if(ch==='\r'&&next==='\n')i++;row.push(cell.trim());if(row.some(x=>x!==""))rows.push(row);row=[];cell="";}
+  else cell+=ch;
+ }
+ row.push(cell.trim());if(row.some(x=>x!==""))rows.push(row);return rows;
+}
+function importADPCSV(file){
+ const reader=new FileReader();
+ reader.onload=()=>{
+  try{
+   const rows=parseCSV(String(reader.result||""));if(rows.length<2)throw new Error("CSV has no player rows.");
+   const headers=rows[0].map(h=>h.toLowerCase().replace(/[^a-z0-9]/g,""));
+   const idx=(...names)=>{for(const n of names){const i=headers.indexOf(n);if(i>=0)return i;}return -1};
+   const nameI=idx("player","playername","name"),posI=idx("pos","position","playerposition"),teamI=idx("team","playerteam","playerteamid"),adpI=idx("adp","averagedraftposition","averageadp"),ecrI=idx("ecr","rankecr","rank");
+   if(nameI<0||adpI<0)throw new Error("CSV needs Player/Name and ADP columns.");
+   const out=[];rows.slice(1).forEach(r=>{const adp=Number(String(r[adpI]??"").replace(/[^0-9.\-]/g,""));if(!Number.isFinite(adp))return;const name=String(r[nameI]||"").trim();if(!name)return;let pos=String(posI>=0?r[posI]:"").toUpperCase().replace("DST","DEF");const team=String(teamI>=0?r[teamI]:"").toUpperCase();const ecr=Number(String(ecrI>=0?r[ecrI]:"").replace(/[^0-9.\-]/g,""));if(!["QB","RB","WR","TE","K","DEF"].includes(pos)){const existing=DATA.find(p=>normalizeName(p.name)===normalizeName(name));pos=existing?.pos||"WR";}out.push({name,pos,team,adp,ecr});});
+   if(out.length<10)throw new Error(`Only ${out.length} usable player rows found.`);
+   const result=applyADPRows(out);adpSyncState={status:"done",timestamp:new Date().toISOString(),count:out.length,...result,source:"CSV import"};
+   setADPStatus(`✓ ADP CSV imported ${new Date().toLocaleString()} — ${out.length} rows, ${result.matched} matched, ${result.added} new.`);render();saveState();showToast("ADP CSV imported");
+  }catch(e){adpSyncState={status:"error",timestamp:new Date().toISOString(),error:String(e)};setADPStatus(`ADP CSV import failed: ${e.message||e}. Fallback data remains active.`);saveState();showToast("ADP CSV import failed");}
+ };
+ reader.readAsText(file);
+}
+function setADPStatus(msg){const el=document.getElementById("adpSyncStatus");if(el)el.textContent=msg}
+
 /* ---------- weekly projection sync ---------- */
 function setProjectionStatus(msg){
   const el=document.getElementById("projectionSyncStatus");
@@ -635,7 +794,7 @@ function renderProjectionSyncStatus(){
 /* ---------- persistence ---------- */
 function saveState(){
  try{
-  const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,botProfiles,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionSyncState,projectionLeagueId,projectionProxyUrl,savedAt:Date.now()};
+  const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,botProfiles,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionSyncState,projectionLeagueId,projectionProxyUrl,adpProxyUrl,adpSyncState,scheduleSyncState,savedAt:Date.now()};
   localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
   lastSaved=new Date();
   const ls=document.getElementById("lastSaved");if(ls)ls.textContent=lastSaved.toLocaleTimeString();
@@ -662,18 +821,25 @@ function applyState(state){
  }
  liveSyncState=(state.liveSyncState&&typeof state.liveSyncState==="object")?state.liveSyncState:null;
  liveDraftMode=state.liveDraftMode===true;
+ weeklyProjectionData=(state.weeklyProjectionData&&typeof state.weeklyProjectionData==="object")?state.weeklyProjectionData:{};
+ projectionSyncState=(state.projectionSyncState&&typeof state.projectionSyncState==="object")?state.projectionSyncState:null;
+ projectionLeagueId=typeof state.projectionLeagueId==="string"?state.projectionLeagueId:"";
+ projectionProxyUrl=typeof state.projectionProxyUrl==="string"?state.projectionProxyUrl:"";
+ adpProxyUrl=typeof state.adpProxyUrl==="string"?state.adpProxyUrl:"";
+ adpSyncState=(state.adpSyncState&&typeof state.adpSyncState==="object")?state.adpSyncState:null;
+ scheduleSyncState=(state.scheduleSyncState&&typeof state.scheduleSyncState==="object")?state.scheduleSyncState:null;
  logTeamIdx=null;
 }
 function loadState(){
  try{
   let raw=localStorage.getItem(STORAGE_KEY);
-  if(!raw){raw=localStorage.getItem("dcc_v12_state")||localStorage.getItem("dcc_v11_state");}
+  if(!raw){raw=localStorage.getItem("dcc_v16_state")||localStorage.getItem("dcc_v15_state")||localStorage.getItem("dcc_v14_state")||localStorage.getItem("dcc_v12_state")||localStorage.getItem("dcc_v11_state");}
   if(raw){applyState(JSON.parse(raw));return true}
  }catch(e){console.warn("load failed",e)}
  return false;
 }
 function exportState(){
- const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionSyncState,projectionLeagueId,projectionProxyUrl,exportedAt:new Date().toISOString()};
+ const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionSyncState,projectionLeagueId,projectionProxyUrl,adpProxyUrl,adpSyncState,scheduleSyncState,exportedAt:new Date().toISOString()};
  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
  const url=URL.createObjectURL(blob);const a=document.createElement("a");
  a.href=url;a.download=`draft-command-center-${new Date().toISOString().slice(0,10)}.json`;a.click();
@@ -710,7 +876,14 @@ function playerCalc(p){
   const suggestedRound=p.pos==="K"?ROUNDS:p.pos==="DEF"?ROUNDS-1:(p.adp?Math.max(1,Math.ceil(p.adp/12)):null);
   return {...p,expert,gap,fit,pts,vor:vorValue,seasonPts:Math.round(pts*16),score,action,window:windowFit,ceil,floor,suggestedRound};
 }
-function available(){return DATA.map(playerCalc).filter(p=>p.active!==false&&!drafted.has(p.name))}
+let _availabilityCacheKey="",_availabilityCache=[];
+function available(){
+ const key=`${currentPick}|${drafted.size}|${DATA.length}`;
+ if(key===_availabilityCacheKey)return _availabilityCache;
+ _availabilityCacheKey=key;
+ _availabilityCache=DATA.map(playerCalc).filter(p=>p.active!==false&&!drafted.has(p.name));
+ return _availabilityCache;
+}
 function draftWindowOk(p,pick){
  if(p.adp==null)return true;
  const allowance=REACH_ALLOWANCE+(philosophy==="aggressive"?9:philosophy==="value"?6:0);
@@ -754,21 +927,144 @@ function recommendationComparator(a,b){
  if(ptsA!==ptsB)return ptsB-ptsA;
  return String(a.name).localeCompare(String(b.name));
 }
-function recommendScore(p,team){
- const adpPenalty=(p.adp==null?999:p.adp); const ptsBonus=(p.seasonPts||0)*0.035;
- let s=100-adpPenalty+ptsBonus;
- if(starterNeeded(team).includes(p.pos))s+=2.5;
- s+=positionRunPressure(p.pos)*1.5;
- s+=roundPositionBias(p,roundInfo(currentPick).round)*0.25;
- const st=getStatus(p.name);
- if(st==="questionable")s-=4; else if(st==="doubtful")s-=10; else if(st==="out"||st==="ir")s-=25;
- return s;
+function playerQualityIndex(p){
+ if(!p)return 0;
+ const adp=p.adp==null?240:p.adp;
+ const adpQ=Math.max(0,100-(Math.max(1,adp)-1)*0.24);
+ const tierQ={Elite:100,"Tier 2":90,"Tier 3":80,"Tier 4":69,"Tier 5":58,"Tier 6":47,Late:34,Bench:22,Waiver:10,DEF:20,K:20}[p.tier]??45;
+ const ptsQ=Math.max(0,Math.min(100,(p.seasonPts||0)*0.42));
+ return adpQ*0.74+tierQ*0.16+ptsQ*0.10;
 }
-function survivalProb(p,throughPick){
- if(p.adp==null)return 99;
- const spread=7;
- const prob=1/(1+Math.exp((throughPick-p.adp)/spread));
- return Math.max(1,Math.min(99,Math.round(prob*100)));
+let _tierCacheKey="",_tierCache={};
+function positionTierMap(pos,pool=available()){
+ const key=`${pos}|${currentPick}|${drafted.size}|${pool.length}`;
+ if(pool===available()&&_tierCacheKey===key&&_tierCache[pos])return _tierCache[pos];
+ const list=pool.filter(x=>x.pos===pos&&x.adp!=null).sort((a,b)=>a.adp-b.adp);
+ if(pool===available()){_tierCacheKey=key;_tierCache[pos]=list;}
+ return list;
+}
+function tierCliffInfo(p,pool=available()){
+ if(!p||!SKILL_POSITIONS.includes(p.pos))return {strength:0,next:null,gap:0,qualityGap:0,atEdge:false,label:"No tier cliff"};
+ const list=positionTierMap(p.pos,pool);
+ const idx=list.findIndex(x=>x.name===p.name);
+ if(idx<0)return {strength:0,next:null,gap:0,qualityGap:0,atEdge:false,label:"No tier cliff"};
+ const next=list[idx+1];
+ if(!next)return {strength:100,next:null,gap:99,qualityGap:30,atEdge:true,label:`Last ${p.pos} tier`};
+ const gap=Math.max(0,(next.adp??999)-(p.adp??999));
+ const qualityGap=Math.max(0,playerQualityIndex(p)-playerQualityIndex(next));
+ const tierBreak=p.tier!==next.tier;
+ const material=tierBreak||gap>=8||qualityGap>=7;
+ const strength=material?Math.min(100,Math.round(gap*4.4+qualityGap*1.9+(tierBreak?18:0))):Math.min(25,Math.round(gap*2.0+qualityGap));
+ return {strength,next,gap,qualityGap,atEdge:tierBreak||gap>=8,label:tierBreak?`${p.tier} ends after this player`:gap>=8?`${gap.toFixed(0)}-pick ADP gap to next ${p.pos}`:"No material tier cliff"};
+}
+function nextPickLossInfo(p,team= myTeam()){
+ const nmp=nextMyPick(isMyTurn()?currentPick+1:currentPick);
+ if(!p||!nmp)return {survival:99,expectedLoss:0,replacement:null,picks:0,loss:0};
+ const through=nmp-1;
+ const survival=survivalProb(p,through);
+ const same=positionTierMap(p.pos,available()).filter(x=>x.name!==p.name);
+ const replacement=same.find(x=>(x.adp??999)>(p.adp??-1))||same[0]||null;
+ const qualityGap=replacement?Math.max(0,playerQualityIndex(p)-playerQualityIndex(replacement)):0;
+ const picks=Math.max(0,nmp-currentPick);
+ const expectedLoss=Math.min(100,Math.round((100-survival)*0.65+qualityGap*0.75));
+ const loss=qualityGap*(1-survival/100);
+ return {survival,expectedLoss,replacement,picks,loss};
+}
+function positionalScarcity(p,team=myTeam()){
+ if(!p)return 0;
+ const same=positionTierMap(p.pos,available());
+ const tierSame=same.filter(x=>x.tier===p.tier).length;
+ const scarcity=Math.max(0,100-Math.min(100,same.length*(p.pos==="TE"?3.0:p.pos==="QB"?3.2:1.8)));
+ const tierScarcity=Math.max(0,100-Math.min(100,(tierSame-1)*(p.pos==="TE"?18:p.pos==="QB"?16:11)));
+ const run=positionRunPressure(p.pos)*100;
+ return Math.min(100,Math.round(scarcity*0.35+tierScarcity*0.45+run*0.20));
+}
+function starterUrgency(p,team=myTeam()){
+ const missing=starterNeeded(team);
+ if(!missing.includes(p.pos))return 0;
+ const remaining=myRemainingPicks();
+ const slots=missing.length;
+ const base=p.pos==="QB"||p.pos==="TE"?72:64;
+ const timing=remaining<=slots?100:remaining<=slots+2?88:base;
+ return Math.min(100,timing);
+}
+function secondAtPositionPenalty(p,team=myTeam(),round=roundInfo(currentPick).round){
+ const count=posCount(team,p.pos);
+ if((p.pos==="QB"||p.pos==="TE")&&count>=1){
+   if(round<14)return 34;
+   if(round<16)return 12;
+ }
+ return 0;
+}
+function slot2TurnLeverage(p){
+ if(draftPos!==2||!p)return 0;
+ const r=roundInfo(currentPick).round;
+ const slot=currentPick-(r-1)*12;
+ if(slot===11)return 4;
+ if(slot===2)return 0;
+ return 1;
+}
+function correlationBonus(p,team){
+ if(!p||!team)return 0;
+ if(p.pos==="QB"){
+   const partners=team.roster.filter(x=>(x.pos==="WR"||x.pos==="TE")&&x.team===p.team).length;
+   return partners?Math.min(6,partners*3):0;
+ }
+ if(p.pos==="WR"||p.pos==="TE"){
+   const qb=team.roster.find(x=>x.pos==="QB"&&x.team===p.team);
+   return qb?4:0;
+ }
+ return 0;
+}
+function byeClusterPenalty(p,team){
+ if(!p||!team)return 0;
+ const w=byeWeek(p.team);if(!w)return 0;
+ const count=team.roster.filter(x=>byeWeek(x.team)===w).length;
+ return count>=5?4:count>=4?2:0;
+}
+function draftDecisionScore(p,team=myTeam(),options={}){
+ const round=options.round??roundInfo(currentPick).round;
+ const cliff=tierCliffInfo(p);
+ const loss=nextPickLossInfo(p,team);
+ const need=starterUrgency(p,team);
+ const scarcity=positionalScarcity(p,team);
+ const quality=playerQualityIndex(p);
+ const adp=p.adp==null?240:p.adp;
+ const marketDelta=Math.max(-30,Math.min(30,currentPick-adp));
+ const timing=Math.max(0,Math.min(100,50+marketDelta*2.6));
+ const eliteFall=(p.tier==="Elite"||p.tier==="Tier 2")&&adp<=currentPick+3?10:0;
+ const earlyOneQ=round<=4&&(p.pos==="QB"||p.pos==="TE")?-18:0;
+ const secondPenalty=secondAtPositionPenalty(p,team,round);
+ const byePenalty=byeWeek(p.team)===plannerWeek?0:0;
+ const injuryPenalty={healthy:0,questionable:6,doubtful:15,out:40,ir:40}[getStatus(p.name)]||0;
+ // ADP is the anchor. Context can move a player only when the market gap is not enormous.
+ let score=quality*0.56+timing*0.17+cliff.strength*0.11+loss.expectedLoss*0.08+scarcity*0.04+need*0.04+eliteFall;
+ score+=roundPositionBias(p,round)*0.16;
+ score+=correlationBonus(p,team)*0.7;
+ score-=byeClusterPenalty(p,team);
+
+ score-=secondPenalty+injuryPenalty+Math.max(0,byePenalty);
+ return {score,quality,timing,cliff,loss,need,scarcity,secondPenalty,injuryPenalty};
+}
+function decisionCompare(a,b,team=myTeam()){
+ const da=draftDecisionScore(a,team),db=draftDecisionScore(b,team);
+ const adpA=a.adp??999,adpB=b.adp??999;
+ const gap=Math.abs(adpA-adpB);
+ // ADP is protected. A context-based override requires a genuinely material event:
+ // a tier cliff, a severe next-pick loss, or an urgent open starter.
+ if(gap>=10){
+   const aMaterial=da.cliff.strength>=60||da.loss.expectedLoss>=60||da.need>=90;
+   const bMaterial=db.cliff.strength>=60||db.loss.expectedLoss>=60||db.need>=90;
+   if(!aMaterial&&!bMaterial)return adpA-adpB;
+   if(aMaterial&&!bMaterial&&da.score>=db.score-2)return -1;
+   if(bMaterial&&!aMaterial&&db.score>=da.score-2)return 1;
+   if(Math.abs(da.score-db.score)<8)return adpA-adpB;
+ }
+ if(Math.abs(da.score-db.score)>=3)return db.score-da.score;
+ return recommendationComparator(a,b);
+}
+function recommendScore(p,team){
+ return draftDecisionScore(p,team).score;
 }
 function teamsBeforeMyNextPick(){
  const nmp=nextMyPick(isMyTurn()?currentPick+1:currentPick);
@@ -780,20 +1076,27 @@ function teamsBeforeMyNextPick(){
  }
  return out;
 }
+function survivalProb(p,throughPick){
+ if(p.adp==null)return 99;
+ const picksAhead=Math.max(0,throughPick-currentPick+1);
+ const spread=6.5+Math.min(8,picksAhead*0.30);
+ let prob=1/(1+Math.exp((throughPick-p.adp)/spread));
+ const run=positionRunPressure(p.pos);
+ const needy=teamsBeforeMyNextPick().filter(x=>starterNeeded(teams[x.teamIdx]||{}).includes(p.pos)).length;
+ const tier=tierCliffInfo(p);
+ const tierPressure=tier.strength/100;
+ prob*=Math.max(0.42,1-run*0.65-needy*0.055-tierPressure*0.10);
+ return Math.max(1,Math.min(99,Math.round(prob*100)));
+}
 function scoreBreakdown(p,team){
- const fitPct=Math.max(0,Math.min(100,50+p.fit*1.2));
- const gapPct=Math.max(0,Math.min(100,50+p.gap*1.8));
- const vorPct=Math.max(0,Math.min(100,50+p.vor*4));
- const needPct=starterNeeded(team).includes(p.pos)?90:(myNeed(p.pos)>0?60:25);
- const runPct=Math.round(positionRunPressure(p.pos)*100);
- const tierRank={"Elite":95,"Tier 2":82,"Tier 3":70,"Tier 4":58,"Tier 5":48,"Tier 6":38,"Late":28,"Bench":20,"Waiver":12,"K":15}[p.tier]??40;
+ const d=draftDecisionScore(p,team);
  return [
-  {label:"ADP Timing",pct:Math.round(fitPct)},
-  {label:"Market Value",pct:Math.round(gapPct)},
-  {label:"Points/VOR",pct:Math.round(vorPct)},
-  {label:"Roster Need",pct:Math.round(needPct)},
-  {label:"Tier",pct:tierRank},
-  {label:"Position Run",pct:runPct},
+  {label:"ADP Timing",pct:Math.round(d.timing)},
+  {label:"Tier Cliff",pct:Math.round(d.cliff.strength)},
+  {label:"Next-Pick Loss",pct:Math.round(d.loss.expectedLoss)},
+  {label:"Roster Need",pct:Math.round(d.need)},
+  {label:"Scarcity / Run",pct:Math.round(d.scarcity)},
+  {label:"Player Quality",pct:Math.round(d.quality)},
  ];
 }
 function pickCandidates(team){
@@ -805,91 +1108,109 @@ function pickCandidates(team){
  else if(round===ROUNDS-1) allowed=hasDef?SKILL_POSITIONS.slice():["DEF"];
  else allowed=hasK?SKILL_POSITIONS.slice():["K"];
  let a=available().filter(p=>allowed.includes(p.pos));
- if(!a.length){
-   a=available().filter(p=>SKILL_POSITIONS.includes(p.pos));
-   if(!a.length)a=available();
- }
+ if(!a.length)a=available().filter(p=>SKILL_POSITIONS.includes(p.pos));
+ if(!a.length)a=available();
  const healthyOnly=a.filter(p=>!isInjuredOut(p.name));
  if(healthyOnly.length)a=healthyOnly;
  const starters=starterNeeded(team);
  const remaining=team===myTeam()?myRemainingPicks():Math.max(1,ROSTER_SIZE-team.roster.length);
- if(round<ROUNDS-1 && starters.length && remaining<=starters.length+1){
+ if(round<ROUNDS-1&&starters.length&&remaining<=starters.length+1){
    const forced=a.filter(p=>starters.includes(p.pos));
    if(forced.length)a=forced;
  }
- const windowed=a.filter(p=>draftWindowOk(p,currentPick));
+ // The old hard ADP window could hide legitimate falling elite/tier players. Keep a soft window.
+ const windowed=a.filter(p=>{
+   if(p.adp==null)return true;
+   const extra=p.tier==="Elite"?24:p.tier==="Tier 2"?20:p.tier==="Tier 3"?17:15;
+   const cliff=tierCliffInfo(p);
+   return p.adp<=currentPick+extra || cliff.strength>=55 || starterUrgency(p,team)>=88;
+ });
  if(windowed.length)a=windowed;
  return a;
 }
 function bestPlayer(){
  const team=myTeam();
- const a=pickCandidates(team);
- return a.slice().sort(recommendationComparator)[0]||available()[0];
+ let a=pickCandidates(team);
+ const round=roundInfo(currentPick).round;
+ const counts={QB:posCount(team,"QB"),RB:posCount(team,"RB"),WR:posCount(team,"WR"),TE:posCount(team,"TE"),DEF:posCount(team,"DEF"),K:posCount(team,"K")};
+ const ceilings={QB:2,RB:4,WR:5,TE:2,DEF:1,K:1};
+ // Enforce the user's fixed final-round special-team policy while leaving all skill decisions flexible.
+ if(round===ROUNDS-1&&counts.DEF<1)a=a.filter(p=>p.pos==="DEF");
+ else if(round===ROUNDS&&counts.K<1)a=a.filter(p=>p.pos==="K");
+ else if(round<ROUNDS-1){
+   const capped=a.filter(p=>counts[p.pos]<(ceilings[p.pos]??99));
+   if(capped.length)a=capped;
+ }
+ if(!a.length)a=available().filter(p=>SKILL_POSITIONS.includes(p.pos)&&counts[p.pos]<(ceilings[p.pos]??99));
+ if(!a.length)a=available();
+ // QB/TE are tier-timed, not round-timed. Missing starters become urgent only when a good tier is about to disappear.
+ const missingQB=counts.QB<1,missingTE=counts.TE<1;
+ const qbte=a.filter(p=>(missingQB&&p.pos==="QB")||(missingTE&&p.pos==="TE"));
+ if(round>=5&&round<=13&&qbte.length){
+   const urgent=qbte.filter(p=>{
+     const d=draftDecisionScore(p,team);
+     return d.cliff.strength>=55||d.loss.expectedLoss>=48||d.need>=88||(p.adp??999)<=currentPick+5&&(p.tier==="Elite"||p.tier==="Tier 2");
+   });
+   // Only narrow to QB/TE when the current tier is actually in danger. Otherwise remain BPA/ADP-first.
+   if(urgent.length){
+     const bestUrgent=urgent.slice().sort((x,y)=>decisionCompare(x,y,team))[0];
+     const overall=a.slice().sort((x,y)=>decisionCompare(x,y,team))[0];
+     const du=draftDecisionScore(bestUrgent,team),dover=draftDecisionScore(overall,team);
+     if(bestUrgent.name===overall.name||du.score>=dover.score+4)a=urgent;
+   }
+ }
+ // Never use QB2/TE2 to solve a roster problem before Round 14 unless it is an elite, materially underpriced fall.
+ if(round<14){
+   const singleNeed=a.filter(p=>(p.pos!=="QB"&&p.pos!=="TE")||posCount(team,p.pos)<1||draftDecisionScore(p,team).cliff.strength>=70&&(p.adp??999)<=currentPick+2);
+   if(singleNeed.length)a=singleNeed;
+ }
+ // By Round 14, prioritize completing the starting lineup over adding a second QB/TE.
+ if(round>=14&&round<ROUNDS-1){
+   const missing=starterNeeded(team).filter(pos=>SKILL_POSITIONS.includes(pos));
+   if(missing.length){
+     const pool=a.filter(p=>missing.includes(p.pos));
+     if(pool.length)a=pool;
+   }
+ }
+ return a.slice().sort((x,y)=>decisionCompare(x,y,team))[0]||null;
 }
 function botPick(team){
  let a=pickCandidates(team);
  if(team!==myTeam()&&lockedPlayers.size){const unlocked=a.filter(p=>!lockedPlayers.has(p.name));if(unlocked.length)a=unlocked;}
  const round=roundInfo(currentPick).round;
- const rosterLen=team.roster.length;
- const starters=starterNeeded(team);
  const counts={QB:posCount(team,"QB"),RB:posCount(team,"RB"),WR:posCount(team,"WR"),TE:posCount(team,"TE"),DEF:posCount(team,"DEF"),K:posCount(team,"K")};
  const ceilings={QB:2,RB:4,WR:5,TE:2,DEF:1,K:1};
- let capped=a.filter(p=>counts[p.pos] < (ceilings[p.pos] ?? 99));
- if(capped.length)a=capped;
+ let capped=a.filter(p=>counts[p.pos]<(ceilings[p.pos]??99));
+ a=capped.length?capped:a;
  const profile=team.personality||"Balanced";
  const bias=BOT_PERSONALITY_BIAS[profile]||{};
-
- // Starting-lineup completion has priority, but only when the player is close
- // enough to the current market window to avoid unrealistic reaches.
- if(round<=6&&starters.length){
-   const urgent=starters.filter(pos=>pos!=="DEF"&&pos!=="K");
-   const needPool=a.filter(p=>urgent.includes(p.pos));
-   const timely=needPool.filter(p=>p.adp==null||p.adp<=currentPick+18);
-   if(timely.length&&rosterLen>=2)a=timely;
- }
- // QB/TE checkpoints: if a team has neither starter by the middle rounds,
- // make the position meaningfully more likely without forcing a bad reach.
- if(round>=7&&round<=10){
-   const coreMissing=[];
-   if(counts.QB<1)coreMissing.push("QB");
-   if(counts.TE<1)coreMissing.push("TE");
-   if(coreMissing.length){
-     const core=a.filter(p=>coreMissing.includes(p.pos));
-     const timely=core.filter(p=>p.adp==null||p.adp<=currentPick+30);
-     if(timely.length)a=timely;
-   }
- }
- // Never take QB2/TE2 while another starting slot is still open.
- if(starters.length){
+ const starters=starterNeeded(team);
+ if(round===ROUNDS-1&&counts.DEF<1)a=a.filter(p=>p.pos==="DEF");
+ else if(round===ROUNDS&&counts.K<1)a=a.filter(p=>p.pos==="K");
+ else if(round<14&&starters.length){
    const starterPool=a.filter(p=>starters.includes(p.pos));
-   if(starterPool.length)a=starterPool;
+   // Do not force a starter if the available starter is a large market reach; use tier urgency instead.
+   const urgent=starterPool.filter(p=>{const d=draftDecisionScore(p,team);return d.cliff.strength>=55||d.need>=88||d.loss.expectedLoss>=55});
+   if(urgent.length)a=urgent;
  }
- // Once starters are filled, prioritize RB/WR bench upside before QB2/TE2.
- if(round>=9&&starters.length===0){
-   const depth=a.filter(p=>p.pos==="RB"||p.pos==="WR");
-   const flexDepth=depth.length?depth:a;
-   a=flexDepth;
+ // After a team has its starting QB/TE, build RB/WR depth before QB2/TE2.
+ if(round<14){
+   const core=a.filter(p=>p.pos!=="QB"&&p.pos!=="TE"||counts[p.pos]<1||draftDecisionScore(p,team).cliff.strength>=70);
+   if(core.length)a=core;
  }
- // Personality applies as a small positional nudge AFTER roster guardrails.
- // ADP remains the primary baseline so profiles feel different without
- // becoming caricatures.
  const ranked=a.slice().sort((x,y)=>{
-   const adpX=x.adp==null?999:x.adp,adpY=y.adp==null?999:y.adp;
-   let c=(adpX-adpY);
-   const bx=bias[x.pos]||0,by=bias[y.pos]||0;
-   if(c!==0){
-     const adjustedX=adpX-bx*3.2, adjustedY=adpY-by*3.2;
-     c=adjustedX-adjustedY;
-     if(Math.abs(c)<1.2)c=adpX-adpY;
-   }
-   if(c!==0)return c;
-   return recommendationComparator(x,y)||recommendScore(y,team)-recommendScore(x,team);
+   const dx=draftDecisionScore(x,team),dy=draftDecisionScore(y,team);
+   let sx=dx.score+(bias[x.pos]||0)*1.6,sy=dy.score+(bias[y.pos]||0)*1.6;
+   // Small realism nudge; never enough to erase a major ADP gap.
+   const adx=x.adp??999,ady=y.adp??999;
+   if(Math.abs(adx-ady)>=10){sx-=Math.max(0,(adx-ady)*0.25);sy-=Math.max(0,(ady-adx)*0.25)}
+   return sy-sx||recommendationComparator(x,y);
  });
- if(!ranked.length)return available()[0];
- const pool=ranked.slice(0,3);
- const randomness=profile==="Aggressive"?.15:.08;
+ if(!ranked.length)return null;
+ const pool=ranked.slice(0,Math.min(4,ranked.length));
+ const randomness=profile==="Aggressive"?.12:.07;
  const r=Math.random();
- return r<1-randomness?pool[0]:(r<.97?(pool[1]||pool[0]):(pool[2]||pool[0]));
+ return r<1-randomness?pool[0]:(r<.96?(pool[1]||pool[0]):(pool[2]||pool[1]||pool[0]));
 }
 
 function simulateDraftPlan(){
@@ -989,7 +1310,11 @@ function undoPick(){
 function resetDemo(){
  drafted.clear();initTeams();feed=[];pickHistory=[];currentPick=1;
  tradeHistory=[];tradeSelA.clear();tradeSelB.clear();
- render();saveState();showToast("Draft reset");
+ render();saveState();showToast("Draft reset — watchlist, settings, live data and planner data preserved");
+}
+function resetEverything(){
+ if(!confirm("Reset EVERYTHING in Draft Command Center? This clears the draft, watchlist, locks, synced data and settings from this browser."))return;
+ localStorage.removeItem(STORAGE_KEY);location.reload();
 }
 
 /* ---------- waivers ---------- */
@@ -1029,17 +1354,24 @@ function renderRoster(){
  document.getElementById("bench").innerHTML=bench.length?`<div class="smallcaps" style="margin-top:12px">Bench (${bench.length})</div><div class="mini" style="margin-top:6px;line-height:1.9">${bench.map(p=>`${p.name} <span style="color:#68778e">(${p.pos})</span>`).join(" · ")}</div>`:"";
 }
 function reason(p){
- const n=myNeed(p.pos);
- if(p.action==="STEAL") return `${p.name} is being selected later than the combined expert view suggests. ${n?"Your roster also needs "+p.pos+". ":""}The model sees meaningful opportunity cost in waiting.`;
- if(p.action==="REACH") return `The market is pricing ${p.name} ahead of the blended expert view. ${n?"You have a roster need here, but the model still prefers waiting for a better value. ":""}`;
- return `This is a balanced target: market and expert views are reasonably aligned, with ${n?"a useful roster fit.":"limited immediate positional pressure."}`;
+ const team=myTeam();
+ const d=draftDecisionScore(p,team);
+ const bits=[];
+ if(p.adp!=null)bits.push(`ADP ${p.adp}`);
+ if(d.cliff.strength>=55)bits.push(d.cliff.label);
+ if(d.loss.expectedLoss>=45)bits.push(`${d.loss.survival}% survival`);
+ if(d.need>=88)bits.push(`fills ${p.pos} need`);
+ if(d.scarcity>=60)bits.push(`${p.pos} scarcity/run`);
+ if(!bits.length)bits.push("best overall market option");
+ return bits.join(" · ");
 }
 function takeNowVsWait(p,team){
- const nmp=nextMyPick(isMyTurn()?currentPick+1:currentPick);
- const survive=nmp?survivalProb(p,nmp-1):1;
- const takeNow=Math.max(0,Math.min(100,50+recommendScore(p,team)*1.3));
- const wait=takeNow*(survive/100);
- return {takeNow:Math.round(takeNow*10)/10,wait:Math.round(wait*10)/10,survive};
+ const d=draftDecisionScore(p,team);
+ const loss=d.loss;
+ const survival=loss.survival;
+ const takeNow=Math.max(0,Math.min(100,d.score*0.72+survival*0.08+d.cliff.strength*0.10+d.need*0.05+d.scarcity*0.05));
+ const wait=Math.max(0,Math.min(100,takeNow-(100-survival)*0.38));
+ return {takeNow:Math.round(takeNow*10)/10,wait:Math.round(wait*10)/10,survive:survival,cliff:d.cliff,loss};
 }
 function breakdownBars(p,team){
  return scoreBreakdown(p,team).map(b=>`<div class="sb-row"><span class="sb-label">${b.label}</span><div class="sb-bar"><i style="width:${b.pct}%"></i></div></div>`).join("");
@@ -1050,12 +1382,17 @@ function renderRec(){
  const team=myTeam();
  const tw=takeNowVsWait(p,team);
  const before=teamsBeforeMyNextPick();
- document.getElementById("recommendation").innerHTML=`<div style="margin-top:9px"><div class="rec-top"><div><div class="rec-name">${p.name}</div><div class="rec-sub">${p.pos} · ${p.team} · Market ADP ${p.adp??"—"} · Expert ${p.expert?.toFixed(1)??"—"}</div></div><div class="score">${p.score>=0?"+":""}${p.score.toFixed(1)}</div></div><div class="why"><span class="tag">${p.action}</span><span class="tag">Gap ${p.gap>=0?"+":""}${p.gap.toFixed(1)}</span><span class="tag">Ceil #${p.ceil??"—"} / Floor #${p.floor??"—"}</span><span class="tag">Sug. Rd ${p.suggestedRound??"—"}</span><span class="tag">Roster need ${myNeed(p.pos)>0?"HIGH":"LOW"}</span><span class="tag">${p.tier}</span></div><p style="color:#9aa8bd;font-size:11px;line-height:1.6">${reason(p)}</p>
- <div class="tnw"><div class="tnw-box"><span class="mini">TAKE NOW</span><b class="positive">${tw.takeNow}</b></div><div class="tnw-box"><span class="mini">WAIT</span><b class="${tw.wait<tw.takeNow-15?"negative":""}">${tw.wait}</b></div><div class="tnw-box"><span class="mini">SURVIVAL${before.length?` (${before.length} picks)`:""}</span><b class="${tw.survive<30?"negative":tw.survive<60?"amber":"positive"}">${tw.survive}%</b></div></div>
+ const alternatives=pickCandidates(team).filter(x=>x.name!==p.name).slice().sort((a,b)=>decisionCompare(a,b,team));
+ const next=alternatives[0];
+ const impact=next?Math.max(0,tw.takeNow-draftDecisionScore(next,team).score):0;
+ const cliff=tw.cliff;
+ const impactLabel=next?`+${impact.toFixed(1)} draft impact vs ${next.name}`:"No close alternative";
+ document.getElementById("recommendation").innerHTML=`<div style="margin-top:9px"><div class="rec-top"><div><div class="rec-name">${p.name}</div><div class="rec-sub">${p.pos} · ${p.team} · Market ADP ${p.adp??"—"} · Expert ${p.expert?.toFixed(1)??"—"}</div></div><div class="score">${p.score>=0?"+":""}${p.score.toFixed(1)}</div></div><div class="why"><span class="tag">${p.action}</span><span class="tag">${cliff.strength>=55?"⚠️ TIER CLIFF":"Tier stable"}</span><span class="tag">${tw.loss.survival}% survive to next pick</span><span class="tag">${tw.loss.expectedLoss} loss risk</span><span class="tag">${impactLabel}</span><span class="tag">Sug. Rd ${p.suggestedRound??"—"}</span></div><p style="color:#9aa8bd;font-size:11px;line-height:1.6"><b>Why now:</b> ${reason(p)}. ${cliff.next?`Next ${p.pos}: ${cliff.next.name} (ADP ${cliff.next.adp}).`:"This is the last modeled player in this position tier."}</p>
+ <div class="tnw"><div class="tnw-box"><span class="mini">TAKE NOW</span><b class="positive">${tw.takeNow}</b></div><div class="tnw-box"><span class="mini">WAIT</span><b class="${tw.wait<tw.takeNow-15?"negative":""}">${tw.wait}</b></div><div class="tnw-box"><span class="mini">SURVIVAL (${before.length} picks)</span><b class="${tw.survive<30?"negative":tw.survive<60?"amber":"positive"}">${tw.survive}%</b></div></div>
  ${before.length?`<div class="mini" style="margin-top:9px">Picking before your next turn: ${before.map(b=>escHtml(b.teamName)).join(", ")}</div>`:""}
- <div class="scorebreak"><div class="smallcaps" style="margin:11px 0 6px">Score breakdown</div>${breakdownBars(p,team)}</div>
+ <div class="scorebreak"><div class="smallcaps" style="margin:11px 0 6px">Decision breakdown</div>${breakdownBars(p,team)}</div>
  <div class="rec-actions"><button class="primary" ${canDraft?"":"disabled"} onclick="draftPlayer('${esc(p.name)}')">${canDraft?(liveDraftMode?"LOG ":"DRAFT ")+p.name.toUpperCase():(currentPick>MAX_PICK?"DRAFT COMPLETE":"WAIT FOR YOUR TURN")}</button></div></div>`;
- document.getElementById("bestValue").textContent=p.name;document.getElementById("bestValueMeta").textContent=`${p.action} · ${p.score.toFixed(1)}`;
+ document.getElementById("bestValue").textContent=p.name;document.getElementById("bestValueMeta").textContent=`${impactLabel}`;
 }
 function renderTop(){
  const r=roundInfo(currentPick);
@@ -1098,22 +1435,19 @@ function renderBoardSuggest(){
  const card=document.getElementById("boardSuggestCard");
  if(!card)return;
  if(currentPick>MAX_PICK){document.getElementById("boardSuggestBody").innerHTML=`<div class="mini">Draft complete — check your grade on the Draft tab.</div>`;return}
- const team=myTeam();
- const p=bestPlayer();
+ const team=myTeam(),p=bestPlayer();
  if(!p){document.getElementById("boardSuggestBody").innerHTML=`<div class="mini">No players available.</div>`;return}
- const starters=starterNeeded(team);
- const runs=positionRunPressure(p.pos);
+ const d=draftDecisionScore(p,team),tw=takeNowVsWait(p,team);
+ const alternatives=pickCandidates(team).filter(x=>x.name!==p.name).slice().sort((a,b)=>decisionCompare(a,b,team));
+ const next=alternatives[0],impact=next?Math.max(0,d.score-draftDecisionScore(next,team).score):0;
  const why=[];
- if(starters.includes(p.pos))why.push("Fills an open starter slot");
- why.push(`~${p.seasonPts} proj pts this season (${p.vor>=0?"+":""}${p.vor.toFixed(1)}/wk vs replacement ${p.pos})`);
- if(runs>=0.34)why.push(`${p.pos} run detected (${Math.round(runs*100)}% of recent picks)`);
- why.push(p.action==="STEAL"?"Trending as a value at this pick":p.action==="REACH"?"Still a reasonable roster fit despite tight value window":"On-time value for this pick");
+ if(d.need>=88)why.push(`Fills open ${p.pos} starter slot`);
+ if(d.cliff.strength>=55)why.push(`Tier cliff: ${d.cliff.label}`);
+ if(d.loss.expectedLoss>=45)why.push(`${d.loss.survival}% survival to next pick`);
+ if(d.scarcity>=60)why.push(`${p.pos} scarcity/run pressure`);
+ if(!why.length)why.push("Best market option without a material reason to wait");
  if(!canDraftNow())why.push("Preview only — not your turn yet");
- const tw=takeNowVsWait(p,team);
- document.getElementById("boardSuggestBody").innerHTML=`<div class="rec-top"><div><div class="rec-name">${p.name}</div><div class="rec-sub">${p.pos} · ${p.team} · ADP ${p.adp??"—"} · Sug. Rd ${p.suggestedRound??"—"}</div></div><div class="score">${p.score>=0?"+":""}${p.score.toFixed(1)}</div></div><div class="why">${why.map(w=>`<span class="tag">${w}</span>`).join("")}</div>
- <div class="tnw"><div class="tnw-box"><span class="mini">TAKE NOW</span><b class="positive">${tw.takeNow}</b></div><div class="tnw-box"><span class="mini">WAIT</span><b class="${tw.wait<tw.takeNow-15?"negative":""}">${tw.wait}</b></div><div class="tnw-box"><span class="mini">SURVIVAL</span><b class="${tw.survive<30?"negative":tw.survive<60?"amber":"positive"}">${tw.survive}%</b></div></div>
- <div class="scorebreak"><div class="smallcaps" style="margin:11px 0 6px">Score breakdown</div>${breakdownBars(p,team)}</div>
- <div style="margin-top:10px"><button class="primary btnsm" ${canDraftNow()?"":"disabled"} onclick="draftPlayer('${esc(p.name)}')">${canDraftNow()?(liveDraftMode?"LOG ":"DRAFT ")+p.name.toUpperCase():(currentPick>MAX_PICK?"DRAFT COMPLETE":"WAIT FOR YOUR TURN")}</button></div>`;
+ document.getElementById("boardSuggestBody").innerHTML=`<div class="rec-top"><div><div class="rec-name">${p.name}</div><div class="rec-sub">${p.pos} · ${p.team} · ADP ${p.adp??"—"} · Sug. Rd ${p.suggestedRound??"—"}</div></div><div class="score">+${impact.toFixed(1)}</div></div><div class="why">${why.map(w=>`<span class="tag">${w}</span>`).join("")}</div><div class="tnw"><div class="tnw-box"><span class="mini">TAKE NOW</span><b class="positive">${tw.takeNow}</b></div><div class="tnw-box"><span class="mini">WAIT</span><b>${tw.wait}</b></div><div class="tnw-box"><span class="mini">SURVIVAL</span><b class="${tw.survive<30?"negative":tw.survive<60?"amber":"positive"}">${tw.survive}%</b></div></div><div class="mini" style="margin-top:9px"><b>Why ${p.name} over ${next?next.name:"the field"}?</b> ${next?`+${impact.toFixed(1)} decision impact; ADP ${p.adp??"—"} vs ${next.adp??"—"}.`:"No close alternative remains."}</div><div class="scorebreak"><div class="smallcaps" style="margin:11px 0 6px">Decision breakdown</div>${breakdownBars(p,team)}</div><div style="margin-top:10px"><button class="primary btnsm" ${canDraftNow()?"":"disabled"} onclick="draftPlayer('${esc(p.name)}')">${canDraftNow()?(liveDraftMode?"LOG ":"DRAFT ")+p.name.toUpperCase():(currentPick>MAX_PICK?"DRAFT COMPLETE":"WAIT FOR YOUR TURN")}</button></div>`;
 }
 function togglePlanPreview(){
  const body=document.getElementById("planPreviewBody");
@@ -1128,20 +1462,64 @@ function teamStarterPts(t){
  const {starters}=getStarterSplit(t);
  return starters.reduce((s,{p})=>s+(p?projPts(p):0),0);
 }
-function computeTeamFit(t){
-  const all=teams.map(team=>({
-    pts:teamStarterPts(team),
-    complete:Object.keys(STARTER_TARGET).reduce((s,pos)=>s+Math.min(1,posCount(team,pos)/STARTER_TARGET[pos]),0)/Object.keys(STARTER_TARGET).length,
-    balance:Object.keys(STARTER_TARGET).reduce((s,pos)=>{const c=posCount(team,pos),target=STARTER_TARGET[pos];return s+(c>=target?1:Math.max(0,c/target));},0)/Object.keys(STARTER_TARGET).length
-  }));
-  const ptsVals=all.map(x=>x.pts), minPts=Math.min(...ptsVals),maxPts=Math.max(...ptsVals),avgPts=ptsVals.reduce((a,b)=>a+b,0)/(ptsVals.length||1);
-  const ptsRelative=maxPts===minPts?50:50+40*((teamStarterPts(t)-avgPts)/(maxPts-minPts));
-  const idx=teams.indexOf(t), completeness=(all[idx]?.complete??0)*100, balance=(all[idx]?.balance??0)*100;
-  const capitalDeltas=(t.roster||[]).map(p=>{const pick=p.draftOverall??p.draftPick,adp=p.adp;return (pick!=null&&adp!=null&&adp<900)?Math.max(-30,Math.min(30,pick-adp)):0;});
-  const capitalAvg=capitalDeltas.length?capitalDeltas.reduce((a,b)=>a+b,0)/capitalDeltas.length:0;
-  const capitalScore=Math.max(0,Math.min(100,50+capitalAvg*1.15));
-  return Math.max(0,Math.min(100,ptsRelative*0.55+completeness*0.20+balance*0.10+capitalScore*0.15));
+function playerDraftQuality(p){
+  if(!p)return 0;
+  const rawAdp=p.adp;
+  const adp=rawAdp==null?240:rawAdp;
+  const tierRank={"Elite":1,"Tier 2":2,"Tier 3":3,"Tier 4":4,"Tier 5":5,"Tier 6":6,"Late":7,"Bench":8,"Waiver":9,"DEF":8,"K":8};
+  const tier=tierRank[p.tier]||6;
+  // v17: market quality is intentionally less punitive for later-round skill players.
+  // A player with ADP 100 is still a useful fantasy asset; the old curve treated him
+  // too much like a poor player simply because he was drafted later.
+  const adpScore=Math.max(0,Math.min(100,100-(Math.max(1,adp)-1)*0.23));
+  const tierScore=Math.max(0,100-(tier-1)*10);
+  return rawAdp==null?(adpScore*0.35+tierScore*0.65):(adpScore*0.88+tierScore*0.12);
 }
+function draftCapitalScore(p){
+  if(!p)return 50;
+  const pick=p.draftOverall??p.draftPick;
+  const adp=p.adp;
+  if(pick==null||adp==null||adp>=900)return 50;
+  // Positive = selected earlier than market ADP; negative = selected later.
+  const edge=Math.max(-35,Math.min(35,adp-pick));
+  return Math.max(0,Math.min(100,70+edge*0.85));
+}
+function draftGradeMetrics(t){
+  const split=getStarterSplit(t);
+  const skillStarters=split.starters.filter(x=>SKILL_POSITIONS.includes(x.pos));
+  const filledSkill=skillStarters.filter(x=>x.p);
+  const starterQuality=filledSkill.length?filledSkill.reduce((s,x)=>s+playerDraftQuality(x.p),0)/filledSkill.length:0;
+  const starterCapital=filledSkill.length?filledSkill.reduce((s,x)=>s+draftCapitalScore(x.p),0)/filledSkill.length:50;
+  const skillComplete=skillStarters.length?filledSkill.length/skillStarters.length*100:0;
+  const complete=Object.keys(STARTER_TARGET).reduce((s,pos)=>s+Math.min(1,posCount(t,pos)/STARTER_TARGET[pos]),0)/Object.keys(STARTER_TARGET).length*100;
+  const depthTargets={QB:1,RB:2,WR:3,TE:1};
+  const depthScore=Object.keys(depthTargets).reduce((s,pos)=>s+Math.min(1,posCount(t,pos)/depthTargets[pos]),0)/4*100;
+  const balance=Math.max(0,Math.min(100,complete*0.75+depthScore*0.25));
+  const skillRoster=(t.roster||[]).filter(p=>SKILL_POSITIONS.includes(p.pos));
+  const capital=skillRoster.length?skillRoster.reduce((s,p)=>s+draftCapitalScore(p),0)/skillRoster.length:50;
+  const def=t.roster.find(p=>p.pos==="DEF"),k=t.roster.find(p=>p.pos==="K");
+  const defRound=def?.draftOverall?Math.ceil(def.draftOverall/12):0;
+  const kRound=k?.draftOverall?Math.ceil(k.draftOverall/12):0;
+  const specialTiming=(defRound===15?50:Math.max(0,50-Math.abs(defRound-15)*18))+(kRound===16?50:Math.max(0,50-Math.abs(kRound-16)*18));
+  const qb=t.roster.filter(p=>p.pos==="QB").sort((a,b)=>(a.draftOverall??999)-(b.draftOverall??999))[0];
+  const te=t.roster.filter(p=>p.pos==="TE").sort((a,b)=>(a.draftOverall??999)-(b.draftOverall??999))[0];
+  const onesieTiming=p=>{
+   if(!p||p.draftOverall==null)return 0;
+   const adp=p.adp==null?p.draftOverall:p.adp;
+   const delta=p.draftOverall-adp;
+   return Math.max(0,Math.min(100,92-delta*1.5));
+  };
+  const checkpoint=onesieTiming(qb)*0.5+onesieTiming(te)*0.5;
+  const byeCounts={};(t.roster||[]).forEach(p=>{const w=byeWeek(p.team);byeCounts[w]=(byeCounts[w]||0)+1});
+  const worstBye=Object.values(byeCounts).length?Math.max(...Object.values(byeCounts)):0;
+  const byePenalty=worstBye>=7?5:worstBye>=6?3:worstBye>=5?1:0;
+  // v17 grade: skill-player quality drives the grade. DEF/K are judged on timing,
+  // not on raw ADP, so a correct Round 15/16 finish cannot tank a strong draft.
+  const score=starterQuality*0.52+starterCapital*0.18+depthScore*0.12+skillComplete*0.08+specialTiming*0.05+checkpoint*0.05-byePenalty;
+  return {score:Math.max(0,Math.min(100,score)),starterQuality,starterCapital,skillComplete,complete,depthScore,balance,capital,specialTiming,checkpoint,worstBye};
+}
+function computeTeamFit(t){return draftGradeMetrics(t).score;}
+
 function rankedTeams(){
  return teams.map((t,i)=>({i,t,fit:computeTeamFit(t),pts:teamStarterPts(t),me:i===(draftPos-1)})).sort((x,y)=>y.fit-x.fit);
 }
@@ -1351,7 +1729,7 @@ function renderMatchup(){
  el.innerHTML=`
   <div class="matchup-head">
    <div class="matchup-team"><b>${escHtml(me.name)}${myIdx===(draftPos-1)?' <span class="youpill">YOU</span>':""}</b><div class="mscore ${myTotal>=oppTotal?"positive":"negative"}">${myTotal.toFixed(1)}</div></div>
-   <div class="matchup-vs">WK ${plannerWeek}<br>VS</div>
+   <div class="matchup-vs">WK ${plannerWeek}<br>VS<div class="mini" style="margin-top:4px">${scheduleSyncState?.status==="done"?"SIMULATED FANTASY MATCHUP":"SCHEDULE DATA ONLY"}</div></div>
    <div class="matchup-team"><b>${escHtml(opp.name)}</b><div class="mscore ${oppTotal>myTotal?"positive":"negative"}">${oppTotal.toFixed(1)}</div></div>
   </div>
   <div class="matchup-cols">
@@ -1366,11 +1744,11 @@ function renderPlanner(){
   if(!p)return `<div class="lineuprow"><div class="lp-pos">${pos}</div><div class="lp-name"><b class="need">OPEN</b></div></div>`;
   const bye=byeWeek(p.team)===plannerWeek;
   const pts=weeklyProj(p,plannerWeek);
-  return `<div class="lineuprow"><div class="lp-pos">${pos}</div><div class="lp-name"><b>${p.name}${bye?'<span class="byebadge">BYE</span>':""}${statusBadge(p.name)}</b><span>${weekOpp(p,plannerWeek)==="BYE"?"BYE":`${p.team} ${weekOpp(p,plannerWeek)}`}</span></div><div class="lp-pts ${bye||isInjuredOut(p.name)?"negative":"positive"}">${pts.toFixed(1)}</div></div>`;
+  return `<div class="lineuprow"><div class="lp-pos">${pos}</div><div class="lp-name"><b>${p.name}${bye?'<span class="byebadge">BYE</span>':""}${statusBadge(p.name)}</b><span>${weekMatchupLabel(p,plannerWeek)==="BYE"?"BYE":`${p.team} ${weekMatchupLabel(p,plannerWeek)}`}</span></div><div class="lp-pts ${bye||isInjuredOut(p.name)?"negative":"positive"}">${pts.toFixed(1)}</div></div>`;
  }).join("")||`<div class="mini">Draft a roster first.</div>`;
  document.getElementById("lineupBench").innerHTML=bench.length?bench.map(p=>{
   const bye=byeWeek(p.team)===plannerWeek;const pts=weeklyProj(p,plannerWeek);
-  return `<div class="lineuprow"><div class="lp-pos">${p.pos}</div><div class="lp-name"><b>${p.name}${bye?'<span class="byebadge">BYE</span>':""}${statusBadge(p.name)}</b><span>${weekOpp(p,plannerWeek)==="BYE"?"BYE":`${p.team} ${weekOpp(p,plannerWeek)}`}</span></div><div class="lp-pts">${pts.toFixed(1)}</div></div>`;
+  return `<div class="lineuprow"><div class="lp-pos">${p.pos}</div><div class="lp-name"><b>${p.name}${bye?'<span class="byebadge">BYE</span>':""}${statusBadge(p.name)}</b><span>${weekMatchupLabel(p,plannerWeek)==="BYE"?"BYE":`${p.team} ${weekMatchupLabel(p,plannerWeek)}`}</span></div><div class="lp-pts">${pts.toFixed(1)}</div></div>`;
  }).join(""):`<div class="mini">No bench players — try the Waiver Wire tab.</div>`;
  const flags=[];
  starters.forEach(({pos,p})=>{
@@ -1557,22 +1935,22 @@ function printCheatSheet(){
 function renderDraftGrade(){
  const card=document.getElementById("draftGradeCard");
  if(!card)return;
- if(currentPick<=MAX_PICK){card.style.display="none";return}
+ if(currentPick<=MAX_PICK){card.style.display="none";return;}
  card.style.display="block";
  const team=myTeam();
  const overall=computeTeamFit(team);
- const grade=overall>=95?"A+":overall>=90?"A":overall>=82?"B":overall>=74?"C":overall>=65?"D":"F";
- const gclass=overall>=90?"gA":overall>=82?"gB":overall>=74?"gC":overall>=65?"gD":"gF";
+ const grade=overall>=92?"A+":overall>=86?"A":overall>=78?"B":overall>=68?"C":overall>=58?"D":"F";
+ const gclass=overall>=86?"gA":overall>=78?"gB":overall>=68?"gC":overall>=58?"gD":"gF";
  const {starters}=getStarterSplit(team);
  const totalSeasonPts=starters.reduce((s,{p})=>s+(p?seasonPts(p):0),0);
  const ranked=rankedTeams();
  const myRank=ranked.findIndex(x=>x.i===(draftPos-1))+1;
- const roster=team.roster;
- const byeCounts={};roster.forEach(p=>{const w=byeWeek(p.team);byeCounts[w]=(byeCounts[w]||0)+1});
- const worstBye=Object.entries(byeCounts).sort((a,b)=>b[1]-a[1])[0];
+ const m=draftGradeMetrics(team);
+ const worstBye=m.worstBye;
  document.getElementById("draftGradeBadge").innerHTML=`<span class="tf-grade ${gclass}" style="display:inline-block;font-size:20px;width:52px;padding:8px 0">${grade}</span>`;
- document.getElementById("draftGradeText").innerHTML=`~${totalSeasonPts.toLocaleString()} projected season points from your starters · Ranked #${myRank} of 12 by projected strength · 100-point grade uses starter strength (60%), completeness (20%), positional balance (10%), and draft-capital efficiency (10%).${worstBye&&worstBye[1]>=3?` Heads up: ${worstBye[1]} players share a Week ${worstBye[0]} bye.`:""}`;
+ document.getElementById("draftGradeText").innerHTML=`Draft quality ${overall.toFixed(0)}/100 · Skill starter quality ${m.starterQuality.toFixed(0)} · Starter completeness ${m.skillComplete.toFixed(0)} · Depth ${m.depthScore.toFixed(0)} · Skill capital ${m.capital.toFixed(0)} · DEF/K timing ${Math.round(m.specialTiming)} · Ranked #${myRank} of 12. DEF/K are graded by draft timing rather than raw ADP. The season-points figure (~${totalSeasonPts.toLocaleString()}) is a fallback estimate, not a live projection feed.${worstBye>=5?` Heads up: ${worstBye} players share the same bye week.`:""}`;
 }
+
 function renderDraftNight(){
  const headline=document.getElementById("dnHeadline"), sub=document.getElementById("dnHeadlineSub"), next=document.getElementById("dnNextTurn"), wait=document.getElementById("dnWait"), rosterEl=document.getElementById("dnRoster"), risk=document.getElementById("dnRiskList"), btn=document.getElementById("dnDraftBtn");
  if(!headline)return;
@@ -1591,25 +1969,25 @@ function renderDraftNight(){
  else risk.innerHTML=candidates.map((x,i)=>{const sp=survivalProb(x,nextTurn-1);return `<div class="dn-row ${sp<35?"dn-danger":""}"><div class="dn-rank">${i+1}</div><div class="dn-player"><b>${escHtml(x.name)}</b><div class="dn-meta">${x.pos} · ${x.team} · ADP ${x.adp} · ${sp}% survival estimate</div></div><span class="dn-tag">${sp<35?"HIGH RISK":"WATCH"}</span></div>`}).join("");
 }
 function decisionEngine(){
- const p=bestPlayer();
- const card=document.getElementById("draftDecisionCard");
+ const p=bestPlayer(),card=document.getElementById("draftDecisionCard");
  if(!card)return;
- if(currentPick>MAX_PICK||!p){card.style.display="none";return;}
+ if(currentPick>MAX_PICK||!p){card.style.display="none";return}
  card.style.display="block";
- const team=myTeam();
- const nmp=nextMyPick(currentPick+1);
- const wait=takeNowVsWait(p,team);
- const alternatives=pickCandidates(team).filter(x=>x.name!==p.name).sort(recommendationComparator);
+ const team=myTeam(),d=draftDecisionScore(p,team),tw=takeNowVsWait(p,team);
+ const alternatives=pickCandidates(team).filter(x=>x.name!==p.name).slice().sort((a,b)=>decisionCompare(a,b,team));
  const fallback=alternatives[0];
  const badge=document.getElementById("decisionBadge");
- const risk=wait.survive<30?"HIGH RISK":wait.survive<60?"WATCH":"SAFE TO WAIT";
- badge.textContent=risk;badge.className="decision-badge "+(wait.survive<30?"danger":wait.survive<60?"warn":"good");
+ const risk=tw.survive<30?"HIGH RISK":tw.survive<60?"WATCH":"SAFE TO WAIT";
+ badge.textContent=risk;badge.className="decision-badge "+(tw.survive<30?"danger":tw.survive<60?"warn":"good");
  document.getElementById("decisionPlayer").textContent=`${p.name} · ${p.pos}`;
- document.getElementById("decisionSummary").textContent=`Pick ${currentPick} · Round ${roundInfo(currentPick).round} · Seat #${draftPos}. ADP-first, then draft-window and roster context.`;
- document.getElementById("decisionReasons").innerHTML=[`ADP ${p.adp??"—"}`,`${p.seasonPts??0} projected pts`,`Take-now score ${wait.takeNow}`,`${wait.survive}% estimated survival`].map(x=>`<span class="tag">${x}</span>`).join("");
- document.getElementById("decisionFallback").innerHTML=fallback?`<b>${fallback.name}</b> · ${fallback.pos} · ADP ${fallback.adp??"—"}<div class="mini" style="margin-top:4px">${wait.survive>=60?"Reasonable to wait if you prefer roster flexibility.":"Passing carries meaningful risk before pick #"+(nmp||MAX_PICK)+"."}</div>`:`<span class="mini">No comparable fallback remains.</span>`;
- const run=positionRunPressure(p.pos);
- document.getElementById("decisionRun").textContent=run>=.34?`${p.pos} run is active (${Math.round(run*100)}% of recent picks).`:run>=.20?`${p.pos} is showing moderate draft pressure.`:"No major position run detected.";
+ document.getElementById("decisionSummary").textContent=`Pick ${currentPick} · Round ${roundInfo(currentPick).round} · Seat #${draftPos}. ADP remains the anchor; tier/scarcity can override only when the advantage is material.`;
+ document.getElementById("decisionReasons").innerHTML=[`ADP ${p.adp??"—"}`,`Tier ${p.tier}`,`${tw.survive}% survival`,`Tier cliff ${d.cliff.strength}/100`,`Loss risk ${d.loss.expectedLoss}/100`].map(x=>`<span class="tag">${x}</span>`).join("");
+ document.getElementById("decisionWhy").innerHTML=`<b>Why this player?</b> ${reason(p)}${fallback?` — beats ${fallback.name} by ${Math.max(0,d.score-draftDecisionScore(fallback,team).score).toFixed(1)} decision points.`:""}`;
+ document.getElementById("decisionFallback").innerHTML=fallback?`<b>${fallback.name}</b> · ${fallback.pos} · ADP ${fallback.adp??"—"}<div class="mini" style="margin-top:4px">${tw.survive>=60?"Reasonable to wait if you prefer roster flexibility; the tier is not collapsing yet.":"Passing carries meaningful expected loss before your next turn."}</div>`:`<span class="mini">No comparable fallback remains.</span>`;
+ const run=positionRunPressure(p.pos),scar=d.scarcity;
+ document.getElementById("decisionRun").textContent=run>=.34?`${p.pos} run is active (${Math.round(run*100)}% of recent picks) · scarcity ${scar}/100.`:run>=.20?`${p.pos} has moderate draft pressure · scarcity ${scar}/100.`:`No major ${p.pos} run · scarcity ${scar}/100.`;
+ const impact=fallback?d.score-draftDecisionScore(fallback,team).score:0;
+ document.getElementById("decisionImpact").innerHTML=fallback?`<span class="${impact>=0?"impact-pos":"impact-neg"}">${impact>=0?"+":""}${impact.toFixed(1)}</span> vs ${fallback.name} · ${d.cliff.strength>=55?"tier protection matters":"no material tier cliff"}.`:"No close alternative.";
 }
 function gamePlanRows(){
  const body=document.getElementById("gamePlanBody");if(!body)return;
@@ -1637,7 +2015,7 @@ function mockQualityReport(){
   [qbsLate<=4,"QB timing",`${qbsLate}/12 first QBs were drafted at pick 85+`],
   [tesLate<=4,"TE timing",`${tesLate}/12 first TEs were drafted at pick 110+`]
  ];
- document.getElementById("mockQualityBody").innerHTML=`<div class="qualitygrid">${items.map(([ok,label,desc])=>`<div class="qrow"><b class="${ok?"qok":"qbad"}">${ok?"✓":"⚠"} ${label}</b><span>${desc}</span></div>`).join("")}</div><div class="mini" style="margin-top:10px">This report is a realism check, not a projection accuracy score. A strong result means the simulated league followed reasonable roster construction and round timing.</div>`;
+ document.getElementById("mockQualityBody").innerHTML=`<div class="qualitygrid">${items.map(([ok,label,desc])=>`<div class="qrow"><b class="${ok?"qok":"qbad"}">${ok?"✓":"⚠"} ${label}</b><span>${desc}</span></div>`).join("")}</div><div class="mini" style="margin-top:10px">This report is a realism check, not a projection accuracy score. A strong result means the simulated league followed reasonable roster construction and round timing. v17 also grades your team separately from the room-quality score so DEF/K do not unfairly drag down a strong skill-player draft.</div>`;
 }
 function render(){
  renderTop();renderDraftNight();decisionEngine();gamePlanRows();renderRec();renderRoster();renderRuns();renderBoard();renderBoardSuggest();
@@ -1685,13 +2063,17 @@ document.getElementById("waiverSearch").oninput=e=>{waiverQuery=e.target.value;r
 document.getElementById("waiverPos").onchange=e=>{waiverPos=e.target.value;renderWaivers()};
 document.getElementById("exportBtn").onclick=exportState;
 document.getElementById("importFile").onchange=e=>{if(e.target.files[0])importState(e.target.files[0])};
-document.getElementById("wipeBtn").onclick=()=>{if(!confirm("Wipe all saved draft data from this browser? This cannot be undone."))return;localStorage.removeItem(STORAGE_KEY);showToast("Saved state wiped — reload to start fresh")};
+document.getElementById("wipeBtn").onclick=()=>{if(!confirm("Wipe all saved draft data from this browser? This cannot be undone."))return;resetEverything()};
 document.getElementById("printCheatSheetBtn").onclick=printCheatSheet;
 document.getElementById("liveSyncBtn").onclick=syncLiveData;
 document.getElementById("projectionSyncBtn").onclick=syncWeeklyProjections;
+document.getElementById("adpSyncBtn").onclick=()=>syncLiveADP(false);
+document.getElementById("adpCsvFile").onchange=e=>{if(e.target.files[0])importADPCSV(e.target.files[0])};
+document.getElementById("scheduleSyncBtn").onclick=()=>syncNFLSchedule(false);
 document.getElementById("projectionSettingsSave").onclick=()=>{
   projectionLeagueId=document.getElementById("projectionLeagueId").value.trim();
   projectionProxyUrl=document.getElementById("projectionProxyUrl").value.trim();
+  adpProxyUrl=document.getElementById("adpProxyUrl").value.trim();
   saveState();showToast("Projection settings saved");
 };
 document.getElementById("liveDraftToggle").onchange=e=>{liveDraftMode=e.target.checked;showToast(liveDraftMode?"Live Draft Mode ON — every pick logs for real":"Live Draft Mode off");render();saveState()};
@@ -1716,8 +2098,15 @@ if(typeof location!=="undefined"&&location.protocol==="file:"){
 document.getElementById("philosophy").value=philosophy;
 document.getElementById("projectionLeagueId").value=projectionLeagueId;
 document.getElementById("projectionProxyUrl").value=projectionProxyUrl;
+document.getElementById("adpProxyUrl").value=adpProxyUrl;
 document.getElementById("sort").value=sort;
 render();
+renderLiveSyncStatus();
+renderProjectionSyncStatus();
+if(adpSyncState?.status==="done")setADPStatus(`✓ Live ADP synced ${new Date(adpSyncState.timestamp).toLocaleString()} — ${adpSyncState.count||0} rows.`);
+if(adpSyncState?.status==="error")setADPStatus(`⚠️ Last ADP sync failed: ${adpSyncState.error||"unknown error"}. Fallback snapshot remains active.`);
+if(scheduleSyncState?.status==="done")setScheduleStatus(`✓ NFL schedule loaded ${new Date(scheduleSyncState.timestamp).toLocaleString()}.`);
+if(location.protocol.startsWith("http")){setTimeout(()=>syncNFLSchedule(true),300);}
 </script>
 <script>
 if('serviceWorker' in navigator && location.protocol.startsWith('http')){
