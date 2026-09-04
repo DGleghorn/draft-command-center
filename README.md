@@ -1,15 +1,16 @@
-# Draft Command Center v10
+# Draft Command Center v13 PWA
 
-12-team PPR draft-day PWA.
+Upload these files to the root of the GitHub Pages repository: index.html, manifest.json, sw.js, icon-192.png, and icon-512.png. GitHub Pages publishes static files from the configured branch/folder; `index.html` is the entry file.
 
-## Draft policy
-- Rounds 1–14: Skill Players (QB/RB/WR/TE) prioritized.
-- Round 15: Defense.
-- Round 16: Kicker.
-- If DEF/K is already rostered, the engine safely returns to skill players.
+Open the HTTPS GitHub Pages URL in Safari on iPhone, then use **Share -> Add to Home Screen -> Open as Web App**. The manifest, service worker and icons are included so v13 is packaged as a real installable web app rather than a raw HTML document.
 
-## GitHub Pages
-Upload the contents of this folder to the repository root, commit to `main`, and enable GitHub Pages from the repository settings. Open the Pages URL in Safari, then use Share → Add to Home Screen.
+v13 adds:
+- Slot-aware draft decision engine for the #2 seat
+- Dynamic Draft Game Plan using your future snake-draft turns
+- More realistic simulated opponent personalities and roster construction
+- Mock Draft Quality Report
+- QB/TE timing guardrails and position ceilings
+- ADP-first recommendations with risk/fallback context
+- Existing DEF Round 15 / K Round 16 policy
 
-## Important
-The browser PWA is production-ready for local draft tracking/offline use. Live private ESPN synchronization still requires a secure server-side connector; ESPN credentials should never be placed in this client-side bundle.
+ESPN private-league live sync still requires a secure server-side connector.

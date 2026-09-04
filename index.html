@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b1020">
-<title>Draft Command Center v10</title>
+<title>Draft Command Center v13</title>
 <style>
 :root{--bg:#090d17;--panel:#111827;--panel2:#151e2f;--line:#263249;--text:#f4f7fb;--muted:#91a0b7;--blue:#6d6aff;--cyan:#4dd7ff;--green:#28d7a1;--red:#ff6475;--amber:#f6b94a;--shadow:0 14px 45px rgba(0,0,0,.22)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior-x:none}body{min-width:0}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}input,select,textarea{font-size:16px}
@@ -68,9 +68,12 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 
 /* v11 Draft Night Mode */
 .dn-grid{display:grid;grid-template-columns:1.35fr .85fr;gap:12px;margin-top:12px}.dn-card{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:14px}.dn-title{font-size:10px;letter-spacing:1.2px;font-weight:900;color:#9aa8bd;text-transform:uppercase}.dn-big{font-size:25px;font-weight:950;letter-spacing:-.7px;margin-top:4px}.dn-sub{font-size:11px;color:#8291a9;margin-top:3px}.dn-list{display:grid;gap:7px;margin-top:10px}.dn-row{display:flex;align-items:center;gap:8px;padding:9px 10px;border:1px solid #243047;border-radius:11px;background:#0d1524}.dn-rank{width:24px;text-align:center;font-size:10px;font-weight:900;color:#7e8da6}.dn-player{flex:1;min-width:0}.dn-player b{font-size:12px}.dn-meta{font-size:10px;color:#7f8da3;margin-top:2px}.dn-tag{font-size:9px;font-weight:900;padding:4px 6px;border-radius:7px;background:#17243a;color:#b8c6dc}.dn-danger{border-color:#5a3a25;background:#19150f}.dn-danger .dn-tag{color:#f6c56b}.dn-safe{border-color:#23473e}.dn-policy{display:flex;gap:9px;align-items:flex-start;margin-top:10px;padding:10px;border:1px solid #23473e;background:#10231f;border-radius:11px;font-size:10px;color:#a8d9cb;line-height:1.5}.dn-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.dn-minigrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.dn-minibox{padding:9px;border:1px solid #243047;border-radius:10px;background:#0d1524}.dn-minibox b{display:block;font-size:13px;margin-top:2px}.dn-minibox span{font-size:9px;color:#7f8da3;text-transform:uppercase;font-weight:800}@media(max-width:760px){.dn-grid{grid-template-columns:1fr}.dn-minigrid{grid-template-columns:1fr 1fr}.dn-big{font-size:22px}}
+
+/* v13 decision engine */
+.v13-decision{border-color:#313a62;background:linear-gradient(135deg,#12182b,#101522)}.decision-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;margin-top:12px}.decision-main,.decision-side{border:1px solid var(--line);border-radius:12px;padding:12px;background:#0d1421}.decision-player{font-size:24px;font-weight:950;margin-top:5px}.decision-reasons{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.decision-reasons .tag{font-size:9px}.decision-side{font-size:11px;line-height:1.5}.decision-badge{font-size:9px;font-weight:900;padding:5px 8px;border-radius:8px;background:#27225e;color:#d8d4ff}.decision-badge.good{background:#103b32;color:#5de0b7}.decision-badge.warn{background:#3c3018;color:#f6c56b}.decision-badge.danger{background:#421e29;color:#ff8190}.gp-row{display:grid;grid-template-columns:42px 1fr auto;gap:9px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}.gp-pick{font-size:10px;font-weight:900;color:#68778e}.gp-main b{font-size:11px}.gp-main span{display:block;font-size:9px;color:#718099;margin-top:2px}.gp-tag{font-size:8px;padding:4px 6px;border-radius:7px;background:#17243a;color:#aab8cc;font-weight:900}.qualitygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.qrow{padding:10px;border:1px solid var(--line);border-radius:10px;background:#0d1421}.qrow b{display:block;font-size:11px}.qrow span{font-size:9px;color:#718099}.qok{color:#5de0b7}.qwarn{color:#f6c56b}.qbad{color:#ff8190}@media(max-width:700px){.decision-grid{grid-template-columns:1fr}.qualitygrid{grid-template-columns:1fr 1fr}}
 </style>
 <link rel="manifest" href="./manifest.json">
-<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./icon-192.png">
 </head>
 <body>
 <div id="iosFileNotice" style="display:none;position:fixed;inset:0;z-index:999;background:#090d17;color:#f4f7fb;padding:24px;align-items:center;justify-content:center;text-align:center;font-family:system-ui,-apple-system,sans-serif">
@@ -85,7 +88,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 <div class="app">
 <header class="top">
   <div class="toprow">
-    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v11</span></h1></div></div>
+    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v13</span></h1></div></div>
     <div class="status"><div class="live" title="Roster refresh is live-capable; ADP/rankings remain fallback until a source is configured"><i class="pulse"></i><span id="syncText">DEMO / CONNECTOR READY</span></div><button class="topbtn" id="espnBtn">ESPN SYNC</button></div>
   </div>
   <nav class="nav" id="nav">
@@ -126,6 +129,14 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
     </div>
   </div>
 
+  <div class="section card panelpad v13-decision" id="draftDecisionCard">
+    <div class="sectionhead"><div><h2>🧠 Draft Decision Engine</h2><p id="decisionSummary">Your pick-specific recommendation, risk level and fallback plan.</p></div><span class="decision-badge" id="decisionBadge">—</span></div>
+    <div class="decision-grid">
+      <div class="decision-main"><div class="smallcaps">RECOMMENDED ACTION</div><div class="decision-player" id="decisionPlayer">—</div><div class="decision-reasons" id="decisionReasons"></div></div>
+      <div class="decision-side"><div class="smallcaps">IF YOU WAIT</div><div id="decisionFallback">—</div><div class="smallcaps" style="margin-top:12px">POSITION RUN</div><div id="decisionRun">—</div></div>
+    </div>
+  </div>
+
   <div class="section hero">
     <div class="card rec"><div class="smallcaps">🎯 Best pick now</div><div id="recommendation"></div></div>
     <div class="card roster"><div class="smallcaps">👥 My roster</div><div class="slots" id="roster"></div><div id="bench"></div></div>
@@ -136,6 +147,11 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
   </div>
 
   <div class="section banner" id="alertBanner" style="display:none"><span id="alertIcon">⚠️</span><div><b id="alertTitle">Draft intelligence</b><span id="alertText"></span></div></div>
+
+  <div class="section card panelpad" id="gamePlanCard">
+    <div class="sectionhead"><div><h2>🗺️ Your Draft Game Plan</h2><p>Slot-aware roadmap for your #2 seat. It updates after every pick and adapts to your roster.</p></div></div>
+    <div id="gamePlanBody"></div>
+  </div>
 
   <div class="section card panelpad">
     <div class="sectionhead"><div><h2>Position runs</h2><p>Recent draft pressure by position.</p></div></div><div id="runs"></div>
@@ -170,6 +186,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
       <button class="ghost btnsm" id="mockResetBtn">RESET</button>
     </div>
     <div class="mockwrap"><table class="mockboard" id="mockTable"></table></div>
+    <div class="section card panelpad" id="mockQualityCard" style="display:none;margin-top:14px"><div class="sectionhead"><div><h2>🧪 Mock Draft Quality Report</h2><p>Checks whether the simulated league behaved like a realistic 12-team PPR draft.</p></div><span class="decision-badge" id="mockQualityGrade">—</span></div><div id="mockQualityBody"></div></div>
   </div>
 </section>
 
@@ -324,7 +341,11 @@ const MAX_PICK=ROUNDS*12;
 const LATE_ROUND_MIN={DEF:ROUNDS-1,K:ROUNDS};
 const REACH_ALLOWANCE=15;
 const TARGET_TOTAL_WITH_SLACK=ROSTER_SIZE;
-const STORAGE_KEY="dcc_v11_state";
+const STORAGE_KEY="dcc_v13_state";
+const BOT_PERSONALITIES=["Balanced","RB Heavy","WR Heavy","Zero RB","Hero RB","Early QB","Early TE","BPA / ADP","Aggressive","Value Hunter"];
+const BOT_PERSONALITY_BIAS={
+ Balanced:{},"RB Heavy":{RB:2.2,WR:-.5},"WR Heavy":{WR:2.2,RB:-.5},"Zero RB":{RB:-2.4,WR:2.0},"Hero RB":{RB:3.2,WR:-.8},"Early QB":{QB:4.2},"Early TE":{TE:4.2},"BPA / ADP":{},Aggressive:{},"Value Hunter":{}
+};
 const LEAGUE_TEAMS=12;
 function computeReplacementLevels(){
  const levels={};
@@ -346,6 +367,7 @@ const NFL_OPP=["ARI","ATL","BAL","BUF","CAR","CHI","CIN","CLE","DAL","DEN","DET"
 
 let currentPick=1, draftPos=2, philosophy="balanced", drafted=new Set(), teams=[], feed=[], pickHistory=[], tradeHistory=[];
 let page="draft", filterPos="ALL", filterAction="ALL", filterTier="ALL", query="", sort="adp", watchlistOnly=false;
+let botProfiles=Array.from({length:12},(_,i)=>BOT_PERSONALITIES[i%BOT_PERSONALITIES.length]);
 let tierFilterPos="ALL";
 let liveDraftMode=false, logTeamIdx=null;
 let watchlist=new Set(), lockedPlayers=new Set(), playerStatus={};
@@ -395,8 +417,8 @@ function weeklyProj(p,week){
 }
 function weekOpp(p,week){const h=hashCode(p.team+"-w"+week);return NFL_OPP[(h+week)%NFL_OPP.length]}
 function initTeams(){
- if(teams&&teams.length===12){teams=teams.map((t,i)=>({id:i,name:t.name,roster:[]}));}
- else{teams=TEAM_NAMES.map((n,i)=>({id:i,name:n,roster:[]}));}
+ if(teams&&teams.length===12){teams=teams.map((t,i)=>({id:i,name:t.name,roster:[],personality:botProfiles[i]||BOT_PERSONALITIES[i%BOT_PERSONALITIES.length]}));}
+ else{teams=TEAM_NAMES.map((n,i)=>({id:i,name:n,roster:[],personality:BOT_PERSONALITIES[i%BOT_PERSONALITIES.length]}));}
 }
 let _scheduleCache=null;
 function roundRobinRounds(n){
@@ -613,7 +635,7 @@ function renderProjectionSyncStatus(){
 /* ---------- persistence ---------- */
 function saveState(){
  try{
-  const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionSyncState,projectionLeagueId,projectionProxyUrl,savedAt:Date.now()};
+  const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,botProfiles,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionSyncState,projectionLeagueId,projectionProxyUrl,savedAt:Date.now()};
   localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
   lastSaved=new Date();
   const ls=document.getElementById("lastSaved");if(ls)ls.textContent=lastSaved.toLocaleTimeString();
@@ -625,7 +647,8 @@ function applyState(state){
  philosophy=["balanced","value","need","aggressive"].includes(state.philosophy)?state.philosophy:"balanced";
  drafted=new Set(Array.isArray(state.drafted)?state.drafted:[]);
  if(state.teams&&Array.isArray(state.teams)&&state.teams.length===12){
-  teams=state.teams.map((t,i)=>({id:i,name:String((t&&t.name)||`Team ${i+1}`).slice(0,30),roster:Array.isArray(t&&t.roster)?t.roster:[]}));
+  botProfiles=Array.isArray(state.botProfiles)&&state.botProfiles.length===12?state.botProfiles.map((x,i)=>BOT_PERSONALITIES.includes(x)?x:BOT_PERSONALITIES[i%BOT_PERSONALITIES.length]):botProfiles;
+  teams=state.teams.map((t,i)=>({id:i,name:String((t&&t.name)||`Team ${i+1}`).slice(0,30),roster:Array.isArray(t&&t.roster)?t.roster:[],personality:BOT_PERSONALITIES.includes(t&&t.personality)?t.personality:botProfiles[i]}));
  }else{initTeams();}
  feed=Array.isArray(state.feed)?state.feed:[];
  pickHistory=Array.isArray(state.pickHistory)?state.pickHistory:[];
@@ -643,7 +666,8 @@ function applyState(state){
 }
 function loadState(){
  try{
-  const raw=localStorage.getItem(STORAGE_KEY);
+  let raw=localStorage.getItem(STORAGE_KEY);
+  if(!raw){raw=localStorage.getItem("dcc_v12_state")||localStorage.getItem("dcc_v11_state");}
   if(raw){applyState(JSON.parse(raw));return true}
  }catch(e){console.warn("load failed",e)}
  return false;
@@ -804,16 +828,70 @@ function bestPlayer(){
 }
 function botPick(team){
  let a=pickCandidates(team);
- if(team!==myTeam()&&lockedPlayers.size){
-  const unlocked=a.filter(p=>!lockedPlayers.has(p.name));
-  if(unlocked.length)a=unlocked;
+ if(team!==myTeam()&&lockedPlayers.size){const unlocked=a.filter(p=>!lockedPlayers.has(p.name));if(unlocked.length)a=unlocked;}
+ const round=roundInfo(currentPick).round;
+ const rosterLen=team.roster.length;
+ const starters=starterNeeded(team);
+ const counts={QB:posCount(team,"QB"),RB:posCount(team,"RB"),WR:posCount(team,"WR"),TE:posCount(team,"TE"),DEF:posCount(team,"DEF"),K:posCount(team,"K")};
+ const ceilings={QB:2,RB:4,WR:5,TE:2,DEF:1,K:1};
+ let capped=a.filter(p=>counts[p.pos] < (ceilings[p.pos] ?? 99));
+ if(capped.length)a=capped;
+ const profile=team.personality||"Balanced";
+ const bias=BOT_PERSONALITY_BIAS[profile]||{};
+
+ // Starting-lineup completion has priority, but only when the player is close
+ // enough to the current market window to avoid unrealistic reaches.
+ if(round<=6&&starters.length){
+   const urgent=starters.filter(pos=>pos!=="DEF"&&pos!=="K");
+   const needPool=a.filter(p=>urgent.includes(p.pos));
+   const timely=needPool.filter(p=>p.adp==null||p.adp<=currentPick+18);
+   if(timely.length&&rosterLen>=2)a=timely;
  }
- const ranked=a.slice().sort((x,y)=>recommendScore(y,team)-recommendScore(x,team));
+ // QB/TE checkpoints: if a team has neither starter by the middle rounds,
+ // make the position meaningfully more likely without forcing a bad reach.
+ if(round>=7&&round<=10){
+   const coreMissing=[];
+   if(counts.QB<1)coreMissing.push("QB");
+   if(counts.TE<1)coreMissing.push("TE");
+   if(coreMissing.length){
+     const core=a.filter(p=>coreMissing.includes(p.pos));
+     const timely=core.filter(p=>p.adp==null||p.adp<=currentPick+30);
+     if(timely.length)a=timely;
+   }
+ }
+ // Never take QB2/TE2 while another starting slot is still open.
+ if(starters.length){
+   const starterPool=a.filter(p=>starters.includes(p.pos));
+   if(starterPool.length)a=starterPool;
+ }
+ // Once starters are filled, prioritize RB/WR bench upside before QB2/TE2.
+ if(round>=9&&starters.length===0){
+   const depth=a.filter(p=>p.pos==="RB"||p.pos==="WR");
+   const flexDepth=depth.length?depth:a;
+   a=flexDepth;
+ }
+ // Personality applies as a small positional nudge AFTER roster guardrails.
+ // ADP remains the primary baseline so profiles feel different without
+ // becoming caricatures.
+ const ranked=a.slice().sort((x,y)=>{
+   const adpX=x.adp==null?999:x.adp,adpY=y.adp==null?999:y.adp;
+   let c=(adpX-adpY);
+   const bx=bias[x.pos]||0,by=bias[y.pos]||0;
+   if(c!==0){
+     const adjustedX=adpX-bx*3.2, adjustedY=adpY-by*3.2;
+     c=adjustedX-adjustedY;
+     if(Math.abs(c)<1.2)c=adpX-adpY;
+   }
+   if(c!==0)return c;
+   return recommendationComparator(x,y)||recommendScore(y,team)-recommendScore(x,team);
+ });
+ if(!ranked.length)return available()[0];
  const pool=ranked.slice(0,3);
- if(!pool.length)return a[0];
+ const randomness=profile==="Aggressive"?.15:.08;
  const r=Math.random();
- return r<0.7?pool[0]:(r<0.9?(pool[1]||pool[0]):(pool[2]||pool[0]));
+ return r<1-randomness?pool[0]:(r<.97?(pool[1]||pool[0]):(pool[2]||pool[0]));
 }
+
 function simulateDraftPlan(){
  const savedDrafted=drafted,savedTeams=teams,savedPick=currentPick;
  drafted=new Set(drafted);teams=teams.map(t=>({id:t.id,name:t.name,roster:t.roster.slice()}));
@@ -1104,7 +1182,7 @@ function renderTeams(){
   const medal=rank===0?"🥇":rank===1?"🥈":rank===2?"🥉":`#${rank+1}`;
   const grade=x.fit>=95?"A+":x.fit>=90?"A":x.fit>=82?"B":x.fit>=74?"C":x.fit>=65?"D":"F";
   const gclass=x.fit>=90?"gA":x.fit>=82?"gB":x.fit>=74?"gC":x.fit>=65?"gD":"gF";
-  return `<div class="team ${me?"me":""}"><div class="teamtop"><b><span class="rankpill">${medal}</span> ${escHtml(t.name)}${me?' <span class="youpill">YOU</span>':""}</b>${needs.length?`<span class="needpill">${needs[0]} NEED</span>`:""}</div><div class="bars">${["QB","RB","WR","TE","DEF","K"].map(p=>`<div class="barline"><label>${p}</label><div class="bar"><i style="width:${Math.min(100,posCount(t,p)/TARGET[p]*100)}%"></i></div></div>`).join("")}</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span class="mini">Team fit: ${x.fit.toFixed(0)}/100</span><span class="tf-grade ${gclass}" style="font-size:10px;padding:2px 7px">${grade}</span></div></div>`;
+  return `<div class="team ${me?"me":""}"><div class="teamtop"><b><span class="rankpill">${medal}</span> ${escHtml(t.name)}${me?' <span class="youpill">YOU</span>':""}</b>${needs.length?`<span class="needpill">${needs[0]} NEED</span>`:""}</div><div class="mini" style="margin-top:5px">${me?"Your seat":`Sim profile: ${escHtml(t.personality||"Balanced")}`}</div><div class="bars">${["QB","RB","WR","TE","DEF","K"].map(p=>`<div class="barline"><label>${p}</label><div class="bar"><i style="width:${Math.min(100,posCount(t,p)/TARGET[p]*100)}%"></i></div></div>`).join("")}</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span class="mini">Team fit: ${x.fit.toFixed(0)}/100</span><span class="tf-grade ${gclass}" style="font-size:10px;padding:2px 7px">${grade}</span></div></div>`;
  }).join("");
 }
 
@@ -1512,9 +1590,58 @@ function renderDraftNight(){
  else if(!candidates.length){risk.innerHTML=`<div class="dn-row"><div class="dn-player"><b>No major ADP danger detected</b><div class="dn-meta">Keep following the ADP-first hierarchy.</div></div><span class="dn-tag">CLEAR</span></div>`;}
  else risk.innerHTML=candidates.map((x,i)=>{const sp=survivalProb(x,nextTurn-1);return `<div class="dn-row ${sp<35?"dn-danger":""}"><div class="dn-rank">${i+1}</div><div class="dn-player"><b>${escHtml(x.name)}</b><div class="dn-meta">${x.pos} · ${x.team} · ADP ${x.adp} · ${sp}% survival estimate</div></div><span class="dn-tag">${sp<35?"HIGH RISK":"WATCH"}</span></div>`}).join("");
 }
+function decisionEngine(){
+ const p=bestPlayer();
+ const card=document.getElementById("draftDecisionCard");
+ if(!card)return;
+ if(currentPick>MAX_PICK||!p){card.style.display="none";return;}
+ card.style.display="block";
+ const team=myTeam();
+ const nmp=nextMyPick(currentPick+1);
+ const wait=takeNowVsWait(p,team);
+ const alternatives=pickCandidates(team).filter(x=>x.name!==p.name).sort(recommendationComparator);
+ const fallback=alternatives[0];
+ const badge=document.getElementById("decisionBadge");
+ const risk=wait.survive<30?"HIGH RISK":wait.survive<60?"WATCH":"SAFE TO WAIT";
+ badge.textContent=risk;badge.className="decision-badge "+(wait.survive<30?"danger":wait.survive<60?"warn":"good");
+ document.getElementById("decisionPlayer").textContent=`${p.name} · ${p.pos}`;
+ document.getElementById("decisionSummary").textContent=`Pick ${currentPick} · Round ${roundInfo(currentPick).round} · Seat #${draftPos}. ADP-first, then draft-window and roster context.`;
+ document.getElementById("decisionReasons").innerHTML=[`ADP ${p.adp??"—"}`,`${p.seasonPts??0} projected pts`,`Take-now score ${wait.takeNow}`,`${wait.survive}% estimated survival`].map(x=>`<span class="tag">${x}</span>`).join("");
+ document.getElementById("decisionFallback").innerHTML=fallback?`<b>${fallback.name}</b> · ${fallback.pos} · ADP ${fallback.adp??"—"}<div class="mini" style="margin-top:4px">${wait.survive>=60?"Reasonable to wait if you prefer roster flexibility.":"Passing carries meaningful risk before pick #"+(nmp||MAX_PICK)+"."}</div>`:`<span class="mini">No comparable fallback remains.</span>`;
+ const run=positionRunPressure(p.pos);
+ document.getElementById("decisionRun").textContent=run>=.34?`${p.pos} run is active (${Math.round(run*100)}% of recent picks).`:run>=.20?`${p.pos} is showing moderate draft pressure.`:"No major position run detected.";
+}
+function gamePlanRows(){
+ const body=document.getElementById("gamePlanBody");if(!body)return;
+ if(currentPick>MAX_PICK){body.innerHTML=`<div class="mini">Draft complete — review the Mock Quality Report and your roster grade.</div>`;return;}
+ const plan=simulateDraftPlan().slice(0,8);
+ body.innerHTML=plan.map(x=>{const label=x.pick===currentPick?"ON CLOCK":x.pick<currentPick?"DONE":"PLAN";return `<div class="gp-row"><div class="gp-pick">P${x.pick}<br>R${x.round}</div><div class="gp-main"><b>${x.player.name}</b><span>${x.player.pos} · ${x.player.team} · ADP ${x.player.adp??"—"}</span></div><span class="gp-tag">${label}</span></div>`}).join("")||`<div class="mini">No remaining picks.</div>`;
+}
+function mockQualityReport(){
+ const card=document.getElementById("mockQualityCard");if(!card)return;
+ if(currentPick<=MAX_PICK){card.style.display="none";return;}
+ card.style.display="block";
+ const checks=[];
+ teams.forEach(t=>{const te=posCount(t,"TE"),qb=posCount(t,"QB"),def=posCount(t,"DEF"),k=posCount(t,"K");checks.push({te,qb,def,k,starter:Object.keys(STARTER_TARGET).every(pos=>posCount(t,pos)>=STARTER_TARGET[pos])});});
+ const noHoard=checks.filter(x=>x.te<=2&&x.qb<=2).length;
+ const lateSpecial=checks.filter(x=>x.def===1&&x.k===1).length;
+ const starters=checks.filter(x=>x.starter).length;
+ const qbsLate=teams.filter(t=>{const p=t.roster.find(x=>x.pos==="QB");return p&&p.draftOverall>=85}).length;
+ const tesLate=teams.filter(t=>{const p=t.roster.find(x=>x.pos==="TE");return p&&p.draftOverall>=110}).length;
+ const grade=Math.max(60,Math.min(100,Math.round((noHoard/12)*35+(lateSpecial/12)*30+(starters/12)*25+Math.max(0,1-qbsLate/12)*5+Math.max(0,1-tesLate/12)*5)));
+ document.getElementById("mockQualityGrade").textContent=`${grade}/100`;
+ const items=[
+  [noHoard===12,"Position hoarding",`${noHoard}/12 teams stayed within QB≤2 / TE≤2`],
+  [lateSpecial===12,"DEF/K timing",`${lateSpecial}/12 teams finished with DEF + K in the final two rounds`],
+  [starters>=10,"Starting-lineup realism",`${starters}/12 teams had all starting positions filled`],
+  [qbsLate<=4,"QB timing",`${qbsLate}/12 first QBs were drafted at pick 85+`],
+  [tesLate<=4,"TE timing",`${tesLate}/12 first TEs were drafted at pick 110+`]
+ ];
+ document.getElementById("mockQualityBody").innerHTML=`<div class="qualitygrid">${items.map(([ok,label,desc])=>`<div class="qrow"><b class="${ok?"qok":"qbad"}">${ok?"✓":"⚠"} ${label}</b><span>${desc}</span></div>`).join("")}</div><div class="mini" style="margin-top:10px">This report is a realism check, not a projection accuracy score. A strong result means the simulated league followed reasonable roster construction and round timing.</div>`;
+}
 function render(){
- renderTop();renderDraftNight();renderRec();renderRoster();renderRuns();renderBoard();renderBoardSuggest();
- renderTeams();renderMockBoard();renderTierList();renderRoundBoard();renderTeamNames();renderLogTeamSelect();
+ renderTop();renderDraftNight();decisionEngine();gamePlanRows();renderRec();renderRoster();renderRuns();renderBoard();renderBoardSuggest();
+ renderTeams();renderMockBoard();mockQualityReport();renderTierList();renderRoundBoard();renderTeamNames();renderLogTeamSelect();
  renderTradeSelectors();renderTradeLists();renderTradeSummary();renderTradeHistory();renderSuggestedTrades();
  renderWaivers();renderWeekSelector();renderPlanner();renderMatchup();
  renderAlert();renderDraftGrade();renderLiveSyncStatus();renderProjectionSyncStatus();
