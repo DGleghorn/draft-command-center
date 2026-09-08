@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b1020">
-<title>Draft Command Center v22 — ESPN League Integration</title>
+<title>Draft Command Center v23 — ESPN Live League Integration</title>
 <style>
 :root{--bg:#090d17;--panel:#111827;--panel2:#151e2f;--line:#263249;--text:#f4f7fb;--muted:#91a0b7;--blue:#6d6aff;--cyan:#4dd7ff;--green:#28d7a1;--red:#ff6475;--amber:#f6b94a;--shadow:0 14px 45px rgba(0,0,0,.22)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior-x:none}body{min-width:0}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}input,select,textarea{font-size:16px}
@@ -104,11 +104,11 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 <div class="app">
 <header class="top">
   <div class="toprow">
-    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v21</span></h1></div></div>
+    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v23</span></h1></div></div>
     <div class="status"><div class="live" title="Roster refresh is live-capable; ADP/rankings remain fallback until a source is configured"><i class="pulse"></i><span id="syncText">DEMO / CONNECTOR READY</span></div><button class="topbtn" id="espnBtn">ESPN SYNC</button></div>
   </div>
   <nav class="nav" id="nav">
-    <button class="active" data-page="manager">Manager</button><button data-page="rosters">Rosters</button><button data-page="planner">Matchups</button><button data-page="analytics">Players</button><button data-page="waivers">Waivers</button><button data-page="trade">Trades</button><button data-page="league">Teams</button><button data-page="settings">Settings</button>
+    <button class="active" data-page="manager">Manager</button><button data-page="rosters">Rosters</button><button data-page="planner">Matchups</button><button data-page="analytics">Players</button><button data-page="waivers">Waivers</button><button data-page="trade">Trades</button><button data-page="league">Team Analytics</button><button data-page="league-analyzer">League Analyzer</button><button data-page="settings">Settings</button>
   </nav>
   <div class="stickyclock" id="stickyClock"><span id="stickyClockText">Pick 1 · Round 1</span><div class="stickybar"><i id="stickyClockFill"></i></div></div>
 </header>
@@ -321,7 +321,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 <section id="page-league" style="display:none">
   <div class="card panelpad">
     <div class="sectionhead">
-      <div><h2>🏆 Teams · League Analyzer</h2><p>Power-rank every roster, identify positional edges, and surface trade/waiver pressure. Rankings become authoritative only after ESPN rosters + FantasyPros weekly data are synced.</p></div>
+      <div><h2>📊 Team Analytics</h2><p>Power-rank every roster, identify positional edges, and surface trade/waiver pressure. Rankings become authoritative only after ESPN rosters + FantasyPros weekly data are synced. The raw League Room now lives in the dedicated League Analyzer tab.</p></div>
       <div class="team-switch"><select class="select" id="leagueAnalyzerWeek" style="width:110px"></select><button class="ghost" id="leagueAnalyzerRefresh">REFRESH</button></div>
     </div>
     <div class="league-confidence" id="leagueAnalyzerConfidence"></div>
@@ -353,9 +353,20 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
     <div class="qualitygrid" id="leagueIntegrity"></div>
   </div>
 
+</section>
+
+<section id="page-league-analyzer" style="display:none">
+  <div class="card panelpad">
+    <div class="sectionhead">
+      <div><h2>🏆 League Analyzer</h2><p>League Room view powered by ESPN roster sync. Inspect every team's roster, record and current room state without mixing it into Team Analytics.</p></div>
+      <div class="team-switch"><button class="ghost" id="leagueRoomRefresh">REFRESH</button><button class="secondary" id="leagueRoomSync">SYNC ESPN</button></div>
+    </div>
+    <div class="league-confidence" id="leagueRoomConfidence"></div>
+    <div class="leaguegrid" id="leagueRoomGrid"></div>
+  </div>
   <div class="card panelpad section">
-    <div class="sectionhead"><div><h2>League room</h2><p>Raw roster view — useful when you want to inspect a team behind the ranking.</p></div></div>
-    <div class="leaguegrid" id="teams"></div>
+    <div class="sectionhead"><div><h2>🔎 League Room Integrity</h2><p>Shows exactly what DCC knows about the ESPN room and flags missing authentication or roster data instead of guessing.</p></div></div>
+    <div class="qualitygrid" id="leagueRoomIntegrity"></div>
   </div>
 </section>
 
@@ -378,14 +389,16 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
       <p style="font-size:10px;color:#5de0b7;margin-top:8px;line-height:1.6">✓ Bye weeks were corrected to match the actual verified 2026 NFL schedule (Weeks 5–14, none in Week 12) — these are real, not demo data, and drive the bye-cluster alert and Planner/Matchup projections accurately.</p>
       <p style="font-size:10px;color:#718099;margin-top:8px">The ESPN connector should run server-side for private leagues. Never paste your ESPN session cookies into this HTML file.</p>
     </div>
-    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🔌 ESPN League-of-Record Connection</h2><p>v22 adds a real connection workflow: secure backend, Chrome bridge, or normalized JSON import. ESPN is authoritative for your league; FantasyPros remains the expert-data layer.</p></div></div>
-      <div class="formrow"><label>ESPN League ID</label><input class="input" id="espnLeagueIdV22" placeholder="e.g. 12345678"></div>
-      <div class="formrow"><label>ESPN season</label><input class="input" id="espnSeasonV22" type="number" value="2026" min="2024" max="2035"></div>
-      <div class="formrow"><label>Connection mode</label><select class="select" id="espnModeV22"><option value="bridge">Chrome Bridge — recommended for private leagues</option><option value="backend">Secure backend connector</option><option value="import">Manual normalized JSON import</option></select></div>
-      <div class="persistbar"><button class="primary" id="espnConnectV22">CONNECT / SAVE</button><button class="secondary" id="espnRefreshV22">REFRESH ESPN</button><label class="secondary" style="display:inline-flex;align-items:center" for="espnJsonFileV22">IMPORT ESPN JSON</label><input type="file" id="espnJsonFileV22" accept=".json,application/json" style="display:none"><button class="secondary" id="espnExportV22">EXPORT NORMALIZED</button><button class="secondary" id="espnClearV22">CLEAR ESPN DATA</button></div>
-      <div class="card" style="margin-top:12px;padding:13px;background:#0c1320"><div class="smallcaps">Connection status</div><div id="espnV22Status" style="font-size:12px;font-weight:800;margin-top:4px">Not connected</div><div id="espnV22Meta" class="mini" style="margin-top:4px">No ESPN league data loaded.</div></div>
+    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🔌 ESPN League-of-Record Connection</h2><p>v23 adds a real connection workflow: secure backend, Chrome bridge, or normalized JSON import. ESPN is authoritative for your league; FantasyPros remains the expert-data layer.</p></div></div>
+      <div class="formrow"><label>ESPN League ID</label><input class="input" id="espnLeagueIdV23" placeholder="e.g. 12345678"></div>
+      <div class="formrow"><label>ESPN season</label><input class="input" id="espnSeasonV23" type="number" value="2026" min="2024" max="2035"></div>
+      <div class="formrow"><label>Connection mode</label><select class="select" id="espnModeV23"><option value="bridge">Chrome Bridge — recommended for private leagues (live sync)</option><option value="backend">Secure backend connector</option><option value="import">Manual normalized JSON import</option></select></div>
+      <div class="persistbar"><button class="primary" id="espnConnectV23">CONNECT / SAVE</button><button class="secondary" id="espnRefreshV23">REFRESH ESPN</button><label class="secondary" style="display:inline-flex;align-items:center" for="espnJsonFileV23">IMPORT ESPN JSON</label><input type="file" id="espnJsonFileV23" accept=".json,application/json" style="display:none"><button class="secondary" id="espnExportV23">EXPORT NORMALIZED</button><button class="secondary" id="espnClearV23">CLEAR ESPN DATA</button></div>
+      <div class="card" style="margin-top:12px;padding:13px;background:#0c1320"><div class="smallcaps">Connection status</div><div id="espnV23Status" style="font-size:12px;font-weight:800;margin-top:4px">Not connected</div><div id="espnV23Meta" class="mini" style="margin-top:4px">No ESPN league data loaded.</div></div>
+      <div class="persistbar" style="margin-top:10px"><button class="secondary" id="espnTestConnectionV23">TEST LIVE BRIDGE</button><button class="secondary" id="espnOpenLeagueV23">OPEN ESPN LEAGUE</button></div>
+      <div class="mini" id="espnBridgeDiagnosticsV23" style="margin-top:8px">Bridge diagnostic: not tested.</div>
       <p class="mini" style="margin-top:9px">Private ESPN credentials/session cookies are never entered into this PWA. In Bridge mode, you sign into ESPN normally in Chrome and the companion extension reads the authenticated league page. In Backend mode, authentication stays server-side. ESPN's League ID is only an identifier; it is not an authentication credential.</p>
-      <p class="mini" style="margin-top:6px">For the Chrome Bridge to continuously update the PWA, keep the ESPN tab and this Command Center open in the same Chrome profile. The v22 extension polls ESPN and forwards normalized league data into this page.</p>
+      <p class="mini" style="margin-top:6px">For live sync, keep ESPN and this Command Center open in the same Chrome profile. The v23 extension uses the authenticated ESPN browser session, performs a full league snapshot, retries with alternate ESPN views when necessary, and forwards normalized data into this page. A League ID alone does not authenticate a private league.</p>
     </div>
     <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>📊 Live market ADP</h2><p>Use a server-side FantasyPros-compatible feed for current PPR ADP without exposing an API key in the browser.</p></div></div>
       <div class="formrow"><label>ADP proxy URL (recommended)</label><input class="input" id="adpProxyUrl" placeholder="https://your-domain.example/api/adp"></div>
@@ -474,7 +487,7 @@ const MAX_PICK=ROUNDS*12;
 const LATE_ROUND_MIN={DEF:ROUNDS-1,K:ROUNDS};
 const REACH_ALLOWANCE=15;
 const TARGET_TOTAL_WITH_SLACK=ROSTER_SIZE;
-const STORAGE_KEY="dcc_v22_state";
+const STORAGE_KEY="dcc_v23_state";
 const BOT_PERSONALITIES=["Balanced","RB Heavy","WR Heavy","Zero RB","Hero RB","Early QB","Early TE","BPA / ADP","Aggressive","Value Hunter"];
 const BOT_PERSONALITY_BIAS={
  Balanced:{},"RB Heavy":{RB:2.2,WR:-.5},"WR Heavy":{WR:2.2,RB:-.5},"Zero RB":{RB:-2.4,WR:2.0},"Hero RB":{RB:3.2,WR:-.8},"Early QB":{QB:4.2},"Early TE":{TE:4.2},"BPA / ADP":{},Aggressive:{},"Value Hunter":{}
@@ -520,7 +533,7 @@ let adpSyncState=null;
 let fantasyProsSyncState=null;
 let scheduleSyncState=null;
 let nflScheduleByTeamWeek={};
-let espnConnectionV22={leagueId:"",season:2026,mode:"bridge",status:"not_connected",lastSync:null,source:null,teams:0,rosters:0,standings:0,settingsLoaded:false};
+let espnConnectionV23={leagueId:"",season:2026,mode:"bridge",status:"not_connected",lastSync:null,source:null,teams:0,rosters:0,standings:0,settingsLoaded:false};
 let espnSyncTimerV22=null;
 const NFL_SCHEDULE_URL="https://cdn.jsdelivr.net/gh/antonwilms/sleeper-dashboard-data@main/nflverse/schedule/2026.json";
 
@@ -920,7 +933,7 @@ function renderProjectionSyncStatus(){
 /* ---------- persistence ---------- */
 function saveState(){
  try{
-  const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,botProfiles,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionSyncState,projectionLeagueId,projectionProxyUrl,adpProxyUrl,adpSyncState,fantasyProsSyncState,scheduleSyncState,espnConnectionV22,savedAt:Date.now()};
+  const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,botProfiles,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionSyncState,projectionLeagueId,projectionProxyUrl,adpProxyUrl,adpSyncState,fantasyProsSyncState,scheduleSyncState,espnConnectionV23,savedAt:Date.now()};
   localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
   lastSaved=new Date();
   const ls=document.getElementById("lastSaved");if(ls)ls.textContent=lastSaved.toLocaleTimeString();
@@ -956,15 +969,15 @@ function applyState(state){
  adpSyncState=(state.adpSyncState&&typeof state.adpSyncState==="object")?state.adpSyncState:null;
  fantasyProsSyncState=(state.fantasyProsSyncState&&typeof state.fantasyProsSyncState==="object")?state.fantasyProsSyncState:null;
  scheduleSyncState=(state.scheduleSyncState&&typeof state.scheduleSyncState==="object")?state.scheduleSyncState:null;
- espnConnectionV22=(state.espnConnectionV22&&typeof state.espnConnectionV22==="object")?state.espnConnectionV22:{leagueId:"",season:2026,mode:"bridge",status:"not_connected",lastSync:null,source:null,teams:0,rosters:0,standings:0,settingsLoaded:false};
+ espnConnectionV23=(state.espnConnectionV23&&typeof state.espnConnectionV23==="object")?state.espnConnectionV23:{leagueId:"",season:2026,mode:"bridge",status:"not_connected",lastSync:null,source:null,teams:0,rosters:0,standings:0,settingsLoaded:false};
  logTeamIdx=null;
 }
 function loadState(){
  try{
   let raw=localStorage.getItem(STORAGE_KEY);
   if(!raw){
-   const legacy=localStorage.getItem("dcc_v21_intel")||localStorage.getItem("dcc_v20_state")||localStorage.getItem("dcc_v19_state");
-   if(legacy){try{const migrated=JSON.parse(legacy);migrated.espnConnectionV22={leagueId:"",season:2026,mode:"bridge",status:"not_connected",lastSync:null,source:null,teams:0,rosters:0,standings:0,settingsLoaded:false};localStorage.setItem(STORAGE_KEY,JSON.stringify(migrated));raw=JSON.stringify(migrated)}catch(e){}}
+   const legacy=localStorage.getItem("dcc_v22_state")||localStorage.getItem("dcc_v21_intel")||localStorage.getItem("dcc_v20_state")||localStorage.getItem("dcc_v19_state");
+   if(legacy){try{const migrated=JSON.parse(legacy);migrated.espnConnectionV23={leagueId:"",season:2026,mode:"bridge",status:"not_connected",lastSync:null,source:null,teams:0,rosters:0,standings:0,settingsLoaded:false};localStorage.setItem(STORAGE_KEY,JSON.stringify(migrated));raw=JSON.stringify(migrated)}catch(e){}}
   }
   if(!raw){raw=localStorage.getItem("dcc_v19_state")||localStorage.getItem("dcc_v18_state")||localStorage.getItem("dcc_v17_state")||localStorage.getItem("dcc_v16_state")||localStorage.getItem("dcc_v15_state")||localStorage.getItem("dcc_v14_state")||localStorage.getItem("dcc_v12_state")||localStorage.getItem("dcc_v11_state");}
   if(raw){applyState(JSON.parse(raw));return true}
@@ -2410,55 +2423,84 @@ document.getElementById("mgrWeek")?.addEventListener("change",e=>{plannerWeek=Nu
 document.getElementById("rosterTeamSelect")?.addEventListener("change",()=>renderRosters());
 
 
-/* ---------- v22 ESPN League-of-Record connector ---------- */
-const ESPN_POS_V22={1:"QB",2:"RB",3:"WR",4:"TE",5:"K",16:"DEF",17:"DEF"};
-const ESPN_TEAM_V22={1:"ATL",2:"BUF",3:"CHI",4:"CIN",5:"CLE",6:"DAL",7:"DEN",8:"DET",9:"GB",10:"TEN",11:"IND",12:"KC",13:"LV",14:"LAR",15:"MIA",16:"MIN",17:"NE",18:"NO",19:"NYG",20:"NYJ",21:"PHI",22:"ARI",23:"PIT",24:"LAC",25:"SF",26:"SEA",27:"TB",28:"WSH",29:"CAR",30:"JAX",33:"BAL",34:"HOU"};
-function espnTeamNameV22(t){return String(t?.name||[t?.location,t?.nickname].filter(Boolean).join(" ")||t?.abbrev||`Team ${t?.id||""}`).trim()}
-function espnRosterPlayerV22(e){const pe=e?.playerPoolEntry?.player||e?.player||e; const name=pe?.fullName||pe?.name; if(!name)return null; const pos=ESPN_POS_V22[Number(pe?.defaultPositionId)]||String(pe?.position||pe?.pos||"WR").toUpperCase(); const team=ESPN_TEAM_V22[Number(pe?.proTeamId)]||pe?.proTeamAbbrev||pe?.team||"FA"; return {name,pos:pos==="D/ST"?"DEF":pos,team,slot:e?.lineupSlotId??null,status:pe?.injuryStatus||"healthy",espnId:pe?.id??null};}
-function normalizeESPNV22(raw){
+/* ---------- v23 ESPN Live League-of-Record connector ---------- */
+const ESPN_POS_V23={1:"QB",2:"RB",3:"WR",4:"TE",5:"K",16:"DEF",17:"DEF"};
+const ESPN_TEAM_V23={1:"ATL",2:"BUF",3:"CHI",4:"CIN",5:"CLE",6:"DAL",7:"DEN",8:"DET",9:"GB",10:"TEN",11:"IND",12:"KC",13:"LV",14:"LAR",15:"MIA",16:"MIN",17:"NE",18:"NO",19:"NYG",20:"NYJ",21:"PHI",22:"ARI",23:"PIT",24:"LAC",25:"SF",26:"SEA",27:"TB",28:"WSH",29:"CAR",30:"JAX",33:"BAL",34:"HOU"};
+function espnTeamNameV23(t){return String(t?.name||[t?.location,t?.nickname].filter(Boolean).join(" ")||t?.abbrev||`Team ${t?.id||""}`).trim()}
+function espnRosterPlayerV23(e){const pe=e?.playerPoolEntry?.player||e?.player||e; const name=pe?.fullName||pe?.name; if(!name)return null; const pos=ESPN_POS_V23[Number(pe?.defaultPositionId)]||String(pe?.position||pe?.pos||"WR").toUpperCase(); const team=ESPN_TEAM_V23[Number(pe?.proTeamId)]||pe?.proTeamAbbrev||pe?.team||"FA"; return {name,pos:pos==="D/ST"?"DEF":pos,team,slot:e?.lineupSlotId??null,status:pe?.injuryStatus||"healthy",espnId:pe?.id??null};}
+function normalizeESPNV23(raw){
  const league=raw?.league||raw; const srcTeams=league?.teams||raw?.teams||[];
- const teams=srcTeams.map((t,i)=>{const rec=t?.record?.overall||t?.record||{}; const roster=(t?.roster?.entries||t?.roster||[]).map(espnRosterPlayerV22).filter(Boolean); return {id:t?.id??i,name:espnTeamNameV22(t),owner:(t?.owners||[])[0]||t?.owner||"",abbrev:t?.abbrev||t?.teamAbbrev||"",record:{wins:Number(rec.wins||0),losses:Number(rec.losses||0),ties:Number(rec.ties||0),pf:Number(rec.pointsFor||rec.pf||0),pa:Number(rec.pointsAgainst||rec.pa||0)},roster};});
+ const teams=srcTeams.map((t,i)=>{const rec=t?.record?.overall||t?.record||{}; const roster=(t?.roster?.entries||t?.roster||[]).map(espnRosterPlayerV23).filter(Boolean); return {id:t?.id??i,name:espnTeamNameV23(t),owner:(t?.owners||[])[0]||t?.owner||"",abbrev:t?.abbrev||t?.teamAbbrev||"",record:{wins:Number(rec.wins||0),losses:Number(rec.losses||0),ties:Number(rec.ties||0),pf:Number(rec.pointsFor||rec.pf||0),pa:Number(rec.pointsAgainst||rec.pa||0)},roster};});
  const settings=league?.settings||raw?.settings||{}; const rosterSettings=settings?.rosterSettings||{}; const scoringItems=settings?.scoringSettings?.scoringItems||settings?.scoringItems||[];
  const standings=teams.map(t=>({id:t.id,name:t.name,...t.record})).sort((a,b)=>(b.wins-a.wins)||(b.pf-a.pf));
- return {source:"espn",season:Number(raw?.season||league?.season||document.getElementById("espnSeasonV22")?.value||2026),leagueId:String(raw?.leagueId||league?.id||document.getElementById("espnLeagueIdV22")?.value||""),lastSync:Date.now(),teams,standings,settings:{rosterSettings,scoringItems,rawScoring:settings?.scoringSettings||{}},status:raw?.status||league?.status||null};
+ return {source:"espn",season:Number(raw?.season||league?.season||document.getElementById("espnSeasonV23")?.value||2026),leagueId:String(raw?.leagueId||league?.id||document.getElementById("espnLeagueIdV23")?.value||""),lastSync:Date.now(),teams,standings,settings:{rosterSettings,scoringItems,rawScoring:settings?.scoringSettings||{}},status:raw?.status||league?.status||null};
 }
-function normalizeDCCLeagueV22(raw){
+function normalizeDCCLeagueV23(raw){
  if(raw?.source==="espn"&&Array.isArray(raw?.teams))return raw;
- if(raw?.teams)return normalizeESPNV22(raw);
+ if(raw?.teams)return normalizeESPNV23(raw);
  return null;
 }
-function applyESPNLeagueV22(payload,source="bridge"){
- const data=normalizeDCCLeagueV22(payload); if(!data||!Array.isArray(data.teams)||!data.teams.length)throw new Error("No ESPN teams found in the supplied league data.");
+function applyESPNLeagueV23(payload,source="bridge"){
+ const data=normalizeDCCLeagueV23(payload); if(!data||!Array.isArray(data.teams)||!data.teams.length)throw new Error("No ESPN teams found in the supplied league data.");
  const oldMe=teams[draftPos-1]; const myName=oldMe?.name||FINAL_TEAM_NAME;
  const incoming=data.teams.map((t,i)=>{const roster=(t.roster||[]).map((p,j)=>{let local=DATA.find(x=>normalizeName(x.name)===normalizeName(p.name));if(!local){local={name:p.name,pos:p.pos||"WR",team:p.team||"FA",adp:999,espn:999,sleeper:999,fp:999,walter:999,tier:"Bench"};DATA.push(local)} local.pos=p.pos||local.pos;local.team=p.team||local.team;local.espnId=p.espnId; return {...local,espnRosterStatus:p.status||"healthy",espnLineupSlot:p.slot??null};});return {id:i,name:t.name||`Team ${i+1}`,roster,personality:botProfiles[i]||BOT_PERSONALITIES[i%BOT_PERSONALITIES.length],record:t.record||{wins:0,losses:0,ties:0,pf:0,pa:0},espnTeamId:t.id};});
  teams=incoming.length===12?incoming:incoming.concat(Array.from({length:Math.max(0,12-incoming.length)},(_,i)=>({id:incoming.length+i,name:`Team ${incoming.length+i+1}`,roster:[],personality:botProfiles[(incoming.length+i)%12]})));
  let idx=teams.findIndex(t=>normalizeName(t.name)===normalizeName(FINAL_TEAM_NAME)); if(idx<0&&oldMe?.name)idx=teams.findIndex(t=>normalizeName(t.name)===normalizeName(oldMe.name)); if(idx>=0)draftPos=idx+1;
  const allNames=teams.flatMap(t=>t.roster.map(p=>p.name)); drafted=new Set(allNames); feed=[]; teams.forEach((t,ti)=>t.roster.forEach((p,pi)=>feed.push({pick:null,player:p.name,pos:p.pos,team:p.team,note:"ESPN League Sync",teamIdx:ti}))); pickHistory=[];
- espnConnectionV22={leagueId:String(data.leagueId||""),season:Number(data.season||2026),mode:espnConnectionV22.mode||source,status:"connected",lastSync:data.lastSync||Date.now(),source,teams:teams.length,rosters:allNames.length,standings:(data.standings||[]).length,settingsLoaded:!!data.settings};
+ espnConnectionV23={leagueId:String(data.leagueId||""),season:Number(data.season||2026),mode:espnConnectionV23.mode||source,status:"connected",lastSync:data.lastSync||Date.now(),source,teams:teams.length,rosters:allNames.length,standings:(data.standings||[]).length,settingsLoaded:!!data.settings};
  saveState();render();renderESPNV22Status();showToast(`ESPN synced — ${teams.length} teams / ${allNames.length} roster players`);
 }
 function renderESPNV22Status(){
- const s=document.getElementById("espnV22Status"),m=document.getElementById("espnV22Meta"),badge=document.getElementById("espnStatus");
- if(!s)return; const c=espnConnectionV22||{}; const connected=c.status==="connected";
+ const s=document.getElementById("espnV23Status"),m=document.getElementById("espnV23Meta"),badge=document.getElementById("espnStatus");
+ if(!s)return; const c=espnConnectionV23||{}; const connected=c.status==="connected";
  s.textContent=connected?"✓ Connected":"Not connected"; s.style.color=connected?"#5de0b7":"#f6b94a";
  m.textContent=connected?`${c.teams||0} teams · ${c.rosters||0} roster players · ${(c.standings||0)} standings rows · ${c.source||"ESPN"} · last sync ${c.lastSync?new Date(c.lastSync).toLocaleString():"—"}`:`League ID ${c.leagueId||"not saved"} · mode ${c.mode||"bridge"}`;
  if(badge)badge.textContent=connected?`Connected · ${c.source||"ESPN"}`:"Not connected";
 }
-function saveESPNConfigV22(){const id=document.getElementById("espnLeagueIdV22")?.value.trim()||"";const season=Number(document.getElementById("espnSeasonV22")?.value||2026);const mode=document.getElementById("espnModeV22")?.value||"bridge";espnConnectionV22={...(espnConnectionV22||{}),leagueId:id,season,mode};saveState();renderESPNV22Status();return espnConnectionV22;}
-async function refreshESPNV22(){
- const c=saveESPNConfigV22();
+function saveESPNConfigV23(){const id=document.getElementById("espnLeagueIdV23")?.value.trim()||"";const season=Number(document.getElementById("espnSeasonV23")?.value||2026);const mode=document.getElementById("espnModeV23")?.value||"bridge";espnConnectionV23={...(espnConnectionV23||{}),leagueId:id,season,mode};saveState();renderESPNV22Status();return espnConnectionV23;}
+async function refreshESPNV23(){
+ const c=saveESPNConfigV23();
  if(!c.leagueId){showToast("Enter your ESPN League ID first");return;}
  if(c.mode==="import"){showToast("Import a normalized ESPN JSON file in Settings");return;}
  if(c.mode==="backend"){
    if(!projectionProxyUrl){showToast("Add your secure ESPN connector URL in Projection/Connector settings");return;}
    const u=new URL(projectionProxyUrl,location.href);u.searchParams.set("provider","espn");u.searchParams.set("leagueId",c.leagueId);u.searchParams.set("season",c.season);u.searchParams.set("mode","league");
-   const r=await fetch(u.toString(),{headers:{Accept:"application/json"}});if(!r.ok)throw new Error(`Connector HTTP ${r.status}`);applyESPNLeagueV22(await r.json(),"backend");return;
+   const r=await fetch(u.toString(),{headers:{Accept:"application/json"}});if(!r.ok)throw new Error(`Connector HTTP ${r.status}`);applyESPNLeagueV23(await r.json(),"backend");return;
  }
  showToast("Chrome Bridge mode: open ESPN + the v22 extension. The extension will push syncs into this page.");
 }
-function exportESPNV22(){const payload={...espnConnectionV22,teams:teams.map(t=>({id:t.espnTeamId??t.id,name:t.name,record:t.record||null,roster:(t.roster||[]).map(p=>({name:p.name,pos:p.pos,team:p.team,status:p.espnRosterStatus||getStatus(p.name),slot:p.espnLineupSlot??null,espnId:p.espnId??null}))}))};const blob=new Blob([JSON.stringify({source:"espn",season:payload.season,leagueId:payload.leagueId,teams:payload.teams,standings:teams.map(t=>({name:t.name,...(t.record||{})})),settings:null,lastSync:Date.now()},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`dcc-espn-${payload.leagueId||"league"}-normalized.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
-function clearESPNV22(){if(!confirm("Clear the ESPN league connection and imported ESPN roster/standings data? Your draft/player settings remain."))return;espnConnectionV22={leagueId:"",season:2026,mode:"bridge",status:"not_connected",lastSync:null,source:null,teams:0,rosters:0,standings:0,settingsLoaded:false};saveState();renderESPNV22Status();showToast("ESPN connection cleared");}
-window.addEventListener("message",e=>{if(!e.data||e.data.source!=="DCC_ESPN_BRIDGE_V22")return;try{applyESPNLeagueV22(e.data.payload,"chrome-bridge")}catch(err){showToast(`ESPN bridge error: ${err.message||err}`)}});
+function exportESPNV23(){const payload={...espnConnectionV23,teams:teams.map(t=>({id:t.espnTeamId??t.id,name:t.name,record:t.record||null,roster:(t.roster||[]).map(p=>({name:p.name,pos:p.pos,team:p.team,status:p.espnRosterStatus||getStatus(p.name),slot:p.espnLineupSlot??null,espnId:p.espnId??null}))}))};const blob=new Blob([JSON.stringify({source:"espn",season:payload.season,leagueId:payload.leagueId,teams:payload.teams,standings:teams.map(t=>({name:t.name,...(t.record||{})})),settings:null,lastSync:Date.now()},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`dcc-espn-${payload.leagueId||"league"}-normalized.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
+function clearESPNV23(){if(!confirm("Clear the ESPN league connection and imported ESPN roster/standings data? Your draft/player settings remain."))return;espnConnectionV23={leagueId:"",season:2026,mode:"bridge",status:"not_connected",lastSync:null,source:null,teams:0,rosters:0,standings:0,settingsLoaded:false};saveState();renderESPNV22Status();showToast("ESPN connection cleared");}
+window.addEventListener("message",e=>{
+ if(!e.data||e.data.source!=="DCC_ESPN_BRIDGE_V23")return;
+ if(e.data.type==="ESPN_BRIDGE_STATUS"){const el=document.getElementById("espnBridgeDiagnosticsV23");if(el)el.textContent=`Bridge: ${e.data.message||"connected"}`;return;}
+ if(e.data.type!=="ESPN_LEAGUE_SYNC")return;
+ try{applyESPNLeagueV23(e.data.payload,"chrome-bridge");const el=document.getElementById("espnBridgeDiagnosticsV23");if(el)el.textContent=`Bridge: live snapshot received ${new Date().toLocaleTimeString()}.`; }catch(err){showToast(`ESPN bridge error: ${err.message||err}`);}
+});
+
+/* ---------- v23 League Analyzer / live bridge diagnostics ---------- */
+function renderLeagueRoomV23(){
+ const grid=document.getElementById("leagueRoomGrid"), conf=document.getElementById("leagueRoomConfidence"), integ=document.getElementById("leagueRoomIntegrity");
+ if(!grid)return;
+ const c=espnConnectionV23||{};
+ const rostered=(teams||[]).filter(t=>(t.roster||[]).length);
+ const connected=c.status==="connected"&&rostered.length>0;
+ if(conf)conf.innerHTML=`<div class="confidence-badge ${connected?"good":"warn"}">${connected?"🟢 ESPN ROOM CONNECTED":"🟠 ESPN ROOM NOT FULLY CONNECTED"}</div><div class="mini" style="margin-top:6px">${connected?`${rostered.length} teams loaded · ${rostered.reduce((n,t)=>n+t.roster.length,0)} roster players · last sync ${c.lastSync?new Date(c.lastSync).toLocaleString():"—"}.`:`League ID ${c.leagueId||"not saved"}. A private ESPN league requires an authenticated ESPN browser session; a League ID alone cannot reveal rosters.`}</div>`;
+ grid.innerHTML=rostered.length?rostered.map((t,i)=>`<div class="league-team"><div class="league-team-head"><b>${escHtml(t.name)}</b><span>${t.record?.wins??0}-${t.record?.losses??0}${t.record?.ties?`-${t.record.ties}`:""}</span></div><div class="mini">${(t.roster||[]).length} players${i===draftPos-1?" · YOUR TEAM":""}</div><div class="league-roster-list">${(t.roster||[]).map(p=>`<div><span>${escHtml(p.name)}</span><small>${p.pos} · ${p.team}${p.espnRosterStatus&&p.espnRosterStatus!=="healthy"?` · ${escHtml(p.espnRosterStatus)}`:""}</small></div>`).join("")||'<div class="mini">No roster data received.</div>'}</div></div>`).join(""):'<div class="manager-empty">No ESPN roster snapshot is loaded yet. Use SYNC ESPN with the v23 Chrome Bridge open.</div>';
+ if(integ)integ.innerHTML=[
+  ["League ID",c.leagueId?"Present":"Missing",!!c.leagueId],
+  ["Authenticated source",c.source||"None",c.source==="chrome-bridge"||c.source==="backend"],
+  ["Teams",String(rostered.length),rostered.length>=12],
+  ["Roster players",String(rostered.reduce((n,t)=>n+t.roster.length,0)),rostered.reduce((n,t)=>n+t.roster.length,0)>0],
+  ["Last sync",c.lastSync?new Date(c.lastSync).toLocaleString():"Never",!!c.lastSync]
+ ].map(x=>`<div class="quality-item"><b>${x[0]}</b><span class="${x[2]?"good":"warn"}">${escHtml(x[1])}</span></div>`).join("");
+}
+function requestBridgeTestV23(){
+ const el=document.getElementById("espnBridgeDiagnosticsV23");if(el)el.textContent="Bridge: waiting for Chrome extension…";
+ window.postMessage({source:"DCC_ESPN_PAGE_V23",type:"ESPN_BRIDGE_TEST",requestId:Date.now()},"*");
+ setTimeout(()=>{if(el&&el.textContent.includes("waiting"))el.textContent="Bridge: no response. Make sure the v23 extension is installed and this page is open in Chrome.";},1800);
+}
+function openEspnLeagueV23(){const c=espnConnectionV23||{};if(!c.leagueId){showToast("Save your ESPN League ID first");return;}window.open(`https://fantasy.espn.com/football/league?leagueId=${encodeURIComponent(c.leagueId)}`,"_blank","noopener");}
 
 /* ---------- FantasyPros normalized connector ---------- */
 async function syncFantasyPros(){
@@ -2506,7 +2548,7 @@ async function syncFantasyPros(){
  }
 }
 /* ---------- wiring ---------- */
-document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>{page=b.dataset.page;document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll("main>section").forEach(s=>s.style.display=s.id==="page-"+page?"block":"none");renderTop()});
+document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>{page=b.dataset.page;document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll("main>section").forEach(s=>s.style.display=s.id==="page-"+page?"block":"none");if(page==="league-analyzer")renderLeagueRoomV23();if(page==="league")renderLeagueAnalyzer();renderTop()});
 document.getElementById("mockSimBtn").onclick=simulatePick;
 document.getElementById("mockAutoMeBtn").onclick=autoSimToMyPick;
 document.getElementById("mockAutoFullBtn").onclick=autoSimFullDraft;
@@ -2534,7 +2576,7 @@ document.getElementById("philosophy").onchange=e=>{philosophy=e.target.value;ren
 document.getElementById("espnBtn").onclick=()=>document.getElementById("modal").classList.add("show");
 document.getElementById("closeModal").onclick=()=>document.getElementById("modal").classList.remove("show");
 document.getElementById("demoBtn").onclick=()=>{document.getElementById("modal").classList.remove("show");showToast("Demo live mode active")};
-document.getElementById("connectBtn").onclick=()=>{const id=document.getElementById("leagueId").value.trim();const season=Number(document.getElementById("season").value||2026);const mode=document.getElementById("syncMode").value||"bridge";if(!id){showToast("Enter a league ID first");return}document.getElementById("espnLeagueIdV22").value=id;document.getElementById("espnSeasonV22").value=season;document.getElementById("espnModeV22").value=mode;saveESPNConfigV22();document.getElementById("modal").classList.remove("show");document.getElementById("syncText").textContent="ESPN CONNECTED";showToast(mode==="bridge"?"ESPN Bridge saved — keep ESPN + DCC open in Chrome":"ESPN connection saved")};
+document.getElementById("connectBtn").onclick=()=>{const id=document.getElementById("leagueId").value.trim();const season=Number(document.getElementById("season").value||2026);const mode=document.getElementById("syncMode").value||"bridge";if(!id){showToast("Enter a league ID first");return}document.getElementById("espnLeagueIdV23").value=id;document.getElementById("espnSeasonV23").value=season;document.getElementById("espnModeV23").value=mode;saveESPNConfigV23();document.getElementById("modal").classList.remove("show");document.getElementById("syncText").textContent="ESPN CONNECTED";showToast(mode==="bridge"?"ESPN Bridge saved — keep ESPN + DCC open in Chrome":"ESPN connection saved")};
 document.getElementById("tradeTeamA").onchange=e=>{tradeTeamAIdx=+e.target.value;tradeSelA.clear();renderTradeLists();renderTradeSummary()};
 document.getElementById("tradeTeamB").onchange=e=>{tradeTeamBIdx=+e.target.value;tradeSelB.clear();renderTradeLists();renderTradeSummary()};
 document.getElementById("clearTrade").onclick=clearTrade;
@@ -2553,11 +2595,16 @@ document.getElementById("scheduleSyncBtn").onclick=()=>syncNFLSchedule(false);
 document.getElementById("fantasyProsSyncBtn")?.addEventListener("click",syncFantasyPros);
 document.getElementById("leagueAnalyzerWeek")?.addEventListener("change",e=>{plannerWeek=Number(e.target.value)||1;renderLeagueAnalyzer();saveState()});
 document.getElementById("leagueAnalyzerRefresh")?.addEventListener("click",()=>{renderLeagueAnalyzer();showToast("League Analyzer refreshed")});
-document.getElementById("espnConnectV22")?.addEventListener("click",()=>{saveESPNConfigV22();document.getElementById("modal")?.classList.remove("show");showToast("ESPN connection saved")});
-document.getElementById("espnRefreshV22")?.addEventListener("click",()=>refreshESPNV22().catch(e=>{showToast(`ESPN sync failed: ${e.message||e}`)}));
-document.getElementById("espnExportV22")?.addEventListener("click",exportESPNV22);
-document.getElementById("espnClearV22")?.addEventListener("click",clearESPNV22);
-document.getElementById("espnJsonFileV22")?.addEventListener("change",e=>{const f=e.target.files?.[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{applyESPNLeagueV22(JSON.parse(r.result),"json-import")}catch(err){showToast(`Invalid ESPN JSON: ${err.message||err}`)}};r.readAsText(f)});
+document.getElementById("espnConnectV23")?.addEventListener("click",()=>{saveESPNConfigV23();document.getElementById("modal")?.classList.remove("show");showToast("ESPN connection saved")});
+document.getElementById("espnRefreshV23")?.addEventListener("click",()=>refreshESPNV23().catch(e=>{showToast(`ESPN sync failed: ${e.message||e}`)}));
+document.getElementById("espnExportV23")?.addEventListener("click",exportESPNV23);
+document.getElementById("espnClearV23")?.addEventListener("click",clearESPNV23);
+document.getElementById("leagueRoomRefresh")?.addEventListener("click",()=>{renderLeagueRoomV23();showToast("League Room refreshed")});
+document.getElementById("leagueRoomSync")?.addEventListener("click",()=>{document.getElementById("espnRefreshV23")?.click();});
+document.getElementById("espnTestConnectionV23")?.addEventListener("click",requestBridgeTestV23);
+document.getElementById("espnOpenLeagueV23")?.addEventListener("click",openEspnLeagueV23);
+
+document.getElementById("espnJsonFileV23")?.addEventListener("change",e=>{const f=e.target.files?.[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{applyESPNLeagueV23(JSON.parse(r.result),"json-import")}catch(err){showToast(`Invalid ESPN JSON: ${err.message||err}`)}};r.readAsText(f)});
 
 document.getElementById("projectionSettingsSave").onclick=()=>{
   projectionLeagueId=document.getElementById("projectionLeagueId").value.trim();
@@ -2578,7 +2625,7 @@ document.getElementById("logTeamSelect").onchange=e=>{logTeamIdx=e.target.value=
  }
 })();
 if(!loadState()){initTeams();seedFinalRoster()}
-if(document.getElementById("espnLeagueIdV22")){document.getElementById("espnLeagueIdV22").value=espnConnectionV22?.leagueId||"";document.getElementById("espnSeasonV22").value=espnConnectionV22?.season||2026;document.getElementById("espnModeV22").value=espnConnectionV22?.mode||"bridge";}
+if(document.getElementById("espnLeagueIdV23")){document.getElementById("espnLeagueIdV23").value=espnConnectionV23?.leagueId||"";document.getElementById("espnSeasonV23").value=espnConnectionV23?.season||2026;document.getElementById("espnModeV23").value=espnConnectionV23?.mode||"bridge";}
 renderESPNV22Status();
 document.getElementById("draftPos").value=draftPos;
 document.getElementById("currentPick").value=currentPick;
