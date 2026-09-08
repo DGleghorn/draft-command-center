@@ -1,16 +1,12 @@
-# Draft Command Center v13 PWA
+# Draft Command Center v22 — ESPN League Integration
 
-Upload these files to the root of the GitHub Pages repository: index.html, manifest.json, sw.js, icon-192.png, and icon-512.png. GitHub Pages publishes static files from the configured branch/folder; `index.html` is the entry file.
+## PWA
+Deploy the contents of this folder to GitHub Pages. Open the site in Chrome/Safari and add it to the Home Screen.
 
-Open the HTTPS GitHub Pages URL in Safari on iPhone, then use **Share -> Add to Home Screen -> Open as Web App**. The manifest, service worker and icons are included so v13 is packaged as a real installable web app rather than a raw HTML document.
+## ESPN connection modes
+1. **Chrome Bridge (recommended for private leagues):** sign in to ESPN normally, install the v22 Chrome extension, and keep the ESPN league page plus DCC open. The extension polls ESPN and forwards normalized league data into DCC.
+2. **Secure backend:** configure the connector URL in DCC settings. Keep ESPN authentication on the server; never put session cookies in this PWA.
+3. **JSON import:** import a normalized ESPN JSON file for one-time snapshots/backups.
 
-v13 adds:
-- Slot-aware draft decision engine for the #2 seat
-- Dynamic Draft Game Plan using your future snake-draft turns
-- More realistic simulated opponent personalities and roster construction
-- Mock Draft Quality Report
-- QB/TE timing guardrails and position ceilings
-- ADP-first recommendations with risk/fallback context
-- Existing DEF Round 15 / K Round 16 policy
-
-ESPN private-league live sync still requires a secure server-side connector.
+## Important
+ESPN does not publish a general supported OAuth contract for third-party fantasy apps. v22 therefore does not ask for or store ESPN passwords/cookies in the browser UI.
