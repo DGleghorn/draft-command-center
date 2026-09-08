@@ -2441,14 +2441,14 @@ function normalizeDCCLeagueV23(raw){
  return null;
 }
 function applyESPNLeagueV23(payload,source="bridge"){
- const data=normalizeDCCLeagueV23(payload); if(!data||!Array.isArray(data.teams)||!data.teams.length)throw new Error("No ESPN teams found in the supplied league data.");
+ const data=normalizeDCCLeagueV23(payload); if(!data||!Array.isArray(data.teams)||data.teams.length<12)throw new Error(`Incomplete ESPN snapshot: ${data?.teams?.length||0}/12 teams received. DCC will keep the last complete league snapshot.`); const incomingRosterCount=data.teams.reduce((n,t)=>n+(t.roster||[]).length,0); if(incomingRosterCount<12)throw new Error(`Incomplete ESPN snapshot: ${incomingRosterCount} roster players received. DCC will keep the last complete league snapshot.`);
  const oldMe=teams[draftPos-1]; const myName=oldMe?.name||FINAL_TEAM_NAME;
  const incoming=data.teams.map((t,i)=>{const roster=(t.roster||[]).map((p,j)=>{let local=DATA.find(x=>normalizeName(x.name)===normalizeName(p.name));if(!local){local={name:p.name,pos:p.pos||"WR",team:p.team||"FA",adp:999,espn:999,sleeper:999,fp:999,walter:999,tier:"Bench"};DATA.push(local)} local.pos=p.pos||local.pos;local.team=p.team||local.team;local.espnId=p.espnId; return {...local,espnRosterStatus:p.status||"healthy",espnLineupSlot:p.slot??null};});return {id:i,name:t.name||`Team ${i+1}`,roster,personality:botProfiles[i]||BOT_PERSONALITIES[i%BOT_PERSONALITIES.length],record:t.record||{wins:0,losses:0,ties:0,pf:0,pa:0},espnTeamId:t.id};});
  teams=incoming.length===12?incoming:incoming.concat(Array.from({length:Math.max(0,12-incoming.length)},(_,i)=>({id:incoming.length+i,name:`Team ${incoming.length+i+1}`,roster:[],personality:botProfiles[(incoming.length+i)%12]})));
  let idx=teams.findIndex(t=>normalizeName(t.name)===normalizeName(FINAL_TEAM_NAME)); if(idx<0&&oldMe?.name)idx=teams.findIndex(t=>normalizeName(t.name)===normalizeName(oldMe.name)); if(idx>=0)draftPos=idx+1;
  const allNames=teams.flatMap(t=>t.roster.map(p=>p.name)); drafted=new Set(allNames); feed=[]; teams.forEach((t,ti)=>t.roster.forEach((p,pi)=>feed.push({pick:null,player:p.name,pos:p.pos,team:p.team,note:"ESPN League Sync",teamIdx:ti}))); pickHistory=[];
  espnConnectionV23={leagueId:String(data.leagueId||""),season:Number(data.season||2026),mode:espnConnectionV23.mode||source,status:"connected",lastSync:data.lastSync||Date.now(),source,teams:teams.length,rosters:allNames.length,standings:(data.standings||[]).length,settingsLoaded:!!data.settings};
- saveState();render();renderESPNV22Status();showToast(`ESPN synced — ${teams.length} teams / ${allNames.length} roster players`);
+ saveState();render();renderESPNV22Status();renderLeagueRoomV23();showToast(`ESPN synced — ${teams.length} teams / ${allNames.length} roster players`);
 }
 function renderESPNV22Status(){
  const s=document.getElementById("espnV23Status"),m=document.getElementById("espnV23Meta"),badge=document.getElementById("espnStatus");
@@ -2467,7 +2467,7 @@ async function refreshESPNV23(){
    const u=new URL(projectionProxyUrl,location.href);u.searchParams.set("provider","espn");u.searchParams.set("leagueId",c.leagueId);u.searchParams.set("season",c.season);u.searchParams.set("mode","league");
    const r=await fetch(u.toString(),{headers:{Accept:"application/json"}});if(!r.ok)throw new Error(`Connector HTTP ${r.status}`);applyESPNLeagueV23(await r.json(),"backend");return;
  }
- showToast("Chrome Bridge mode: open ESPN + the v22 extension. The extension will push syncs into this page.");
+ showToast("Chrome Bridge: open your signed-in ESPN league page and use SYNC ESPN in the Draft Command Center extension.");
 }
 function exportESPNV23(){const payload={...espnConnectionV23,teams:teams.map(t=>({id:t.espnTeamId??t.id,name:t.name,record:t.record||null,roster:(t.roster||[]).map(p=>({name:p.name,pos:p.pos,team:p.team,status:p.espnRosterStatus||getStatus(p.name),slot:p.espnLineupSlot??null,espnId:p.espnId??null}))}))};const blob=new Blob([JSON.stringify({source:"espn",season:payload.season,leagueId:payload.leagueId,teams:payload.teams,standings:teams.map(t=>({name:t.name,...(t.record||{})})),settings:null,lastSync:Date.now()},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`dcc-espn-${payload.leagueId||"league"}-normalized.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
 function clearESPNV23(){if(!confirm("Clear the ESPN league connection and imported ESPN roster/standings data? Your draft/player settings remain."))return;espnConnectionV23={leagueId:"",season:2026,mode:"bridge",status:"not_connected",lastSync:null,source:null,teams:0,rosters:0,standings:0,settingsLoaded:false};saveState();renderESPNV22Status();showToast("ESPN connection cleared");}
