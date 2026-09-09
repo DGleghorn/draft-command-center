@@ -1,12 +1,12 @@
 {
-  "name": "Draft Command Center v24 \u2014 Mobile Team Manager",
+  "name": "Draft Command Center v24.1 \u2014 Mobile Team Manager",
   "short_name": "Draft Command",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#080d17",
   "theme_color": "#080d17",
-  "description": "Mobile-first fantasy football team manager with manual league roster builder.",
+  "description": "Mobile-first fantasy football team manager with manual league rosters, FantasyPros projections, player pool tools, and league activity snapshots.",
   "icons": [
     {
       "src": "./icon-192.png",
