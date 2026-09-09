@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b1020">
-<title>Draft Command Center v23 — ESPN Live League Integration</title>
+<title>Draft Command Center v24 Mobile — ESPN Live League Integration</title>
 <style>
 :root{--bg:#090d17;--panel:#111827;--panel2:#151e2f;--line:#263249;--text:#f4f7fb;--muted:#91a0b7;--blue:#6d6aff;--cyan:#4dd7ff;--green:#28d7a1;--red:#ff6475;--amber:#f6b94a;--shadow:0 14px 45px rgba(0,0,0,.22)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior-x:none}body{min-width:0}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}input,select,textarea{font-size:16px}
@@ -85,6 +85,8 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 .league-analyzer-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:12px}.lakpi{background:#0d1421;border:1px solid var(--line);border-radius:11px;padding:11px}.lakpi span{display:block;color:#74839a;font-size:8px;text-transform:uppercase;letter-spacing:.7px;font-weight:850}.lakpi b{display:block;font-size:20px;margin-top:3px}.lakpi small{display:block;color:#8d9ab0;font-size:9px;margin-top:2px}.league-confidence{padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#0d1421;color:#aab6c8;font-size:10px;line-height:1.45}.league-confidence strong{color:#fff}.league-analyzer-table{width:100%;border-collapse:collapse;min-width:860px}.league-analyzer-table th{font-size:8px;text-transform:uppercase;color:#738199;text-align:left;padding:8px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#111827}.league-analyzer-table td{padding:9px 8px;border-bottom:1px solid #202a3a;font-size:10px}.la-score{font-weight:900;color:var(--green)}.la-grade{font-weight:900}.la-good{color:var(--green)}.la-bad{color:var(--red)}.la-neutral{color:var(--amber)}.la-chip{display:inline-block;padding:3px 6px;border-radius:6px;font-size:8px;font-weight:850;background:#152037;color:#b9c6da;margin:2px 2px 2px 0}.la-pos{font-weight:900}.la-pos.up{color:var(--green)}.la-pos.down{color:var(--red)}.la-pos.flat{color:#b7c2d3}.la-card{padding:10px 12px;border:1px solid var(--line);background:#0d1421;border-radius:10px;margin-bottom:8px}.la-card:last-child{margin-bottom:0}.la-card b{font-size:11px}.la-card span{display:block;color:#8c9ab0;font-size:10px;line-height:1.4;margin-top:3px}.la-bar{height:6px;background:#1b2536;border-radius:6px;overflow:hidden;margin-top:7px}.la-bar i{display:block;height:100%;background:linear-gradient(90deg,#4d8cff,#45d4ff);border-radius:6px}.la-empty{padding:12px;border:1px dashed var(--line);border-radius:10px;color:#7f8ca1;font-size:10px}.integrity-ok{color:var(--green)}.integrity-warn{color:var(--amber)}.integrity-bad{color:var(--red)}
 @media(max-width:900px){.league-analyzer-kpis{grid-template-columns:1fr 1fr}.league-confidence{font-size:9px}}
 @media(max-width:600px){.league-analyzer-kpis{grid-template-columns:1fr 1fr}.league-analyzer-table{min-width:820px}}
+
+.builder-banner{padding:12px 14px;border:1px solid rgba(93,224,183,.25);background:rgba(93,224,183,.07);border-radius:14px;margin:10px 0 14px;display:flex;flex-direction:column;gap:4px}.builder-banner span{font-size:12px;color:#8fa0b8;line-height:1.5}.builder-search-grid{display:grid;grid-template-columns:1fr 150px;gap:8px;margin-top:10px}.builder-results{display:flex;flex-direction:column;gap:6px;margin-top:10px;max-height:330px;overflow:auto}.builder-player{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 11px;border:1px solid rgba(255,255,255,.07);border-radius:12px;background:rgba(255,255,255,.025)}.builder-player .bp-main{min-width:0;display:flex;flex-direction:column}.builder-player .bp-main b{font-size:13px}.builder-player .bp-main span{font-size:10px;color:#718099;margin-top:2px}.builder-custom{margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.07)}.builder-custom-grid{display:grid;grid-template-columns:1.6fr 90px 100px auto;gap:7px;margin-top:8px}.builder-roster-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.builder-slot{padding:11px;border:1px solid rgba(255,255,255,.07);border-radius:12px;background:rgba(255,255,255,.025);display:flex;align-items:center;justify-content:space-between;gap:8px}.builder-slot .bs-main{min-width:0}.builder-slot b{font-size:12px}.builder-slot span{display:block;font-size:10px;color:#718099;margin-top:3px}.builder-empty{padding:18px;border:1px dashed rgba(255,255,255,.12);border-radius:12px;color:#718099;text-align:center}.progressbar{height:8px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}.progressbar i{display:block;height:100%;background:#5de0b7;border-radius:99px}.progressrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:7px}.mini-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.mini-pill{font-size:10px;padding:5px 7px;border-radius:999px;background:rgba(255,255,255,.05);color:#9aabc2}@media(max-width:600px){.builder-search-grid{grid-template-columns:1fr}.builder-custom-grid{grid-template-columns:1fr 1fr}.builder-custom-grid input:first-child{grid-column:1/-1}.builder-custom-grid button{grid-column:1/-1}.builder-roster-grid{grid-template-columns:1fr}.builder-player{padding:11px 9px}}
 </style>
 <link rel="manifest" href="./manifest.json">
 <link rel="apple-touch-icon" href="./icon-192.png">
@@ -108,7 +110,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
     <div class="status"><div class="live" title="Roster refresh is live-capable; ADP/rankings remain fallback until a source is configured"><i class="pulse"></i><span id="syncText">DEMO / CONNECTOR READY</span></div><button class="topbtn" id="espnBtn">ESPN SYNC</button></div>
   </div>
   <nav class="nav" id="nav">
-    <button class="active" data-page="manager">Manager</button><button data-page="rosters">Rosters</button><button data-page="planner">Matchups</button><button data-page="analytics">Players</button><button data-page="waivers">Waivers</button><button data-page="trade">Trades</button><button data-page="league">Team Analytics</button><button data-page="league-analyzer">League Analyzer</button><button data-page="settings">Settings</button>
+    <button class="active" data-page="manager">Manager</button><button data-page="rosters">Rosters</button><button data-page="roster-builder">Roster Builder</button><button data-page="planner">Matchups</button><button data-page="analytics">Players</button><button data-page="waivers">Waivers</button><button data-page="trade">Trades</button><button data-page="league">Team Analytics</button><button data-page="league-analyzer">League Analyzer</button><button data-page="settings">Settings</button>
   </nav>
   <div class="stickyclock" id="stickyClock"><span id="stickyClockText">Pick 1 · Round 1</span><div class="stickybar"><i id="stickyClockFill"></i></div></div>
 </header>
@@ -155,6 +157,25 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
     <div class="roster-grid" id="rosterGrid"></div>
   </div>
   <div class="card panelpad section"><div class="sectionhead"><div><h2>League roster status</h2><p>Players with injuries, byes or missing data get surfaced here.</p></div></div><div id="rosterAlerts"></div></div>
+</section>
+<section id="page-roster-builder" style="display:none">
+  <div class="card panelpad">
+    <div class="sectionhead"><div><h2>🧩 Roster Builder</h2><p>Mobile-first manual league entry. No ESPN connection required. Build or edit all 12 teams directly from your phone.</p></div></div>
+    <div class="builder-banner"><b>Manual mode is the backup — and the source of truth when ESPN isn't connected.</b><span>Search the full fantasy player pool, add a player, remove a player, rename teams, or create a custom player if someone is missing.</span></div>
+    <div class="formrow"><label>Team</label><select class="select" id="builderTeamSelect"></select></div>
+    <div class="formrow"><label>Team name</label><input class="input" id="builderTeamName" placeholder="Team name"><button class="secondary" id="builderTeamNameSave">SAVE TEAM NAME</button></div>
+    <div class="builder-search-grid">
+      <input class="input" id="builderPlayerSearch" placeholder="Search player name…" autocomplete="off">
+      <select class="select" id="builderPlayerPos"><option value="ALL">All positions</option><option value="QB">QB</option><option value="RB">RB</option><option value="WR">WR</option><option value="TE">TE</option><option value="K">K</option><option value="DEF">DEF</option></select>
+    </div>
+    <div id="builderPlayerResults" class="builder-results"></div>
+    <div class="builder-custom">
+      <div class="smallcaps">Can't find the player?</div>
+      <div class="builder-custom-grid"><input class="input" id="customPlayerName" placeholder="Player name"><select class="select" id="customPlayerPos"><option>QB</option><option>RB</option><option>WR</option><option>TE</option><option>K</option><option>DEF</option></select><input class="input" id="customPlayerTeam" placeholder="NFL team (e.g. DAL)"><button class="secondary" id="customPlayerAdd">ADD CUSTOM</button></div>
+    </div>
+  </div>
+  <div class="card panelpad section"><div class="sectionhead"><div><h2 id="builderRosterTitle">Current roster</h2><p>Tap remove to move a player back into the available pool.</p></div><button class="ghost" id="builderClearTeam">CLEAR TEAM</button></div><div id="builderRosterGrid" class="builder-roster-grid"></div></div>
+  <div class="card panelpad section"><div class="sectionhead"><div><h2>League completion</h2><p>Track how much of the league you've entered manually.</p></div></div><div id="builderLeagueProgress"></div></div>
 </section>
 
 <section id="page-draft" style="display:none">
@@ -476,6 +497,110 @@ let DATA=[{"name":"Jahmyr Gibbs","pos":"RB","team":"DET","adp":1.9,"espn":1,"sle
  add({name:"Makahi Lemon",pos:"WR",team:"FA",adp:999,espn:999,sleeper:999,fp:999,walter:999,tier:"Prospect",active:false,prospect:true});
 })();
 
+// v24 mobile player-pool expansion: 2026 rookie fantasy class (consensus list, Sep 8 2026).
+(function addV24Rookies(){
+ const rookieRecords=[{"name": "Jadarian Price", "pos": "RB", "team": "SEA", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Carnell Tate", "pos": "WR", "team": "TEN", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Makai Lemon", "pos": "WR", "team": "PHI", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "KC Concepcion", "pos": "WR", "team": "CLE", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Jordyn Tyson", "pos": "WR", "team": "NO", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Jonah Coleman", "pos": "RB", "team": "DEN", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "De'Zhaun Stribling", "pos": "WR", "team": "SF", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Denzel Boston", "pos": "WR", "team": "CLE", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Mike Washington", "pos": "RB", "team": "LV", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Omar Cooper", "pos": "WR", "team": "NYJ", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Emmett Johnson", "pos": "RB", "team": "KC", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Kenyon Sadiq", "pos": "TE", "team": "NYJ", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Nicholas Singleton", "pos": "RB", "team": "TEN", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Kaytron Allen", "pos": "RB", "team": "WAS", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Zachariah Branch", "pos": "WR", "team": "ATL", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Germie Bernard", "pos": "WR", "team": "PIT", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Malachi Fields", "pos": "WR", "team": "NYG", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Kaelon Black", "pos": "RB", "team": "SF", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Fernando Mendoza", "pos": "QB", "team": "LV", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Chris Bell", "pos": "WR", "team": "MIA", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Demond Claiborne", "pos": "RB", "team": "MIN", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Ja'Kobi Lane", "pos": "WR", "team": "BAL", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Antonio Williams", "pos": "WR", "team": "WAS", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Caleb Douglas", "pos": "WR", "team": "MIA", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Seth McGowan", "pos": "RB", "team": "IND", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Ted Hurst", "pos": "WR", "team": "TB", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Adam Randall", "pos": "RB", "team": "BAL", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Cyrus Allen", "pos": "WR", "team": "KC", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Elijah Sarratt", "pos": "WR", "team": "BAL", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Skyler Bell", "pos": "WR", "team": "BUF", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Eli Stowers", "pos": "TE", "team": "PHI", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Oscar Delp", "pos": "TE", "team": "NO", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Brenen Thompson", "pos": "WR", "team": "LAC", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Eli Heidenreich", "pos": "RB", "team": "PIT", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Chris Brazzell", "pos": "WR", "team": "CAR", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Bryce Lance", "pos": "WR", "team": "NO", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Max Klare", "pos": "TE", "team": "LAR", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Eli Raridon", "pos": "TE", "team": "NE", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Carson Beck", "pos": "QB", "team": "ARI", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Ty Simpson", "pos": "QB", "team": "LAR", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Justin Joly", "pos": "TE", "team": "MIA", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Zavion Thomas", "pos": "WR", "team": "CHI", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Trey Smack", "pos": "K", "team": "GB", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Colbie Young", "pos": "WR", "team": "CIN", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Malik Benson", "pos": "WR", "team": "LV", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Jam Miller", "pos": "RB", "team": "FA", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": false, "nflRosterVerified": false},
+ {"name": "J'Mari Taylor", "pos": "RB", "team": "JAX", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Barion Brown", "pos": "WR", "team": "NO", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Kevin Coleman", "pos": "WR", "team": "MIA", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "CJ Daniels", "pos": "WR", "team": "LAR", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Deion Burks", "pos": "WR", "team": "IND", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Will Kacmarek", "pos": "TE", "team": "MIA", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Tanner Koziol", "pos": "TE", "team": "JAX", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Cade Klubnik", "pos": "QB", "team": "NYJ", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Marlin Klein", "pos": "TE", "team": "HOU", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Robert Henry", "pos": "RB", "team": "WAS", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Sam Roush", "pos": "TE", "team": "CHI", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Drew Stevens", "pos": "K", "team": "WAS", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Matt Hibner", "pos": "TE", "team": "BAL", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Reggie Virgil", "pos": "WR", "team": "ARI", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Nate Boerkircher", "pos": "TE", "team": "JAX", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Josh Cuevas", "pos": "TE", "team": "BAL", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Roman Hemby", "pos": "RB", "team": "LV", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Noah Whittington", "pos": "RB", "team": "HOU", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Khalil Dinkins", "pos": "TE", "team": "SF", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Michael Trigg", "pos": "TE", "team": "DAL", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Jack Endries", "pos": "TE", "team": "CIN", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Josh Cameron", "pos": "WR", "team": "JAX", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Miles Kitselman", "pos": "TE", "team": "FA", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": false, "nflRosterVerified": false},
+ {"name": "Kaden Wetjen", "pos": "WR", "team": "PIT", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Cash Jones", "pos": "RB", "team": "ATL", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Drew Allar", "pos": "QB", "team": "PIT", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Miles Davis", "pos": "RB", "team": "FA", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": false, "nflRosterVerified": false},
+ {"name": "Joe Royer", "pos": "TE", "team": "CLE", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Seydou Traore", "pos": "TE", "team": "MIA", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Anderson Castle", "pos": "RB", "team": "IND", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Carsen Ryan", "pos": "TE", "team": "CLE", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Ty Pezza", "pos": "TE", "team": "BAL", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Elijah Tau-Tolliver", "pos": "RB", "team": "FA", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": false, "nflRosterVerified": false},
+ {"name": "Taylen Green", "pos": "QB", "team": "CLE", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Kendrick Law", "pos": "WR", "team": "DET", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Myles Montgomery", "pos": "RB", "team": "FA", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": false, "nflRosterVerified": false},
+ {"name": "Michael Wortham", "pos": "WR", "team": "JAX", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Michael Briscoe", "pos": "WR", "team": "MIN", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Dominic Zvada", "pos": "K", "team": "NYG", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Bauer Sharp", "pos": "TE", "team": "TB", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "J. Michael Sturdivant", "pos": "WR", "team": "GB", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Jack Velling", "pos": "TE", "team": "ATL", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Lance Mason", "pos": "TE", "team": "FA", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": false, "nflRosterVerified": false},
+ {"name": "Kansei Matsuzawa", "pos": "K", "team": "LV", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Jamal Haynes", "pos": "RB", "team": "FA", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": false, "nflRosterVerified": false},
+ {"name": "Dean Connors", "pos": "RB", "team": "LAR", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Kenny Fletcher", "pos": "TE", "team": "FA", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": false, "nflRosterVerified": false},
+ {"name": "Vinny Anthony", "pos": "WR", "team": "ATL", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Lake McRee", "pos": "TE", "team": "PIT", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Kentrel Bullock", "pos": "RB", "team": "CIN", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Quentin Moore", "pos": "TE", "team": "WAS", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true},
+ {"name": "Dontae McMillan", "pos": "RB", "team": "FA", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": false, "nflRosterVerified": false},
+ {"name": "Tanner Arkin", "pos": "TE", "team": "NE", "adp": 999, "espn": 999, "sleeper": 999, "fp": 999, "walter": 999, "tier": "Rookie", "rookie": true, "active": true, "nflRosterVerified": true}];
+ rookieRecords.forEach(p=>{if(!DATA.some(x=>normalizeName(x.name)===normalizeName(p.name)))DATA.push(p);});
+})();
+
 const TEAM_NAMES=["Gridiron Guild","Sunday Scaries","Red Zone Kings","Fourth & Long","The Waiver Wire","Goal Line Stand","Blitz Brigade","Air Yards","TD Machines","The Checkdown","No Punt Intended","Two-Minute Drill"];
 const STARTER_TARGET={QB:1,RB:2,WR:2,TE:1,DEF:1,K:1};
 const BENCH_TARGET={QB:1,RB:2,WR:3,TE:1};
@@ -487,7 +612,7 @@ const MAX_PICK=ROUNDS*12;
 const LATE_ROUND_MIN={DEF:ROUNDS-1,K:ROUNDS};
 const REACH_ALLOWANCE=15;
 const TARGET_TOTAL_WITH_SLACK=ROSTER_SIZE;
-const STORAGE_KEY="dcc_v23_state";
+const STORAGE_KEY="dcc_v24_mobile_state";
 const BOT_PERSONALITIES=["Balanced","RB Heavy","WR Heavy","Zero RB","Hero RB","Early QB","Early TE","BPA / ADP","Aggressive","Value Hunter"];
 const BOT_PERSONALITY_BIAS={
  Balanced:{},"RB Heavy":{RB:2.2,WR:-.5},"WR Heavy":{WR:2.2,RB:-.5},"Zero RB":{RB:-2.4,WR:2.0},"Hero RB":{RB:3.2,WR:-.8},"Early QB":{QB:4.2},"Early TE":{TE:4.2},"BPA / ADP":{},Aggressive:{},"Value Hunter":{}
@@ -976,7 +1101,7 @@ function loadState(){
  try{
   let raw=localStorage.getItem(STORAGE_KEY);
   if(!raw){
-   const legacy=localStorage.getItem("dcc_v22_state")||localStorage.getItem("dcc_v21_intel")||localStorage.getItem("dcc_v20_state")||localStorage.getItem("dcc_v19_state");
+   const legacy=localStorage.getItem("dcc_v23_state")||localStorage.getItem("dcc_v22_state")||localStorage.getItem("dcc_v21_intel")||localStorage.getItem("dcc_v20_state")||localStorage.getItem("dcc_v19_state");
    if(legacy){try{const migrated=JSON.parse(legacy);migrated.espnConnectionV23={leagueId:"",season:2026,mode:"bridge",status:"not_connected",lastSync:null,source:null,teams:0,rosters:0,standings:0,settingsLoaded:false};localStorage.setItem(STORAGE_KEY,JSON.stringify(migrated));raw=JSON.stringify(migrated)}catch(e){}}
   }
   if(!raw){raw=localStorage.getItem("dcc_v19_state")||localStorage.getItem("dcc_v18_state")||localStorage.getItem("dcc_v17_state")||localStorage.getItem("dcc_v16_state")||localStorage.getItem("dcc_v15_state")||localStorage.getItem("dcc_v14_state")||localStorage.getItem("dcc_v12_state")||localStorage.getItem("dcc_v11_state");}
@@ -2305,7 +2430,7 @@ function mockQualityReport(){
 }
 function render(){
  renderTop();renderDraftNight();decisionEngine();gamePlanRows();renderManager();renderRosters();renderRec();renderRoster();renderRuns();renderBoard();renderBoardSuggest();
- renderTeams();renderLeagueAnalyzer();renderMockBoard();mockQualityReport();renderTierList();renderRoundBoard();renderTeamNames();renderLogTeamSelect();
+ renderTeams();renderLeagueAnalyzer();builderRender();renderMockBoard();mockQualityReport();renderTierList();renderRoundBoard();renderTeamNames();renderLogTeamSelect();
  renderTradeSelectors();renderTradeLists();renderTradeSummary();renderTradeHistory();renderSuggestedTrades();
  renderWaivers();renderWeekSelector();renderPlanner();renderMatchup();
  renderAlert();renderDraftGrade();renderLiveSyncStatus();renderProjectionSyncStatus();
@@ -2423,6 +2548,33 @@ document.getElementById("mgrWeek")?.addEventListener("change",e=>{plannerWeek=Nu
 document.getElementById("rosterTeamSelect")?.addEventListener("change",()=>renderRosters());
 
 
+/* ---------- v24 mobile roster builder ---------- */
+let builderTeamIdx=draftPos-1;
+function builderTeams(){return teams.length===12?teams:[]}
+function builderRender(){
+ const sel=document.getElementById("builderTeamSelect");if(!sel)return;
+ const ts=builderTeams();
+ if(sel.options.length!==ts.length){sel.innerHTML=ts.map((t,i)=>`<option value="${i}">${escHtml(t.name||`Team ${i+1}`)}</option>`).join("");}
+ builderTeamIdx=Math.max(0,Math.min(ts.length-1,Number(builderTeamIdx)||0));sel.value=String(builderTeamIdx);
+ const t=ts[builderTeamIdx]||{name:"Team",roster:[]};
+ const tn=document.getElementById("builderTeamName");if(tn&&document.activeElement!==tn)tn.value=t.name||`Team ${builderTeamIdx+1}`;
+ const title=document.getElementById("builderRosterTitle");if(title)title.textContent=`${t.name||`Team ${builderTeamIdx+1}`} · ${t.roster.length}/${ROSTER_SIZE}`;
+ const q=(document.getElementById("builderPlayerSearch")?.value||"").trim().toLowerCase();const pos=document.getElementById("builderPlayerPos")?.value||"ALL";
+ const rosterNames=new Set((t.roster||[]).map(p=>normalizeName(p.name)));
+ const results=DATA.filter(p=>p.active!==false&&!rosterNames.has(normalizeName(p.name))&&(pos==="ALL"||p.pos===pos)&&(!q||p.name.toLowerCase().includes(q))).sort((a,b)=>(a.adp??999)-(b.adp??999)||a.name.localeCompare(b.name)).slice(0,60);
+ const rr=document.getElementById("builderPlayerResults");if(rr)rr.innerHTML=results.length?results.map(p=>`<div class="builder-player"><div class="bp-main"><b>${escHtml(p.name)}</b><span>${p.pos} · ${p.team||"FA"} · ${p.rookie?"ROOKIE · ":""}${p.adp&&p.adp<900?`ADP ${p.adp}`:"Player pool"}</span></div><button class="secondary" data-builder-add="${encodeURIComponent(p.name)}">ADD</button></div>`).join(""):q?`<div class="builder-empty">No matching player. Use Add Custom below.</div>`:`<div class="builder-empty">Start typing to search the full player pool.</div>`;
+ const rg=document.getElementById("builderRosterGrid");if(rg){const slots=["QB","RB","RB","WR","WR","TE","DEF","K"];const used=new Set();const rows=[];slots.forEach((slot,i)=>{const p=(t.roster||[]).find(x=>x.pos===slot&&!used.has(x.name));if(p){used.add(p.name);rows.push({slot:slot+(slots.slice(0,i).filter(x=>x===slot).length?" "+(slots.slice(0,i).filter(x=>x===slot).length+1):""),p});}else rows.push({slot:slot+(slots.slice(0,i).filter(x=>x===slot).length?" "+(slots.slice(0,i).filter(x=>x===slot).length+1):""),p:null});});(t.roster||[]).filter(p=>!used.has(p.name)).forEach(p=>rows.push({slot:"BENCH",p}));rg.innerHTML=rows.map(x=>`<div class="builder-slot"><div class="bs-main"><b>${x.slot}: ${x.p?escHtml(x.p.name):"Empty"}</b><span>${x.p?`${x.p.pos} · ${x.p.team||"FA"}${x.p.rookie?" · Rookie":""}`:"Available spot"}</span></div>${x.p?`<button class="ghost" data-builder-remove="${encodeURIComponent(x.p.name)}">REMOVE</button>`:""}</div>`).join("")||`<div class="builder-empty">No players entered yet.</div>`;}
+ const filled=ts.filter(x=>(x.roster||[]).length>0).length;const total=ts.reduce((n,x)=>n+(x.roster||[]).length,0);const prog=document.getElementById("builderLeagueProgress");if(prog)prog.innerHTML=`<div class="progressrow"><b>${filled}/12 teams started</b><span>${total}/${12*ROSTER_SIZE} player slots</span></div><div class="progressbar"><i style="width:${Math.min(100,total/(12*ROSTER_SIZE)*100)}%"></i></div><div class="mini-list">${ts.map((x,i)=>`<span class="mini-pill">${escHtml(x.name||`Team ${i+1}`)} · ${(x.roster||[]).length}/${ROSTER_SIZE}</span>`).join("")}</div>`;
+}
+function builderAddPlayer(name){const t=teams[builderTeamIdx];if(!t)return;const p=DATA.find(x=>normalizeName(x.name)===normalizeName(decodeURIComponent(name)));if(!p)return;if((t.roster||[]).some(x=>normalizeName(x.name)===normalizeName(p.name)))return showToast("Player already on this roster");if(teams.some((x,i)=>i!==builderTeamIdx&&(x.roster||[]).some(p2=>normalizeName(p2.name)===normalizeName(p.name))))return showToast("Player is already assigned to another team");if((t.roster||[]).length>=ROSTER_SIZE)return showToast("Roster is full — remove a player first");t.roster=t.roster||[];t.roster.push({...p,manualRoster:true});drafted.add(p.name);saveState();builderRender();render();showToast(`${p.name} added to ${t.name}`)}
+function builderRemovePlayer(name){const t=teams[builderTeamIdx];if(!t)return;const decoded=decodeURIComponent(name);t.roster=(t.roster||[]).filter(p=>normalizeName(p.name)!==normalizeName(decoded));drafted=new Set(teams.flatMap(x=>(x.roster||[]).map(p=>p.name)));saveState();builderRender();render();showToast(`${decoded} removed`)}
+function builderAddCustom(){const name=document.getElementById("customPlayerName")?.value.trim();const pos=document.getElementById("customPlayerPos")?.value;const team=(document.getElementById("customPlayerTeam")?.value.trim().toUpperCase()||"FA");if(!name)return showToast("Enter a player name");if(DATA.some(x=>normalizeName(x.name)===normalizeName(name)))return builderAddPlayer(encodeURIComponent(name));const p={name,pos,team,adp:999,espn:999,sleeper:999,fp:999,walter:999,tier:"Custom",active:true,custom:true};DATA.push(p);builderAddPlayer(encodeURIComponent(name));document.getElementById("customPlayerName").value="";document.getElementById("customPlayerTeam").value=""}
+function builderClearTeam(){const t=teams[builderTeamIdx];if(!t)return;if(!confirm(`Clear ${t.name}'s roster?`))return;t.roster=[];drafted=new Set(teams.flatMap(x=>(x.roster||[]).map(p=>p.name)));saveState();builderRender();render();showToast("Team roster cleared")}
+document.getElementById("builderTeamSelect")?.addEventListener("change",e=>{builderTeamIdx=Number(e.target.value)||0;builderRender()});
+document.getElementById("builderTeamNameSave")?.addEventListener("click",()=>{const t=teams[builderTeamIdx];const v=document.getElementById("builderTeamName")?.value.trim();if(t&&v){t.name=v;saveState();builderRender();render();showToast("Team name saved")}});
+document.getElementById("builderPlayerSearch")?.addEventListener("input",builderRender);document.getElementById("builderPlayerPos")?.addEventListener("change",builderRender);document.getElementById("customPlayerAdd")?.addEventListener("click",builderAddCustom);document.getElementById("builderClearTeam")?.addEventListener("click",builderClearTeam);
+document.addEventListener("click",e=>{const a=e.target.closest("[data-builder-add]");if(a)builderAddPlayer(a.dataset.builderAdd);const r=e.target.closest("[data-builder-remove]");if(r)builderRemovePlayer(r.dataset.builderRemove)});
+
 /* ---------- v23 ESPN Live League-of-Record connector ---------- */
 const ESPN_POS_V23={1:"QB",2:"RB",3:"WR",4:"TE",5:"K",16:"DEF",17:"DEF"};
 const ESPN_TEAM_V23={1:"ATL",2:"BUF",3:"CHI",4:"CIN",5:"CLE",6:"DAL",7:"DEN",8:"DET",9:"GB",10:"TEN",11:"IND",12:"KC",13:"LV",14:"LAR",15:"MIA",16:"MIN",17:"NE",18:"NO",19:"NYG",20:"NYJ",21:"PHI",22:"ARI",23:"PIT",24:"LAC",25:"SF",26:"SEA",27:"TB",28:"WSH",29:"CAR",30:"JAX",33:"BAL",34:"HOU"};
@@ -2467,7 +2619,7 @@ async function refreshESPNV23(){
    const u=new URL(projectionProxyUrl,location.href);u.searchParams.set("provider","espn");u.searchParams.set("leagueId",c.leagueId);u.searchParams.set("season",c.season);u.searchParams.set("mode","league");
    const r=await fetch(u.toString(),{headers:{Accept:"application/json"}});if(!r.ok)throw new Error(`Connector HTTP ${r.status}`);applyESPNLeagueV23(await r.json(),"backend");return;
  }
- showToast("Chrome Bridge: open your signed-in ESPN league page and use SYNC ESPN in the Draft Command Center extension.");
+ showToast("Chrome Bridge: open your signed-in ESPN league page and use SYNC ESPN FROM BROWSER in the Draft Command Center extension.");
 }
 function exportESPNV23(){const payload={...espnConnectionV23,teams:teams.map(t=>({id:t.espnTeamId??t.id,name:t.name,record:t.record||null,roster:(t.roster||[]).map(p=>({name:p.name,pos:p.pos,team:p.team,status:p.espnRosterStatus||getStatus(p.name),slot:p.espnLineupSlot??null,espnId:p.espnId??null}))}))};const blob=new Blob([JSON.stringify({source:"espn",season:payload.season,leagueId:payload.leagueId,teams:payload.teams,standings:teams.map(t=>({name:t.name,...(t.record||{})})),settings:null,lastSync:Date.now()},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`dcc-espn-${payload.leagueId||"league"}-normalized.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
 function clearESPNV23(){if(!confirm("Clear the ESPN league connection and imported ESPN roster/standings data? Your draft/player settings remain."))return;espnConnectionV23={leagueId:"",season:2026,mode:"bridge",status:"not_connected",lastSync:null,source:null,teams:0,rosters:0,standings:0,settingsLoaded:false};saveState();renderESPNV22Status();showToast("ESPN connection cleared");}

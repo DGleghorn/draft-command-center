@@ -1,11 +1,12 @@
 {
-  "name": "Draft Command Center v23 \u2014 ESPN Live League Integration",
-  "short_name": "Draft CC v23",
+  "name": "Draft Command Center v24 \u2014 Mobile Team Manager",
+  "short_name": "Draft Command",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#080d17",
   "theme_color": "#080d17",
+  "description": "Mobile-first fantasy football team manager with manual league roster builder.",
   "icons": [
     {
       "src": "./icon-192.png",
