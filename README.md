@@ -1,6 +1,6 @@
-# Draft Command Center v24.1 — Mobile Team Manager
+# Draft Command Center v24.2 — Mobile Team Manager
 
-## v24.1 changes
+## v24.2 changes
 - Removed the ESPN sync UI, League ID/backend/bridge settings, ESPN sync buttons, and ESPN connector workflow from the mobile app.
 - Settings now has an explicit **Save All Team Names** control.
 - Roster Builder remains the source of truth for all 12 teams.

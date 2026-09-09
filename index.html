@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b1020">
-<title>Draft Command Center v24.1 Mobile — Team Manager</title>
+<title>Draft Command Center v24.2 Mobile — Team Manager</title>
 <style>
 :root{--bg:#090d17;--panel:#111827;--panel2:#151e2f;--line:#263249;--text:#f4f7fb;--muted:#91a0b7;--blue:#6d6aff;--cyan:#4dd7ff;--green:#28d7a1;--red:#ff6475;--amber:#f6b94a;--shadow:0 14px 45px rgba(0,0,0,.22)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior-x:none}body{min-width:0}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}input,select,textarea{font-size:16px}
@@ -680,11 +680,15 @@ function projPts(p){
   return Math.max(1,+(base+rankBoost).toFixed(1));
 }
 function projectionKey(name){return normalizeName(name)}
+function projectionKeysForPlayer(p){const keys=new Set([projectionKey(p.name)]);[p.fpName,p.fantasyProsName,p.displayName].filter(Boolean).forEach(n=>keys.add(projectionKey(n)));return [...keys].filter(Boolean);}
+function allRosterPlayers(){const out=[];const seen=new Set();teams.forEach((t,teamIdx)=>(t.roster||[]).forEach(p=>{const key=projectionKey(p.name);if(!key||seen.has(key))return;seen.add(key);out.push({...p,teamIdx,teamName:t.name});}));return out;}
+function hydrateRosterPlayersFromData(){const byKey=new Map(DATA.map(p=>[projectionKey(p.name),p]));teams.forEach(t=>{t.roster=(t.roster||[]).map(r=>{const base=byKey.get(projectionKey(r.name));return base?{...base,...r,name:base.name,pos:base.pos||r.pos,team:base.team||r.team,fpId:base.fpId||r.fpId,fpName:base.fpName||r.fpName}:r;});});}
+function rosterProjectionAudit(week){const rostered=allRosterPlayers(),matched=rostered.filter(p=>syncedWeeklyProj(p,week)!=null),missing=rostered.filter(p=>syncedWeeklyProj(p,week)==null);return {rostered,matched,missing};}
 function syncedWeeklyProj(p,week){
   const wk=weeklyProjectionData?.[week];
   if(!wk)return null;
-  const v=wk[projectionKey(p.name)];
-  return Number.isFinite(v)?v:null;
+  for(const k of projectionKeysForPlayer(p)){const v=wk[k];if(Number.isFinite(v))return v;}
+  return null;
 }
 function tradeValue(p){const seasonVor=(p.vor!=null?p.vor:vor(p))*16;return Math.round(Math.max(5,100+seasonVor*0.6))}
 function weekVariance(name,week){const h=hashCode(name+"-w"+week);return ((h%200)-100)/100}
@@ -983,8 +987,8 @@ function normalizeProjectionResponse(payload,week){
   const out={};
   const rows=Array.isArray(payload)?payload:(payload?.players||payload?.data||payload?.projections||[]);
   rows.forEach(row=>{
-    const name=row.name||row.player_name||row.playerName||row.fullName;
-    const pts=Number(row.stats?.points_ppr??row.stats?.points??row.projectedPoints??row.projected_points??row.fantasyPoints??row.fantasy_points??row.points??row.appliedTotal);
+    const name=row.name||row.player_name||row.playerName||row.fullName||row.player?.name||row.player?.fullName;
+    const pts=Number(row.stats?.points_ppr??row.stats?.pointsPpr??row.stats?.points??row.projectedPoints??row.projected_points??row.fantasyPoints??row.fantasy_points??row.points??row.appliedTotal);
     if(name&&Number.isFinite(pts))out[projectionKey(name)]=pts;
   });
   // external league source koa player objects can contain week-level stats nested in playerPoolEntry.
@@ -1013,8 +1017,10 @@ async function syncWeeklyProjections(){
    const normalized=normalizeProjectionResponse(payload,plannerWeek);
    if(Object.keys(normalized).length<50)throw new Error(`Only ${Object.keys(normalized).length} usable weekly projections were returned.`);
    weeklyProjectionData[plannerWeek]=normalized;
-   projectionSyncState={status:"done",week:plannerWeek,timestamp:new Date().toISOString(),count:Object.keys(normalized).length,source:"FantasyPros API"};
-   setProjectionStatus(`✓ Week ${plannerWeek} FantasyPros PPR projections loaded — ${Object.keys(normalized).length} players. The Planner now uses live projection values.`);
+   hydrateRosterPlayersFromData();
+   const audit=rosterProjectionAudit(plannerWeek);
+   projectionSyncState={status:"done",week:plannerWeek,timestamp:new Date().toISOString(),count:Object.keys(normalized).length,source:"FantasyPros API",rostered:audit.rostered.length,rosteredMatched:audit.matched.length,rosteredMissing:audit.missing.length};
+   setProjectionStatus(`✓ Week ${plannerWeek} FantasyPros PPR projections loaded — ${Object.keys(normalized).length} players. ${audit.rostered.length?`${audit.matched.length}/${audit.rostered.length} rostered players matched. `:""}The Planner now uses live projection values.`);
    saveState();render();renderLeagueAnalyzer();
  }catch(e){
    projectionSyncState={status:"error",week:plannerWeek,timestamp:new Date().toISOString(),error:String(e.message||e)};
@@ -2564,7 +2570,9 @@ async function syncFantasyPros(){
    (players.players||[]).forEach(x=>{const name=x.player_name||x.name;if(!name)return;let p=byName.get(normalizeName(name));if(!p){p={name,pos:String(x.position_id||x.position||"WR").toUpperCase(),team:x.team_id||"FA",adp:999,espn:999,sleeper:999,fp:999,walter:999,tier:"Waiver",active:true};DATA.push(p);byName.set(normalizeName(name),p);added++;}else updated++;p.pos=String(x.position_id||p.pos||"WR").toUpperCase();p.team=x.team_id||p.team||"FA";p.fpId=x.player_id||x.fpid||p.fpId;if(x.rank_adp_ppr!=null)p.adp=Number(x.rank_adp_ppr);else if(x.rank_adp!=null)p.adp=Number(x.rank_adp);});
    (rankings.players||[]).forEach(x=>{const p=byName.get(normalizeName(x.player_name||x.name));if(!p)return;if(x.rank_ecr!=null)p.fp=Number(x.rank_ecr);if(x.rank_adp_ppr!=null)p.adp=Number(x.rank_adp_ppr);else if(x.rank_adp!=null)p.adp=Number(x.rank_adp);if(x.tier!=null)p.fpTier=x.tier;});
    const norm=normalizeProjectionResponse(projections,plannerWeek);weeklyProjectionData[plannerWeek]=norm;
-   fantasyProsSyncState={status:"done",timestamp:Date.now(),players:(players.players||[]).length,rankings:(rankings.players||[]).length,projections:Object.keys(norm).length};
+   hydrateRosterPlayersFromData();
+   const audit=rosterProjectionAudit(plannerWeek);
+   fantasyProsSyncState={status:"done",timestamp:Date.now(),players:(players.players||[]).length,rankings:(rankings.players||[]).length,projections:Object.keys(norm).length,rostered:audit.rostered.length,rosteredMatched:audit.matched.length,rosteredMissing:audit.missing.length};
    projectionSyncState={status:"done",week:plannerWeek,timestamp:new Date().toISOString(),count:Object.keys(norm).length,source:"FantasyPros API"};
    saveState();render();setFPStatus(`✓ Synced ${fantasyProsSyncState.players} players · ${fantasyProsSyncState.rankings} rankings · ${fantasyProsSyncState.projections} Week ${plannerWeek} projections. Added ${added} players.`);
    showToast("FantasyPros data refreshed");
@@ -2576,12 +2584,14 @@ function importFantasyProsPayload(json){
  if(Object.keys(norm).length)weeklyProjectionData[plannerWeek]=norm;
  let added=0; const byName=new Map(DATA.map(p=>[normalizeName(p.name),p]));
  rows.forEach(x=>{const name=x.name||x.player_name;if(!name)return;let p=byName.get(normalizeName(name));if(!p){p={name,pos:String(x.position_id||x.pos||"WR").toUpperCase(),team:x.team_id||x.team||"FA",adp:999,espn:999,sleeper:999,fp:999,walter:999,tier:"Waiver",active:true};DATA.push(p);byName.set(normalizeName(name),p);added++;}if(x.team_id)p.team=x.team_id;if(x.position_id)p.pos=x.position_id;if(x.stats?.points_ppr!=null)p.fpProj=Number(x.stats.points_ppr);});
- projectionSyncState={status:Object.keys(norm).length?"done":"error",week:plannerWeek,timestamp:new Date().toISOString(),count:Object.keys(norm).length,source:"FantasyPros import"};
+ hydrateRosterPlayersFromData();
+ const audit=rosterProjectionAudit(plannerWeek);
+ projectionSyncState={status:Object.keys(norm).length?"done":"error",week:plannerWeek,timestamp:new Date().toISOString(),count:Object.keys(norm).length,source:"FantasyPros import",rostered:audit.rostered.length,rosteredMatched:audit.matched.length,rosteredMissing:audit.missing.length};
  fantasyProsSyncState={status:Object.keys(norm).length?"done":"error",timestamp:Date.now(),projections:Object.keys(norm).length};
  saveState();render();setFPStatus(`✓ Imported ${Object.keys(norm).length} Week ${plannerWeek} projections${added?` and added ${added} players`:""}.`);
 }
 function importFantasyProsJSON(file){const r=new FileReader();r.onload=()=>{try{importFantasyProsPayload(JSON.parse(r.result));}catch(e){setFPStatus(`⚠️ Invalid FantasyPros JSON: ${e.message||e}`);}};r.readAsText(file);}
-function importFantasyProsCSV(file){const r=new FileReader();r.onload=()=>{const lines=String(r.result).split(/\r?\n/).filter(Boolean);if(lines.length<2){setFPStatus("⚠️ CSV is empty.");return;}const headers=lines[0].split(",").map(x=>x.trim().toLowerCase());const idx=n=>headers.findIndex(h=>h===n||h.includes(n));const nameI=idx("player")>=0?idx("player"):idx("name");const ptsI=idx("fpts")>=0?idx("fpts"):idx("points");if(nameI<0||ptsI<0){setFPStatus("⚠️ CSV needs Player/Name and FPTS/Points columns.");return;}const norm={};lines.slice(1).forEach(line=>{const cols=line.split(",");const name=cols[nameI]?.trim();const pts=Number(cols[ptsI]);if(name&&Number.isFinite(pts))norm[projectionKey(name)]=pts;});if(Object.keys(norm).length<20){setFPStatus(`⚠️ Only ${Object.keys(norm).length} usable projection rows found.`);return;}weeklyProjectionData[plannerWeek]=norm;projectionSyncState={status:"done",week:plannerWeek,timestamp:new Date().toISOString(),count:Object.keys(norm).length,source:"FantasyPros CSV"};fantasyProsSyncState={status:"done",timestamp:Date.now(),projections:Object.keys(norm).length};saveState();render();setFPStatus(`✓ Imported ${Object.keys(norm).length} Week ${plannerWeek} PPR projection rows from CSV.`);};r.readAsText(file);}
+function importFantasyProsCSV(file){const r=new FileReader();r.onload=()=>{const lines=String(r.result).split(/\r?\n/).filter(Boolean);if(lines.length<2){setFPStatus("⚠️ CSV is empty.");return;}const headers=lines[0].split(",").map(x=>x.trim().toLowerCase());const idx=n=>headers.findIndex(h=>h===n||h.includes(n));const nameI=idx("player")>=0?idx("player"):idx("name");const ptsI=idx("fpts")>=0?idx("fpts"):idx("points");if(nameI<0||ptsI<0){setFPStatus("⚠️ CSV needs Player/Name and FPTS/Points columns.");return;}const norm={};lines.slice(1).forEach(line=>{const cols=line.split(",");const name=cols[nameI]?.trim();const pts=Number(cols[ptsI]);if(name&&Number.isFinite(pts))norm[projectionKey(name)]=pts;});if(Object.keys(norm).length<20){setFPStatus(`⚠️ Only ${Object.keys(norm).length} usable projection rows found.`);return;}weeklyProjectionData[plannerWeek]=norm;hydrateRosterPlayersFromData();const audit=rosterProjectionAudit(plannerWeek);projectionSyncState={status:"done",week:plannerWeek,timestamp:new Date().toISOString(),count:Object.keys(norm).length,source:"FantasyPros CSV",rostered:audit.rostered.length,rosteredMatched:audit.matched.length,rosteredMissing:audit.missing.length};fantasyProsSyncState={status:"done",timestamp:Date.now(),projections:Object.keys(norm).length};saveState();render();setFPStatus(`✓ Imported ${Object.keys(norm).length} Week ${plannerWeek} PPR projection rows from CSV.`);};r.readAsText(file);}
 /* ---------- wiring ---------- */
 document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>{page=b.dataset.page;document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll("main>section").forEach(s=>s.style.display=s.id==="page-"+page?"block":"none");if(page==="league-analyzer")renderLeagueAnalyzer();if(page==="settings")renderTeamNames();renderTop()});
 document.getElementById("mockSimBtn").onclick=simulatePick;
