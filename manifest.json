@@ -1,22 +1,14 @@
 {
-  "name": "Draft Command Center v24.1 \u2014 Mobile Team Manager",
+  "name": "Draft Command Center v25.0 — Ultimate Fantasy Football Toolkit",
   "short_name": "Draft Command",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#080d17",
   "theme_color": "#080d17",
-  "description": "Mobile-first fantasy football team manager with manual league rosters, FantasyPros projections, player pool tools, and league activity snapshots.",
+  "description": "Mobile-first fantasy football manager with manual league rosters, FantasyPros PPR projections, FLEX-aware lineup optimization, waivers, trades, matchup scheduling, standings, player intelligence, and league snapshots.",
   "icons": [
-    {
-      "src": "./icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "./icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
+    {"src":"./icon-192.png","sizes":"192x192","type":"image/png"},
+    {"src":"./icon-512.png","sizes":"512x512","type":"image/png"}
   ]
 }

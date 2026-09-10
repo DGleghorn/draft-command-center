@@ -1,20 +1,44 @@
-# Draft Command Center v24.2 — Mobile Team Manager
+# Draft Command Center v25.0 — Ultimate Fantasy Football Toolkit
 
-## v24.2 changes
-- Removed the ESPN sync UI, League ID/backend/bridge settings, ESPN sync buttons, and ESPN connector workflow from the mobile app.
-- Settings now has an explicit **Save All Team Names** control.
-- Roster Builder remains the source of truth for all 12 teams.
-- Added League Activity & Snapshots: manual adds, drops, team renames, export/import snapshots, and a timestamped activity log.
-- Reworked Data Integrity Rules to validate the things the app can actually verify instead of reporting missing ESPN connectivity as an error.
-- Reworked FantasyPros integration: direct official API support using a user-entered key stored locally in the browser, plus JSON/CSV projection import fallback.
-- FantasyPros weekly projections are parsed from the documented `stats.points_ppr` field and drive the Matchups/Team Analytics logic when loaded.
-- New service-worker cache name `dcc-v24-1-mobile` prevents the old v23/v24 service worker from being treated as the current build after deployment.
+## What changed
+- **Actual lineup configuration is now FLEX-aware:** QB / RB / RB / WR / WR / TE / FLEX / K / DEF.
+- League configuration is editable and persisted so roster rules cannot drift between builds.
+- Manual rosters remain the **league-of-record**. There is no ESPN sync, ESPN League ID, or ESPN backend dependency.
+- FantasyPros is the expert/projection layer. Weekly projections accept only explicit PPR fields such as `stats.points_ppr` from the official API/import workflow.
+- Projection states are explicit: **LIVE**, **EST**, or **OUT/BYE**. Missing FantasyPros matches are never labeled as live points.
+- Added a **Projection/Data Health** audit with roster match coverage and opponent-schedule status.
+- Added **FLEX-aware lineup optimization** for weekly Start/Sit, Matchups, Manager, roster completeness, VOR/replacement logic, Team Analytics, and trade evaluation.
+- Added a **manual fantasy matchup schedule editor**. The app will not invent a fantasy opponent; a round-robin seed is available only as an explicit helper and must be verified.
+- Added **manual standings/record/PF/PA entry** for league power rankings without external league sync.
+- Added a **scoring/projection contract** so the league's scoring rules are documented and differences from FantasyPros PPR are visible.
+- Added **post-trade optimized starter delta** and mutually beneficial trade suggestions instead of relying only on raw player totals.
+- Added mobile-friendly **player detail** cards with projection source, ADP/ECR, VOR, availability, and projection state.
+- Added automatic local-state backup on save and a v24.x → v25 migration path.
+- Added service-worker versioning and an in-app update notice.
+- Removed the legacy v21 Manager Intelligence layer and its conflicting FantasyPros/API messaging.
 
-## GitHub Pages
-Upload the contents of this folder to the repository root. Do not upload the ZIP itself. Open the GitHub Pages URL over HTTPS. On iPhone, use Share → Add to Home Screen → Open as Web App.
+## Current default league setup
+- 12 teams
+- PPR
+- 16 roster spots
+- QB 1 / RB 2 / WR 2 / TE 1 / FLEX 1 / K 1 / DEF 1
+- Draft position #2
+- DEF in Round 15 / K in Round 16 remains the draft policy
 
-## FantasyPros
-FantasyPros documents the NFL projections endpoint as `/nfl/{season}/projections`, with `week`, `position/positions`, and `scoring` parameters. HOF includes personal production API access; if the API key is not enabled for the account, use the JSON/CSV import buttons instead.
+## FantasyPros API
+The app supports the official FantasyPros API and manual JSON/CSV imports. The PPR projection parser is intentionally strict and uses the PPR projection field rather than standard-scoring `stats.points`.
 
-## League activity
-Use Roster Builder for all adds/drops. Every manual change is timestamped. Use League Analyzer → League Activity & Snapshots to export a complete point-in-time league JSON file before/after waiver claims, trades, or other roster changes.
+For a static personal PWA, an API key is stored locally in the browser. For a shared/public deployment, a server-side proxy is safer because it keeps the key off the client.
+
+## Data philosophy
+1. Manual league roster data = league source of truth.
+2. FantasyPros = expert rankings / ADP / PPR projection layer.
+3. NFL/Sleeper schedule/injury data = availability support when available.
+4. Fallback estimates are labeled **EST** and should not be treated as live FantasyPros projections.
+5. The dashboard prefers an explicit “missing” state over fabricated precision.
+
+## GitHub Pages / iPhone
+Upload the **contents** of this folder to the repository root, not the ZIP file. Serve the app through HTTPS/GitHub Pages. On iPhone, open the HTTPS site and use **Share → Add to Home Screen → Open as Web App**.
+
+## Backup / recovery
+Use the existing League Activity & Snapshots export/import controls to preserve complete point-in-time league state. v25 also keeps a local previous-state backup before successful saves.

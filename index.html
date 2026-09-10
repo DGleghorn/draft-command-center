@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b1020">
-<title>Draft Command Center v24.2 Mobile — Team Manager</title>
+<title>Draft Command Center v25.0 — Ultimate Fantasy Toolkit</title>
 <style>
 :root{--bg:#090d17;--panel:#111827;--panel2:#151e2f;--line:#263249;--text:#f4f7fb;--muted:#91a0b7;--blue:#6d6aff;--cyan:#4dd7ff;--green:#28d7a1;--red:#ff6475;--amber:#f6b94a;--shadow:0 14px 45px rgba(0,0,0,.22)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior-x:none}body{min-width:0}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}input,select,textarea{font-size:16px}
@@ -87,6 +87,10 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 @media(max-width:600px){.league-analyzer-kpis{grid-template-columns:1fr 1fr}.league-analyzer-table{min-width:820px}}
 
 .builder-banner{padding:12px 14px;border:1px solid rgba(93,224,183,.25);background:rgba(93,224,183,.07);border-radius:14px;margin:10px 0 14px;display:flex;flex-direction:column;gap:4px}.builder-banner span{font-size:12px;color:#8fa0b8;line-height:1.5}.builder-search-grid{display:grid;grid-template-columns:1fr 150px;gap:8px;margin-top:10px}.builder-results{display:flex;flex-direction:column;gap:6px;margin-top:10px;max-height:330px;overflow:auto}.builder-player{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 11px;border:1px solid rgba(255,255,255,.07);border-radius:12px;background:rgba(255,255,255,.025)}.builder-player .bp-main{min-width:0;display:flex;flex-direction:column}.builder-player .bp-main b{font-size:13px}.builder-player .bp-main span{font-size:10px;color:#718099;margin-top:2px}.builder-custom{margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.07)}.builder-custom-grid{display:grid;grid-template-columns:1.6fr 90px 100px auto;gap:7px;margin-top:8px}.builder-roster-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.builder-slot{padding:11px;border:1px solid rgba(255,255,255,.07);border-radius:12px;background:rgba(255,255,255,.025);display:flex;align-items:center;justify-content:space-between;gap:8px}.builder-slot .bs-main{min-width:0}.builder-slot b{font-size:12px}.builder-slot span{display:block;font-size:10px;color:#718099;margin-top:3px}.builder-empty{padding:18px;border:1px dashed rgba(255,255,255,.12);border-radius:12px;color:#718099;text-align:center}.progressbar{height:8px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}.progressbar i{display:block;height:100%;background:#5de0b7;border-radius:99px}.progressrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:7px}.mini-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.mini-pill{font-size:10px;padding:5px 7px;border-radius:999px;background:rgba(255,255,255,.05);color:#9aabc2}@media(max-width:600px){.builder-search-grid{grid-template-columns:1fr}.builder-custom-grid{grid-template-columns:1fr 1fr}.builder-custom-grid input:first-child{grid-column:1/-1}.builder-custom-grid button{grid-column:1/-1}.builder-roster-grid{grid-template-columns:1fr}.builder-player{padding:11px 9px}}
+
+/* v25 Ultimate Toolkit */
+.dcc-health{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px}.dcc-health .hbox{padding:10px;border:1px solid rgba(148,163,184,.16);border-radius:12px;background:rgba(15,23,42,.38)}.dcc-health b{display:block;font-size:16px}.dcc-health span{font-size:9px;color:#8290a8;text-transform:uppercase;letter-spacing:.08em}.dcc-good{color:#5de0b7}.dcc-warn{color:#f6b94a}.dcc-bad{color:#ff7b87}.dcc-muted{color:#94a3b8}.dcc-grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.dcc-table{width:100%;border-collapse:collapse}.dcc-table th,.dcc-table td{padding:7px 6px;border-bottom:1px solid rgba(148,163,184,.12);font-size:10px;text-align:left}.dcc-table th{color:#8290a8;font-size:8px;text-transform:uppercase;letter-spacing:.08em}.dcc-scroll{overflow:auto}.dcc-pill{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:999px;background:rgba(148,163,184,.09);font-size:9px;color:#b7c2d3}.dcc-action{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid rgba(148,163,184,.10)}.dcc-action:last-child{border-bottom:0}.dcc-small{font-size:9px;color:#8290a8;line-height:1.45}.dcc-modal{position:fixed;inset:0;background:rgba(2,6,23,.72);z-index:1000;display:none;align-items:flex-end;justify-content:center;padding:10px}.dcc-modal.open{display:flex}.dcc-modal-card{width:min(720px,100%);max-height:88vh;overflow:auto;border:1px solid rgba(148,163,184,.2);border-radius:18px;background:#0b1220;box-shadow:0 20px 80px rgba(0,0,0,.45);padding:16px}.dcc-slot{display:grid;grid-template-columns:70px 1fr auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(148,163,184,.10)}.dcc-slot:last-child{border-bottom:0}.dcc-slot .slotlabel{font-size:9px;color:#8290a8;text-transform:uppercase}.dcc-delta{font-weight:800}.dcc-card-title{font-size:12px;font-weight:800}.dcc-source{font-size:9px;padding:4px 7px;border-radius:7px;background:rgba(93,224,183,.09);color:#5de0b7}.dcc-source.est{background:rgba(246,185,74,.09);color:#f6b94a}.dcc-source.none{background:rgba(255,123,135,.09);color:#ff7b87}.dcc-alert{padding:10px;border-radius:10px;background:rgba(246,185,74,.08);border:1px solid rgba(246,185,74,.18);font-size:10px;line-height:1.45}.dcc-alert.good{background:rgba(93,224,183,.07);border-color:rgba(93,224,183,.16)}
+@media(max-width:760px){.dcc-health{grid-template-columns:repeat(2,minmax(0,1fr))}.dcc-grid2{grid-template-columns:1fr}.dcc-slot{grid-template-columns:55px 1fr auto}}
 </style>
 <link rel="manifest" href="./manifest.json">
 <link rel="apple-touch-icon" href="./icon-192.png">
@@ -106,7 +110,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 <div class="app">
 <header class="top">
   <div class="toprow">
-    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v24.1</span></h1></div></div>
+    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v25.0</span></h1></div></div>
     <div class="status"><div class="live" title="Mobile Team Manager is fully manual and local-first"><i class="pulse"></i><span id="syncText">MOBILE TEAM MANAGER</span></div></div>
   </div>
   <nav class="nav" id="nav">
@@ -149,6 +153,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
     <div class="sectionhead"><div><h2>🔄 Recommended Moves</h2><p>Prioritized actions — lineup, waivers and trades.</p></div></div>
     <div id="mgrMoves"></div>
   </div>
+  <div class="card manager-card section"><div class="sectionhead"><div><h2>🛡️ Toolkit Health</h2><p>Live projection coverage, lineup completeness, injury/bye pressure and league data quality.</p></div></div><div id="mgrHealth"></div></div>
 </section>
 <section id="page-rosters" style="display:none">
   <div class="card panelpad">
@@ -424,8 +429,8 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
     <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>⭐ FantasyPros data layer</h2><p>Use the official FantasyPros API directly when you have an API key, or import a normalized JSON/CSV snapshot. No external league connection is required.</p></div></div>
       <div class="formrow"><label>FantasyPros API key <span class="mini">(optional; stored only in this browser)</span></label><input class="input" id="fantasyProsApiKey" type="password" autocomplete="off" placeholder="Paste your personal FantasyPros API key here"></div>
       <div class="persistbar"><button class="secondary" id="fantasyProsSyncBtn">SYNC FANTASYPROS</button><label class="secondary" style="display:inline-flex;align-items:center" for="fantasyProsJsonFile">IMPORT FANTASYPROS JSON</label><input type="file" id="fantasyProsJsonFile" accept=".json,application/json" style="display:none"><label class="secondary" style="display:inline-flex;align-items:center" for="fantasyProsCsvFile">IMPORT PROJECTIONS CSV</label><input type="file" id="fantasyProsCsvFile" accept=".csv,text/csv" style="display:none"><a class="secondary" href="https://www.fantasypros.com/api-data/" target="_blank" rel="noopener">OPEN FANTASYPROS API</a></div>
-      <p class="mini" id="fantasyProsSyncStatus">Not connected. If your plan/API key does not include production API access, use the JSON/CSV import option instead.</p>
-      <p class="mini" style="margin-top:6px">FantasyPros currently documents NFL weekly projections at <code>/nfl/{season}/projections</code>, with week and PPR scoring parameters. A paid HOF subscription includes personal production API access; other plans may need a free/prototype key or manual import.</p>
+      <p class="mini" id="fantasyProsSyncStatus">Not connected. If your API key is not enabled for the endpoint, use the JSON/CSV import option instead.</p>
+      <p class="mini" style="margin-top:6px">FantasyPros currently documents NFL weekly projections at <code>/nfl/{season}/projections</code>, with week and PPR scoring parameters. FantasyPros documents API access by plan/key; use the official API docs for your account. For a static personal PWA, credentials are stored locally in this browser; a server-side proxy is safer for broader deployment.</p>
     </div>
     <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🏈 Real NFL schedule</h2></h2><p>Player opponents and bye weeks come from a real 2026 NFL schedule feed — never a hash/random opponent.</p></div></div>
       <div class="persistbar"><button class="secondary" id="scheduleSyncBtn">SYNC NFL SCHEDULE</button></div>
@@ -434,7 +439,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
     </div>
     <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>📈 Weekly projection source</h2><p>Weekly PPR projections come from FantasyPros when synced; otherwise the app clearly labels its fallback estimate.</p></div></div>
       <div class="persistbar"><button class="secondary" id="projectionSyncBtnSettings">SYNC CURRENT WEEK PROJECTIONS</button></div>
-      <p class="mini" id="projectionSourceStatus">FantasyPros projection cache is not loaded for the selected week.</p>
+      <p class="mini" id="projectionSourceStatus">FantasyPros projection cache is not loaded for the selected week.</p><p class="mini" id="projectionHealthStatus" style="margin-top:6px"></p>
     </div>
     <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🔄 Live injury & roster sync</h2><p>Pulls current injury status and team assignments from Sleeper's free public NFL player API — real data, not a demo.</p></div></div>
       <p class="mini" id="liveSyncStatus">Never synced. Tap below to fetch current data.</p>
@@ -445,7 +450,34 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
       <div id="liveSyncReport" style="margin-top:10px"></div>
       <p style="font-size:10px;color:#718099;margin-top:10px;line-height:1.6">This fetches a public dataset (~5MB) directly from your device — no server of ours is involved. It updates injury badges and flags team mismatches between this app's data and Sleeper's live roster info, but it does <b>not</b> replace market ADP or expert rankings unless you also sync the live ADP feed. Requires an internet connection; if the fetch fails (e.g. no connection, or the source is unreachable), everything else in the app keeps working normally.</p>
     </div>
-    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🏈 Team names</h2><p>Rename the 12 league teams to match your real league mates.</p></div></div>
+    <div class="card setting" style="grid-column:1/-1" id="dccLeagueConfigCard"><div class="sectionhead"><div><h2>⚙️ League Configuration</h2><p>Editable roster rules so the decision engine cannot drift away from your real league.</p></div></div>
+  <div class="dcc-grid2">
+    <div class="formrow"><label>Teams</label><input class="input" id="dccTeams" type="number" min="2" max="20" value="12"></div>
+    <div class="formrow"><label>Scoring</label><select class="select" id="dccScoring"><option value="PPR">PPR</option><option value="HALF_PPR">Half PPR</option><option value="STD">Standard</option></select></div>
+    <div class="formrow"><label>Roster size</label><input class="input" id="dccRosterSize" type="number" min="8" max="30" value="16"></div>
+    <div class="formrow"><label>Playoff teams</label><input class="input" id="dccPlayoffTeams" type="number" min="2" max="16" value="6"></div>
+  </div>
+  <div class="smallcaps" style="margin-top:8px">Starting lineup</div>
+  <div class="dcc-grid2" style="margin-top:6px">
+    <div class="formrow"><label>QB</label><input class="input dcc-start" data-pos="QB" type="number" min="0" max="3" value="1"></div><div class="formrow"><label>RB</label><input class="input dcc-start" data-pos="RB" type="number" min="0" max="5" value="2"></div>
+    <div class="formrow"><label>WR</label><input class="input dcc-start" data-pos="WR" type="number" min="0" max="5" value="2"></div><div class="formrow"><label>TE</label><input class="input dcc-start" data-pos="TE" type="number" min="0" max="3" value="1"></div>
+    <div class="formrow"><label>FLEX (RB/WR/TE)</label><input class="input dcc-start" data-pos="FLEX" type="number" min="0" max="3" value="1"></div><div class="formrow"><label>K</label><input class="input dcc-start" data-pos="K" type="number" min="0" max="3" value="1"></div>
+    <div class="formrow"><label>DEF/DST</label><input class="input dcc-start" data-pos="DEF" type="number" min="0" max="3" value="1"></div>
+  </div>
+  <div class="persistbar"><button class="primary" id="dccSaveConfig">SAVE LEAGUE CONFIG</button><span class="dcc-pill" id="dccConfigSummary">12 teams · PPR · QB1/RB2/WR2/TE1/FLEX1/K1/DEF1 · 16 roster</span></div>
+</div>
+<div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🎯 Scoring & Projection Contract</h2><p>FantasyPros live projections are used as PPR projections. Your scoring settings are retained for fallback calculations and league documentation.</p></div></div>
+  <div class="dcc-grid2">
+    <div class="formrow"><label>Receptions</label><input class="input" id="scoreRec" type="number" step="0.1" value="1"></div><div class="formrow"><label>Passing TD</label><input class="input" id="scorePassTD" type="number" step="0.5" value="4"></div>
+    <div class="formrow"><label>Passing yards / pt</label><input class="input" id="scorePassYd" type="number" step="0.01" value="25"></div><div class="formrow"><label>Rush/receive yards / pt</label><input class="input" id="scoreRushYd" type="number" step="0.01" value="10"></div>
+    <div class="formrow"><label>Rush/receive TD</label><input class="input" id="scoreTD" type="number" step="0.5" value="6"></div><div class="formrow"><label>INT / lost fumble</label><input class="input" id="scoreTurnover" type="number" step="0.5" value="-2"></div>
+  </div>
+  <p class="dcc-small">Important: FantasyPros <b>points_ppr</b> is the live projection contract in this build. If your league uses custom scoring, enter it here and the app will flag the live projection as “FP PPR / scoring differs” rather than pretending the values are exact.</p>
+</div>
+<div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🗓️ Fantasy Matchup Schedule</h2><p>Set the actual fantasy opponent for each team. The app will never silently call a round-robin opponent your real opponent.</p></div><select class="select" id="dccScheduleWeek" style="width:120px"></select></div><div id="dccScheduleEditor"></div><div class="persistbar"><button class="primary" id="dccSaveSchedule">SAVE WEEKLY MATCHUPS</button><button class="ghost" id="dccSeedSchedule">SEED ROUND-ROBIN</button></div></div>
+<div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>📋 League Standings & Records</h2><p>Manual record/PF/PA entry drives power rankings and season outlook without an ESPN dependency.</p></div></div><div class="dcc-scroll"><table class="dcc-table"><thead><tr><th>Team</th><th>W</th><th>L</th><th>T</th><th>PF</th><th>PA</th></tr></thead><tbody id="dccStandingsEditor"></tbody></table></div><div class="persistbar"><button class="primary" id="dccSaveStandings">SAVE STANDINGS</button></div></div>
+<div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🩺 Data Health & Projection Audit</h2><p>Source, freshness, roster matching and projection coverage at a glance.</p></div></div><div id="dccHealth"></div><div id="dccAuditTable" style="margin-top:10px"></div></div>
+<div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🏈 Team names</h2><p>Rename the 12 league teams to match your real league mates.</p></div></div>
       <div class="teamnamegrid" id="teamNameGrid"></div><div class="persistbar" style="margin-top:10px"><button class="primary" id="saveAllTeamNames">SAVE ALL TEAM NAMES</button></div>
     </div>
     <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>💾 Draft-state persistence & export</h2><p>Your draft, rosters, trades and planner state auto-save to this browser. Export a portable snapshot anytime.</p></div></div>
@@ -463,7 +495,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
     </div>
   </div>
 </section>
-</main>
+<div class="dcc-modal" id="dccPlayerModal"><div class="dcc-modal-card"><div class="sectionhead"><div><h2 id="dccModalTitle">Player Detail</h2><p id="dccModalSub">—</p></div><button class="ghost" id="dccModalClose">CLOSE</button></div><div id="dccModalBody"></div></div></div></main>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -587,7 +619,7 @@ let DATA=[{"name":"Jahmyr Gibbs","pos":"RB","team":"DET","adp":1.9,"espn":1,"sle
 })();
 
 const TEAM_NAMES=["Gridiron Guild","Sunday Scaries","Red Zone Kings","Fourth & Long","The Waiver Wire","Goal Line Stand","Blitz Brigade","Air Yards","TD Machines","The Checkdown","No Punt Intended","Two-Minute Drill"];
-const STARTER_TARGET={QB:1,RB:2,WR:2,TE:1,DEF:1,K:1};
+const STARTER_TARGET={QB:1,RB:2,WR:2,TE:1,FLEX:1,DEF:1,K:1};
 const BENCH_TARGET={QB:1,RB:2,WR:3,TE:1};
 const TARGET={QB:(STARTER_TARGET.QB+BENCH_TARGET.QB),RB:(STARTER_TARGET.RB+BENCH_TARGET.RB),WR:(STARTER_TARGET.WR+BENCH_TARGET.WR),TE:(STARTER_TARGET.TE+BENCH_TARGET.TE),DEF:STARTER_TARGET.DEF,K:STARTER_TARGET.K};
 const ROSTER_SIZE=16;
@@ -597,7 +629,7 @@ const MAX_PICK=ROUNDS*12;
 const LATE_ROUND_MIN={DEF:ROUNDS-1,K:ROUNDS};
 const REACH_ALLOWANCE=15;
 const TARGET_TOTAL_WITH_SLACK=ROSTER_SIZE;
-const STORAGE_KEY="dcc_v24_mobile_state";
+const STORAGE_KEY="dcc_v25_ultimate_state";
 const BOT_PERSONALITIES=["Balanced","RB Heavy","WR Heavy","Zero RB","Hero RB","Early QB","Early TE","BPA / ADP","Aggressive","Value Hunter"];
 const BOT_PERSONALITY_BIAS={
  Balanced:{},"RB Heavy":{RB:2.2,WR:-.5},"WR Heavy":{WR:2.2,RB:-.5},"Zero RB":{RB:-2.4,WR:2.0},"Hero RB":{RB:3.2,WR:-.8},"Early QB":{QB:4.2},"Early TE":{TE:4.2},"BPA / ADP":{},Aggressive:{},"Value Hunter":{}
@@ -630,6 +662,8 @@ let watchlist=new Set(), lockedPlayers=new Set(), playerStatus={};
 let liveSyncState=null;
 let weeklyProjectionData={};
 let projectionSyncState=null;
+let projectionCacheMeta={};
+const PROJECTION_ENGINE_VERSION="24.3-fp-ppr";
 const STATUS_ORDER=["healthy","questionable","doubtful","out","ir"];
 const STATUS_META={healthy:{label:"",short:"",cls:""},questionable:{label:"Questionable",short:"Q",cls:"stat-q"},doubtful:{label:"Doubtful",short:"D",cls:"stat-d"},out:{label:"Out",short:"O",cls:"stat-o"},ir:{label:"IR",short:"IR",cls:"stat-ir"}};
 let waiverQuery="", waiverPos="ALL", plannerWeek=1;
@@ -672,24 +706,19 @@ function weekMatchupLabel(p,week){
 }
 
 function projPts(p){
-  // Fallback only. A real weekly PPR feed should be used for draft-day/weekly decisions.
-  // This is intentionally a reasonable PPR estimate, not a claim of live accuracy.
+  if(Number.isFinite(Number(p?.fpProj))&&p?.fpProjectionWeek===plannerWeek&&p?.fpProjectionSource==="FantasyPros")return Number(p.fpProj);
   const base={QB:18.5,RB:15.5,WR:15.0,TE:11.5,DEF:7.0,K:8.0}[p.pos]||10;
   const e=(p.expert==null||p.expert>=900)?180:p.expert;
   const rankBoost=Math.max(-4.5,Math.min(4.5,(90-e)*0.018));
   return Math.max(1,+(base+rankBoost).toFixed(1));
 }
 function projectionKey(name){return normalizeName(name)}
-function projectionKeysForPlayer(p){const keys=new Set([projectionKey(p.name)]);[p.fpName,p.fantasyProsName,p.displayName].filter(Boolean).forEach(n=>keys.add(projectionKey(n)));return [...keys].filter(Boolean);}
+function projectionKeysForPlayer(p){const keys=new Set([projectionKey(p.name)]);[p.fpName,p.fantasyProsName,p.displayName,p.fullName].filter(Boolean).forEach(n=>keys.add(projectionKey(n)));return [...keys].filter(Boolean);}
+function projectionSourceIsLive(week){const meta=projectionCacheMeta?.[week];const state=projectionSyncState;return !!(meta&&meta.source==="FantasyPros"&&meta.scoring==="PPR"&&meta.engine===PROJECTION_ENGINE_VERSION&&Number(meta.week)===Number(week)) || !!(state&&state.status==="done"&&state.engine===PROJECTION_ENGINE_VERSION&&state.source?.toLowerCase().includes("fantasypros")&&Number(state.week)===Number(week));}
 function allRosterPlayers(){const out=[];const seen=new Set();teams.forEach((t,teamIdx)=>(t.roster||[]).forEach(p=>{const key=projectionKey(p.name);if(!key||seen.has(key))return;seen.add(key);out.push({...p,teamIdx,teamName:t.name});}));return out;}
-function hydrateRosterPlayersFromData(){const byKey=new Map(DATA.map(p=>[projectionKey(p.name),p]));teams.forEach(t=>{t.roster=(t.roster||[]).map(r=>{const base=byKey.get(projectionKey(r.name));return base?{...base,...r,name:base.name,pos:base.pos||r.pos,team:base.team||r.team,fpId:base.fpId||r.fpId,fpName:base.fpName||r.fpName}:r;});});}
+function hydrateRosterPlayersFromData(){const byKey=new Map(DATA.map(p=>[projectionKey(p.name),p]));teams.forEach(t=>{t.roster=(t.roster||[]).map(r=>{const base=byKey.get(projectionKey(r.name));if(!base)return r;return {...base,...r,name:base.name,pos:r.pos||base.pos,team:r.team||base.team,fpId:r.fpId||base.fpId,fpName:r.fpName||base.fpName,displayName:r.displayName||base.displayName};});});}
 function rosterProjectionAudit(week){const rostered=allRosterPlayers(),matched=rostered.filter(p=>syncedWeeklyProj(p,week)!=null),missing=rostered.filter(p=>syncedWeeklyProj(p,week)==null);return {rostered,matched,missing};}
-function syncedWeeklyProj(p,week){
-  const wk=weeklyProjectionData?.[week];
-  if(!wk)return null;
-  for(const k of projectionKeysForPlayer(p)){const v=wk[k];if(Number.isFinite(v))return v;}
-  return null;
-}
+function syncedWeeklyProj(p,week){if(!projectionSourceIsLive(week))return null;const wk=weeklyProjectionData?.[week];if(!wk)return null;if(p.fpId&&wk.byId&&Number.isFinite(Number(wk.byId[p.fpId])))return Number(wk.byId[p.fpId]);for(const k of projectionKeysForPlayer(p)){const v=wk.byName?.[k]??wk[k];if(Number.isFinite(Number(v)))return Number(v);}return null;}
 function tradeValue(p){const seasonVor=(p.vor!=null?p.vor:vor(p))*16;return Math.round(Math.max(5,100+seasonVor*0.6))}
 function weekVariance(name,week){const h=hashCode(name+"-w"+week);return ((h%200)-100)/100}
 function weeklyProj(p,week){
@@ -984,24 +1013,11 @@ function setProjectionStatus(msg){
   if(el)el.textContent=msg;
 }
 function normalizeProjectionResponse(payload,week){
-  const out={};
+  const byName={},byId={};
   const rows=Array.isArray(payload)?payload:(payload?.players||payload?.data||payload?.projections||[]);
-  rows.forEach(row=>{
-    const name=row.name||row.player_name||row.playerName||row.fullName||row.player?.name||row.player?.fullName;
-    const pts=Number(row.stats?.points_ppr??row.stats?.pointsPpr??row.stats?.points??row.projectedPoints??row.projected_points??row.fantasyPoints??row.fantasy_points??row.points??row.appliedTotal);
-    if(name&&Number.isFinite(pts))out[projectionKey(name)]=pts;
-  });
-  // external league source koa player objects can contain week-level stats nested in playerPoolEntry.
-  if(payload?.players&&Array.isArray(payload.players)){
-    payload.players.forEach(row=>{
-      const name=row.fullName||row.name||row.player?.fullName;
-      const stats=row.playerPoolEntry?.stats||row.stats||[];
-      const s=stats.find(x=>x&&Number(x.statTypeId)===2&&Number(x.scoringPeriodId)===week);
-      const pts=Number(s?.appliedTotal);
-      if(name&&Number.isFinite(pts))out[projectionKey(name)]=pts;
-    });
-  }
-  return out;
+  rows.forEach(row=>{const name=row.name||row.player_name||row.playerName||row.fullName||row.player?.name||row.player?.fullName;const pts=Number(row.stats?.points_ppr??row.stats?.pointsPpr??row.projectedPointsPpr??row.projected_points_ppr??row.pprPoints??row.ppr_points);if(name&&Number.isFinite(pts)){byName[projectionKey(name)]=pts;const id=row.fpid??row.fpId??row.player_id??row.player?.fpid??row.player?.player_id;if(id!=null)byId[String(id)]=pts;}});
+  if(payload?.players&&Array.isArray(payload.players)&&payload?.scoring==="PPR")payload.players.forEach(row=>{const name=row.fullName||row.name||row.player?.fullName;const stats=row.playerPoolEntry?.stats||[];const st=stats.find(x=>x&&Number(x.statTypeId)===2&&Number(x.scoringPeriodId)===week);const pts=Number(st?.appliedTotal);if(name&&Number.isFinite(pts))byName[projectionKey(name)]=pts;});
+  return {byName,byId,count:Object.keys(byName).length,week,scoring:"PPR",source:"FantasyPros",engine:PROJECTION_ENGINE_VERSION};
 }
 async function syncWeeklyProjections(){
  const btn=document.getElementById("projectionSyncBtn"); if(btn){btn.disabled=true;btn.textContent="SYNCING...";}
@@ -1010,17 +1026,17 @@ async function syncWeeklyProjections(){
    const key=(document.getElementById("fantasyProsApiKey")?.value||fantasyProsApiKey||"").trim();
    if(!key)throw new Error("Enter a FantasyPros API key in Settings or import a FantasyPros JSON/CSV snapshot.");
    fantasyProsApiKey=key;
-   const u=`https://api.fantasypros.com/v2/json/nfl/2026/projections?week=${encodeURIComponent(plannerWeek)}&scoring=PPR&positions=QB:RB:WR:TE:DST:K`;
+   const u=`https://api.fantasypros.com/public/v2/json/nfl/2026/projections?week=${encodeURIComponent(plannerWeek)}&scoring=PPR&positions=QB:RB:WR:TE:DST:K`;
    const res=await fetch(u,{headers:{"Accept":"application/json","x-api-key":key},cache:"no-store"});
    if(!res.ok)throw new Error(`FantasyPros HTTP ${res.status}${res.status===401?" — API key rejected or not activated":res.status===403?" — this plan/key may not include production API access":""}`);
    const payload=await res.json();
    const normalized=normalizeProjectionResponse(payload,plannerWeek);
-   if(Object.keys(normalized).length<50)throw new Error(`Only ${Object.keys(normalized).length} usable weekly projections were returned.`);
+   if(normalized.count<50)throw new Error(`Only ${normalized.count} usable PPR weekly projections were returned.`);
    weeklyProjectionData[plannerWeek]=normalized;
    hydrateRosterPlayersFromData();
    const audit=rosterProjectionAudit(plannerWeek);
-   projectionSyncState={status:"done",week:plannerWeek,timestamp:new Date().toISOString(),count:Object.keys(normalized).length,source:"FantasyPros API",rostered:audit.rostered.length,rosteredMatched:audit.matched.length,rosteredMissing:audit.missing.length};
-   setProjectionStatus(`✓ Week ${plannerWeek} FantasyPros PPR projections loaded — ${Object.keys(normalized).length} players. ${audit.rostered.length?`${audit.matched.length}/${audit.rostered.length} rostered players matched. `:""}The Planner now uses live projection values.`);
+   projectionSyncState={status:"done",week:plannerWeek,timestamp:new Date().toISOString(),count:normalized.count,source:"FantasyPros API",engine:PROJECTION_ENGINE_VERSION,rostered:audit.rostered.length,rosteredMatched:audit.matched.length,rosteredMissing:audit.missing.length};
+   setProjectionStatus(`✓ Week ${plannerWeek} FantasyPros PPR projections loaded — ${normalized.count} players. ${audit.rostered.length?`${audit.matched.length}/${audit.rostered.length} rostered players matched. `:""}The Planner now uses live projection values.`);
    saveState();render();renderLeagueAnalyzer();
  }catch(e){
    projectionSyncState={status:"error",week:plannerWeek,timestamp:new Date().toISOString(),error:String(e.message||e)};
@@ -1029,15 +1045,16 @@ async function syncWeeklyProjections(){
  }finally{if(btn){btn.disabled=false;btn.textContent="SYNC WEEKLY PROJECTIONS";}}
 }
 function renderProjectionSyncStatus(){
-  if(!projectionSyncState)return;
-  if(projectionSyncState.status==="done"){
-    setProjectionStatus(`✓ Week ${projectionSyncState.week} synced ${new Date(projectionSyncState.timestamp).toLocaleString()} — ${projectionSyncState.count} PPR players. Live feed active.`);
-  }
+ const week=plannerWeek,live=projectionSourceIsLive(week),statusEl=document.getElementById("projectionSourceStatus"),healthEl=document.getElementById("projectionHealthStatus");
+ if(statusEl)statusEl.textContent=live?`✓ Week ${week}: FantasyPros PPR projection cache is active (${weeklyProjectionData?.[week]?.count||projectionSyncState?.count||0} players).`:`⚠️ Week ${week}: no live FantasyPros PPR cache is active. The app will use EST fallback values.`;
+ if(healthEl){const audit=rosterProjectionAudit(week);healthEl.textContent=live?`Roster projection match: ${audit.matched.length}/${audit.rostered.length}. Unmatched players are not assigned fabricated FantasyPros points.`:"";}
+ if(!projectionSyncState)return;
+ if(projectionSyncState.status==="done")setProjectionStatus(`✓ Week ${projectionSyncState.week} synced ${new Date(projectionSyncState.timestamp).toLocaleString()} — ${projectionSyncState.count} PPR players. FantasyPros PPR feed active.`);
 }
 /* ---------- persistence ---------- */
 function saveState(){
  try{
-  const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,botProfiles,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionSyncState,adpProxyUrl,adpSyncState,fantasyProsSyncState,scheduleSyncState,activityLog,fantasyProsApiKey,savedAt:Date.now()};
+  const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,botProfiles,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionCacheMeta,projectionSyncState,adpProxyUrl,adpSyncState,fantasyProsSyncState,scheduleSyncState,activityLog,fantasyProsApiKey,savedAt:Date.now()};
   localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
   lastSaved=new Date();
   const ls=document.getElementById("lastSaved");if(ls)ls.textContent=lastSaved.toLocaleTimeString();
@@ -1065,6 +1082,9 @@ function applyState(state){
  liveSyncState=(state.liveSyncState&&typeof state.liveSyncState==="object")?state.liveSyncState:null;
  liveDraftMode=state.liveDraftMode===true;
  weeklyProjectionData=(state.weeklyProjectionData&&typeof state.weeklyProjectionData==="object")?state.weeklyProjectionData:{};
+ projectionCacheMeta=(state.projectionCacheMeta&&typeof state.projectionCacheMeta==="object")?state.projectionCacheMeta:{};
+ Object.keys(weeklyProjectionData).forEach(w=>{const m=projectionCacheMeta[w];if(!m||m.source!=="FantasyPros"||m.scoring!=="PPR"||m.engine!==PROJECTION_ENGINE_VERSION){delete weeklyProjectionData[w];delete projectionCacheMeta[w];}});
+ if(projectionSyncState&&projectionSyncState.engine!==PROJECTION_ENGINE_VERSION)projectionSyncState=null;
  projectionSyncState=(state.projectionSyncState&&typeof state.projectionSyncState==="object")?state.projectionSyncState:null;
    adpProxyUrl=typeof state.adpProxyUrl==="string"?state.adpProxyUrl:"";
  fantasyProsProxyUrl=typeof state.fantasyProsProxyUrl==="string"?state.fantasyProsProxyUrl:"";
@@ -1089,7 +1109,7 @@ function loadState(){
  return false;
 }
 function exportState(){
- const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionSyncState,adpProxyUrl,adpSyncState,fantasyProsSyncState,scheduleSyncState,activityLog,exportedAt:new Date().toISOString()};
+ const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionCacheMeta,projectionSyncState,adpProxyUrl,adpSyncState,fantasyProsSyncState,scheduleSyncState,activityLog,exportedAt:new Date().toISOString()};
  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
  const url=URL.createObjectURL(blob);const a=document.createElement("a");
  a.href=url;a.download=`draft-command-center-${new Date().toISOString().slice(0,10)}.json`;a.click();
@@ -1881,9 +1901,9 @@ function renderLeagueAnalyzer(){
  if(sel)sel.value=String(week);
  const profiles=laBuildProfiles(week);
  const me=profiles.find(x=>x.team===myTeam());
- const conf=weeklyProjectionData?.[week]?"HIGH — FantasyPros weekly projections":"MEDIUM — roster structure is reliable; weekly points are EST until FantasyPros is synced";
+ const conf=projectionSourceIsLive(week)?"HIGH — FantasyPros weekly projections":"MEDIUM — roster structure is reliable; weekly points are EST until FantasyPros is synced";
  const c=document.getElementById("leagueAnalyzerConfidence");
- if(c)c.innerHTML=`<strong>Analyzer confidence:</strong> ${conf}. ${weeklyProjectionData?.[week]?"Starter projections are sourced from synced weekly data.":"The analyzer is still useful for roster structure, but exact weekly point rankings should not be treated as authoritative until projections are synced."}`;
+ if(c)c.innerHTML=`<strong>Analyzer confidence:</strong> ${conf}. ${projectionSourceIsLive(week)?"Starter projections are sourced from synced FantasyPros PPR data.":"The analyzer is still useful for roster structure, but exact weekly point rankings should not be treated as authoritative until projections are synced."}`;
  const k=document.getElementById("leagueAnalyzerKpis");
  if(k&&me){
    const best=Object.entries(me.posPts).sort((a,b)=>b[1]-a[1])[0]; const weak=Object.entries(me.posPts).sort((a,b)=>a[1]-b[1])[0];
@@ -2487,9 +2507,9 @@ function renderManager(){
  const ge=document.getElementById("mgrGrade"); if(ge)ge.textContent=`${grade}`;
  const gm=document.getElementById("mgrGradeMeta"); if(gm)gm.textContent=grade>=90?"Elite roster build":grade>=80?"Strong playoff build":grade>=70?"Competitive roster":"Needs work";
  const pe=document.getElementById("mgrProj"); if(pe)pe.textContent=proj.toFixed(1);
- const pm=document.getElementById("mgrProjMeta"); if(pm)pm.textContent=weeklyProjectionData?.[week]?`Week ${week} synced`:"Fallback weekly model";
+ const pm=document.getElementById("mgrProjMeta"); if(pm)pm.textContent=projectionSourceIsLive(week)?`Week ${week} · FantasyPros PPR`:"Fallback weekly model";
  const oe=document.getElementById("mgrOpponent"); if(oe)oe.textContent="—";
- const om=document.getElementById("mgrOpponentMeta"); if(om)om.textContent="Connect external league source for fantasy matchup";
+ const om=document.getElementById("mgrOpponentMeta"); if(om)om.textContent="12-team matchup model";
  const ws=document.getElementById("mgrWeek"); if(ws&&!ws.options.length)for(let w=1;w<=18;w++)ws.insertAdjacentHTML("beforeend",`<option value="${w}">Week ${w}</option>`); if(ws)ws.value=week;
  const lb=document.getElementById("mgrLineup"); if(lb)lb.innerHTML=`<table class="lineup-table"><tbody>${lineup.starters.map(x=>{const p=x.p;const isBye=p&&byeWeek(p.team)===week;return `<tr><td>${x.slot}</td><td>${p?`<div class="lineup-player">${escHtml(p.name)} ${statusBadge(p.name)}</div><div class="lineup-sub">${p.team} · ${weekMatchupLabel(p,week)}</div>`:`<span class="need">Needs ${x.slot}</span>`}</td><td>${p?`<span class="manager-badge ${isBye?"mb-bye":"mb-start"}">${isBye?"BYE":mgrProj(p,week).toFixed(1)+" PTS"}</span>`:"—"}</td></tr>`}).join("")}</tbody></table><div class="mini" style="margin-top:9px">Bench: ${lineup.bench.map(p=>p.name).join(", ")||"none"}</div>`;
  const acts=managerActions(team,week,lineup); const ab=document.getElementById("mgrActions"); if(ab)ab.innerHTML=acts.map(a=>`<div class="action-item ${a.cls}"><div class="ai-icon">${a.icon}</div><div><b>${escHtml(a.title)}</b><span>${escHtml(a.body)}</span></div></div>`).join("");
@@ -2518,7 +2538,7 @@ document.getElementById("rosterTeamSelect")?.addEventListener("change",()=>rende
 /* ---------- league activity / snapshots ---------- */
 function recordRosterTransaction(type,teamIdx,player,details=""){activityLog.unshift({id:Date.now()+Math.random(),timestamp:Date.now(),type,team:teams[teamIdx]?.name||`Team ${teamIdx+1}`,teamIdx,player:player?.name||String(player||""),pos:player?.pos||"",nflTeam:player?.team||"",details});activityLog=activityLog.slice(0,500);}
 function renderLeagueActivity(){const s=document.getElementById("leagueActivitySummary"),l=document.getElementById("leagueActivityLog");if(!s||!l)return;const total=teams.reduce((n,t)=>n+(t.roster||[]).length,0);s.innerHTML=`<div class="mini-list"><span class="mini-pill">${teams.filter(t=>(t.roster||[]).length).length}/12 teams entered</span><span class="mini-pill">${total} rostered players</span><span class="mini-pill">${activityLog.length} logged moves</span></div>`;l.innerHTML=activityLog.length?activityLog.slice(0,30).map(x=>`<div class="flagrow"><span class="fi">${x.type==="ADD"?"➕":x.type==="DROP"?"➖":"📸"}</span><div><b>${escHtml(x.team)}</b><span>${escHtml(x.type)} ${escHtml(x.player)}${x.details?` · ${escHtml(x.details)}`:""}<br><small>${new Date(x.timestamp).toLocaleString()}</small></span></div></div>`).join(""):`<div class="mini">No roster activity has been logged yet. Manual adds/drops will appear here automatically.</div>`;}
-function exportLeagueSnapshot(){const payload={appVersion:"24.1",exportedAt:new Date().toISOString(),league:{teams:teams.map(t=>({id:t.id,name:t.name,record:t.record||{wins:0,losses:0,ties:0,pf:0,pa:0},roster:(t.roster||[]).map(p=>({name:p.name,pos:p.pos,team:p.team,status:getStatus(p.name)}))}))},activityLog,weeklyProjectionState:projectionSyncState||null};const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}));a.download=`draft-command-center-league-snapshot-${new Date().toISOString().slice(0,10)}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);showToast("League snapshot exported");}
+function exportLeagueSnapshot(){const payload={appVersion:"24.3",exportedAt:new Date().toISOString(),league:{teams:teams.map(t=>({id:t.id,name:t.name,record:t.record||{wins:0,losses:0,ties:0,pf:0,pa:0},roster:(t.roster||[]).map(p=>({name:p.name,pos:p.pos,team:p.team,status:getStatus(p.name)}))}))},activityLog,weeklyProjectionState:projectionSyncState||null};const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}));a.download=`draft-command-center-league-snapshot-${new Date().toISOString().slice(0,10)}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);showToast("League snapshot exported");}
 function importLeagueSnapshot(file){const r=new FileReader();r.onload=()=>{try{const p=JSON.parse(r.result);if(!p?.league?.teams||p.league.teams.length!==12)throw new Error("Snapshot must contain 12 teams");teams=p.league.teams.map((t,i)=>({...t,id:i,roster:(t.roster||[]).map(x=>DATA.find(p=>normalizeName(p.name)===normalizeName(x.name))||{...x,active:true})}));activityLog=Array.isArray(p.activityLog)?p.activityLog:[];drafted=new Set(teams.flatMap(t=>(t.roster||[]).map(p=>p.name)));saveState();render();showToast("League snapshot imported");}catch(e){showToast(`Snapshot import failed: ${e.message||e}`);}};r.readAsText(file);}
 document.getElementById("exportLeagueSnapshot")?.addEventListener("click",exportLeagueSnapshot);document.getElementById("importLeagueSnapshot")?.addEventListener("change",e=>{if(e.target.files?.[0])importLeagueSnapshot(e.target.files[0]);});document.getElementById("clearActivityLog")?.addEventListener("click",()=>{if(confirm("Clear the league activity log? Rosters will not be changed.")){activityLog=[];saveState();renderLeagueActivity();}});
 /* ---------- v24 mobile roster builder ---------- */
@@ -2556,7 +2576,7 @@ async function syncFantasyPros(){
  if(!fantasyProsApiKey){setFPStatus("Enter your FantasyPros API key, or use Import JSON/CSV.");return;}
  setFPStatus("Syncing FantasyPros players, rankings and current-week projections…");
  try{
-   const base="https://api.fantasypros.com/v2/json";
+   const base="https://api.fantasypros.com/public/v2/json";
    const headers={"Accept":"application/json","x-api-key":fantasyProsApiKey};
    const [playersRes,rankRes,projRes]=await Promise.all([
      fetch(`${base}/nfl/players`,{headers,cache:"no-store"}),
@@ -2569,11 +2589,11 @@ async function syncFantasyPros(){
    const byName=new Map(DATA.map(p=>[normalizeName(p.name),p]));
    (players.players||[]).forEach(x=>{const name=x.player_name||x.name;if(!name)return;let p=byName.get(normalizeName(name));if(!p){p={name,pos:String(x.position_id||x.position||"WR").toUpperCase(),team:x.team_id||"FA",adp:999,espn:999,sleeper:999,fp:999,walter:999,tier:"Waiver",active:true};DATA.push(p);byName.set(normalizeName(name),p);added++;}else updated++;p.pos=String(x.position_id||p.pos||"WR").toUpperCase();p.team=x.team_id||p.team||"FA";p.fpId=x.player_id||x.fpid||p.fpId;if(x.rank_adp_ppr!=null)p.adp=Number(x.rank_adp_ppr);else if(x.rank_adp!=null)p.adp=Number(x.rank_adp);});
    (rankings.players||[]).forEach(x=>{const p=byName.get(normalizeName(x.player_name||x.name));if(!p)return;if(x.rank_ecr!=null)p.fp=Number(x.rank_ecr);if(x.rank_adp_ppr!=null)p.adp=Number(x.rank_adp_ppr);else if(x.rank_adp!=null)p.adp=Number(x.rank_adp);if(x.tier!=null)p.fpTier=x.tier;});
-   const norm=normalizeProjectionResponse(projections,plannerWeek);weeklyProjectionData[plannerWeek]=norm;
+   const norm=normalizeProjectionResponse(projections,plannerWeek);weeklyProjectionData[plannerWeek]=norm;projectionCacheMeta[plannerWeek]={source:"FantasyPros",scoring:"PPR",week:plannerWeek,engine:PROJECTION_ENGINE_VERSION,timestamp:new Date().toISOString()};
    hydrateRosterPlayersFromData();
    const audit=rosterProjectionAudit(plannerWeek);
-   fantasyProsSyncState={status:"done",timestamp:Date.now(),players:(players.players||[]).length,rankings:(rankings.players||[]).length,projections:Object.keys(norm).length,rostered:audit.rostered.length,rosteredMatched:audit.matched.length,rosteredMissing:audit.missing.length};
-   projectionSyncState={status:"done",week:plannerWeek,timestamp:new Date().toISOString(),count:Object.keys(norm).length,source:"FantasyPros API"};
+   fantasyProsSyncState={status:"done",timestamp:Date.now(),players:(players.players||[]).length,rankings:(rankings.players||[]).length,projections:norm.count,rostered:audit.rostered.length,rosteredMatched:audit.matched.length,rosteredMissing:audit.missing.length};
+   projectionSyncState={status:"done",week:plannerWeek,timestamp:new Date().toISOString(),count:norm.count,source:"FantasyPros API",engine:PROJECTION_ENGINE_VERSION};
    saveState();render();setFPStatus(`✓ Synced ${fantasyProsSyncState.players} players · ${fantasyProsSyncState.rankings} rankings · ${fantasyProsSyncState.projections} Week ${plannerWeek} projections. Added ${added} players.`);
    showToast("FantasyPros data refreshed");
  }catch(e){fantasyProsSyncState={status:"error",timestamp:Date.now(),error:String(e.message||e)};saveState();setFPStatus(`⚠️ FantasyPros sync failed: ${e.message||e}. Use Import JSON/CSV if your plan does not provide API access.`);showToast("FantasyPros sync failed");}
@@ -2581,17 +2601,18 @@ async function syncFantasyPros(){
 function importFantasyProsPayload(json){
  const rows=json?.projections?.players||json?.players||json?.data?.players||[];
  const norm=normalizeProjectionResponse(json,plannerWeek);
- if(Object.keys(norm).length)weeklyProjectionData[plannerWeek]=norm;
+ if(norm.count)weeklyProjectionData[plannerWeek]=norm;
+  if(norm.count)projectionCacheMeta[plannerWeek]={source:"FantasyPros",scoring:"PPR",week:plannerWeek,engine:PROJECTION_ENGINE_VERSION,timestamp:new Date().toISOString()};
  let added=0; const byName=new Map(DATA.map(p=>[normalizeName(p.name),p]));
  rows.forEach(x=>{const name=x.name||x.player_name;if(!name)return;let p=byName.get(normalizeName(name));if(!p){p={name,pos:String(x.position_id||x.pos||"WR").toUpperCase(),team:x.team_id||x.team||"FA",adp:999,espn:999,sleeper:999,fp:999,walter:999,tier:"Waiver",active:true};DATA.push(p);byName.set(normalizeName(name),p);added++;}if(x.team_id)p.team=x.team_id;if(x.position_id)p.pos=x.position_id;if(x.stats?.points_ppr!=null)p.fpProj=Number(x.stats.points_ppr);});
  hydrateRosterPlayersFromData();
  const audit=rosterProjectionAudit(plannerWeek);
- projectionSyncState={status:Object.keys(norm).length?"done":"error",week:plannerWeek,timestamp:new Date().toISOString(),count:Object.keys(norm).length,source:"FantasyPros import",rostered:audit.rostered.length,rosteredMatched:audit.matched.length,rosteredMissing:audit.missing.length};
- fantasyProsSyncState={status:Object.keys(norm).length?"done":"error",timestamp:Date.now(),projections:Object.keys(norm).length};
- saveState();render();setFPStatus(`✓ Imported ${Object.keys(norm).length} Week ${plannerWeek} projections${added?` and added ${added} players`:""}.`);
+ projectionSyncState={status:norm.count?"done":"error",week:plannerWeek,timestamp:new Date().toISOString(),count:norm.count,source:"FantasyPros import",engine:PROJECTION_ENGINE_VERSION,rostered:audit.rostered.length,rosteredMatched:audit.matched.length,rosteredMissing:audit.missing.length};
+ fantasyProsSyncState={status:norm.count?"done":"error",timestamp:Date.now(),projections:norm.count};
+ saveState();render();setFPStatus(`✓ Imported ${norm.count} Week ${plannerWeek} projections${added?` and added ${added} players`:""}.`);
 }
 function importFantasyProsJSON(file){const r=new FileReader();r.onload=()=>{try{importFantasyProsPayload(JSON.parse(r.result));}catch(e){setFPStatus(`⚠️ Invalid FantasyPros JSON: ${e.message||e}`);}};r.readAsText(file);}
-function importFantasyProsCSV(file){const r=new FileReader();r.onload=()=>{const lines=String(r.result).split(/\r?\n/).filter(Boolean);if(lines.length<2){setFPStatus("⚠️ CSV is empty.");return;}const headers=lines[0].split(",").map(x=>x.trim().toLowerCase());const idx=n=>headers.findIndex(h=>h===n||h.includes(n));const nameI=idx("player")>=0?idx("player"):idx("name");const ptsI=idx("fpts")>=0?idx("fpts"):idx("points");if(nameI<0||ptsI<0){setFPStatus("⚠️ CSV needs Player/Name and FPTS/Points columns.");return;}const norm={};lines.slice(1).forEach(line=>{const cols=line.split(",");const name=cols[nameI]?.trim();const pts=Number(cols[ptsI]);if(name&&Number.isFinite(pts))norm[projectionKey(name)]=pts;});if(Object.keys(norm).length<20){setFPStatus(`⚠️ Only ${Object.keys(norm).length} usable projection rows found.`);return;}weeklyProjectionData[plannerWeek]=norm;hydrateRosterPlayersFromData();const audit=rosterProjectionAudit(plannerWeek);projectionSyncState={status:"done",week:plannerWeek,timestamp:new Date().toISOString(),count:Object.keys(norm).length,source:"FantasyPros CSV",rostered:audit.rostered.length,rosteredMatched:audit.matched.length,rosteredMissing:audit.missing.length};fantasyProsSyncState={status:"done",timestamp:Date.now(),projections:Object.keys(norm).length};saveState();render();setFPStatus(`✓ Imported ${Object.keys(norm).length} Week ${plannerWeek} PPR projection rows from CSV.`);};r.readAsText(file);}
+function importFantasyProsCSV(file){const r=new FileReader();r.onload=()=>{const lines=String(r.result).split(/\r?\n/).filter(Boolean);if(lines.length<2){setFPStatus("⚠️ CSV is empty.");return;}const headers=lines[0].split(",").map(x=>x.trim().toLowerCase());const idx=n=>headers.findIndex(h=>h===n||h.includes(n));const nameI=idx("player")>=0?idx("player"):idx("name");const ptsI=idx("fpts")>=0?idx("fpts"):idx("points");if(nameI<0||ptsI<0){setFPStatus("⚠️ CSV needs Player/Name and FPTS/Points columns.");return;}const norm={};lines.slice(1).forEach(line=>{const cols=line.split(",");const name=cols[nameI]?.trim();const pts=Number(cols[ptsI]);if(name&&Number.isFinite(pts))norm[projectionKey(name)]=pts;});if(Object.keys(norm).length<20){setFPStatus(`⚠️ Only ${Object.keys(norm).length} usable projection rows found.`);return;}weeklyProjectionData[plannerWeek]={byName:norm,byId:{},count:Object.keys(norm).length,week:plannerWeek,scoring:"PPR",source:"FantasyPros",engine:PROJECTION_ENGINE_VERSION};projectionCacheMeta[plannerWeek]={source:"FantasyPros",scoring:"PPR",week:plannerWeek,engine:PROJECTION_ENGINE_VERSION,timestamp:new Date().toISOString()};hydrateRosterPlayersFromData();const audit=rosterProjectionAudit(plannerWeek);projectionSyncState={status:"done",week:plannerWeek,timestamp:new Date().toISOString(),count:Object.keys(norm).length,source:"FantasyPros CSV",rostered:audit.rostered.length,rosteredMatched:audit.matched.length,rosteredMissing:audit.missing.length};fantasyProsSyncState={status:"done",timestamp:Date.now(),projections:Object.keys(norm).length};saveState();render();setFPStatus(`✓ Imported ${Object.keys(norm).length} Week ${plannerWeek} PPR projection rows from CSV.`);};r.readAsText(file);}
 /* ---------- wiring ---------- */
 document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>{page=b.dataset.page;document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll("main>section").forEach(s=>s.style.display=s.id==="page-"+page?"block":"none");if(page==="league-analyzer")renderLeagueAnalyzer();if(page==="settings")renderTeamNames();renderTop()});
 document.getElementById("mockSimBtn").onclick=simulatePick;
@@ -2658,94 +2679,134 @@ if('serviceWorker' in navigator && location.protocol.startsWith('http')){
   window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(()=>{}));
 }
 </script>
-<script id="v21-intelligence">
-/* Draft Command Center v22 — Manager Intelligence layer */
-(function(){
- const V21_KEY='dcc_v21_intel';
- const START={QB:1,RB:2,WR:2,TE:1,DEF:1,K:1};
- const state=JSON.parse(localStorage.getItem(V21_KEY)||'{}');
- let selectedWeek=state.week||1;
- function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
- function num(x,d=0){x=Number(x);return Number.isFinite(x)?x:d}
- function teamPlayers(t){return (t&&t.roster)||[]}
- function proj(p,w){
-   if(!p)return 0;
-   const x=p.weeklyProj||p.projection||p.proj||p.fpProjection;
-   if(typeof x==='object') return num(x[w]??x[String(w)]??x.ros,0);
-   return num(x,0)||num(p.points,0)||num(p.fpts,0)||num(p.adp?Math.max(4,105-p.adp*.23):0,0);
+
+<script id="dcc-v25-core">
+/* Draft Command Center v25.0 — Ultimate Fantasy Football Toolkit
+   Manual league-of-record. FantasyPros is projection/expert layer. No ESPN dependency. */
+const DCC_V25_VERSION="25.0";
+const DCC_FLEX_ELIGIBLE=["RB","WR","TE"];
+let leagueConfig={teams:12,scoring:"PPR",rosterSize:16,playoffTeams:6,starters:{QB:1,RB:2,WR:2,TE:1,FLEX:1,K:1,DEF:1},scoringRules:{rec:1,passTD:4,passYd:25,rushYd:10,td:6,turnover:-2},schedule:{},standings:{}};
+let dccBackupKey="dcc_v25_backup";
+function dccNum(v,d=0){const n=Number(v);return Number.isFinite(n)?n:d}
+function dccNow(){return new Date().toISOString()}
+function dccPlayerKey(p){return p?.fpId?`fp:${p.fpId}`:`name:${normalizeName(p?.name||"")}|${String(p?.pos||"")}|${String(p?.team||"")}`}
+function dccProjection(p,w){const live=syncedWeeklyProj(p,w);if(live!=null)return {value:live,source:"FantasyPros PPR",state:"LIVE"};if(byeWeek(p.team)===w||isInjuredOut(p.name))return {value:0,source:"Availability",state:"OUT/BYE"};return {value:+projPts(p).toFixed(1),source:"DCC estimate",state:"EST"}}
+function dccProjectionLabel(w){if(projectionSourceIsLive(w))return `<span class="dcc-source">LIVE · FantasyPros PPR · Wk ${w}</span>`;return `<span class="dcc-source est">EST · no live FP PPR cache · Wk ${w}</span>`}
+function dccNormalizeConfig(c){
+ const x=c&&typeof c==="object"?c:{};const starters={...leagueConfig.starters,...(x.starters||{})};
+ ["QB","RB","WR","TE","FLEX","K","DEF"].forEach(k=>starters[k]=Math.max(0,Math.min(5,dccNum(starters[k],leagueConfig.starters[k]))));
+ return {teams:Math.max(2,Math.min(20,dccNum(x.teams,12))),scoring:["PPR","HALF_PPR","STD"].includes(x.scoring)?x.scoring:"PPR",rosterSize:Math.max(8,Math.min(30,dccNum(x.rosterSize,16))),playoffTeams:Math.max(2,Math.min(16,dccNum(x.playoffTeams,6))),starters,scoringRules:{...leagueConfig.scoringRules,...(x.scoringRules||{})},schedule:x.schedule&&typeof x.schedule==="object"?x.schedule:{},standings:x.standings&&typeof x.standings==="object"?x.standings:{}};
+}
+function dccLoadConfig(){try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const st=JSON.parse(raw);leagueConfig=dccNormalizeConfig(st.leagueConfig||{});return}}catch(e){} leagueConfig=dccNormalizeConfig(leagueConfig)}
+function dccStatePayload(){return {currentPick,draftPos,philosophy,drafted:[...drafted],teams,botProfiles,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionCacheMeta,projectionSyncState,adpProxyUrl,adpSyncState,fantasyProsSyncState,scheduleSyncState,activityLog,fantasyProsApiKey,leagueConfig,appVersion:DCC_V25_VERSION,savedAt:Date.now()}}
+function saveState(){try{const state=dccStatePayload();const old=localStorage.getItem(STORAGE_KEY);if(old)localStorage.setItem(dccBackupKey,old);localStorage.setItem(STORAGE_KEY,JSON.stringify(state));lastSaved=new Date();const ls=document.getElementById("lastSaved");if(ls)ls.textContent=lastSaved.toLocaleTimeString()}catch(e){console.warn("v25 save failed",e)}}
+function dccApplyConfigToRuntime(){
+ leagueConfig=dccNormalizeConfig(leagueConfig);
+ Object.keys(STARTER_TARGET).forEach(k=>{if(k in leagueConfig.starters)STARTER_TARGET[k]=leagueConfig.starters[k]});
+}
+function dccLineup(team,week=0){
+ const roster=(team?.roster||[]).slice();const used=new Set();const out=[];const availableForWeek=p=>{if(used.has(p.name))return false;if(week&& (byeWeek(p.team)===week||isInjuredOut(p.name)))return false;return true};
+ for(const pos of ["QB","RB","WR","TE"]){const n=leagueConfig.starters[pos]||0;const arr=roster.filter(p=>p.pos===pos&&availableForWeek(p)).sort((a,b)=>dccProjection(b,week).value-dccProjection(a,week).value);for(let i=0;i<n;i++){const p=arr[i]||null;if(p)used.add(p.name);out.push({slot:pos+(n>1?` ${i+1}`:""),pos,p})}}
+ const fn=leagueConfig.starters.FLEX||0;const flex=roster.filter(p=>DCC_FLEX_ELIGIBLE.includes(p.pos)&&availableForWeek(p)).sort((a,b)=>dccProjection(b,week).value-dccProjection(a,week).value);for(let i=0;i<fn;i++){const p=flex[i]||null;if(p)used.add(p.name);out.push({slot:"FLEX"+(fn>1?` ${i+1}`:""),pos:"FLEX",p})}
+ for(const pos of ["DEF","K"]){const n=leagueConfig.starters[pos]||0;const arr=roster.filter(p=>p.pos===pos&&availableForWeek(p)).sort((a,b)=>dccProjection(b,week).value-dccProjection(a,week).value);for(let i=0;i<n;i++){const p=arr[i]||null;if(p)used.add(p.name);out.push({slot:pos+(n>1?` ${i+1}`:""),pos,p})}}
+ return {starters:out,bench:roster.filter(p=>!used.has(p.name))};
+}
+function getStarterSplit(team){return dccLineup(team,0)}
+function weeklyStarterSplit(team,week){return dccLineup(team,week)}
+function teamProjTotal(team,week){return weeklyStarterSplit(team,week).starters.reduce((s,x)=>s+(x.p?dccProjection(x.p,week).value:0),0)}
+function starterNeeded(team){const miss=[];for(const pos of ["QB","RB","WR","TE","DEF","K"]){const n=leagueConfig.starters[pos]||0;if(posCount(team,pos)<n)miss.push(pos)}const eligible=DCC_FLEX_ELIGIBLE.reduce((n,p)=>n+posCount(team,p),0);if(eligible < (leagueConfig.starters.RB+leagueConfig.starters.WR+leagueConfig.starters.TE+leagueConfig.starters.FLEX)){} return miss}
+function computeReplacementLevels(){
+ const levels={};
+ for(const pos of ["QB","RB","WR","TE","DEF","K"]){const vals=DATA.filter(p=>p.pos===pos).map(p=>projPts(p)).sort((a,b)=>b-a);const rank=leagueConfig.teams*(leagueConfig.starters[pos]||0);levels[pos]=vals[Math.min(vals.length-1,Math.max(0,rank-1))]||0}
+ const flexSlots=leagueConfig.teams*(leagueConfig.starters.FLEX||0);const flexPool=DATA.filter(p=>DCC_FLEX_ELIGIBLE.includes(p.pos)).map(p=>projPts(p)).sort((a,b)=>b-a);levels.FLEX=flexPool[Math.min(flexPool.length-1,Math.max(0,flexSlots-1))]||0;return levels;
+}
+REPLACEMENT_LEVELS=null;
+function vor(p){if(!REPLACEMENT_LEVELS)REPLACEMENT_LEVELS=computeReplacementLevels();const base=REPLACEMENT_LEVELS[p.pos]||0;const flex=DCC_FLEX_ELIGIBLE.includes(p.pos)?REPLACEMENT_LEVELS.FLEX:0;return +(Math.max(projPts(p)-base,projPts(p)-flex)).toFixed(2)}
+function weeklyProj(p,week){return dccProjection(p,week).value}
+function seasonPts(p){return Math.round(projPts(p)*16)}
+function dccTradeValue(p){const v=Math.max(0,vor(p));const adp=Number(p.adp);const market=Number.isFinite(adp)&&adp<900?Math.max(0,180-adp):60;return Math.round(100+v*5+market*.35)}
+function tradeValue(p){return dccTradeValue(p)}
+function dccRosterImpact(before,after,week=plannerWeek){return +(teamProjTotal(after,week)-teamProjTotal(before,week)).toFixed(1)}
+function dccRosterComplete(team){const l=dccLineup(team,0);const filled=l.starters.filter(x=>x.p).length;const required=Object.values(leagueConfig.starters).reduce((a,b)=>a+b,0);return Math.round(filled/Math.max(1,required)*100)}
+function dccScheduleForWeek(w){return leagueConfig.schedule?.[w]||{}}
+function dccOpponent(teamIdx,w){const s=dccScheduleForWeek(w);const v=s[String(teamIdx)]??s[teamIdx];return Number.isInteger(Number(v))?Number(v):null}
+function dccSetOpponent(w,a,b){leagueConfig.schedule[w]=leagueConfig.schedule[w]||{};leagueConfig.schedule[w][String(a)]=b;leagueConfig.schedule[w][String(b)]=a}
+function dccSeedRoundRobin(w){const rounds=roundRobinRounds(leagueConfig.teams);const r=rounds[(w-1)%rounds.length];leagueConfig.schedule[w]={};r.forEach(pair=>dccSetOpponent(w,pair[0],pair[1]));}
+function dccStand(ti){return leagueConfig.standings[String(ti)]||{w:0,l:0,t:0,pf:0,pa:0}}
+function dccTeamRecord(ti){const x=dccStand(ti);return `${dccNum(x.w) }-${dccNum(x.l)}${dccNum(x.t)?`-${dccNum(x.t)}`:""}`}
+function dccPowerScore(ti,w=plannerWeek){const t=teams[ti],pts=teamProjTotal(t,w),all=teams.map(x=>teamProjTotal(x,w)).sort((a,b)=>b-a),rank=all.indexOf(pts)+1;const rec=dccStand(ti);const winPct=(rec.w+rec.l+rec.t)?(rec.w+.5*rec.t)/(rec.w+rec.l+rec.t):.5;const pf=dccNum(rec.pf);const pfRank=pf?teams.map((_,i)=>dccStand(i).pf).sort((a,b)=>b-a).indexOf(pf)+1:6;return {score:+(pts*2+winPct*25+(13-rank)*2+(13-(pfRank||6))*1.5).toFixed(1),pts,rank,record:dccTeamRecord(ti)}}
+function dccTeamGrade(ti,w=plannerWeek){const p=dccPowerScore(ti,w).score;return p>=130?"A+":p>=118?"A":p>=105?"B":p>=92?"C":p>=80?"D":"F"}
+function dccTeamPositionPts(t,pos,w){if(pos==="FLEX"){return dccLineup(t,w).starters.filter(x=>x.pos==="FLEX").reduce((s,x)=>s+(x.p?dccProjection(x.p,w).value:0),0)}const n=leagueConfig.starters[pos]||0;return dccLineup(t,w).starters.filter(x=>x.pos===pos).reduce((s,x)=>s+(x.p?dccProjection(x.p,w).value:0),0)}
+function dccManagerActions(team,w,lineup){const acts=[];const live=projectionSourceIsLive(w);if(!live)acts.push({icon:"⚠️",title:"Projection data needs refresh",body:`Week ${w} is using EST values. Sync FantasyPros PPR before trusting small start/sit or waiver edges.`,cls:"manager-alert"});lineup.starters.forEach(x=>{if(x.p&&isInjuredOut(x.p.name))acts.push({icon:"🚑",title:`Replace ${x.p.name}`,body:`${x.p.name} is unavailable for Week ${w}. The optimizer is showing the best eligible replacement.`,cls:"manager-bad"});if(x.p&&byeWeek(x.p.team)===w)acts.push({icon:"🛌",title:`Bye: ${x.p.name}`,body:`Move a bench player into the ${x.slot} slot.`,cls:"manager-alert"})});if(!acts.length)acts.push({icon:"✅",title:"No urgent lineup issues",body:`Your optimized Week ${w} lineup is healthy and bye-safe based on the current data.`,cls:"manager-good"});return acts.slice(0,8)}
+function renderManager(){
+ const team=myTeam();if(!team)return;const w=dccNum(document.getElementById("mgrWeek")?.value,plannerWeek)||plannerWeek;plannerWeek=w;const lineup=weeklyStarterSplit(team,w);const proj=teamProjTotal(team,w);const ranked=teams.map((_,i)=>({i,...dccPowerScore(i,w)})).sort((a,b)=>b.score-a.score);const rank=ranked.findIndex(x=>x.i===draftPos-1)+1;const grade=dccTeamGrade(draftPos-1,w);
+ const e=id=>document.getElementById(id);if(e("mgrRank"))e("mgrRank").textContent=rank?`#${rank}`:"—";if(e("mgrRankMeta"))e("mgrRankMeta").textContent=`of ${teams.length} · ${dccTeamRecord(draftPos-1)}`;if(e("mgrGrade"))e("mgrGrade").textContent=grade;if(e("mgrGradeMeta"))e("mgrGradeMeta").textContent=`${dccRosterComplete(team)}% starter completeness`;if(e("mgrProj"))e("mgrProj").textContent=proj.toFixed(1);if(e("mgrProjMeta"))e("mgrProjMeta").innerHTML=dccProjectionLabel(w);const oppIdx=dccOpponent(draftPos-1,w);if(e("mgrOpponent"))e("mgrOpponent").textContent=oppIdx!=null?teams[oppIdx]?.name||"—":"Not set";if(e("mgrOpponentMeta"))e("mgrOpponentMeta").textContent=oppIdx!=null?`Record ${dccTeamRecord(oppIdx)} · ${teamProjTotal(teams[oppIdx],w).toFixed(1)} proj`:`Set Week ${w} opponent in Settings`;
+ const ws=e("mgrWeek");if(ws){if(!ws.options.length)for(let i=1;i<=18;i++)ws.insertAdjacentHTML("beforeend",`<option value="${i}">Week ${i}</option>`);ws.value=w}
+ if(e("mgrLineup"))e("mgrLineup").innerHTML=`<table class="lineup-table"><tbody>${lineup.starters.map(x=>{const p=x.p,pr=p?dccProjection(p,w):null;return `<tr><td>${x.slot}</td><td>${p?`<div class="lineup-player">${escHtml(p.name)} ${statusBadge(p.name)}</div><div class="lineup-sub">${p.team} · ${weekMatchupLabel(p,w)}</div>`:`<span class="need">OPEN</span>`}</td><td>${p?`<span class="manager-badge ${pr.state==="LIVE"?"mb-start":"mb-bye"}">${pr.value.toFixed(1)} ${pr.state==="LIVE"?"PTS":"EST"}</span>`:"—"}</td></tr>`}).join("")}</tbody></table><div class="mini" style="margin-top:9px">Bench: ${lineup.bench.map(p=>escHtml(p.name)).join(", ")||"none"}</div>`;
+ const acts=dccManagerActions(team,w,lineup);if(e("mgrActions"))e("mgrActions").innerHTML=acts.map(a=>`<div class="action-item ${a.cls}"><div class="ai-icon">${a.icon}</div><div><b>${escHtml(a.title)}</b><span>${escHtml(a.body)}</span></div></div>`).join("");
+ const counts={QB:posCount(team,"QB"),RB:posCount(team,"RB"),WR:posCount(team,"WR"),TE:posCount(team,"TE"),DEF:posCount(team,"DEF"),K:posCount(team,"K")};const flexPool=counts.RB+counts.WR+counts.TE;const strat=[];if(flexPool<(leagueConfig.starters.RB+leagueConfig.starters.WR+leagueConfig.starters.TE+leagueConfig.starters.FLEX))strat.push(["🚨","FLEX/RB-WR-TE depth","Your combined FLEX-eligible pool is thin. Add a usable RB/WR/TE before trading from this group."]);if(counts.RB<leagueConfig.starters.RB+1)strat.push(["🏃","RB depth","You are close to the minimum RB build; prioritize contingent value."]);if(counts.WR>=5)strat.push(["📡","WR surplus","Your WR depth can be used as trade leverage if the post-trade lineup remains strong."]);if(counts.QB===1)strat.push(["🧠","QB discipline","One QB is appropriate for a 1-QB league; avoid spending a roster slot without a clear matchup or injury reason."]);if(counts.TE===1)strat.push(["🎯","TE concentration","One TE is efficient unless your starter becomes unavailable."]);if(e("mgrStrategy"))e("mgrStrategy").innerHTML=strat.slice(0,5).map(x=>`<div class="action-item manager-good"><div class="ai-icon">${x[0]}</div><div><b>${x[1]}</b><span>${x[2]}</span></div></div>`).join("");
+ const snap=e("mgrSnapshot");if(snap)snap.innerHTML=`<div class="action-list"><div class="action-item"><div><b>${team.roster.length}/${leagueConfig.rosterSize} rostered</b><span>${counts.RB} RB · ${counts.WR} WR · ${counts.TE} TE · ${counts.QB} QB · ${counts.DEF} DEF · ${counts.K} K · ${flexPool} FLEX-eligible</span></div></div><div class="action-item"><div><b>Optimized starters</b><span>${lineup.starters.map(x=>x.p?.name).filter(Boolean).join(" · ")}</span></div></div><div class="action-item"><div><b>Data contract</b><span>${projectionSourceIsLive(w)?"FantasyPros PPR LIVE":"EST fallback — sync required"}</span></div></div></div>`;
+ const mv=e("mgrMoves");if(mv){const wa=available().filter(p=>DCC_FLEX_ELIGIBLE.includes(p.pos)).sort((a,b)=>dccTradeValue(b)-dccTradeValue(a)).slice(0,3);mv.innerHTML=`<div class="action-item manager-good"><div class="ai-icon">🎯</div><div><b>Waiver priority</b><span>${wa.map(p=>`${escHtml(p.name)} (${p.pos})`).join(" · ")||"No clear high-value free agent"}</span></div></div><div class="action-item"><div class="ai-icon">🔄</div><div><b>Trade rule</b><span>Judge every deal by post-trade optimized starter projection, not raw player totals.</span></div></div><div class="action-item"><div class="ai-icon">📅</div><div><b>Weekly routine</b><span>Set opponent → sync FP → optimize lineup → check injuries/byes → evaluate waivers → re-check before kickoff.</span></div></div>`}
+ const h=e("mgrHealth");if(h){const audit=rosterProjectionAudit(w),complete=dccRosterComplete(team);h.innerHTML=`<div class="dcc-health"><div class="hbox"><span>FP PPR</span><b class="${projectionSourceIsLive(w)?"dcc-good":"dcc-warn"}">${projectionSourceIsLive(w)?"LIVE":"EST"}</b></div><div class="hbox"><span>Roster match</span><b>${audit.matched.length}/${audit.rostered.length}</b></div><div class="hbox"><span>Lineup</span><b>${complete}%</b></div><div class="hbox"><span>Opponent</span><b class="${oppIdx!=null?"dcc-good":"dcc-warn"}">${oppIdx!=null?"SET":"MISSING"}</b></div></div>`}
+}
+function renderRoster(){const team=myTeam(),lineup=dccLineup(team,0),r=document.getElementById("roster");if(r)r.innerHTML=lineup.starters.map(x=>`<div class="slot"><b>${x.slot}</b><span class="${x.p?"":"need"}">${x.p?escHtml(x.p.name):"OPEN"}</span></div>`).join("");const b=document.getElementById("bench");if(b)b.innerHTML=lineup.bench.length?`<div class="smallcaps" style="margin-top:12px">Bench (${lineup.bench.length})</div><div class="mini" style="margin-top:6px;line-height:1.9">${lineup.bench.map(p=>`${escHtml(p.name)} <span style="color:#68778e">(${p.pos})</span>`).join(" · ")}</div>`:""}
+function renderRosters(){const sel=document.getElementById("rosterTeamSelect");if(!sel)return;const cur=Number(sel.value||draftPos-1);if(sel.options.length!==teams.length)sel.innerHTML=teams.map((t,i)=>`<option value="${i}">${escHtml(t.name)}</option>`).join("");sel.value=String(cur);const t=teams[cur],lineup=dccLineup(t,0),head=document.getElementById("rosterHeader"),grid=document.getElementById("rosterGrid");if(head)head.innerHTML=`<div class="mini"><b>${escHtml(t.name)}</b> · ${t.roster.length}/${leagueConfig.rosterSize} · ${dccTeamRecord(cur)} · ${dccRosterComplete(t)}% starter completeness</div>`;if(grid)grid.innerHTML=[...lineup.starters.map(x=>`<div class="roster-slot"><div class="rs-pos">${x.slot}</div><div class="rs-name">${x.p?escHtml(x.p.name):"Empty"}</div><div class="rs-meta">${x.p?`${x.p.pos} · ${x.p.team}`:"Available roster spot"}</div></div>`),...lineup.bench.map(p=>`<div class="roster-slot"><div class="rs-pos">BENCH</div><div class="rs-name">${escHtml(p.name)}</div><div class="rs-meta">${p.pos} · ${p.team}</div></div>`)].join("");const alerts=t.roster.filter(p=>isInjuredOut(p.name)||getStatus(p.name)!=="healthy"||byeWeek(p.team)===plannerWeek);const ra=document.getElementById("rosterAlerts");if(ra)ra.innerHTML=alerts.length?alerts.map(p=>`<div class="action-item manager-alert"><div><b>${escHtml(p.name)}</b><span>${byeWeek(p.team)===plannerWeek?`Week ${plannerWeek} BYE`:STATUS_META[getStatus(p.name)]?.label||"Review status"}</span></div></div>`).join(""):`<div class="manager-empty">No current injury/bye alerts for this roster.</div>`}
+function renderPlanner(){const team=myTeam(),w=plannerWeek,lineup=weeklyStarterSplit(team,w),st=document.getElementById("lineupStarters"),be=document.getElementById("lineupBench");if(st)st.innerHTML=lineup.starters.map(x=>{const p=x.p;return `<div class="lineuprow"><div class="lp-pos">${x.slot}</div><div class="lp-name"><b>${p?escHtml(p.name):"OPEN"}</b><span>${p?`${p.team} ${weekMatchupLabel(p,w)}`:"Needs eligible player"}</span></div><div class="lp-pts ${p&&dccProjection(p,w).state==="LIVE"?"positive":"amber"}">${p?dccProjection(p,w).value.toFixed(1):"—"}</div></div>`}).join("");if(be)be.innerHTML=lineup.bench.length?lineup.bench.map(p=>`<div class="lineuprow"><div class="lp-pos">${p.pos}</div><div class="lp-name"><b>${escHtml(p.name)}</b><span>${p.team} ${weekMatchupLabel(p,w)}</span></div><div class="lp-pts">${dccProjection(p,w).value.toFixed(1)}</div></div>`).join(""):"<div class=\"mini\">No bench players.</div>";const fl=document.getElementById("plannerFlags");if(fl)fl.innerHTML=dccManagerActions(team,w,lineup).map(a=>`<div class="action-item ${a.cls}"><div class="ai-icon">${a.icon}</div><div><b>${escHtml(a.title)}</b><span>${escHtml(a.body)}</span></div></div>`).join("");const ps=document.getElementById("projectionSyncStatus");if(ps)ps.innerHTML=dccProjectionLabel(w)}
+function renderMatchup(){const el=document.getElementById("matchupBody");if(!el)return;const myIdx=draftPos-1,w=plannerWeek,oi=dccOpponent(myIdx,w);if(oi==null){el.innerHTML=`<div class="dcc-alert">Your Week ${w} fantasy opponent is not set. Go to Settings → Fantasy Matchup Schedule and save the actual opponent. The app will not invent one.</div>`;return}const me=teams[myIdx],opp=teams[oi],ml=weeklyStarterSplit(me,w),ol=weeklyStarterSplit(opp,w),mt=teamProjTotal(me,w),ot=teamProjTotal(opp,w);const row=x=>`<div class="lineuprow"><div class="lp-pos">${x.slot}</div><div class="lp-name"><b>${x.p?escHtml(x.p.name):"OPEN"}</b><span>${x.p?`${x.p.team} ${weekMatchupLabel(x.p,w)}`:"—"}</span></div><div class="lp-pts">${x.p?dccProjection(x.p,w).value.toFixed(1):"—"}</div></div>`;el.innerHTML=`<div class="matchup-head"><div class="matchup-team"><b>${escHtml(me.name)} <span class="youpill">YOU</span></b><div class="mscore ${mt>=ot?"positive":"negative"}">${mt.toFixed(1)}</div></div><div class="matchup-vs">WK ${w}<br>VS<div class="mini" style="margin-top:4px">ACTUAL LEAGUE SCHEDULE</div></div><div class="matchup-team"><b>${escHtml(opp.name)}</b><div class="mscore ${ot>mt?"positive":"negative"}">${ot.toFixed(1)}</div></div></div><div class="matchup-cols"><div><div class="matchup-col-head">${escHtml(me.name)}</div>${ml.starters.map(row).join("")}</div><div><div class="matchup-col-head">${escHtml(opp.name)}</div>${ol.starters.map(row).join("")}</div></div><div class="dcc-small" style="margin-top:10px">Model: ${dccProjectionLabel(w)} · Opponent: ${escHtml(opp.name)} · Projected margin ${(mt-ot).toFixed(1)}.</div>`}
+function renderLeagueAnalyzer(){const body=document.getElementById("leagueAnalyzerRows"),posBody=document.getElementById("leaguePositionRows"),week=dccNum(document.getElementById("leagueAnalyzerWeek")?.value,plannerWeek)||plannerWeek;plannerWeek=week;const ranks=teams.map((t,i)=>({i,t,...dccPowerScore(i,week),grade:dccTeamGrade(i,week)})).sort((a,b)=>b.score-a.score);if(body)body.innerHTML=ranks.map((x,i)=>`<tr><td>${i+1}</td><td><b>${escHtml(x.t.name)}</b><div class="mini">${dccTeamRecord(x.i)}</div></td><td>${x.score.toFixed(1)}</td><td><span class="la-pos ${x.grade.startsWith("A")?"up":x.grade.startsWith("D")||x.grade==="F"?"down":"flat"}">${x.grade}</span></td><td>${x.pts.toFixed(1)}</td><td>${escHtml(teams[x.i].roster.slice().sort((a,b)=>dccProjection(b,week).value-dccProjection(a,week).value)[0]?.name||"—")}</td><td>${escHtml(teams[x.i].roster.slice().sort((a,b)=>dccProjection(a,week).value-dccProjection(b,week).value)[0]?.name||"—")}</td><td>${dccRosterComplete(x.t)}%</td><td>${x.i===draftPos-1?"YOU":x.pts>teamProjTotal(myTeam(),week)?"THREAT":"MONITOR"}</td></tr>`).join("");if(posBody)posBody.innerHTML=ranks.map(x=>`<tr><td><b>${escHtml(x.t.name)}</b></td>${["QB","RB","WR","TE","FLEX","DEF","K"].map(pos=>`<td>${dccTeamPositionPts(x.t,pos,week).toFixed(1)}</td>`).join("")}<td>${dccRosterComplete(x.t)}%</td></tr>`).join("");const conf=document.getElementById("leagueAnalyzerConfidence");if(conf)conf.innerHTML=`${dccProjectionLabel(week)} <span class="dcc-pill">${teams.length} teams</span> <span class="dcc-pill">${teams.reduce((n,t)=>n+t.roster.length,0)} rostered players</span>`;const k=document.getElementById("leagueAnalyzerKpis");if(k){const me=ranks.find(x=>x.i===draftPos-1);k.innerHTML=`<div class="mkpi"><span>Your Rank</span><b>#${ranks.findIndex(x=>x.i===draftPos-1)+1}</b></div><div class="mkpi"><span>Power Score</span><b>${me?.score.toFixed(1)||"—"}</b></div><div class="mkpi"><span>Week Projection</span><b>${teamProjTotal(myTeam(),week).toFixed(1)}</b></div><div class="mkpi"><span>Record</span><b>${dccTeamRecord(draftPos-1)}</b></div>`}const integ=document.getElementById("leagueIntegrity");if(integ)integ.innerHTML=`<div class="dcc-health"><div class="hbox"><span>Roster source</span><b class="dcc-good">MANUAL</b></div><div class="hbox"><span>FP PPR</span><b class="${projectionSourceIsLive(week)?"dcc-good":"dcc-warn"}">${projectionSourceIsLive(week)?"LIVE":"EST"}</b></div><div class="hbox"><span>Schedule</span><b class="${dccOpponent(draftPos-1,week)!=null?"dcc-good":"dcc-warn"}">${dccOpponent(draftPos-1,week)!=null?"SET":"MISSING"}</b></div><div class="hbox"><span>FLEX</span><b class="dcc-good">${leagueConfig.starters.FLEX?"ON":"OFF"}</b></div></div>`;const mine=document.getElementById("leagueMyTeamRead");if(mine){const mp=ranks.find(x=>x.i===draftPos-1);mine.innerHTML=`<div class="dcc-grid2"><div class="dcc-alert good"><b>${escHtml(myTeam().name)}</b><br>Projected ${mp.pts.toFixed(1)} · Rank #${ranks.findIndex(x=>x.i===draftPos-1)+1} · Grade ${mp.grade}<br>Record ${dccTeamRecord(draftPos-1)}.</div><div class="dcc-alert"><b>Biggest leverage</b><br>Judge trades by optimized starter delta and preserve enough RB/WR/TE depth to fill the FLEX.</div></div>`}}
+function renderTradeSummary(){const a=teams[tradeTeamAIdx],b=teams[tradeTeamBIdx],sa=a.roster.filter(p=>tradeSelA.has(p.name)),sb=b.roster.filter(p=>tradeSelB.has(p.name)),pa={...a,roster:a.roster.filter(p=>!tradeSelA.has(p.name)).concat(sb)},pb={...b,roster:b.roster.filter(p=>!tradeSelB.has(p.name)).concat(sa)},da=dccRosterImpact(a,pa,plannerWeek),db=dccRosterImpact(b,pb,plannerWeek),card=document.getElementById("tradeGradeBadge"),sub=document.getElementById("gradeSub");if(sub)sub.textContent=`Post-trade optimized starter delta: ${a.name} ${da>=0?"+":""}${da.toFixed(1)} · ${b.name} ${db>=0?"+":""}${db.toFixed(1)}. This is more meaningful than raw player totals.`;if(card)card.innerHTML=`<span class="tf-grade ${da>=0?"gA":"gF"}" style="display:inline-block">${da>=0?"BETTER":"WORSE"}</span> <span class="tf-grade ${db>=0?"gA":"gF"}" style="display:inline-block">${db>=0?"BETTER":"WORSE"}</span>`}
+function renderSuggestedTrades(){const me=myTeam(),ideas=[];teams.forEach((t,i)=>{if(i===draftPos-1)return;const their=t.roster.slice().sort((a,b)=>dccTradeValue(b)-dccTradeValue(a));const mySurplus=me.roster.filter(p=>DCC_FLEX_ELIGIBLE.includes(p.pos)).sort((a,b)=>dccTradeValue(a)-dccTradeValue(b));for(const give of mySurplus.slice(0,4))for(const get of their.slice(0,8)){const before={...me,roster:[...me.roster]},after={...me,roster:me.roster.filter(p=>p.name!==give.name).concat(get)};const delta=dccRosterImpact(before,after,plannerWeek);const partnerBefore={...t,roster:[...t.roster]},partnerAfter={...t,roster:t.roster.filter(p=>p.name!==get.name).concat(give)};const partnerDelta=dccRosterImpact(partnerBefore,partnerAfter,plannerWeek);if(delta>0&&partnerDelta>0)ideas.push({i,give,get,delta,partnerDelta});}});const el=document.getElementById("suggestedTrades");if(el)el.innerHTML=ideas.sort((a,b)=>b.delta+b.partnerDelta-(a.delta+a.partnerDelta)).slice(0,6).map(x=>`<div class="suggestcard"><div class="sc-top"><b>Offer ${escHtml(x.give.name)} → get ${escHtml(x.get.name)}</b><span class="likely">MUTUAL GAIN</span></div><div class="mini" style="margin-top:5px">${escHtml(teams[x.i].name)} · Your optimized starter delta +${x.delta.toFixed(1)} · Their delta +${x.partnerDelta.toFixed(1)}.</div></div>`).join("")||`<div class="mini">No mutually beneficial one-for-one trade found under the current projection model.</div>`}
+function renderTierList(){const el=document.getElementById("tierList");if(!el)return;const pos=typeof tierFilterPos!=="undefined"?tierFilterPos:"ALL";const arr=available().filter(p=>pos==="ALL"||p.pos===pos).sort((a,b)=>dccTradeValue(b)-dccTradeValue(a)).slice(0,100);el.innerHTML=arr.map(p=>`<div class="tierrow"><div><b>${escHtml(p.name)}</b><span>${p.pos} · ${p.team}</span></div><div>${dccProjection(p,plannerWeek).value.toFixed(1)} PPR<br><span class="mini">VOR ${vor(p).toFixed(1)} · ADP ${p.adp??"—"}</span></div><div><b>${p.tier||"—"}</b><span>${p.action||"TARGET"}</span></div></div>`).join("")||`<div class="mini">No matching players.</div>`}
+function renderWaivers(){let a=available().filter(p=>(waiverPos==="ALL"||p.pos===waiverPos)&&(`${p.name} ${p.team} ${p.pos}`.toLowerCase().includes(waiverQuery.toLowerCase())));a.sort((x,y)=>dccProjection(y,plannerWeek).value-dccProjection(x,plannerWeek).value||dccTradeValue(y)-dccTradeValue(x));a=a.slice(0,60);const el=document.getElementById("waiverRows");if(!el)return;el.innerHTML=a.map(p=>{const pr=dccProjection(p,plannerWeek),team=myTeam(),replace=team.roster.slice().sort((x,y)=>dccProjection(x,plannerWeek).value-dccProjection(y,plannerWeek).value)[0],fit=replace?Math.max(0,pr.value-dccProjection(replace,plannerWeek).value):pr.value;return `<tr><td><div class="player">${escHtml(p.name)}</div><small>${p.tier||"—"}</small></td><td>${p.pos}</td><td>${p.team}</td><td>${p.adp??"—"}</td><td>${pr.value.toFixed(1)} <span class="dcc-source ${pr.state!=="LIVE"?"est":""}">${pr.state}</span></td><td>+${fit.toFixed(1)} fit</td><td><button class="draftbtn" onclick="waiverAdd('${esc(p.name)}')">Add</button></td></tr>`}).join("")||`<tr><td colspan="7" class="mini">No matching waiver players.</td></tr>`}
+function renderRosterBuilder(){if(typeof builderRender==='function')builderRender()}
+function renderTeamNames(){const g=document.getElementById("teamNameGrid");if(g)g.innerHTML=teams.map((t,i)=>`<div><label>Team ${i+1}</label><input class="input" id="teamNameInput${i}" value="${escHtml(t.name)}"></div>`).join("");const s=document.getElementById("builderTeamSelect");if(s&&s.options.length!==teams.length)s.innerHTML=teams.map((t,i)=>`<option value="${i}">${escHtml(t.name)}</option>`).join("")}
+function dccRenderScheduleEditor(){const w=dccNum(document.getElementById("dccScheduleWeek")?.value,1)||1;const existing=dccScheduleForWeek(w);const el=document.getElementById("dccScheduleEditor");if(!el)return;el.innerHTML=teams.map((t,i)=>{const opp=dccOpponent(i,w);return `<div class="dcc-action"><div><b>${escHtml(t.name)}</b><div class="dcc-small">${dccTeamRecord(i)}</div></div><select class="select dcc-opp" data-team="${i}" style="max-width:220px"><option value="">Opponent not set</option>${teams.map((o,j)=>j===i?"":`<option value="${j}" ${opp===j?"selected":""}>${escHtml(o.name)}</option>`).join("")}</select></div>`}).join("")}
+function dccRenderStandingsEditor(){const el=document.getElementById("dccStandingsEditor");if(!el)return;el.innerHTML=teams.map((t,i)=>{const x=dccStand(i);return `<tr><td><b>${escHtml(t.name)}</b></td><td><input class="input dcc-stand" data-team="${i}" data-k="w" type="number" min="0" value="${dccNum(x.w)}"></td><td><input class="input dcc-stand" data-team="${i}" data-k="l" type="number" min="0" value="${dccNum(x.l)}"></td><td><input class="input dcc-stand" data-team="${i}" data-k="t" type="number" min="0" value="${dccNum(x.t)}"></td><td><input class="input dcc-stand" data-team="${i}" data-k="pf" type="number" step="0.1" value="${dccNum(x.pf)}"></td><td><input class="input dcc-stand" data-team="${i}" data-k="pa" type="number" step="0.1" value="${dccNum(x.pa)}"></td></tr>`}).join("")}
+function dccRenderHealth(){const w=plannerWeek,audit=rosterProjectionAudit(w),total=teams.reduce((n,t)=>n+t.roster.length,0),unmatched=audit.missing.length;const h=document.getElementById("dccHealth"),tbl=document.getElementById("dccAuditTable");if(h)h.innerHTML=`<div class="dcc-health"><div class="hbox"><span>League rosters</span><b class="${total===teams.length*leagueConfig.rosterSize?"dcc-good":"dcc-warn"}">${total}/${teams.length*leagueConfig.rosterSize}</b></div><div class="hbox"><span>FP PPR Week ${w}</span><b class="${projectionSourceIsLive(w)?"dcc-good":"dcc-warn"}">${projectionSourceIsLive(w)?(weeklyProjectionData[w]?.count||0):"NOT SYNCED"}</b></div><div class="hbox"><span>Roster matches</span><b>${audit.matched.length}/${audit.rostered.length}</b></div><div class="hbox"><span>Opponent</span><b class="${dccOpponent(draftPos-1,w)!=null?"dcc-good":"dcc-bad"}">${dccOpponent(draftPos-1,w)!=null?"SET":"MISSING"}</b></div></div>`;if(tbl)tbl.innerHTML=`<div class="dcc-small">${unmatched?`${unmatched} rostered players do not have a matching FantasyPros PPR projection for Week ${w}. They remain unassigned rather than receiving fabricated live points.`:"All rostered players matched to the active FantasyPros projection cache."}</div>`}
+function dccPopulateSettings(){const c=leagueConfig;const set=(id,v)=>{const x=document.getElementById(id);if(x)x.value=v};set("dccTeams",c.teams);set("dccScoring",c.scoring);set("dccRosterSize",c.rosterSize);set("dccPlayoffTeams",c.playoffTeams);Object.entries(c.starters).forEach(([k,v])=>{const x=document.querySelector(`.dcc-start[data-pos="${k}"]`);if(x)x.value=v});Object.entries({rec:c.scoringRules.rec,passTD:c.scoringRules.passTD,passYd:c.scoringRules.passYd,rushYd:c.scoringRules.rushYd,td:c.scoringRules.td,turnover:c.scoringRules.turnover}).forEach(([k,v])=>set("score"+k.charAt(0).toUpperCase()+k.slice(1),v));const sum=document.getElementById("dccConfigSummary");if(sum)sum.textContent=`${c.teams} teams · ${c.scoring} · QB${c.starters.QB}/RB${c.starters.RB}/WR${c.starters.WR}/TE${c.starters.TE}/FLEX${c.starters.FLEX}/K${c.starters.K}/DEF${c.starters.DEF} · ${c.rosterSize} roster`}
+function dccSaveConfig(){const starters={};document.querySelectorAll(".dcc-start").forEach(x=>starters[x.dataset.pos]=dccNum(x.value,0));leagueConfig=dccNormalizeConfig({...leagueConfig,teams:dccNum(document.getElementById("dccTeams")?.value,12),scoring:document.getElementById("dccScoring")?.value||"PPR",rosterSize:dccNum(document.getElementById("dccRosterSize")?.value,16),playoffTeams:dccNum(document.getElementById("dccPlayoffTeams")?.value,6),starters,scoringRules:{rec:dccNum(document.getElementById("scoreRec")?.value,1),passTD:dccNum(document.getElementById("scorePassTD")?.value,4),passYd:dccNum(document.getElementById("scorePassYd")?.value,25),rushYd:dccNum(document.getElementById("scoreRushYd")?.value,10),td:dccNum(document.getElementById("scoreTD")?.value,6),turnover:dccNum(document.getElementById("scoreTurnover")?.value,-2)}});dccApplyConfigToRuntime();REPLACEMENT_LEVELS=null;saveState();render();dccRenderSettings();showToast("League configuration saved")}
+function dccRenderSettings(){dccPopulateSettings();const sel=document.getElementById("dccScheduleWeek");if(sel){if(!sel.options.length)for(let w=1;w<=18;w++)sel.insertAdjacentHTML("beforeend",`<option value="${w}">Week ${w}</option>`);sel.value=plannerWeek}dccRenderScheduleEditor();dccRenderStandingsEditor();dccRenderHealth()}
+function dccSaveSchedule(){const w=dccNum(document.getElementById("dccScheduleWeek")?.value,1)||1;leagueConfig.schedule[w]={};document.querySelectorAll(".dcc-opp").forEach(x=>{const a=Number(x.dataset.team),b=x.value===""?null:Number(x.value);if(b!=null)dccSetOpponent(w,a,b)});saveState();render();dccRenderSettings();showToast(`Week ${w} fantasy matchups saved`)}
+function dccSaveStandings(){leagueConfig.standings={};document.querySelectorAll(".dcc-stand").forEach(x=>{const i=x.dataset.team,k=x.dataset.k;leagueConfig.standings[i]=leagueConfig.standings[i]||{};leagueConfig.standings[i][k]=dccNum(x.value,0)});saveState();render();dccRenderSettings();showToast("Standings saved")}
+function dccPlayerDetail(name){const p=DATA.find(x=>normalizeName(x.name)===normalizeName(name));if(!p)return;const w=plannerWeek,pr=dccProjection(p,w),modal=document.getElementById("dccPlayerModal");if(!modal)return;document.getElementById("dccModalTitle").textContent=p.name;document.getElementById("dccModalSub").textContent=`${p.pos} · ${p.team} · Week ${w}`;document.getElementById("dccModalBody").innerHTML=`<div class="dcc-grid2"><div class="dcc-alert ${pr.state==="LIVE"?"good":""}"><b>Week ${w} projection</b><br><strong style="font-size:24px">${pr.value.toFixed(1)}</strong> PPR<br><span class="dcc-small">${pr.source}</span></div><div class="dcc-alert"><b>Market</b><br>ADP ${p.adp??"—"}<br>ECR ${p.fp??"—"}<br>VOR ${vor(p).toFixed(1)}</div></div><div style="margin-top:10px" class="dcc-alert"><b>Availability</b><br>${byeWeek(p.team)===w?"BYE":isInjuredOut(p.name)?"OUT / unavailable":STATUS_META[getStatus(p.name)]?.label||"Healthy / no manual restriction"}</div><div class="dcc-small" style="margin-top:10px">Projection state is explicit: LIVE FantasyPros PPR, EST fallback, or availability-adjusted zero. The app does not present an estimate as live data.</div>`;modal.classList.add("open")}
+function dccAddDetailButtons(){document.querySelectorAll("#boardRows .player,#boardCards .bcard-name").forEach(el=>{if(el.dataset.dccBound)return;el.dataset.dccBound="1";el.style.cursor="pointer";el.addEventListener("click",e=>{if(e.target.closest("button"))return;const txt=el.textContent.replace(/⭐|☆|🔒|🔓|🩹|⚕️/g,"").trim();const p=DATA.find(x=>normalizeName(x.name)===normalizeName(txt));if(p)dccPlayerDetail(p.name)})})}
+function dccInit(){dccLoadConfig();dccApplyConfigToRuntime();const raw=localStorage.getItem(STORAGE_KEY);if(raw){try{const st=JSON.parse(raw);if(st.leagueConfig)leagueConfig=dccNormalizeConfig(st.leagueConfig)}catch(e){}}dccApplyConfigToRuntime();const saveBtn=document.getElementById("dccSaveConfig");saveBtn?.addEventListener("click",dccSaveConfig);document.getElementById("dccSaveSchedule")?.addEventListener("click",dccSaveSchedule);document.getElementById("dccSaveStandings")?.addEventListener("click",dccSaveStandings);document.getElementById("dccScheduleWeek")?.addEventListener("change",dccRenderScheduleEditor);document.getElementById("dccSeedSchedule")?.addEventListener("click",()=>{const w=dccNum(document.getElementById("dccScheduleWeek")?.value,1)||1;dccSeedRoundRobin(w);saveState();dccRenderScheduleEditor();showToast(`Week ${w} round-robin seeded — verify it against your real league`)}) ;document.getElementById("dccModalClose")?.addEventListener("click",()=>document.getElementById("dccPlayerModal")?.classList.remove("open"));document.getElementById("dccPlayerModal")?.addEventListener("click",e=>{if(e.target.id==="dccPlayerModal")e.currentTarget.classList.remove("open")});document.getElementById("mgrWeek")?.addEventListener("change",e=>{plannerWeek=dccNum(e.target.value,1);render();saveState();dccRenderSettings()});document.getElementById("leagueAnalyzerWeek")?.addEventListener("change",e=>{plannerWeek=dccNum(e.target.value,1);renderLeagueAnalyzer();dccRenderSettings()});
+ // First-use defaults: seed actual roster structure and a safe placeholder schedule only if no user schedule exists.
+
+ dccRenderSettings();setTimeout(dccAddDetailButtons,100);setTimeout(dccRenderSettings,300);
+}
+const _oldRenderV25=window.render;window.render=function(){_oldRenderV25?.apply(this,arguments);try{renderManager();renderRosters();renderPlanner();renderMatchup();renderLeagueAnalyzer();renderSuggestedTrades();renderTierList();renderWaivers();dccRenderHealth();setTimeout(dccAddDetailButtons,0)}catch(e){console.warn("v25 render",e)}};
+setTimeout(dccInit,50);
+</script>
+
+<script id="dcc-v25-polish">
+/* v25 polish: migration, transaction audit, no fake fantasy schedule, mobile-safe error/update banner */
+function dccMigrateLegacy(){
+ if(localStorage.getItem(STORAGE_KEY))return false;
+ const keys=["dcc_v24_mobile_state","dcc_v23_state","dcc_v22_state","dcc_v21_intel","dcc_v20_state","dcc_v19_state"];
+ for(const k of keys){try{const raw=localStorage.getItem(k);if(raw){const st=JSON.parse(raw);if(st&&Array.isArray(st.teams)){applyState(st);leagueConfig=dccNormalizeConfig(st.leagueConfig||{});saveState();showToast("v25 upgraded your saved league data");return true}}}catch(e){}}
+ return false;
+}
+function dccEnhanceTransactionLog(){
+ const oldExecute=window.executeTrade;
+ if(typeof oldExecute==="function"&&!oldExecute.__v25wrapped){
+  window.executeTrade=function(){const a=teams[tradeTeamAIdx],b=teams[tradeTeamBIdx],ga=a?.roster?.filter(p=>tradeSelA.has(p.name)).map(p=>p.name)||[],gb=b?.roster?.filter(p=>tradeSelB.has(p.name)).map(p=>p.name)||[];oldExecute.apply(this,arguments);if(ga.length&&gb.length){activityLog.unshift({id:Date.now()+Math.random(),timestamp:Date.now(),type:"TRADE",team:`${a.name} ⇄ ${b.name}`,teamIdx:tradeTeamAIdx,player:ga.join(", "),details:`${a.name} sent ${ga.join(", ")} · ${b.name} sent ${gb.join(", ")}`});activityLog=activityLog.slice(0,500);saveState();if(typeof renderLeagueActivity==="function")renderLeagueActivity()}};window.executeTrade.__v25wrapped=true;
  }
- function eligible(p,w){
-   if(!p)return false;
-   const s=String(p.status||'').toLowerCase();
-   if(/out|ir|inactive|pup/.test(s))return false;
-   const bye=typeof byeWeek==='function'?byeWeek(p.team):0;
-   return bye!==w;
- }
- function starters(t,w){
-   const r=teamPlayers(t), out=[];
-   for(const pos of Object.keys(START)){
-     const arr=r.filter(p=>p.pos===pos&&eligible(p,w)).sort((a,b)=>proj(b,w)-proj(a,w));
-     for(let i=0;i<START[pos]&&i<arr.length;i++)out.push(arr[i]);
-   }
-   return out;
- }
- function starterPts(t,w){return starters(t,w).reduce((s,p)=>s+proj(p,w),0)}
- function allTeams(){return Array.isArray(teams)?teams:[]}
- function mine(){return typeof myTeam==='function'?myTeam():allTeams()[Math.max(0,(draftPos||2)-1)]}
- function pct(vals,v){if(!vals.length)return 50;let b=vals.filter(x=>x<v).length,e=vals.filter(x=>x===v).length;return Math.round(((b+e*.5)/vals.length)*100)}
- function replacement(t,pos,w){
-   const pool=teamPlayers(t).filter(p=>p.pos===pos&&eligible(p,w)).sort((a,b)=>proj(b,w)-proj(a,w));
-   return proj(pool[START[pos]],w)||0;
- }
- function rosterScore(t,w){
-   const sp=starterPts(t,w); const vals=Object.keys(START).map(pos=>replacement(t,pos,w));
-   const depth=teamPlayers(t).filter(p=>p.pos==='RB'||p.pos==='WR').length;
-   return sp + depth*0.35 + (vals.reduce((a,b)=>a+b,0)*.03);
- }
- function managerSnapshot(){
-   const t=mine(), w=selectedWeek, st=starters(t,w), sp=starterPts(t,w);
-   const pos={}; Object.keys(START).forEach(p=>pos[p]=st.filter(x=>x.pos===p).reduce((s,x)=>s+proj(x,w),0));
-   const injuries=teamPlayers(t).filter(p=>/out|questionable|doubtful|ir/i.test(p.status||''));
-   const bye=teamPlayers(t).filter(p=>(typeof byeWeek==='function'?byeWeek(p.team):0)===w);
-   return {t,w,st,sp,pos,injuries,bye}
- }
- function leaguePower(){
-   const arr=allTeams().map((t,i)=>({i,t,pts:starterPts(t,selectedWeek),score:rosterScore(t,selectedWeek)}));
-   const vals=arr.map(x=>x.pts); return arr.sort((a,b)=>b.score-a.score).map((x,i)=>({...x,rank:i+1,percentile:pct(vals,x.pts)}));
- }
- function buildActions(s){
-   const a=[];
-   if(s.injuries.length)a.push({sev:'HIGH',title:'Injury watch',body:`${s.injuries.length} roster player(s) carry an injury designation. Re-check status before lineup lock.`});
-   if(s.bye.length)a.push({sev:'MED',title:'Bye-week pressure',body:`${s.bye.length} roster player(s) are on bye in Week ${s.w}. Confirm every starter has an eligible replacement.`});
-   const wr=s.pos.WR||0, rb=s.pos.RB||0;
-   if((wr<25||rb<25)&&teamPlayers(s.t).length>=8)a.push({sev:'MED',title:'Roster construction',body:'Your starting RB/WR output is the clearest area to monitor. Compare waiver replacement before trading away depth.'});
-   if(!a.length)a.push({sev:'GOOD',title:'No urgent action',body:'No major automated red flags detected from the currently available roster data.'});
-   return a;
- }
- function render(){
-   const host=document.getElementById('page-manager'); if(!host)return;
-   let root=document.getElementById('v21-intelligence-root');
-   if(!root){root=document.createElement('div');root.id='v21-intelligence-root';host.appendChild(root)}
-   const s=managerSnapshot(), league=leaguePower(), acts=buildActions(s), ranks=league.length?league:[];
-   const pRank=ranks.find(x=>x.t===s.t); const score=pRank?Math.round(pRank.score):0;
-   const top=Object.entries(s.pos).sort((a,b)=>b[1]-a[1]);
-   root.innerHTML=`<div class="v21-grid">
-    <div class="v24-card wide"><h3>Manager Intelligence · Week ${s.w}</h3><div class="v24-muted">Decision layer separates lineup projection, replacement value, roster fit and league context. It will not manufacture a recommendation when source data is missing.</div>
-      <div class="v21-kpis"><div class="v21-kpi"><span>Starter Projection</span><b>${s.sp.toFixed(1)}</b></div><div class="v21-kpi"><span>Power Score</span><b>${score||'—'}</b></div><div class="v21-kpi"><span>League Rank</span><b>${pRank?pRank.rank:'—'}</b></div><div class="v21-kpi"><span>Data State</span><b>${(typeof fantasyProsSyncState!=='undefined'&&fantasyProsSyncState?.status==='done')?'SYNCED':'FALLBACK'}</b></div></div>
-    </div>
-    <div class="v24-card"><h3>What Should I Do Today?</h3>${acts.map(x=>`<div class="v21-action"><b class="${x.sev==='HIGH'?'v21-bad':x.sev==='MED'?'v21-warn':'v21-good'}">${x.sev}</b> · ${esc(x.title)}<div class="v24-muted">${esc(x.body)}</div></div>`).join('')}</div>
-    <div class="v24-card"><h3>Roster Strength by Position</h3>${top.map(([pos,v])=>`<div class="v21-row"><span><b>${pos}</b></span><span>${v.toFixed(1)}</span></div>`).join('')}</div>
-    <div class="v24-card wide"><h3>League Analyzer · Current Week</h3><table class="v21-table"><thead><tr><th>Rank</th><th>Team</th><th>Starter Projection</th><th>Power</th><th>Signal</th></tr></thead><tbody>${ranks.slice(0,12).map(x=>`<tr><td>${x.rank}</td><td>${esc(x.t.name||('Team '+(x.i+1)))}</td><td>${x.pts.toFixed(1)}</td><td>${x.score.toFixed(1)}</td><td>${x.t===s.t?'<span class="v21-badge">YOU</span>':x.pts>(pRank?.pts||0)?'<span class="v21-badge">THREAT</span>':'<span class="v21-badge">MONITOR</span>'}</td></tr>`).join('')}</tbody></table><div class="v22-source">Power model is intentionally conservative until league-wide live projections are synchronized.</div></div>
-    <div class="v24-card wide"><h3>FantasyPros Pro Data Hub</h3><div class="v24-muted">Your Pro subscription can be used as the expert-intelligence source, while Your saved league remains the league-of-record. FantasyPros supports manual league synchronization through its own authenticated workflow.</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="v24-btn" id="v21FpOpen">Open FantasyPros My Playbook</button><button class="v24-btn" id="v21FpSettings">Open DCC Data Settings</button></div><div class="v22-source">API status: Pro does not include production API access. The connector remains HOF-ready without storing credentials in this client.</div></div>
-   </div>`;
-   document.getElementById('v21FpOpen')?.addEventListener('click',()=>window.open('https://www.fantasypros.com/nfl/myplaybook/','_blank'));
-   document.getElementById('v21FpSettings')?.addEventListener('click',()=>{document.querySelector('[data-page="settings"]')?.click()});
- }
- function save(){localStorage.setItem(V21_KEY,JSON.stringify({week:selectedWeek,updatedAt:Date.now()}))}
- window.addEventListener('dcc:v21:render',render);
- const oldRender=window.render; if(typeof oldRender==='function'&&!oldRender.__v21){window.render=function(){oldRender.apply(this,arguments);try{render()}catch(e){console.warn('v21 render',e)}};window.render.__v21=true}
- document.addEventListener('change',e=>{if(e.target?.id==='weekSelector'){selectedWeek=Number(e.target.value)||1;save();setTimeout(render,0)}});
- setTimeout(render,250); setTimeout(render,1200);
-})();
-</script></body>
+}
+function dccUpdateBanner(){
+ if(document.getElementById("dccUpdateBanner"))return;const b=document.createElement("div");b.id="dccUpdateBanner";b.style.cssText="display:none;position:fixed;left:10px;right:10px;bottom:12px;z-index:999;background:#111b2e;border:1px solid rgba(93,224,183,.35);border-radius:12px;padding:10px;box-shadow:0 10px 40px rgba(0,0,0,.35);font-size:10px;align-items:center;justify-content:space-between;gap:8px";b.innerHTML='<span><b>Draft Command Center updated.</b> Reload to use the newest version.</span><button class="primary btnsm" id="dccReload">RELOAD</button>';document.body.appendChild(b);document.getElementById("dccReload").onclick=()=>location.reload();
+ if("serviceWorker" in navigator)navigator.serviceWorker.addEventListener("message",e=>{if(e.data?.type==="DCC_UPDATE")b.style.display="flex"});
+}
+const _v25BaseRender=window.render;
+window.render=function(){try{_v25BaseRender?.apply(this,arguments)}catch(e){console.warn("base render error",e)}try{renderManager();renderRosters();renderPlanner();renderMatchup();renderLeagueAnalyzer();renderSuggestedTrades();renderTierList();renderWaivers();dccRenderHealth();setTimeout(dccAddDetailButtons,0)}catch(e){console.warn("v25 render error",e)}};
+function dccBoot(){
+ const migrated=dccMigrateLegacy();dccLoadConfig();dccApplyConfigToRuntime();
+ // Do not invent fantasy opponents. Round-robin seeding is available as an explicit draft tool only.
+ dccEnhanceTransactionLog();dccUpdateBanner();dccRenderSettings();if(migrated)render();
+ document.querySelectorAll('#nav button').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.page==='settings')setTimeout(dccRenderSettings,0)}));
+ if(!localStorage.getItem("dcc_v25_upgrade_ack")){localStorage.setItem("dcc_v25_upgrade_ack","1");saveState()}
+}
+setTimeout(dccBoot,120);
+</script>
+</body>
 </html>
