@@ -1,4 +1,4 @@
-# Draft Command Center v25.0 — Ultimate Fantasy Football Toolkit
+# Draft Command Center v25.1 — Ultimate Fantasy Football Toolkit
 
 ## What changed
 - **Actual lineup configuration is now FLEX-aware:** QB / RB / RB / WR / WR / TE / FLEX / K / DEF.
@@ -16,6 +16,10 @@
 - Added automatic local-state backup on save and a v24.x → v25 migration path.
 - Added service-worker versioning and an in-app update notice.
 - Removed the legacy v21 Manager Intelligence layer and its conflicting FantasyPros/API messaging.
+- Consolidated **Rosters + Roster Builder** into one ongoing league-management screen for adds/drops, team renames, custom players, and activity logging.
+- Removed the standalone **Players** tab; player intelligence is surfaced contextually through Manager, Waivers, Trades, Matchups, and Settings/Data Health.
+- Added a **FantasyPros weekly projection URL reference** field. The app parses the URL for week/scoring/position, attempts a direct read when browser CORS permits it, and refuses to silently treat blocked/stale data as live. If direct page access is blocked, use the official API or JSON/CSV import.
+- Fixed the v25 fallback projection bug that treated roster records without an explicit `expert` field as rank 180. Elite players such as Bijan were therefore being shown around 13.9 EST; the fallback now uses the embedded FantasyPros/Walter expert ranks first and removes the artificial weekly variance.
 
 ## Current default league setup
 - 12 teams
