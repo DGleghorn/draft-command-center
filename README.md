@@ -1,20 +1,29 @@
-# Draft Command Center v25.3 — Ultimate Fantasy Toolkit
+# Draft Command Center v26.0 — GitHub Pages PWA
 
-Mobile-first PWA for a 12-team PPR fantasy football league. Manual league rosters are the source of truth; FantasyPros is the projection/expert layer. No ESPN dependency.
+## New direction: Weekly Team Manager + Live Data Engine
 
-## v25.3 Stability & Data Integrity
-- Correct QB/RB/RB/WR/WR/TE/FLEX/K/DEF lineup model.
-- Data Health panel for projections, schedule, injury/roster sync, rostered-player projection matching, schema, and app version.
-- FantasyPros PPR projections are explicitly LIVE or EST; stale live caches expire after 6 hours.
-- Player metadata is hydrated from the embedded player pool when older roster records are incomplete.
-- Automatic local snapshots are created before saved state changes; latest snapshot can be restored.
-- Versioned state schema and migration support.
-- Service worker cache is versioned as v25.3 and navigation is network-first to reduce stale PWA builds.
-- Visible app version is v25.3.
-- FantasyPros URL remains a source reference / optional direct-read path; official API or JSON/CSV import is preferred because browser CORS may block page reads.
+Drafting is complete. DCC now prioritizes weekly start/sit, matchup, waiver, trade and roster-management decisions.
 
-## GitHub Pages
-Upload the contents of this ZIP to the repository root. The entry point is `index.html`.
+### Live data architecture
+- **Sleeper public API:** free, no key, for active NFL player/team assignments, injury status, current NFL state and trending adds/drops. Player metadata is refreshed conservatively because Sleeper documents the full player map as a large daily-style dataset.
+- **ESPN Fantasy API:** free/public read path when the league is publicly readable. DCC can pull league rosters, standings, matchup schedule, weekly PPR projections and live scoring data.
+- **FantasyPros:** optional last resort. No FantasyPros API subscription is required for the new free-first engine.
+- **DCC estimates:** only used when an external live source is unavailable and are explicitly labeled EST.
 
-## Data policy
-The app never labels a fallback estimate as FantasyPros. If live PPR projection data is missing or stale, the UI shows EST and recommends a refresh/import.
+### Refresh behavior
+- Manual **REFRESH ALL** is always available.
+- Auto-refresh runs while the app is open.
+- Normal refresh target: ~10 minutes.
+- The app refreshes again when returning to the foreground.
+- ESPN live-scoring data is requested during refreshes when configured.
+
+### ESPN setup
+In **Settings → Live Data Engine**, enter:
+1. ESPN League ID
+2. Your ESPN Team ID
+3. Optionally paste your ESPN league URL
+
+The app does **not** request or store an ESPN password. Private ESPN leagues may return HTTP 401 because ESPN requires account cookies. For a private league, use the future DCC Chrome extension/serverless bridge rather than exposing credentials in the GitHub Pages app.
+
+### GitHub Pages upload
+Upload the contents of this ZIP to the repository root. Keep `index.html`, `manifest.json`, `sw.js`, the icons, and all existing `script0.js`–`script3.js` files together.
