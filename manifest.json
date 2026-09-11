@@ -1,14 +1,22 @@
 {
-  "name": "Draft Command Center v26.0 — Weekly Team Manager",
-  "short_name": "Draft Command",
+  "name": "Draft Command Center v29.0 \u2014 Mobile-First Weekly Manager",
+  "short_name": "Draft Command Center",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#080d17",
   "theme_color": "#080d17",
-  "description": "Mobile-first fantasy football manager with free-first live data, ESPN/Sleeper refreshes, PPR start/sit optimization, waivers, trades, matchups, standings, player intelligence, and league snapshots.",
+  "description": "Mobile-first weekly fantasy football manager with ESPN Bridge support.",
   "icons": [
-    {"src":"./icon-192.png","sizes":"192x192","type":"image/png"},
-    {"src":"./icon-512.png","sizes":"512x512","type":"image/png"}
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
   ]
 }

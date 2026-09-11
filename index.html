@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b1020">
-<title>Draft Command Center v26.0 — Ultimate Fantasy Toolkit</title>
+<title>Draft Command Center v29.0 — Mobile-First Weekly Manager</title>
 <style>
 :root{--bg:#090d17;--panel:#111827;--panel2:#151e2f;--line:#263249;--text:#f4f7fb;--muted:#91a0b7;--blue:#6d6aff;--cyan:#4dd7ff;--green:#28d7a1;--red:#ff6475;--amber:#f6b94a;--shadow:0 14px 45px rgba(0,0,0,.22)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior-x:none}body{min-width:0}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}input,select,textarea{font-size:16px}
@@ -111,7 +111,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 <div class="app">
 <header class="top">
   <div class="toprow">
-    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v26.0</span></h1></div></div>
+    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v29.0</span></h1></div></div>
     <div class="status"><div class="live" title="Mobile Team Manager is fully manual and local-first"><i class="pulse"></i><span id="syncText">MOBILE TEAM MANAGER</span></div></div>
   </div>
   <nav class="nav" id="nav">
@@ -409,28 +409,10 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
       <p style="font-size:10px;color:#5de0b7;margin-top:8px;line-height:1.6">✓ Bye weeks were corrected to match the actual verified 2026 NFL schedule (Weeks 5–14, none in Week 12) — these are real, not demo data, and drive the bye-cluster alert and Planner/Matchup projections accurately.</p>
       
     </div>
-    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>📊 Optional market ADP fallback</h2><p>FantasyPros API/import is optional. The free-first engine no longer depends on it.</p></div></div>
-      <div class="formrow"><label>ADP proxy URL (recommended)</label><input class="input" id="adpProxyUrl" placeholder="https://your-domain.example/api/adp"></div>
-      <div class="persistbar"><button class="secondary" id="adpSyncBtn">SYNC MARKET ADP</button><label class="secondary" style="display:inline-flex;align-items:center" for="adpCsvFile">IMPORT ADP CSV</label><input type="file" id="adpCsvFile" accept=".csv,text/csv" style="display:none"><a class="secondary" href="https://www.fantasypros.com/nfl/rankings/?scoring=PPR&type=draft" target="_blank" rel="noopener">OPEN CURRENT FANTASYPROS ADP</a></div>
-      <p class="mini" id="adpSyncStatus">Fallback market snapshot is embedded. Live sync requires your server-side FantasyPros API/proxy endpoint.</p>
-      <p class="mini" style="margin-top:6px">FantasyPros officially provides consensus rankings/ADP through its API. Keep the API key on your server; this app only consumes normalized JSON. If the live feed is unavailable, the embedded snapshot remains usable and is clearly treated as fallback data.</p>
-    </div>
-    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>⭐ FantasyPros — last resort</h2><p>Optional paid/third-party projection layer. DCC v26 does not require a FantasyPros API subscription.</p></div></div>
-      <div class="formrow"><label>FantasyPros API key <span class="mini">(optional; stored only in this browser)</span></label><input class="input" id="fantasyProsApiKey" type="password" autocomplete="off" placeholder="Paste your personal FantasyPros API key here"></div>
-      <div class="persistbar"><button class="secondary" id="fantasyProsSyncBtn">SYNC FANTASYPROS</button><label class="secondary" style="display:inline-flex;align-items:center" for="fantasyProsJsonFile">IMPORT FANTASYPROS JSON</label><input type="file" id="fantasyProsJsonFile" accept=".json,application/json" style="display:none"><label class="secondary" style="display:inline-flex;align-items:center" for="fantasyProsCsvFile">IMPORT PROJECTIONS CSV</label><input type="file" id="fantasyProsCsvFile" accept=".csv,text/csv" style="display:none"><a class="secondary" href="https://www.fantasypros.com/api-data/" target="_blank" rel="noopener">OPEN FANTASYPROS API</a></div>
-      <p class="mini" id="fantasyProsSyncStatus">Not connected. If your API key is not enabled for the endpoint, use the JSON/CSV import option instead.</p>
-      <p class="mini" style="margin-top:6px">FantasyPros currently documents NFL weekly projections at <code>/nfl/{season}/projections</code>, with week and PPR scoring parameters. FantasyPros documents API access by plan/key; use the official API docs for your account. For a static personal PWA, credentials are stored locally in this browser; a server-side proxy is safer for broader deployment.</p>
-    </div>
     <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🏈 Real NFL schedule</h2></h2><p>Player opponents and bye weeks come from a real 2026 NFL schedule feed — never a hash/random opponent.</p></div></div>
       <div class="persistbar"><button class="secondary" id="scheduleSyncBtn">SYNC NFL SCHEDULE</button></div>
       <p class="mini" id="scheduleSyncStatus">Schedule not synced yet. The app will use verified 2026 bye weeks but will not invent an opponent if the schedule feed is unavailable.</p>
       <p class="mini" style="margin-top:6px">Fantasy matchups are generated from your 12-team league rotation; NFL player opponents and bye weeks use the real 2026 NFL schedule.</p>
-    </div>
-    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>📈 Weekly projection source</h2><p>Paste a FantasyPros weekly projection URL so the app can lock onto the correct week/scoring source. The app will attempt a direct page read; if browser CORS blocks it, no projection values are accepted and the URL remains a source reference.</p></div></div>
-      <div class="formrow"><label>FantasyPros weekly projection URL</label><input class="input" id="fantasyProsProjectionUrl" placeholder="https://www.fantasypros.com/nfl/projections/rb.php?scoring=PPR&week=1"></div>
-      <div class="persistbar"><button class="secondary" id="projectionUrlApplyBtn">USE URL</button><button class="secondary" id="projectionSyncBtnSettings">SYNC CURRENT WEEK PROJECTIONS</button></div>
-      <p class="mini" id="projectionUrlStatus">URL reference not set. A FantasyPros page URL identifies the intended week/scoring; values are accepted only after a successful page read or official API/import.</p>
-      <p class="mini" id="projectionSourceStatus">FantasyPros projection cache is not loaded for the selected week.</p><p class="mini" id="projectionHealthStatus" style="margin-top:6px"></p>
     </div>
     <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🔄 Live injury & roster sync</h2><p>Pulls current injury status and team assignments from Sleeper's free public NFL player API — real data, not a demo.</p></div></div>
       <p class="mini" id="liveSyncStatus">Never synced. Tap below to fetch current data.</p>
@@ -458,13 +440,13 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
   </div>
   <div class="persistbar"><button class="primary" id="dccSaveConfig">SAVE LEAGUE CONFIG</button><span class="dcc-pill" id="dccConfigSummary">12 teams · PPR · QB1/RB2/WR2/TE1/FLEX1/K1/DEF1 · 16 roster</span></div>
 </div>
-<div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🎯 Scoring & Projection Contract</h2><p>FantasyPros live projections are used as PPR projections. Your scoring settings are retained for fallback calculations and league documentation.</p></div></div>
+<div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🎯 Scoring & Projection Contract</h2><p>ESPN weekly PPR projections are preferred when available. DCC only falls back to estimates when a live source is unavailable.</p></div></div>
   <div class="dcc-grid2">
     <div class="formrow"><label>Receptions</label><input class="input" id="scoreRec" type="number" step="0.1" value="1"></div><div class="formrow"><label>Passing TD</label><input class="input" id="scorePassTD" type="number" step="0.5" value="4"></div>
     <div class="formrow"><label>Passing yards / pt</label><input class="input" id="scorePassYd" type="number" step="0.01" value="25"></div><div class="formrow"><label>Rush/receive yards / pt</label><input class="input" id="scoreRushYd" type="number" step="0.01" value="10"></div>
     <div class="formrow"><label>Rush/receive TD</label><input class="input" id="scoreTD" type="number" step="0.5" value="6"></div><div class="formrow"><label>INT / lost fumble</label><input class="input" id="scoreTurnover" type="number" step="0.5" value="-2"></div>
   </div>
-  <p class="dcc-small">Important: FantasyPros <b>points_ppr</b> is the live projection contract in this build. If your league uses custom scoring, enter it here and the app will flag the live projection as “FP PPR / scoring differs” rather than pretending the values are exact.</p>
+  <p class="dcc-small">Important: ESPN weekly projections are treated as PPR source data. If your league uses custom scoring, DCC will flag the source instead of pretending the projection is exact.</p>
 </div>
 <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🗓️ Fantasy Matchup Schedule</h2><p>Set the actual fantasy opponent for each team. The app will never silently call a round-robin opponent your real opponent.</p></div><select class="select" id="dccScheduleWeek" style="width:120px"></select></div><div id="dccScheduleEditor"></div><div class="persistbar"><button class="primary" id="dccSaveSchedule">SAVE WEEKLY MATCHUPS</button><button class="ghost" id="dccSeedSchedule">SEED ROUND-ROBIN</button></div></div>
 <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>📋 League Standings & Records</h2><p>Manual record/PF/PA entry drives power rankings and season outlook without an ESPN dependency.</p></div></div><div class="dcc-scroll"><table class="dcc-table"><thead><tr><th>Team</th><th>W</th><th>L</th><th>T</th><th>PF</th><th>PA</th></tr></thead><tbody id="dccStandingsEditor"></tbody></table></div><div class="persistbar"><button class="primary" id="dccSaveStandings">SAVE STANDINGS</button></div></div>
@@ -655,7 +637,7 @@ let liveSyncState=null;
 let weeklyProjectionData={};
 let projectionSyncState=null;
 let projectionCacheMeta={};
-const PROJECTION_ENGINE_VERSION="25.3-fp-ppr";
+const PROJECTION_ENGINE_VERSION="28.0-espn-ppr";
 const STATUS_ORDER=["healthy","questionable","doubtful","out","ir"];
 const STATUS_META={healthy:{label:"",short:"",cls:""},questionable:{label:"Questionable",short:"Q",cls:"stat-q"},doubtful:{label:"Doubtful",short:"D",cls:"stat-d"},out:{label:"Out",short:"O",cls:"stat-o"},ir:{label:"IR",short:"IR",cls:"stat-ir"}};
 let waiverQuery="", waiverPos="ALL", plannerWeek=1;
@@ -1097,7 +1079,7 @@ function renderProjectionSyncStatus(){
 /* ---------- persistence ---------- */
 function saveState(){
  try{
-  const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,botProfiles,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionCacheMeta,projectionSyncState,adpProxyUrl,adpSyncState,fantasyProsSyncState,scheduleSyncState,activityLog,fantasyProsApiKey,fantasyProsProjectionUrl,savedAt:Date.now()};
+  const state={currentPick,draftPos,philosophy,drafted:[...drafted],teams,botProfiles,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionCacheMeta,projectionSyncState,adpProxyUrl,adpSyncState,fantasyProsSyncState,scheduleSyncState,activityLog,savedAt:Date.now()};
   localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
   lastSaved=new Date();
   const ls=document.getElementById("lastSaved");if(ls)ls.textContent=lastSaved.toLocaleTimeString();
@@ -2725,14 +2707,14 @@ if(location.protocol.startsWith("http")){setTimeout(()=>syncNFLSchedule(true),30
 </script>
 <script>
 if('serviceWorker' in navigator && location.protocol.startsWith('http')){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=26.0',{scope:'./'}).catch(()=>{}));
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=29.0',{scope:'./'}).catch(()=>{}));
 }
 </script>
 
 <script id="dcc-v25-core">
 /* Draft Command Center v25.2 — Ultimate Fantasy Football Toolkit
    Manual league-of-record. FantasyPros is projection/expert layer. No ESPN dependency. */
-const DCC_V25_VERSION="26.0";
+const DCC_V25_VERSION="29.0";
 const DCC_FLEX_ELIGIBLE=["RB","WR","TE"];
 const DCC_STATE_VERSION=253;
 const DCC_PROJECTION_MAX_AGE_MS=6*60*60*1000;
@@ -2751,7 +2733,7 @@ function dccNormalizeConfig(c){
  return {teams:Math.max(2,Math.min(20,dccNum(x.teams,12))),scoring:["PPR","HALF_PPR","STD"].includes(x.scoring)?x.scoring:"PPR",rosterSize:Math.max(8,Math.min(30,dccNum(x.rosterSize,16))),playoffTeams:Math.max(2,Math.min(16,dccNum(x.playoffTeams,6))),starters,scoringRules:{...leagueConfig.scoringRules,...(x.scoringRules||{})},schedule:x.schedule&&typeof x.schedule==="object"?x.schedule:{},standings:x.standings&&typeof x.standings==="object"?x.standings:{}};
 }
 function dccLoadConfig(){try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const st=JSON.parse(raw);leagueConfig=dccNormalizeConfig(st.leagueConfig||{});return}}catch(e){} leagueConfig=dccNormalizeConfig(leagueConfig)}
-function dccStatePayload(){return {schemaVersion:DCC_STATE_VERSION,currentPick,draftPos,philosophy,drafted:[...drafted],teams,botProfiles,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionCacheMeta,projectionSyncState,adpProxyUrl,adpSyncState,fantasyProsSyncState,scheduleSyncState,activityLog,fantasyProsApiKey,fantasyProsProjectionUrl,leagueConfig,appVersion:DCC_V25_VERSION,savedAt:Date.now()}}
+function dccStatePayload(){return {schemaVersion:DCC_STATE_VERSION,currentPick,draftPos,philosophy,drafted:[...drafted],teams,botProfiles,feed,pickHistory,tradeHistory,plannerWeek,watchlist:[...watchlist],lockedPlayers:[...lockedPlayers],playerStatus,liveSyncState,liveDraftMode,weeklyProjectionData,projectionCacheMeta,projectionSyncState,adpProxyUrl,adpSyncState,fantasyProsSyncState,scheduleSyncState,activityLog,leagueConfig,appVersion:DCC_V25_VERSION,savedAt:Date.now()}}
 function dccCreateSnapshot(reason="manual"){try{const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return;const arr=JSON.parse(localStorage.getItem(DCC_SNAPSHOT_KEY)||"[]");arr.unshift({id:Date.now(),reason,timestamp:new Date().toISOString(),state:JSON.parse(raw)});localStorage.setItem(DCC_SNAPSHOT_KEY,JSON.stringify(arr.slice(0,12)));}catch(e){console.warn("snapshot failed",e)}}
 function saveState(reason="auto"){try{const state=dccStatePayload();const old=localStorage.getItem(STORAGE_KEY);if(old){localStorage.setItem(dccBackupKey,old);if(reason&&reason!=="render")dccCreateSnapshot(reason)}localStorage.setItem(STORAGE_KEY,JSON.stringify(state));lastSaved=new Date();const ls=document.getElementById("lastSaved");if(ls)ls.textContent=lastSaved.toLocaleTimeString()}catch(e){console.warn("v25 save failed",e)}}
 function dccRestoreLatestSnapshot(){try{const arr=JSON.parse(localStorage.getItem(DCC_SNAPSHOT_KEY)||"[]");const snap=arr[0];if(!snap)return showToast("No automatic snapshots available");if(!confirm(`Restore snapshot from ${new Date(snap.timestamp).toLocaleString()}? Current state will be backed up first.`))return;dccCreateSnapshot("before restore");applyState(snap.state);saveState("restore");render();dccRenderSettings();showToast("Snapshot restored")}catch(e){showToast("Could not restore snapshot")}}
@@ -2867,14 +2849,14 @@ function dccBoot(){
 }
 setTimeout(dccBoot,120);
 </script>
-<script id="dcc-v26-live-engine">
-/* DCC v26 Live Data Engine — free-first, mobile/GitHub Pages friendly.
+<script id="dcc-v29-live-engine">
+/* DCC v29 Mobile-First Live Data Engine — free-first, mobile/GitHub Pages friendly.
    Sources: Sleeper public API for player/team/injury/trending data; ESPN public
    fantasy API for league state + weekly projections/live scoring when accessible.
    FantasyPros remains optional last-resort only. */
 (function(){
-  const KEY="dcc_v26_live_engine";
-  const VERSION="26.0.0";
+  const KEY="dcc_v29_live_engine";
+  const VERSION="29.0.0";
   const SLEEPER_BASE="https://api.sleeper.app/v1";
   const ESPN_BASE="https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/segments/0/leagues";
   const AUTO_MS=10*60*1000;
@@ -2918,14 +2900,14 @@ setTimeout(dccBoot,120);
       <div class="dcc-alert good" id="dccLiveSummary">Loading live-data status…</div>
       <div class="dcc-grid2" style="margin-top:10px">
         <div class="dcc-alert"><b>🏈 Sleeper public data</b><br><span class="dcc-small">Active NFL player/team assignments, injury status, trending adds/drops. No login or API key.</span><div class="persistbar"><button class="secondary" id="dccSleeperSync">SYNC SLEEPER</button><span class="dcc-pill" id="dccSleeperStatus">Never</span></div></div>
-        <div class="dcc-alert"><b>📊 ESPN league data</b><br><span class="dcc-small">League rosters, standings, matchups and ESPN weekly projections/live scoring when the league is publicly readable.</span><div class="formrow"><label>ESPN League ID</label><input class="input" id="dccEspnLeagueId" placeholder="e.g. 1770371260"></div><div class="formrow"><label>Your ESPN Team ID</label><input class="input" id="dccEspnTeamId" placeholder="e.g. 1"></div><div class="formrow"><label>ESPN League URL (optional)</label><input class="input" id="dccEspnLeagueUrl" placeholder="Paste ESPN league URL"></div><div class="persistbar"><button class="secondary" id="dccEspnSync">SYNC ESPN</button><span class="dcc-pill" id="dccEspnStatus">Never</span></div></div>
+        <div class="dcc-alert"><b>📊 ESPN league data</b><br><span class="dcc-small">DCC attempts the ESPN read APIs directly from this device using the browser session. No desktop bridge or extension is required.</span><div class="formrow"><label>ESPN League ID</label><input class="input" id="dccEspnLeagueId" placeholder="e.g. 1770371260"></div><div class="formrow"><label>Your ESPN Team ID</label><input class="input" id="dccEspnTeamId" placeholder="e.g. 1"></div><div class="formrow"><label>ESPN League URL (optional)</label><input class="input" id="dccEspnLeagueUrl" placeholder="Paste ESPN league URL"></div><div class="persistbar"><button class="secondary" id="dccEspnSync">SYNC ESPN</button><span class="dcc-pill" id="dccEspnStatus">Never</span></div><p class="dcc-small" style="margin-top:8px">DCC never asks you to paste your ESPN password or session cookies. The app uses the browser session when the mobile browser permits authenticated ESPN requests.</p></div>
       </div>
       <div class="dcc-grid2" style="margin-top:10px">
-        <div class="dcc-alert"><b>🎯 Weekly projections</b><br><span class="dcc-small">Priority: ESPN weekly PPR projections → optional FantasyPros import/API → DCC estimate. A projection is never labeled LIVE unless a fresh external feed actually supplied it.</span><div class="persistbar"><span class="dcc-pill" id="dccProjectionStatus">No live projection cache</span></div></div>
+        <div class="dcc-alert"><b>🎯 Weekly projections</b><br><span class="dcc-small">Priority: ESPN weekly PPR projections → DCC estimate. A projection is never labeled LIVE unless a fresh ESPN feed actually supplied it.</span><div class="persistbar"><span class="dcc-pill" id="dccProjectionStatus">No live projection cache</span></div></div>
         <div class="dcc-alert"><b>🔴 Live scoring</b><br><span class="dcc-small">During active games, ESPN live scoring can refresh current points and live projected totals when league data is available.</span><div class="persistbar"><span class="dcc-pill" id="dccLiveScoreStatus">Never</span></div></div>
       </div>
       <div class="persistbar" style="margin-top:10px"><label class="dcc-pill"><input type="checkbox" id="dccAutoRefresh" style="margin-right:6px"> Auto-refresh while app is open</label><span class="dcc-small">Normal refresh: 10 min · live scoring: up to 60 sec · refreshes again when app returns to foreground.</span></div>
-      <div class="dcc-small" style="margin-top:8px">Private ESPN leagues may return 401 because ESPN requires account cookies. DCC does not ask you to paste your ESPN password. If your league is private, the next step is the DCC Chrome extension / serverless bridge rather than exposing credentials in GitHub Pages.</div>`;
+      <div class="dcc-small" style="margin-top:8px">If ESPN returns 401/403, the browser is not permitting the authenticated session to be reused by the GitHub Pages app. DCC keeps working from its last local snapshot and clearly marks the ESPN feed as unavailable.</div>`;
       settings.parentNode.insertBefore(card,settings.nextSibling);
     }
     const mgr=document.getElementById("page-manager");
@@ -2998,22 +2980,23 @@ setTimeout(dccBoot,120);
     sched.forEach(m=>[m.home,m.away].forEach(side=>{if(!side)return;const tid=Number(side.teamId);if(Number.isInteger(tid))out.teams[tid]={points:Number(side.totalPoints)||0,projected:Number(side.totalProjectedPointsLive)||0};(side.rosterForCurrentScoringPeriod?.entries||[]).forEach(en=>{const p=en.playerPoolEntry?.player||en.player;const name=p?.fullName||[p?.firstName,p?.lastName].filter(Boolean).join(" ");if(!name)return;const actual=Number(en.appliedStatTotal??en.playerPoolEntry?.appliedStatTotal);if(Number.isFinite(actual))out.pointsByName[normalizeName(name)]=actual;const stats=en.playerPoolEntry?.stats||[];const proj=stats.find(s=>Number(s.statTypeId)===2&&Number(s.scoringPeriodId)===getWeek());if(Number.isFinite(Number(proj?.appliedTotal)))out.projectedByName[normalizeName(name)]=Number(proj.appliedTotal)})}));return out;
   }
   async function syncESPN({live=false}={}){
-    const id=leagueId();if(!id)throw new Error("Enter your ESPN League ID first.");
-    const week=getWeek();state.currentWeek=week;
+    const id=leagueId(); if(!id) throw new Error("Enter your ESPN League ID first.");
+    const week=getWeek(); state.currentWeek=week;
+    let payload;
     const views=live?["mTeam","mRoster","mMatchupScore","mLiveScoring","mStatus"]:["mTeam","mRoster","mMatchupScore","mStatus"];
     const qs=views.map(v=>`view=${encodeURIComponent(v)}`).join("&")+`&scoringPeriodId=${week}&matchupPeriodId=${week}`;
     const url=`${ESPN_BASE}/${encodeURIComponent(id)}?${qs}`;
-    let payload;try{payload=await fetchJSON(url,{headers:{Accept:"application/json"}},25000)}catch(e){
-      if(String(e.message).includes("401"))throw new Error("ESPN returned 401. The league is likely private; DCC cannot safely access ESPN account cookies from GitHub Pages. Use the Chrome extension/bridge for private-league sync.");
+    try{payload=await fetchJSON(url,{headers:{Accept:"application/json"},credentials:"include"},25000)}catch(e){
+      if(String(e.message).includes("401")) throw new Error("ESPN returned 401. This browser could not reuse the authenticated ESPN session. Open ESPN in the same browser, then retry.");
       throw e;
     }
-    if(!payload?.teams?.length)throw new Error("ESPN returned no league teams. Verify the League ID and that the league is publicly readable.");
+    if(!payload?.teams?.length) throw new Error("ESPN returned no league teams. Verify the League ID and Bridge session.");
     normalizeESPNTeamData(payload,week);
-    const proj=projectionFromEspnPayload(payload,week); // Some ESPN league responses include player pool stats.
-    if(proj.count>=20){weeklyProjectionData[week]=proj;projectionCacheMeta[week]={source:"ESPN",scoring:"PPR",week,engine:VERSION,timestamp:proj.timestamp};state.projection[week]=projectionCacheMeta[week];state[`projectionData_${week}`]=proj;state.lastProjection=proj.timestamp}
-    if(live&&payload.mLiveScoring!==false){const liveData=parseESPNLive(payload);state.liveScoring=Object.assign(liveData,{timestamp:new Date().toISOString(),week});state.lastLiveScoring=state.liveScoring.timestamp}
-    state.lastESPN=new Date().toISOString();state.lastAll=state.lastESPN;state.espn={status:"done",timestamp:state.lastESPN,week,teams:payload.teams.length,projectionCount:proj.count,live:!!live};
-    state.leagueId=id;save();render();return state.espn;
+    const proj=projectionFromEspnPayload(payload,week);
+    if(proj.count>=20){weeklyProjectionData[week]=proj; projectionCacheMeta[week]={source:"ESPN",scoring:"PPR",week,engine:VERSION,timestamp:proj.timestamp}; state.projection[week]=projectionCacheMeta[week]; state[`projectionData_${week}`]=proj; state.lastProjection=proj.timestamp}
+    if(live&&payload.mLiveScoring!==false){const liveData=parseESPNLive(payload); state.liveScoring=Object.assign(liveData,{timestamp:new Date().toISOString(),week}); state.lastLiveScoring=state.liveScoring.timestamp}
+    state.lastESPN=new Date().toISOString(); state.lastAll=state.lastESPN; state.espn={status:"done",timestamp:state.lastESPN,week,teams:payload.teams.length,projectionCount:proj.count,live:!!live,via:"mobile-direct"};
+    state.leagueId=id; save(); render(); return state.espn;
   }
   async function syncAll(manual=true){
     if(busy)return;busy=true;state.lastError="";renderUI();
@@ -3031,7 +3014,7 @@ setTimeout(dccBoot,120);
     document.getElementById("dccRefreshAll")?.addEventListener("click",()=>syncAll(true));
     document.getElementById("dccManagerRefresh")?.addEventListener("click",()=>syncAll(true));
     document.getElementById("dccSleeperSync")?.addEventListener("click",async()=>{try{await syncSleeper();render();renderUI();showToast("Sleeper player/injury data refreshed")}catch(e){showToast(`Sleeper sync failed: ${e.message}`)}});
-    document.getElementById("dccEspnSync")?.addEventListener("click",async()=>{state.leagueId=document.getElementById("dccEspnLeagueId")?.value?.trim()||state.leagueId;state.teamId=document.getElementById("dccEspnTeamId")?.value?.trim()||state.teamId;state.espnLeagueUrl=document.getElementById("dccEspnLeagueUrl")?.value?.trim()||state.espnLeagueUrl;save();try{await syncESPN({live:true});render();renderUI();showToast("ESPN league data refreshed")}catch(e){state.espn={status:"error",timestamp:new Date().toISOString(),error:e.message};save();renderUI();showToast(`ESPN sync failed: ${e.message}`)}});
+    document.getElementById("dccEspnSync")?.addEventListener("click",async()=>{state.leagueId=document.getElementById("dccEspnLeagueId")?.value?.trim()||state.leagueId;state.teamId=document.getElementById("dccEspnTeamId")?.value?.trim()||state.teamId;state.espnLeagueUrl=document.getElementById("dccEspnLeagueUrl")?.value?.trim()||state.espnLeagueUrl;save();try{await syncESPN({live:true});render();renderUI();showToast("ESPN data refreshed") }catch(e){state.espn={status:"error",timestamp:new Date().toISOString(),error:e.message};save();renderUI();showToast(`ESPN sync failed: ${e.message}`)}});
     ["dccEspnLeagueId","dccEspnTeamId","dccEspnLeagueUrl"].forEach(id=>document.getElementById(id)?.addEventListener("change",()=>{state.leagueId=document.getElementById("dccEspnLeagueId")?.value?.trim()||state.leagueId;state.teamId=document.getElementById("dccEspnTeamId")?.value?.trim()||state.teamId;state.espnLeagueUrl=document.getElementById("dccEspnLeagueUrl")?.value?.trim()||state.espnLeagueUrl;save()}));
     const ar=document.getElementById("dccAutoRefresh");if(ar){ar.checked=state.autoRefresh!==false;ar.onchange=()=>{state.autoRefresh=ar.checked;save();auto()}}
     renderUI();auto();
@@ -3040,7 +3023,7 @@ setTimeout(dccBoot,120);
   const oldRenderProjectionSyncStatus=window.renderProjectionSyncStatus;
   window.renderProjectionSyncStatus=function(){const w=getWeek(),m=state.projection?.[w],el=document.getElementById("projectionSourceStatus"),h=document.getElementById("projectionHealthStatus");if(m?.source==="ESPN"&&m.timestamp&&Date.now()-Date.parse(m.timestamp)<=2*60*60*1000){if(el)el.textContent=`✓ Week ${w}: ESPN PPR projection cache is active (${weeklyProjectionData?.[w]?.count||0} players) · ${age(m.timestamp)}.`;if(h){const a=rosterProjectionAudit(w);h.textContent=`Roster projection match: ${a.matched.length}/${a.rostered.length}. ESPN is the current free live projection source.`}return}if(typeof oldRenderProjectionSyncStatus==="function")oldRenderProjectionSyncStatus()};
   const oldDccHealth=window.dccHealth;
-  window.dccHealth=function(){const w=getWeek(),m=state.projection?.[w],live=!!(m?.source==="ESPN"&&m.timestamp&&Date.now()-Date.parse(m.timestamp)<=2*60*60*1000),audit=rosterProjectionAudit(w);return {projection:live?"good":"bad",projectionText:live?`LIVE · ESPN PPR · Wk ${w}`:"EST · no fresh free projection feed",projectionAge:m?.timestamp||null,matched:audit.matched.length,total:audit.rostered.length,schedule:scheduleSyncState?.status==="done"?"good":"warn",injury:liveSyncState?.status==="done"?"good":"warn",schema:260}};
+  window.dccHealth=function(){const w=getWeek(),m=state.projection?.[w],live=!!(m?.source==="ESPN"&&m.timestamp&&Date.now()-Date.parse(m.timestamp)<=2*60*60*1000),audit=rosterProjectionAudit(w);return {projection:live?"good":"bad",projectionText:live?`LIVE · ESPN PPR · Wk ${w}`:"EST · no fresh free projection feed",projectionAge:m?.timestamp||null,matched:audit.matched.length,total:audit.rostered.length,schedule:scheduleSyncState?.status==="done"?"good":"warn",injury:liveSyncState?.status==="done"?"good":"warn",schema:290}};
   const oldProjectionSourceIsLive=window.projectionSourceIsLive;
   window.projectionSourceIsLive=function(week){const m=state.projection?.[week];if(m?.source==="ESPN"&&m.timestamp&&Date.now()-Date.parse(m.timestamp)<=2*60*60*1000)return true;return typeof oldProjectionSourceIsLive==="function"?oldProjectionSourceIsLive(week):false};
   const oldSyncedWeeklyProj=window.syncedWeeklyProj;
@@ -3058,6 +3041,33 @@ setTimeout(dccBoot,120);
   setTimeout(()=>{injectUI();bind();renderUI();},180);
 })();
 
+</script>
+<script id="dcc-v29-local-backend">
+/* DCC v29 Local-First Backend
+   IndexedDB is the durable application store. localStorage remains as a fast
+   compatibility cache so older DCC snapshots migrate without losing state. */
+(function(){
+  const DB_NAME="dcc_v29_local_db", STORE="snapshots", VERSION=1;
+  let dbPromise=null;
+  function openDB(){
+    if(dbPromise)return dbPromise;
+    dbPromise=new Promise((resolve,reject)=>{
+      if(!window.indexedDB)return reject(new Error("IndexedDB unavailable"));
+      const r=indexedDB.open(DB_NAME,VERSION);
+      r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains(STORE))r.result.createObjectStore(STORE,{keyPath:"id"});};
+      r.onsuccess=()=>resolve(r.result); r.onerror=()=>reject(r.error||new Error("IndexedDB open failed"));
+    }); return dbPromise;
+  }
+  async function put(state){try{const db=await openDB();await new Promise((res,rej)=>{const tx=db.transaction(STORE,"readwrite");tx.objectStore(STORE).put({id:"current",savedAt:Date.now(),state});tx.oncomplete=res;tx.onerror=()=>rej(tx.error||new Error("DB write failed"));});}catch(e){console.warn("DCC local DB write",e)}}
+  async function get(){try{const db=await openDB();return await new Promise((res,rej)=>{const tx=db.transaction(STORE,"readonly");const q=tx.objectStore(STORE).get("current");q.onsuccess=()=>res(q.result||null);q.onerror=()=>rej(q.error);});}catch(e){return null}}
+  window.DCCLocalDB={put,get,ready:()=>openDB().then(()=>true).catch(()=>false)};
+  function readLocal(){try{const raw=localStorage.getItem(STORAGE_KEY);return raw?JSON.parse(raw):null}catch(e){return null}}
+  function saveLocalState(){try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)put(JSON.parse(raw));}catch(e){}}
+  function hydrate(){get().then(rec=>{if(!rec?.state)return;const local=readLocal();const dbTime=Number(rec.savedAt||0), localTime=Number(local?.savedAt||0);if(dbTime>localTime && typeof applyState==="function"){try{applyState(rec.state);localStorage.setItem(STORAGE_KEY,JSON.stringify(rec.state));render?.();showToast?.("Restored latest local dashboard snapshot");}catch(e){console.warn("DCC DB restore",e)}}}).catch(()=>{});}
+  const boot=()=>{saveLocalState();setTimeout(hydrate,450);};
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot,{once:true});else boot();
+  setTimeout(()=>{if(typeof window.saveState==="function"&&!window.__dccV29SaveWrapped){const original=window.saveState;window.saveState=function(){try{const r=original.apply(this,arguments);saveLocalState();return r;}catch(e){return original.apply(this,arguments)}};window.__dccV29SaveWrapped=true;}},700);
+})();
 </script>
 </body>
 </html>

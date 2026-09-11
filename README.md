@@ -1,29 +1,37 @@
-# Draft Command Center v26.0 — GitHub Pages PWA
+# Draft Command Center v29.0 — Mobile-First Weekly Manager
 
-## New direction: Weekly Team Manager + Live Data Engine
+DCC v29 is a mobile-first, local-first fantasy football manager designed for iPhone/iPad PWA use.
 
-Drafting is complete. DCC now prioritizes weekly start/sit, matchup, waiver, trade and roster-management decisions.
+## Architecture
+- GitHub Pages PWA is the primary app.
+- IndexedDB is the durable local application store; localStorage remains as a compatibility cache and migration path.
+- ESPN is the league-of-record when the mobile browser permits authenticated ESPN read requests.
+- Sleeper public data supplements player/injury/team metadata.
+- DCC normalizes source data before the weekly manager/intelligence layer consumes it.
+- No Cloudflare Worker, desktop bridge, or browser extension is required.
+- No FantasyPros API key or direct FantasyPros URL scraping is required.
 
-### Live data architecture
-- **Sleeper public API:** free, no key, for active NFL player/team assignments, injury status, current NFL state and trending adds/drops. Player metadata is refreshed conservatively because Sleeper documents the full player map as a large daily-style dataset.
-- **ESPN Fantasy API:** free/public read path when the league is publicly readable. DCC can pull league rosters, standings, matchup schedule, weekly PPR projections and live scoring data.
-- **FantasyPros:** optional last resort. No FantasyPros API subscription is required for the new free-first engine.
-- **DCC estimates:** only used when an external live source is unavailable and are explicitly labeled EST.
+## ESPN
+Enter your ESPN League ID and Team ID in Settings. DCC uses `credentials: include` for direct ESPN read requests. Do not paste passwords or session cookies into DCC or ChatGPT.
 
-### Refresh behavior
-- Manual **REFRESH ALL** is always available.
-- Auto-refresh runs while the app is open.
-- Normal refresh target: ~10 minutes.
-- The app refreshes again when returning to the foreground.
-- ESPN live-scoring data is requested during refreshes when configured.
+Some iOS/browser privacy policies can prevent a GitHub Pages origin from reusing an ESPN authenticated session. If ESPN returns 401/403, DCC keeps the last successful local snapshot and clearly reports the feed as unavailable rather than fabricating fresh data.
 
-### ESPN setup
-In **Settings → Live Data Engine**, enter:
-1. ESPN League ID
-2. Your ESPN Team ID
-3. Optionally paste your ESPN league URL
+## GitHub Pages upload
+Upload these files to the repository root:
+- index.html
+- manifest.json
+- sw.js
+- icon-192.png
+- icon-512.png
+- README.md
 
-The app does **not** request or store an ESPN password. Private ESPN leagues may return HTTP 401 because ESPN requires account cookies. For a private league, use the future DCC Chrome extension/serverless bridge rather than exposing credentials in the GitHub Pages app.
+Do not upload any bridge or extension folders; v29 intentionally removes them.
 
-### GitHub Pages upload
-Upload the contents of this ZIP to the repository root. Keep `index.html`, `manifest.json`, `sw.js`, the icons, and all existing `script0.js`–`script3.js` files together.
+## Mobile use
+Open the GitHub Pages HTTPS address in Safari and use Share → Add to Home Screen. Do not open the HTML from the Files app; local `file://` pages cannot reliably run the app's network/data features.
+
+## Data behavior
+- Local roster/league state survives offline use.
+- IndexedDB keeps a durable snapshot of the dashboard state.
+- Live source timestamps are retained and displayed.
+- ESPN projections are preferred when a fresh ESPN player feed is available; otherwise DCC estimates remain explicitly labeled as estimates.
