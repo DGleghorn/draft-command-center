@@ -1,13 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#0b1020">
-<title>Draft Command Center v30.0 — Mobile-First Weekly Manager</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=yes" name="viewport"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="yes" name="mobile-web-app-capable"/>
+<meta content="#0b1020" name="theme-color"/>
+<title>Draft Command Center v35.0 — Mobile-First Weekly Manager</title>
 <style>
 :root{--bg:#090d17;--panel:#111827;--panel2:#151e2f;--line:#263249;--text:#f4f7fb;--muted:#91a0b7;--blue:#6d6aff;--cyan:#4dd7ff;--green:#28d7a1;--red:#ff6475;--amber:#f6b94a;--shadow:0 14px 45px rgba(0,0,0,.22)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior-x:none}body{min-width:0}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}input,select,textarea{font-size:16px}
@@ -93,388 +94,250 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 @media(max-width:760px){.dcc-health{grid-template-columns:repeat(2,minmax(0,1fr))}.dcc-grid2{grid-template-columns:1fr}.dcc-slot{grid-template-columns:55px 1fr auto}}
 @media(max-width:760px){.dcc-grid3{grid-template-columns:1fr}.dcc-grid2{grid-template-columns:1fr}}
 </style>
-<link rel="manifest" href="./manifest.json">
-<link rel="apple-touch-icon" href="./icon-192.png">
+<link href="./manifest.json" rel="manifest"/>
+<link href="./icon-192.png" rel="apple-touch-icon"/>
 <style id="v21-style">
 .v21-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;margin:12px 0}.v24-card{grid-column:span 6;background:linear-gradient(180deg,rgba(20,29,45,.96),rgba(12,18,29,.96));border:1px solid #26344b;border-radius:14px;padding:15px}.v24-card.wide{grid-column:span 12}.v24-card h3{margin:0 0 6px;font-size:15px}.v24-muted{color:#91a0b7;font-size:12px}.v21-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.v21-kpi{background:#0a111d;border:1px solid #223049;border-radius:10px;padding:10px}.v21-kpi b{display:block;font-size:20px}.v21-kpi span{font-size:10px;text-transform:uppercase;color:#7f8ea7}.v21-row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #1e2a3c}.v21-row:last-child{border-bottom:0}.v21-badge{display:inline-flex;padding:3px 7px;border-radius:999px;font-size:10px;font-weight:700;background:#172338;color:#b9c7dc}.v21-good{color:#78dca5}.v21-warn{color:#f2c66d}.v21-bad{color:#ff8f8f}.v24-btn{border:1px solid #33435c;background:#101a2a;color:#dce6f5;border-radius:8px;padding:8px 10px;cursor:pointer}.v24-btn:hover{background:#17243a}.v21-action{margin-top:8px;padding:10px;border-left:3px solid #4f7cff;background:#0b1422;border-radius:7px}.v21-table{width:100%;border-collapse:collapse;font-size:12px}.v21-table th,.v21-table td{text-align:left;padding:8px;border-bottom:1px solid #202d42}.v21-table th{color:#8190a8;font-size:10px;text-transform:uppercase}.v21-progress{height:7px;background:#101a28;border-radius:99px;overflow:hidden}.v21-progress i{display:block;height:100%;background:#5d84ff}.v22-source{font-size:11px;color:#8291a9;margin-top:8px}@media(max-width:760px){.v24-card,.v24-card.wide{grid-column:span 12}.v21-kpis{grid-template-columns:repeat(2,1fr)}}
 </style></head>
 <body>
 <div id="iosFileNotice" style="display:none;position:fixed;inset:0;z-index:999;background:#090d17;color:#f4f7fb;padding:24px;align-items:center;justify-content:center;text-align:center;font-family:system-ui,-apple-system,sans-serif">
-  <div style="max-width:430px">
-    <div style="font-size:42px;margin-bottom:12px">📱</div>
-    <h2 style="margin:0 0 10px">Open the dashboard in Safari</h2>
-    <p style="color:#a9b5c8;font-size:15px;line-height:1.5">The iPhone/iPad Files preview can display an HTML file but may not run its JavaScript. This dashboard needs JavaScript for every button, tab, draft action and saved state.</p>
-    <p style="color:#a9b5c8;font-size:14px;line-height:1.5">Open the dashboard from a web address (HTTPS) in Safari, then use <b>Share → Add to Home Screen → Open as Web App</b>.</p>
-    <p style="color:#6d7d95;font-size:12px;line-height:1.5">If you are already in Safari and see this message, the file is being loaded with <code>file://</code>. It needs to be served from a web address.</p>
-  </div>
+<div style="max-width:430px">
+<div style="font-size:42px;margin-bottom:12px">📱</div>
+<h2 style="margin:0 0 10px">Open the dashboard in Safari</h2>
+<p style="color:#a9b5c8;font-size:15px;line-height:1.5">The iPhone/iPad Files preview can display an HTML file but may not run its JavaScript. This dashboard needs JavaScript for every button, tab, draft action and saved state.</p>
+<p style="color:#a9b5c8;font-size:14px;line-height:1.5">Open the dashboard from a web address (HTTPS) in Safari, then use <b>Share → Add to Home Screen → Open as Web App</b>.</p>
+<p style="color:#6d7d95;font-size:12px;line-height:1.5">If you are already in Safari and see this message, the file is being loaded with <code>file://</code>. It needs to be served from a web address.</p>
+</div>
 </div>
 <div class="app">
 <header class="top">
-  <div class="toprow">
-    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v34.0</span></h1></div></div>
-    <div class="status"><div class="live" title="Mobile Team Manager is fully manual and local-first"><i class="pulse"></i><span id="syncText">MOBILE TEAM MANAGER</span></div></div>
-  </div>
-  <nav class="nav" id="nav">
-    <button class="active" data-page="manager">Manager</button><button data-page="rosters">Rosters</button><button data-page="planner">Matchups</button><button data-page="waivers">Waivers</button><button data-page="trade">Trades</button><button data-page="league">Team Analytics</button><button data-page="league-analyzer">League Analyzer</button><button data-page="settings">Settings</button>
-  </nav>
-  <div class="stickyclock" id="stickyClock"><span id="stickyClockText">Pick 1 · Round 1</span><div class="stickybar"><i id="stickyClockFill"></i></div></div>
+<div class="toprow">
+<div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v35.0</span></h1></div></div>
+<div class="status"><div class="live" title="Mobile Team Manager is fully manual and local-first"><i class="pulse"></i><span id="syncText">MOBILE TEAM MANAGER</span></div></div>
+</div>
+<nav class="nav" id="nav">
+<button class="active" data-page="manager">Manager</button><button data-page="rosters">Rosters</button><button data-page="planner">Matchups</button><button data-page="waivers">Waivers</button><button data-page="trade">Trades</button><button data-page="league">Team Analytics</button><button data-page="league-analyzer">League Analyzer</button><button data-page="settings">Settings</button>
+</nav>
+<div class="stickyclock" id="stickyClock"><span id="stickyClockText">Pick 1 · Round 1</span><div class="stickybar"><i id="stickyClockFill"></i></div></div>
 </header>
-
 <main class="wrap">
-
 <section id="page-manager">
-  <div class="sync-strip"><div><b>🟢 TEAM MANAGER MODE</b><span>Draft is complete. The dashboard now focuses on winning the weekly season.</span></div></div>
-  <div class="manager-kpis">
-    <div class="mkpi"><span>League Rank</span><b id="mgrRank">—</b><small id="mgrRankMeta" class="manager-muted">Waiting for league sync</small></div>
-    <div class="mkpi"><span>Team Grade</span><b id="mgrGrade">—</b><small id="mgrGradeMeta" class="manager-muted">Roster strength</small></div>
-    <div class="mkpi"><span>Week Projection</span><b id="mgrProj">—</b><small id="mgrProjMeta" class="manager-muted">Starter projection</small></div>
-    <div class="mkpi"><span>Next Opponent</span><b id="mgrOpponent">—</b><small id="mgrOpponentMeta" class="manager-muted">League matchup model</small></div>
-  </div>
-  <div class="manager-grid section">
-    <div class="card manager-card">
-      <div class="sectionhead"><div><h2>🎯 Start/Sit Manager</h2><p>Optimized starting lineup for the selected week. Weekly projections take priority when synced.</p></div><select class="select" id="mgrWeek" style="width:110px"></select></div>
-      <div id="mgrLineup"></div>
-    </div>
-    <div class="card manager-card">
-      <div class="sectionhead"><div><h2>🚨 Action Center</h2><p>Things that can improve your lineup or roster this week.</p></div></div>
-      <div class="action-list" id="mgrActions"></div>
-    </div>
-  </div>
-  <div class="manager-grid section">
-    <div class="card manager-card">
-      <div class="sectionhead"><div><h2>🧠 Roster Strategy</h2><p>What the manager thinks your roster needs next.</p></div></div>
-      <div id="mgrStrategy"></div>
-    </div>
-    <div class="card manager-card">
-      <div class="sectionhead"><div><h2>📊 Team Snapshot</h2><p>Your current roster at a glance.</p></div></div>
-      <div id="mgrSnapshot"></div>
-    </div>
-  </div>
-  <div class="card manager-card section">
-    <div class="sectionhead"><div><h2>🔄 Recommended Moves</h2><p>Prioritized actions — lineup, waivers and trades.</p></div></div>
-    <div id="mgrMoves"></div>
-  </div>
-  <div class="card manager-card section"><div class="sectionhead"><div><h2>🛡️ Toolkit Health</h2><p>Live projection coverage, lineup completeness, injury/bye pressure and league data quality.</p></div></div><div id="mgrHealth"></div></div>
+<div class="sync-strip"><div><b>🟢 TEAM MANAGER MODE</b><span>Draft is complete. The dashboard now focuses on winning the weekly season.</span></div></div>
+<div class="manager-kpis">
+<div class="mkpi"><span>League Rank</span><b id="mgrRank">—</b><small class="manager-muted" id="mgrRankMeta">Waiting for league sync</small></div>
+<div class="mkpi"><span>Team Grade</span><b id="mgrGrade">—</b><small class="manager-muted" id="mgrGradeMeta">Roster strength</small></div>
+<div class="mkpi"><span>Week Projection</span><b id="mgrProj">—</b><small class="manager-muted" id="mgrProjMeta">Starter projection</small></div>
+<div class="mkpi"><span>Next Opponent</span><b id="mgrOpponent">—</b><small class="manager-muted" id="mgrOpponentMeta">League matchup model</small></div>
+</div>
+<div class="manager-grid section">
+<div class="card manager-card">
+<div class="sectionhead"><div><h2>🎯 Start/Sit Manager</h2><p>Optimized starting lineup for the selected week. Weekly projections take priority when synced.</p></div><select class="select" id="mgrWeek" style="width:110px"></select></div>
+<div id="mgrLineup"></div>
+</div>
+<div class="card manager-card">
+<div class="sectionhead"><div><h2>🚨 Action Center</h2><p>Things that can improve your lineup or roster this week.</p></div></div>
+<div class="action-list" id="mgrActions"></div>
+</div>
+</div>
+<div class="manager-grid section">
+<div class="card manager-card">
+<div class="sectionhead"><div><h2>🧠 Roster Strategy</h2><p>What the manager thinks your roster needs next.</p></div></div>
+<div id="mgrStrategy"></div>
+</div>
+<div class="card manager-card">
+<div class="sectionhead"><div><h2>📊 Team Snapshot</h2><p>Your current roster at a glance.</p></div></div>
+<div id="mgrSnapshot"></div>
+</div>
+</div>
+<div class="card manager-card section">
+<div class="sectionhead"><div><h2>🔄 Recommended Moves</h2><p>Prioritized actions — lineup, waivers and trades.</p></div></div>
+<div id="mgrMoves"></div>
+</div>
+<div class="card manager-card section"><div class="sectionhead"><div><h2>🛡️ Toolkit Health</h2><p>Live projection coverage, lineup completeness, injury/bye pressure and league data quality.</p></div></div><div id="mgrHealth"></div></div>
 </section>
 <section id="page-rosters" style="display:none">
-  <div class="card panelpad">
-    <div class="sectionhead"><div><h2>👥 League Rosters</h2><p>Manage every roster from one screen. Add/drop players throughout the season, rename teams, and keep the manual league record in sync.</p></div><div class="team-switch"><select class="select" id="rosterTeamSelect"></select></div></div>
-    <div class="builder-banner"><b>Manual league mode is the source of truth.</b><span>Use the selected team's roster below for waiver adds, drops and ongoing league activity. Every move is logged automatically.</span></div>
-    <div class="formrow"><label>Team name</label><input class="input" id="builderTeamName" placeholder="Team name"><button class="secondary" id="builderTeamNameSave">SAVE TEAM NAME</button></div>
-    <div class="builder-search-grid">
-      <input class="input" id="builderPlayerSearch" placeholder="Search player to add…" autocomplete="off">
-      <select class="select" id="builderPlayerPos"><option value="ALL">All positions</option><option value="QB">QB</option><option value="RB">RB</option><option value="WR">WR</option><option value="TE">TE</option><option value="K">K</option><option value="DEF">DEF</option></select>
-    </div>
-    <div id="builderPlayerResults" class="builder-results"></div>
-  </div>
-  <div class="card panelpad section">
-    <div class="sectionhead"><div><h2 id="builderRosterTitle">Current roster</h2><p>Remove a player to create a waiver/free-agent opening. Add a player above to record a new roster move.</p></div><button class="ghost" id="builderClearTeam">CLEAR TEAM</button></div>
-    <div id="builderRosterGrid" class="builder-roster-grid"></div>
-  </div>
-  <div class="card panelpad section">
-    <div class="sectionhead"><div><h2>➕ Add missing/custom player</h2><p>Use this only when the player is not in the current pool.</p></div></div>
-    <div class="builder-custom-grid"><input class="input" id="customPlayerName" placeholder="Player name"><select class="select" id="customPlayerPos"><option>QB</option><option>RB</option><option>WR</option><option>TE</option><option>K</option><option>DEF</option></select><input class="input" id="customPlayerTeam" placeholder="NFL team (e.g. DAL)"><button class="secondary" id="customPlayerAdd">ADD CUSTOM</button></div>
-  </div>
-  <div class="card panelpad section"><div class="sectionhead"><div><h2>League completion</h2><p>Track how much of the league you've entered manually.</p></div></div><div id="builderLeagueProgress"></div></div>
-  <div class="card panelpad section"><div class="sectionhead"><div><h2>League activity</h2><p>Recent manual adds, drops and team changes.</p></div></div><div id="leagueActivitySummary"></div><div id="leagueActivityLog" style="margin-top:10px"></div></div>
-  <div class="card panelpad section"><div class="sectionhead"><div><h2>League roster status</h2><p>Players with injuries, byes or missing data get surfaced here.</p></div></div><div id="rosterAlerts"></div></div>
-</section>
-
-
-
-<section id="page-draft" style="display:none">
-  <div class="clock">
-    <div class="card onclock"><div class="smallcaps" id="clockLabel">You're on the clock</div><div class="bigpick" id="pickLabel">Pick 1</div><div class="pickmeta" id="roundMeta">Round 1 · Pick 1 · 12-team snake</div><div class="roundbar"><i id="roundFill"></i></div></div>
-    <div class="card statbox"><div class="smallcaps">Next pick</div><strong id="nextPick">—</strong><span id="nextPickMeta">—</span></div>
-    <div class="card statbox"><div class="smallcaps">Best value</div><strong class="positive" id="bestValue">—</strong><span id="bestValueMeta">—</span></div>
-    <div class="card statbox"><div class="smallcaps">Position alert</div><strong class="amber" id="positionAlert">—</strong><span id="positionAlertMeta">—</span></div>
-  </div>
-
-  <p class="mini" style="margin:10px 0 0">Draft picks and simulation controls live on the <b>Player Board</b> and <b>Mock Board</b> tabs.</p>
-  <div class="section banner" id="draftPolicyBanner"><span>🛡️</span><div><b>Draft policy locked</b><span>Rounds 1–14: Skill Players only (QB/RB/WR/TE). Round 15: Defense. Round 16: Kicker. If DEF/K is already filled, the engine safely returns to skill players.</span></div></div>
-
-  <div class="dn-grid" id="draftNightPanel">
-    <div class="dn-card">
-      <div class="dn-title">⚡ Draft Night Command Center</div>
-      <div class="dn-big" id="dnHeadline">Best pick now</div>
-      <div class="dn-sub" id="dnHeadlineSub">—</div>
-      <div class="dn-minigrid">
-        <div class="dn-minibox"><span>Next turn</span><b id="dnNextTurn">—</b></div>
-        <div class="dn-minibox"><span>Picks to wait</span><b id="dnWait">—</b></div>
-        <div class="dn-minibox"><span>Roster filled</span><b id="dnRoster">0/16</b></div>
-      </div>
-      <div class="dn-actions"><button class="primary btnsm" id="dnDraftBtn">DRAFT BEST PICK</button><button class="secondary btnsm" id="dnRefreshBtn">REFRESH BOARD</button></div>
-    </div>
-    <div class="dn-card">
-      <div class="dn-title">🚨 Players most at risk before your next pick</div>
-      <div class="dn-sub">Based on ADP and the number of opponents picking before you.</div>
-      <div class="dn-list" id="dnRiskList"></div>
-      <div class="dn-policy"><span>🛡️</span><span><b>Draft rule:</b> prioritize RB/WR/TE/QB through Round 14. DEF belongs in Round 15 and K belongs in Round 16.</span></div>
-    </div>
-  </div>
-
-  <div class="section card panelpad v17-decision" id="draftDecisionCard">
-    <div class="sectionhead"><div><h2>🧠 Draft Decision Engine</h2><p id="decisionSummary">Pick-specific recommendation using ADP, tier cliffs, next-pick loss, scarcity and roster construction.</p></div><span class="decision-badge" id="decisionBadge">—</span></div>
-    <div class="decision-grid">
-      <div class="decision-main"><div class="smallcaps">RECOMMENDED ACTION</div><div class="decision-player" id="decisionPlayer">—</div><div class="decision-reasons" id="decisionReasons"></div><div class="mini" id="decisionWhy" style="margin-top:10px;line-height:1.55">—</div></div>
-      <div class="decision-side"><div class="smallcaps">IF YOU WAIT</div><div id="decisionFallback">—</div><div class="smallcaps" style="margin-top:12px">POSITION / TIER PRESSURE</div><div id="decisionRun">—</div><div class="smallcaps" style="margin-top:12px">DRAFT IMPACT VS #2</div><div id="decisionImpact">—</div></div>
-    </div>
-  </div>
-
-  <div class="section hero">
-    <div class="card rec"><div class="smallcaps">🎯 Best pick now</div><div id="recommendation"></div></div>
-    <div class="card roster"><div class="smallcaps">👥 My roster</div><div class="slots" id="roster"></div><div id="bench"></div></div>
-  </div>
-
-  <div class="section card panelpad" id="draftGradeCard" style="display:none">
-    <div class="sectionhead"><div><h2>🏁 Your draft grade</h2><p id="draftGradeText">—</p></div><div id="draftGradeBadge"></div></div>
-  </div>
-
-  <div class="section banner" id="alertBanner" style="display:none"><span id="alertIcon">⚠️</span><div><b id="alertTitle">Draft intelligence</b><span id="alertText"></span></div></div>
-
-  <div class="section card panelpad" id="gamePlanCard">
-    <div class="sectionhead"><div><h2>🗺️ Your Draft Game Plan</h2><p>Slot-aware roadmap for your #2 seat. It updates after every pick and adapts to your roster.</p></div></div>
-    <div id="gamePlanBody"></div>
-  </div>
-
-  <div class="section card panelpad">
-    <div class="sectionhead"><div><h2>Position runs</h2><p>Recent draft pressure by position.</p></div></div><div id="runs"></div>
-  </div>
-</section>
-
-<section id="page-board" style="display:none">
-  <div class="card panelpad" id="boardSuggestCard">
-    <div class="sectionhead"><div><h2>🧠 Suggested pick right now</h2><p>Uses the draft-night hierarchy: ADP first, then expert rank, then projections. Roster need and value-gap are context only. DEF/K are locked to the final two rounds.</p></div><button class="ghost" id="planPreviewBtn">PREVIEW MY FULL PLAN</button></div>
-    <div id="boardSuggestBody"></div>
-    <div id="planPreviewBody" style="display:none;margin-top:12px"></div>
-  </div>
-  <div class="card panelpad">
-    <div class="sectionhead"><div><h2>🏆 Top players / tier board</h2><p>Market ADP from lowest to highest. Expert rank and projections are tie-breakers only; value-gap scores never override a better ADP. DEF/K are reserved for Rounds 15–16.</p></div><select class="select" id="sort" style="width:150px"><option value="adp">Suggested ADP (best first)</option><option value="pts">Projected Points</option><option value="score">Value score</option><option value="adp">Market ADP</option><option value="rank">Expert rank</option><option value="gap">ADP gap</option><option value="ceil">Ceiling</option></select></div>
-    <p class="mini" style="margin:-4px 0 11px">Ceil/Floor are <b>rank numbers</b>, not points — lower is better. Ceil = best-case rank across all sources, Floor = worst-case.</p>
-    <div class="board-controls"><input class="input" id="search" placeholder="Search player, team or position"><select class="select" id="pos"><option>ALL</option><option>QB</option><option>RB</option><option>WR</option><option>TE</option><option>DEF</option><option>K</option></select><select class="select" id="action"><option>ALL</option><option>STEAL</option><option>TARGET</option><option>REACH</option></select></div>
-    <div class="chips" id="tierChips"><button class="active">ALL TIERS</button><button>Elite</button><button>Tier 2</button><button>Tier 3</button><button>Tier 4</button><button>Tier 5</button><button>Tier 6</button><button>Late</button><button>Bench</button><button>Waiver</button><button>DEF</button><button>K</button></div>
-    <div class="chips"><button id="watchlistChip">⭐ WATCHLIST ONLY</button></div>
-    <div class="tablewrap" id="boardTableWrap"><table class="board"><thead><tr><th>Player</th><th>Pos</th><th title="Projected season points and value over replacement">Season Pts / VOR ⓘ</th><th>ADP</th><th>Expert</th><th>Gap</th><th title="Best-case rank across all sources">Ceil ⓘ</th><th title="Worst-case rank across all sources">Floor ⓘ</th><th>Sug. Rd</th><th>Value</th><th>Action</th></tr></thead><tbody id="boardRows"></tbody></table></div>
-    <div class="boardcards" id="boardCards"></div>
-  </div>
-</section>
-
-<section id="page-mock" style="display:none">
-  <div class="card panelpad">
-    <div class="sectionhead"><div><h2>🏟️ Full 12-team mock draft board</h2><p>Snake order · Round = row · Team = column. Your seat is highlighted.</p></div></div>
-    <div class="btnrow" style="margin-bottom:13px">
-      <button class="primary btnsm" id="mockSimBtn">SIMULATE PICK</button>
-      <button class="secondary btnsm" id="mockAutoMeBtn">AUTO-SIM TO MY PICK</button>
-      <button class="secondary btnsm" id="mockAutoFullBtn">AUTO-SIM FULL DRAFT</button>
-      <button class="ghost btnsm" id="mockUndoBtn">↩ UNDO</button>
-      <button class="ghost btnsm" id="mockResetBtn">RESET</button>
-    </div>
-    <div class="mockwrap"><table class="mockboard" id="mockTable"></table></div>
-    <div class="section card panelpad" id="mockQualityCard" style="display:none;margin-top:14px"><div class="sectionhead"><div><h2>🧪 Mock Draft Quality Report</h2><p>Checks whether the simulated league behaved like a realistic 12-team PPR draft.</p></div><span class="decision-badge" id="mockQualityGrade">—</span></div><div id="mockQualityBody"></div></div>
-  </div>
-</section>
-
-<section id="page-trade" style="display:none">
-  <div class="card panelpad">
-    <div class="sectionhead"><div><h2>🤝 Trade Manager & Analyzer</h2><p>Select players from each roster to compare trade value and get a grade.</p></div></div>
-    <div class="tradegrid">
-      <div class="card tradeside"><h3>Team gives</h3><select class="select" id="tradeTeamA"></select><div class="plist" id="tradeListA"></div></div>
-      <div class="card tradeside"><h3>Team receives from</h3><select class="select" id="tradeTeamB"></select><div class="plist" id="tradeListB"></div></div>
-    </div>
-    <div class="tradesummary">
-      <div class="card panelpad"><div class="smallcaps">Team A sends</div><div class="tvbig" id="tvA">0</div><div class="mini" id="tvAmeta">Select players above</div></div>
-      <div class="card panelpad"><div class="smallcaps">Team B sends</div><div class="tvbig" id="tvB">0</div><div class="mini" id="tvBmeta">Select players above</div></div>
-    </div>
-    <div class="card panelpad" style="margin-top:14px">
-      <div class="sectionhead"><div><h2>💰 Trade grade</h2><p id="gradeSub">Add players to both sides to analyze.</p></div><div id="gradeBadge"></div></div>
-      <div style="display:flex;gap:8px;margin-top:10px"><button class="primary" id="executeTrade" disabled>EXECUTE TRADE (DEMO)</button><button class="ghost" id="clearTrade">CLEAR SELECTION</button></div>
-    </div>
-  </div>
-  <div class="section card panelpad">
-    <div class="sectionhead"><div><h2>💡 Suggested trades for my team</h2><p>Value-upgrade swaps sourced from opponents' rosters.</p></div></div>
-    <div id="suggestedTrades"></div>
-  </div>
-  <div class="section card panelpad" id="tradeHistoryCard" style="display:none">
-    <div class="sectionhead"><div><h2>Trade history</h2><p>Executed demo trades this session.</p></div></div>
-    <div id="tradeHistory"></div>
-  </div>
-</section>
-
-<section id="page-waivers" style="display:none">
-  <div class="card panelpad">
-    <div class="sectionhead"><div><h2>🏷️ Waiver Wire Manager</h2><p>Undrafted players with projected weekly points. Adds go to your bench.</p></div></div>
-    <div class="waiverbar"><input class="input" id="waiverSearch" placeholder="Search waiver wire" style="max-width:280px"><select class="select" id="waiverPos" style="max-width:130px"><option>ALL</option><option>QB</option><option>RB</option><option>WR</option><option>TE</option><option>DEF</option><option>K</option></select></div>
-    <div class="tablewrap"><table class="board"><thead><tr><th>Player</th><th>Pos</th><th>Team</th><th>ADP</th><th title="Projected points for the current NFL week, not season total">Proj Pts/Wk ⓘ</th><th>Trend</th><th></th></tr></thead><tbody id="waiverRows"></tbody></table></div>
-  </div>
-</section>
-
-<section id="page-planner" style="display:none">
-  <div class="card panelpad">
-    <div class="sectionhead"><div><h2>📅 Matchup & Weekly Planner</h2><p>League-specific weekly projections when synced; fallback estimates otherwise.</p></div></div>
-    <div class="plannerhead"><div class="weeksel" id="weekSel"></div><button class="secondary btnsm" id="projectionSyncBtn">SYNC WEEKLY PROJECTIONS</button></div>
-     <div class="mini" id="projectionSyncStatus" style="margin-top:8px">Planner uses live league-specific PPR projections when synced. Without a feed, it uses a clearly labeled fallback estimate — never presented as live/accurate projections.</div>
-  </div>
-  <div class="section card panelpad">
-    <div class="sectionhead"><div><h2>⚔️ Matchup</h2><p>Your projected starters vs this week's opponent, head to head.</p></div></div>
-    <div id="matchupBody"></div>
-  </div>
-  <div class="section card panelpad">
-    <div class="sectionhead"><div><h2>Your roster this week</h2></div></div>
-    <div class="grid2">
-      <div><div class="smallcaps" style="margin-bottom:6px">Starting lineup</div><div id="lineupStarters"></div></div>
-      <div><div class="smallcaps" style="margin-bottom:6px">Bench</div><div id="lineupBench"></div></div>
-    </div>
-  </div>
-  <div class="section card panelpad">
-    <div class="sectionhead"><div><h2>🔎 Roster evaluation & action flags</h2><p>Bye alerts and start/sit recommendations for the selected week.</p></div></div>
-    <div id="plannerFlags"></div>
-  </div>
-</section>
-
-
-
-<section id="page-league" style="display:none">
-  <div class="card panelpad">
-    <div class="sectionhead">
-      <div><h2>📊 Team Analytics</h2><p>Power-rank every roster, identify positional edges, and surface trade/waiver pressure. Your manually entered rosters are the league source of truth; live projections improve confidence but never block the analyzer.</p></div>
-      <div class="team-switch"><select class="select" id="leagueAnalyzerWeek" style="width:110px"></select><button class="ghost" id="leagueAnalyzerRefresh">REFRESH</button></div>
-    </div>
-    <div class="league-confidence" id="leagueAnalyzerConfidence"></div>
-    <div class="league-analyzer-kpis" id="leagueAnalyzerKpis"></div>
-  </div>
-
-  <div class="card panelpad section">
-    <div class="sectionhead"><div><h2>📈 League Power Rankings</h2><p>Projected starter strength is weighted most heavily; depth, positional value and roster completeness provide secondary context.</p></div></div>
-    <div class="tablewrap"><table class="league-analyzer-table"><thead><tr><th>#</th><th>Team</th><th>Score</th><th>Grade</th><th>Wk Pts</th><th>Best</th><th>Weakest</th><th>Depth</th><th>Read</th></tr></thead><tbody id="leagueAnalyzerRows"></tbody></table></div>
-  </div>
-
-  <div class="card panelpad section">
-    <div class="sectionhead"><div><h2>🧩 Positional Strength Matrix</h2><p>Each team's projected starter strength relative to the league median. Green = advantage; red = weakness.</p></div></div>
-    <div class="tablewrap"><table class="league-analyzer-table"><thead><tr><th>Team</th><th>QB</th><th>RB</th><th>WR</th><th>TE</th><th>DEF</th><th>K</th><th>Roster Shape</th></tr></thead><tbody id="leaguePositionRows"></tbody></table></div>
-  </div>
-
-  <div class="grid2 section">
-    <div class="card panelpad"><div class="sectionhead"><div><h2>🤝 Trade Map</h2><p>Teams whose weaknesses match your surplus are the first places to shop.</p></div></div><div id="leagueTradeMap"></div></div>
-    <div class="card panelpad"><div class="sectionhead"><div><h2>🚨 League Pressure</h2><p>Where your league is likely to compete for the same waiver assets.</p></div></div><div id="leaguePressure"></div></div>
-  </div>
-
-  <div class="card panelpad section">
-    <div class="sectionhead"><div><h2>🔍 Your Team vs. League</h2><p>Objective strengths and weaknesses against the current 12-team room.</p></div></div>
-    <div id="leagueMyTeamRead"></div>
-  </div>
-
-  <div class="card panelpad section">
-    <div class="sectionhead"><div><h2>🛡️ Data Integrity Rules</h2><p>The analyzer will not manufacture precision when a required data source is missing.</p></div></div>
-    <div class="qualitygrid" id="leagueIntegrity"></div>
-  </div>
-
-</section>
-
-<section id="page-league-analyzer" style="display:none">
-  <div class="card panelpad">
-    <div class="sectionhead">
-      <div><h2>🏆 League Analyzer</h2><p>League Room view powered by your saved league rosters. Inspect every team, roster, record and current room state without mixing it into Team Analytics.</p></div>
-      <div class="team-switch"><button class="ghost" id="leagueRoomRefresh">REFRESH</button></div>
-    </div>
-    <div class="league-confidence" id="leagueRoomConfidence"></div>
-    <div class="leaguegrid" id="leagueRoomGrid"></div>
-  </div>
-  <div class="card panelpad section">
-    <div class="sectionhead"><div><h2>📸 League Activity & Snapshots</h2><p>Every manual add/drop and team rename is timestamped. Export a full league snapshot before and after roster changes to preserve a point-in-time record.</p></div></div>
-    <div class="persistbar"><button class="secondary" id="exportLeagueSnapshot">EXPORT LEAGUE SNAPSHOT</button><label class="secondary" style="display:inline-flex;align-items:center" for="importLeagueSnapshot">IMPORT LEAGUE SNAPSHOT</label><input type="file" id="importLeagueSnapshot" accept=".json,application/json" style="display:none"><button class="ghost" id="clearActivityLog">CLEAR ACTIVITY LOG</button></div>
-    <div id="leagueActivitySummary" style="margin-top:10px"></div><div id="leagueActivityLog" style="margin-top:10px"></div>
-  </div>
-  <div class="card panelpad section">
-    <div class="sectionhead"><div><h2>🔎 League Room Integrity</h2><p>Shows exactly what DCC knows about your manually entered league and flags missing or inconsistent data instead of guessing.</p></div></div>
-    <div class="qualitygrid" id="leagueRoomIntegrity"></div>
-  </div>
-</section>
-
-<section id="page-settings" style="display:none">
-  <div class="settings">
-    <div class="card setting"><div class="sectionhead"><div><h2>League setup</h2><p>Change these before draft night.</p></div></div>
-      <div class="formrow"><label>Draft position</label><input class="input" id="draftPos" type="number" min="1" max="12" value="2"></div>
-      <div class="formrow"><label>Current pick</label><input class="input" id="currentPick" type="number" min="1" max="192" value="1"></div>
-      <div class="formrow"><label>Draft philosophy</label><select class="select" id="philosophy"><option value="balanced">Balanced</option><option value="value">Value first</option><option value="need">Roster need</option><option value="aggressive">Aggressive / upside</option></select></div>
-    </div>
-    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🔴 Live draft mode</h2><p>Turn this on during your actual live draft to log every real pick — yours and your opponents' — instead of relying on simulated bot picks.</p></div></div>
-      <div class="formrow" style="display:flex;align-items:center;gap:10px"><input type="checkbox" id="liveDraftToggle" style="width:18px;height:18px"><label for="liveDraftToggle" style="margin:0;font-size:12px">Enable Live Draft Mode</label></div>
-      <p class="mini" style="margin-top:8px">When ON, every "Draft" button becomes "Log Pick" and works regardless of whose turn it technically is — tap whoever actually got picked, for whichever team actually picked them. Keeps this app's state matching your real draft instead of guessing.</p>
-      <div class="formrow" style="margin-top:12px"><label>Log picks for</label><select class="select" id="logTeamSelect"><option value="">Auto (whoever's on the clock)</option></select></div>
-      <p class="mini" style="margin-top:6px">Leave on Auto to follow the expected snake order. Override this if your real draft goes out of order, or to fix a misclick.</p>
-    </div>
-    <div class="card setting"><div class="sectionhead"><div><h2>Data model</h2><p>Season-long manager snapshot. Your manually entered rosters are the league-of-record source.</p></div></div>
-      <div class="source"><b>Market ADP</b><span class="amber">Fallback snapshot / live proxy supported</span></div><div class="source"><b>Expert consensus</b><span class="amber">Fallback snapshot / live proxy supported</span></div><div class="source"><b>Walter PPR</b><span class="amber">Fallback/demo only</span></div><div class="source"><b>Bye weeks</b><span style="color:#5de0b7">Real 2026 schedule</span></div><div class="source"><b>Final draft roster</b><span style="color:#5de0b7">Imported from your uploaded Draft Recap</span></div>
-      <p style="font-size:10px;color:#f6b94a;margin-top:12px;line-height:1.6">⚠️ Player pool, ADP and rankings are still fallback data until you sync a live source. The player pool now supports active NFL roster verification and a separate prospect/FA layer. Your manually entered league is the source of truth for fantasy rosters, standings and matchups. The embedded player snapshot is a fallback only; use the live ADP/roster syncs before draft night, but NFL teams cut down to 53 players by August 30 every year — expect real roster churn this week that this static dataset can't track automatically. Double-check any player you're unsure about against external league source or your league's source before an actual live draft.</p>
-      <p style="font-size:10px;color:#5de0b7;margin-top:8px;line-height:1.6">✓ Bye weeks were corrected to match the actual verified 2026 NFL schedule (Weeks 5–14, none in Week 12) — these are real, not demo data, and drive the bye-cluster alert and Planner/Matchup projections accurately.</p>
-      
-    </div>
-    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🏈 Real NFL schedule</h2></h2><p>Player opponents and bye weeks come from a real 2026 NFL schedule feed — never a hash/random opponent.</p></div></div>
-      <div class="persistbar"><button class="secondary" id="scheduleSyncBtn">SYNC NFL SCHEDULE</button></div>
-      <p class="mini" id="scheduleSyncStatus">Schedule not synced yet. The app will use verified 2026 bye weeks but will not invent an opponent if the schedule feed is unavailable.</p>
-      <p class="mini" style="margin-top:6px">Fantasy matchups are generated from your 12-team league rotation; NFL player opponents and bye weeks use the real 2026 NFL schedule.</p>
-    </div>
-    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🔄 Live injury & roster sync</h2><p>Pulls current injury status and team assignments from Sleeper's free public NFL player API — real data, not a demo.</p></div></div>
-      <p class="mini" id="liveSyncStatus">Never synced. Tap below to fetch current data.</p>
-      <p class="mini" id="liveSyncProtocolWarning" style="display:none;color:#f6b94a;margin-top:6px">⚠️ This page is open as a local file (file://), not through a web address. Many mobile browsers block outgoing network requests from local files for security reasons — if Sync fails, this is the most likely reason, and there's no in-app fix for it; the file would need to be hosted somewhere and opened via https:// instead.</p>
-      <div class="persistbar">
-        <button class="secondary" id="liveSyncBtn">SYNC NOW</button>
-      </div>
-      <div id="liveSyncReport" style="margin-top:10px"></div>
-      <p style="font-size:10px;color:#718099;margin-top:10px;line-height:1.6">This fetches a public dataset (~5MB) directly from your device — no server of ours is involved. It updates injury badges and flags team mismatches between this app's data and Sleeper's live roster info, but it does <b>not</b> replace market ADP or expert rankings unless you also sync the live ADP feed. Requires an internet connection; if the fetch fails (e.g. no connection, or the source is unreachable), everything else in the app keeps working normally.</p>
-    </div>
-    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🛡️ Data Health & Maintenance</h2><p>One place to verify data freshness, projection integrity, backups, and app version.</p></div></div><div id="dccHealthPanel"></div><div id="dccMaintenancePanel" style="margin-top:12px"></div></div>
-    <div class="card setting" style="grid-column:1/-1" id="dccLeagueConfigCard"><div class="sectionhead"><div><h2>⚙️ League Configuration</h2><p>Editable roster rules so the decision engine cannot drift away from your real league.</p></div></div>
-  <div class="dcc-grid2">
-    <div class="formrow"><label>Teams</label><input class="input" id="dccTeams" type="number" min="2" max="20" value="12"></div>
-    <div class="formrow"><label>Scoring</label><select class="select" id="dccScoring"><option value="PPR">PPR</option><option value="HALF_PPR">Half PPR</option><option value="STD">Standard</option></select></div>
-    <div class="formrow"><label>Roster size</label><input class="input" id="dccRosterSize" type="number" min="8" max="30" value="16"></div>
-    <div class="formrow"><label>Playoff teams</label><input class="input" id="dccPlayoffTeams" type="number" min="2" max="16" value="6"></div>
-  </div>
-  <div class="smallcaps" style="margin-top:8px">Starting lineup</div>
-  <div class="dcc-grid2" style="margin-top:6px">
-    <div class="formrow"><label>QB</label><input class="input dcc-start" data-pos="QB" type="number" min="0" max="3" value="1"></div><div class="formrow"><label>RB</label><input class="input dcc-start" data-pos="RB" type="number" min="0" max="5" value="2"></div>
-    <div class="formrow"><label>WR</label><input class="input dcc-start" data-pos="WR" type="number" min="0" max="5" value="2"></div><div class="formrow"><label>TE</label><input class="input dcc-start" data-pos="TE" type="number" min="0" max="3" value="1"></div>
-    <div class="formrow"><label>FLEX (RB/WR/TE)</label><input class="input dcc-start" data-pos="FLEX" type="number" min="0" max="3" value="1"></div><div class="formrow"><label>K</label><input class="input dcc-start" data-pos="K" type="number" min="0" max="3" value="1"></div>
-    <div class="formrow"><label>DEF/DST</label><input class="input dcc-start" data-pos="DEF" type="number" min="0" max="3" value="1"></div>
-  </div>
-  <div class="persistbar"><button class="primary" id="dccSaveConfig">SAVE LEAGUE CONFIG</button><span class="dcc-pill" id="dccConfigSummary">12 teams · PPR · QB1/RB2/WR2/TE1/FLEX1/K1/DEF1 · 16 roster</span></div>
+<div class="card panelpad">
+<div class="sectionhead"><div><h2>👥 League Rosters</h2><p>Manage every roster from one screen. Add/drop players throughout the season, rename teams, and keep the manual league record in sync.</p></div><div class="team-switch"><select class="select" id="rosterTeamSelect"></select></div></div>
+<div class="builder-banner"><b>Manual league mode is the source of truth.</b><span>Use the selected team's roster below for waiver adds, drops and ongoing league activity. Every move is logged automatically.</span></div>
+<div class="formrow"><label>Team name</label><input class="input" id="builderTeamName" placeholder="Team name"/><button class="secondary" id="builderTeamNameSave">SAVE TEAM NAME</button></div>
+<div class="builder-search-grid">
+<input autocomplete="off" class="input" id="builderPlayerSearch" placeholder="Search player to add…"/>
+<select class="select" id="builderPlayerPos"><option value="ALL">All positions</option><option value="QB">QB</option><option value="RB">RB</option><option value="WR">WR</option><option value="TE">TE</option><option value="K">K</option><option value="DEF">DEF</option></select>
 </div>
-<div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🎯 Scoring & Projection Contract</h2><p>ESPN weekly PPR projections are preferred when available. DCC only falls back to estimates when a live source is unavailable.</p></div></div>
-  <div class="dcc-grid2">
-    <div class="formrow"><label>Receptions</label><input class="input" id="scoreRec" type="number" step="0.1" value="1"></div><div class="formrow"><label>Passing TD</label><input class="input" id="scorePassTD" type="number" step="0.5" value="4"></div>
-    <div class="formrow"><label>Passing yards / pt</label><input class="input" id="scorePassYd" type="number" step="0.01" value="25"></div><div class="formrow"><label>Rush/receive yards / pt</label><input class="input" id="scoreRushYd" type="number" step="0.01" value="10"></div>
-    <div class="formrow"><label>Rush/receive TD</label><input class="input" id="scoreTD" type="number" step="0.5" value="6"></div><div class="formrow"><label>INT / lost fumble</label><input class="input" id="scoreTurnover" type="number" step="0.5" value="-2"></div>
-  </div>
-  <p class="dcc-small">Important: ESPN weekly projections are treated as PPR source data. If your league uses custom scoring, DCC will flag the source instead of pretending the projection is exact.</p>
+<div class="builder-results" id="builderPlayerResults"></div>
+</div>
+<div class="card panelpad section">
+<div class="sectionhead"><div><h2 id="builderRosterTitle">Current roster</h2><p>Remove a player to create a waiver/free-agent opening. Add a player above to record a new roster move.</p></div><button class="ghost" id="builderClearTeam">CLEAR TEAM</button></div>
+<div class="builder-roster-grid" id="builderRosterGrid"></div>
+</div>
+<div class="card panelpad section">
+<div class="sectionhead"><div><h2>➕ Add missing/custom player</h2><p>Use this only when the player is not in the current pool.</p></div></div>
+<div class="builder-custom-grid"><input class="input" id="customPlayerName" placeholder="Player name"/><select class="select" id="customPlayerPos"><option>QB</option><option>RB</option><option>WR</option><option>TE</option><option>K</option><option>DEF</option></select><input class="input" id="customPlayerTeam" placeholder="NFL team (e.g. DAL)"/><button class="secondary" id="customPlayerAdd">ADD CUSTOM</button></div>
+</div>
+<div class="card panelpad section"><div class="sectionhead"><div><h2>League completion</h2><p>Track how much of the league you've entered manually.</p></div></div><div id="builderLeagueProgress"></div></div>
+<div class="card panelpad section"><div class="sectionhead"><div><h2>League activity</h2><p>Recent manual adds, drops and team changes.</p></div></div><div id="leagueActivitySummary"></div><div id="leagueActivityLog" style="margin-top:10px"></div></div>
+<div class="card panelpad section"><div class="sectionhead"><div><h2>League roster status</h2><p>Players with injuries, byes or missing data get surfaced here.</p></div></div><div id="rosterAlerts"></div></div>
+</section>
+<section id="page-trade" style="display:none">
+<div class="card panelpad">
+<div class="sectionhead"><div><h2>🤝 Trade Manager &amp; Analyzer</h2><p>Select players from each roster to compare trade value and get a grade.</p></div></div>
+<div class="tradegrid">
+<div class="card tradeside"><h3>Team gives</h3><select class="select" id="tradeTeamA"></select><div class="plist" id="tradeListA"></div></div>
+<div class="card tradeside"><h3>Team receives from</h3><select class="select" id="tradeTeamB"></select><div class="plist" id="tradeListB"></div></div>
+</div>
+<div class="tradesummary">
+<div class="card panelpad"><div class="smallcaps">Team A sends</div><div class="tvbig" id="tvA">0</div><div class="mini" id="tvAmeta">Select players above</div></div>
+<div class="card panelpad"><div class="smallcaps">Team B sends</div><div class="tvbig" id="tvB">0</div><div class="mini" id="tvBmeta">Select players above</div></div>
+</div>
+<div class="card panelpad" style="margin-top:14px">
+<div class="sectionhead"><div><h2>💰 Trade grade</h2><p id="gradeSub">Add players to both sides to analyze.</p></div><div id="gradeBadge"></div></div>
+<div style="display:flex;gap:8px;margin-top:10px"><button class="primary" disabled="" id="executeTrade">EXECUTE TRADE (DEMO)</button><button class="ghost" id="clearTrade">CLEAR SELECTION</button></div>
+</div>
+</div>
+<div class="section card panelpad">
+<div class="sectionhead"><div><h2>💡 Suggested trades for my team</h2><p>Value-upgrade swaps sourced from opponents' rosters.</p></div></div>
+<div id="suggestedTrades"></div>
+</div>
+<div class="section card panelpad" id="tradeHistoryCard" style="display:none">
+<div class="sectionhead"><div><h2>Trade history</h2><p>Executed demo trades this session.</p></div></div>
+<div id="tradeHistory"></div>
+</div>
+</section>
+<section id="page-waivers" style="display:none">
+<div class="card panelpad">
+<div class="sectionhead"><div><h2>🏷️ Waiver Wire Manager</h2><p>Undrafted players with projected weekly points. Adds go to your bench.</p></div></div>
+<div class="waiverbar"><input class="input" id="waiverSearch" placeholder="Search waiver wire" style="max-width:280px"/><select class="select" id="waiverPos" style="max-width:130px"><option>ALL</option><option>QB</option><option>RB</option><option>WR</option><option>TE</option><option>DEF</option><option>K</option></select></div>
+<div class="tablewrap"><table class="board"><thead><tr><th>Player</th><th>Pos</th><th>Team</th><th>ADP</th><th title="Projected points for the current NFL week, not season total">Proj Pts/Wk ⓘ</th><th>Trend</th><th></th></tr></thead><tbody id="waiverRows"></tbody></table></div>
+</div>
+</section>
+<section id="page-planner" style="display:none">
+<div class="card panelpad">
+<div class="sectionhead"><div><h2>📅 Matchup &amp; Weekly Planner</h2><p>League-specific weekly projections when synced; fallback estimates otherwise.</p></div></div>
+<div class="plannerhead"><div class="weeksel" id="weekSel"></div><button class="secondary btnsm" id="projectionSyncBtn">SYNC WEEKLY PROJECTIONS</button></div>
+<div class="mini" id="projectionSyncStatus" style="margin-top:8px">Planner uses live league-specific PPR projections when synced. Without a feed, it uses a clearly labeled fallback estimate — never presented as live/accurate projections.</div>
+</div>
+<div class="section card panelpad">
+<div class="sectionhead"><div><h2>⚔️ Matchup</h2><p>Your projected starters vs this week's opponent, head to head.</p></div></div>
+<div id="matchupBody"></div>
+</div>
+<div class="section card panelpad">
+<div class="sectionhead"><div><h2>Your roster this week</h2></div></div>
+<div class="grid2">
+<div><div class="smallcaps" style="margin-bottom:6px">Starting lineup</div><div id="lineupStarters"></div></div>
+<div><div class="smallcaps" style="margin-bottom:6px">Bench</div><div id="lineupBench"></div></div>
+</div>
+</div>
+<div class="section card panelpad">
+<div class="sectionhead"><div><h2>🔎 Roster evaluation &amp; action flags</h2><p>Bye alerts and start/sit recommendations for the selected week.</p></div></div>
+<div id="plannerFlags"></div>
+</div>
+</section>
+<section id="page-league" style="display:none">
+<div class="card panelpad">
+<div class="sectionhead">
+<div><h2>📊 Team Analytics</h2><p>Power-rank every roster, identify positional edges, and surface trade/waiver pressure. Your manually entered rosters are the league source of truth; live projections improve confidence but never block the analyzer.</p></div>
+<div class="team-switch"><select class="select" id="leagueAnalyzerWeek" style="width:110px"></select><button class="ghost" id="leagueAnalyzerRefresh">REFRESH</button></div>
+</div>
+<div class="league-confidence" id="leagueAnalyzerConfidence"></div>
+<div class="league-analyzer-kpis" id="leagueAnalyzerKpis"></div>
+</div>
+<div class="card panelpad section">
+<div class="sectionhead"><div><h2>📈 League Power Rankings</h2><p>Projected starter strength is weighted most heavily; depth, positional value and roster completeness provide secondary context.</p></div></div>
+<div class="tablewrap"><table class="league-analyzer-table"><thead><tr><th>#</th><th>Team</th><th>Score</th><th>Grade</th><th>Wk Pts</th><th>Best</th><th>Weakest</th><th>Depth</th><th>Read</th></tr></thead><tbody id="leagueAnalyzerRows"></tbody></table></div>
+</div>
+<div class="card panelpad section">
+<div class="sectionhead"><div><h2>🧩 Positional Strength Matrix</h2><p>Each team's projected starter strength relative to the league median. Green = advantage; red = weakness.</p></div></div>
+<div class="tablewrap"><table class="league-analyzer-table"><thead><tr><th>Team</th><th>QB</th><th>RB</th><th>WR</th><th>TE</th><th>DEF</th><th>K</th><th>Roster Shape</th></tr></thead><tbody id="leaguePositionRows"></tbody></table></div>
+</div>
+<div class="grid2 section">
+<div class="card panelpad"><div class="sectionhead"><div><h2>🤝 Trade Map</h2><p>Teams whose weaknesses match your surplus are the first places to shop.</p></div></div><div id="leagueTradeMap"></div></div>
+<div class="card panelpad"><div class="sectionhead"><div><h2>🚨 League Pressure</h2><p>Where your league is likely to compete for the same waiver assets.</p></div></div><div id="leaguePressure"></div></div>
+</div>
+<div class="card panelpad section">
+<div class="sectionhead"><div><h2>🔍 Your Team vs. League</h2><p>Objective strengths and weaknesses against the current 12-team room.</p></div></div>
+<div id="leagueMyTeamRead"></div>
+</div>
+<div class="card panelpad section">
+<div class="sectionhead"><div><h2>🛡️ Data Integrity Rules</h2><p>The analyzer will not manufacture precision when a required data source is missing.</p></div></div>
+<div class="qualitygrid" id="leagueIntegrity"></div>
+</div>
+</section>
+<section id="page-league-analyzer" style="display:none">
+<div class="card panelpad">
+<div class="sectionhead">
+<div><h2>🏆 League Analyzer</h2><p>League Room view powered by your saved league rosters. Inspect every team, roster, record and current room state without mixing it into Team Analytics.</p></div>
+<div class="team-switch"><button class="ghost" id="leagueRoomRefresh">REFRESH</button></div>
+</div>
+<div class="league-confidence" id="leagueRoomConfidence"></div>
+<div class="leaguegrid" id="leagueRoomGrid"></div>
+</div>
+<div class="card panelpad section">
+<div class="sectionhead"><div><h2>📸 League Activity &amp; Snapshots</h2><p>Every manual add/drop and team rename is timestamped. Export a full league snapshot before and after roster changes to preserve a point-in-time record.</p></div></div>
+<div class="persistbar"><button class="secondary" id="exportLeagueSnapshot">EXPORT LEAGUE SNAPSHOT</button><label class="secondary" for="importLeagueSnapshot" style="display:inline-flex;align-items:center">IMPORT LEAGUE SNAPSHOT</label><input accept=".json,application/json" id="importLeagueSnapshot" style="display:none" type="file"/><button class="ghost" id="clearActivityLog">CLEAR ACTIVITY LOG</button></div>
+<div id="leagueActivitySummary" style="margin-top:10px"></div><div id="leagueActivityLog" style="margin-top:10px"></div>
+</div>
+<div class="card panelpad section">
+<div class="sectionhead"><div><h2>🔎 League Room Integrity</h2><p>Shows exactly what DCC knows about your manually entered league and flags missing or inconsistent data instead of guessing.</p></div></div>
+<div class="qualitygrid" id="leagueRoomIntegrity"></div>
+</div>
+</section>
+<section id="page-settings" style="display:none">
+<div class="settings">
+<div class="card setting"><div class="sectionhead"><div><h2>League setup</h2><p>Change these before draft night.</p></div></div>
+<div class="formrow"><label>Draft position</label><input class="input" id="draftPos" max="12" min="1" type="number" value="2"/></div>
+<div class="formrow"><label>Current pick</label><input class="input" id="currentPick" max="192" min="1" type="number" value="1"/></div>
+<div class="formrow"><label>Draft philosophy</label><select class="select" id="philosophy"><option value="balanced">Balanced</option><option value="value">Value first</option><option value="need">Roster need</option><option value="aggressive">Aggressive / upside</option></select></div>
+</div>
+<div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🏈 Real NFL schedule</h2><p>Player opponents and bye weeks come from a real 2026 NFL schedule feed — never a hash/random opponent.</p></div></div>
+<div class="persistbar"><button class="secondary" id="scheduleSyncBtn">SYNC NFL SCHEDULE</button></div>
+<p class="mini" id="scheduleSyncStatus">Schedule not synced yet. The app will use verified 2026 bye weeks but will not invent an opponent if the schedule feed is unavailable.</p>
+<p class="mini" style="margin-top:6px">Fantasy matchups are generated from your 12-team league rotation; NFL player opponents and bye weeks use the real 2026 NFL schedule.</p>
+</div>
+<div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🔄 Live injury &amp; roster sync</h2><p>Pulls current injury status and team assignments from Sleeper's free public NFL player API — real data, not a demo.</p></div></div>
+<p class="mini" id="liveSyncStatus">Never synced. Tap below to fetch current data.</p>
+<p class="mini" id="liveSyncProtocolWarning" style="display:none;color:#f6b94a;margin-top:6px">⚠️ This page is open as a local file (file://), not through a web address. Many mobile browsers block outgoing network requests from local files for security reasons — if Sync fails, this is the most likely reason, and there's no in-app fix for it; the file would need to be hosted somewhere and opened via https:// instead.</p>
+<div class="persistbar">
+<button class="secondary" id="liveSyncBtn">SYNC NOW</button>
+</div>
+<div id="liveSyncReport" style="margin-top:10px"></div>
+<p style="font-size:10px;color:#718099;margin-top:10px;line-height:1.6">This fetches a public dataset (~5MB) directly from your device — no server of ours is involved. It updates injury badges and flags team mismatches between this app's data and Sleeper's live roster info, but it does <b>not</b> replace market ADP or expert rankings unless you also sync the live ADP feed. Requires an internet connection; if the fetch fails (e.g. no connection, or the source is unreachable), everything else in the app keeps working normally.</p>
+</div>
+<div class="card setting" id="dccLeagueConfigCard" style="grid-column:1/-1"><div class="sectionhead"><div><h2>⚙️ League Configuration</h2><p>Editable roster rules so the decision engine cannot drift away from your real league.</p></div></div>
+<div class="dcc-grid2">
+<div class="formrow"><label>Teams</label><input class="input" id="dccTeams" max="20" min="2" type="number" value="12"/></div>
+<div class="formrow"><label>Scoring</label><select class="select" id="dccScoring"><option value="PPR">PPR</option><option value="HALF_PPR">Half PPR</option><option value="STD">Standard</option></select></div>
+<div class="formrow"><label>Roster size</label><input class="input" id="dccRosterSize" max="30" min="8" type="number" value="16"/></div>
+<div class="formrow"><label>Playoff teams</label><input class="input" id="dccPlayoffTeams" max="16" min="2" type="number" value="6"/></div>
+</div>
+<div class="smallcaps" style="margin-top:8px">Starting lineup</div>
+<div class="dcc-grid2" style="margin-top:6px">
+<div class="formrow"><label>QB</label><input class="input dcc-start" data-pos="QB" max="3" min="0" type="number" value="1"/></div><div class="formrow"><label>RB</label><input class="input dcc-start" data-pos="RB" max="5" min="0" type="number" value="2"/></div>
+<div class="formrow"><label>WR</label><input class="input dcc-start" data-pos="WR" max="5" min="0" type="number" value="2"/></div><div class="formrow"><label>TE</label><input class="input dcc-start" data-pos="TE" max="3" min="0" type="number" value="1"/></div>
+<div class="formrow"><label>FLEX (RB/WR/TE)</label><input class="input dcc-start" data-pos="FLEX" max="3" min="0" type="number" value="1"/></div><div class="formrow"><label>K</label><input class="input dcc-start" data-pos="K" max="3" min="0" type="number" value="1"/></div>
+<div class="formrow"><label>DEF/DST</label><input class="input dcc-start" data-pos="DEF" max="3" min="0" type="number" value="1"/></div>
+</div>
+<div class="persistbar"><button class="primary" id="dccSaveConfig">SAVE LEAGUE CONFIG</button><span class="dcc-pill" id="dccConfigSummary">12 teams · PPR · QB1/RB2/WR2/TE1/FLEX1/K1/DEF1 · 16 roster</span></div>
+</div>
+<div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🎯 Scoring &amp; Projection Contract</h2><p>ESPN weekly PPR projections are preferred when available. DCC only falls back to estimates when a live source is unavailable.</p></div></div>
+<div class="dcc-grid2">
+<div class="formrow"><label>Receptions</label><input class="input" id="scoreRec" step="0.1" type="number" value="1"/></div><div class="formrow"><label>Passing TD</label><input class="input" id="scorePassTD" step="0.5" type="number" value="4"/></div>
+<div class="formrow"><label>Passing yards / pt</label><input class="input" id="scorePassYd" step="0.01" type="number" value="25"/></div><div class="formrow"><label>Rush/receive yards / pt</label><input class="input" id="scoreRushYd" step="0.01" type="number" value="10"/></div>
+<div class="formrow"><label>Rush/receive TD</label><input class="input" id="scoreTD" step="0.5" type="number" value="6"/></div><div class="formrow"><label>INT / lost fumble</label><input class="input" id="scoreTurnover" step="0.5" type="number" value="-2"/></div>
+</div>
+<p class="dcc-small">Important: ESPN weekly projections are treated as PPR source data. If your league uses custom scoring, DCC will flag the source instead of pretending the projection is exact.</p>
 </div>
 <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🗓️ Fantasy Matchup Schedule</h2><p>Set the actual fantasy opponent for each team. The app will never silently call a round-robin opponent your real opponent.</p></div><select class="select" id="dccScheduleWeek" style="width:120px"></select></div><div id="dccScheduleEditor"></div><div class="persistbar"><button class="primary" id="dccSaveSchedule">SAVE WEEKLY MATCHUPS</button><button class="ghost" id="dccSeedSchedule">SEED ROUND-ROBIN</button></div></div>
-<div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>📋 League Standings & Records</h2><p>Manual record/PF/PA entry drives power rankings and season outlook without an ESPN dependency.</p></div></div><div class="dcc-scroll"><table class="dcc-table"><thead><tr><th>Team</th><th>W</th><th>L</th><th>T</th><th>PF</th><th>PA</th></tr></thead><tbody id="dccStandingsEditor"></tbody></table></div><div class="persistbar"><button class="primary" id="dccSaveStandings">SAVE STANDINGS</button></div></div>
-<div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🩺 Data Health & Projection Audit</h2><p>Source, freshness, roster matching and projection coverage at a glance.</p></div></div><div id="dccHealth"></div><div id="dccAuditTable" style="margin-top:10px"></div></div>
+<div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>📋 League Standings &amp; Records</h2><p>Manual record/PF/PA entry drives power rankings and season outlook without an ESPN dependency.</p></div></div><div class="dcc-scroll"><table class="dcc-table"><thead><tr><th>Team</th><th>W</th><th>L</th><th>T</th><th>PF</th><th>PA</th></tr></thead><tbody id="dccStandingsEditor"></tbody></table></div><div class="persistbar"><button class="primary" id="dccSaveStandings">SAVE STANDINGS</button></div></div>
+<div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🩺 Data Health &amp; Projection Audit</h2><p>Source, freshness, roster matching and projection coverage at a glance.</p></div></div><div id="dccHealth"></div><div id="dccAuditTable" style="margin-top:10px"></div></div>
 <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🏈 Team names</h2><p>Rename the 12 league teams to match your real league mates.</p></div></div>
-      <div class="teamnamegrid" id="teamNameGrid"></div><div class="persistbar" style="margin-top:10px"><button class="primary" id="saveAllTeamNames">SAVE ALL TEAM NAMES</button></div>
-    </div>
-    <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>💾 Draft-state persistence & export</h2><p>Your draft, rosters, trades and planner state auto-save to this browser. Export a portable snapshot anytime.</p></div></div>
-      <p class="mini">Last saved: <span id="lastSaved">never</span></p>
-      <div class="persistbar">
-        <button class="secondary" id="exportBtn">EXPORT DRAFT STATE (.json)</button>
-        <label class="secondary" style="display:inline-flex;align-items:center" for="importFile">IMPORT DRAFT STATE</label>
-        <input type="file" id="importFile" accept="application/json" style="display:none">
-        <button class="ghost" id="wipeBtn">WIPE ALL SAVED STATE</button>
-      </div>
-      <div class="persistbar">
-        <button class="secondary" id="printCheatSheetBtn">🖨️ PRINT DRAFT DAY CHEAT SHEET</button>
-      </div>
-      <p class="mini" style="margin-top:6px">Prints the current tiered player list as a clean reference sheet — handy as a backup if wifi is spotty on draft day.</p>
-    </div>
-  </div>
+<div class="teamnamegrid" id="teamNameGrid"></div><div class="persistbar" style="margin-top:10px"><button class="primary" id="saveAllTeamNames">SAVE ALL TEAM NAMES</button></div>
+</div>
+</div>
 </section>
 <div class="dcc-modal" id="dccPlayerModal"><div class="dcc-modal-card"><div class="sectionhead"><div><h2 id="dccModalTitle">Player Detail</h2><p id="dccModalSub">—</p></div><button class="ghost" id="dccModalClose">CLOSE</button></div><div id="dccModalBody"></div></div></div></main>
 </div>
-
 <div class="toast" id="toast"></div>
-<div id="cheatSheetPrint" class="print-only"></div>
-
+<div class="print-only" id="cheatSheetPrint"></div>
 <script>
 let DATA=[{"name":"Jahmyr Gibbs","pos":"RB","team":"DET","adp":1.9,"espn":1,"sleeper":1.6,"fp":3.0,"walter":1,"tier":"Elite"},{"name":"Bijan Robinson","pos":"RB","team":"ATL","adp":2.4,"espn":2,"sleeper":1.8,"fp":3.5,"walter":2,"tier":"Elite"},{"name":"Ja'Marr Chase","pos":"WR","team":"CIN","adp":3.0,"espn":4,"sleeper":3.4,"fp":1.7,"walter":3,"tier":"Elite"},{"name":"Puka Nacua","pos":"WR","team":"LAR","adp":3.6,"espn":3,"sleeper":4.9,"fp":3.0,"walter":12,"tier":"Elite"},{"name":"Jaxon Smith-Njigba","pos":"WR","team":"SEA","adp":5.0,"espn":5,"sleeper":5.4,"fp":4.6,"walter":16,"tier":"Elite"},{"name":"Christian McCaffrey","pos":"RB","team":"SF","adp":6.7,"espn":6,"sleeper":5.0,"fp":9.1,"walter":10,"tier":"Elite"},{"name":"Amon-Ra St. Brown","pos":"WR","team":"DET","adp":7.3,"espn":8,"sleeper":8.1,"fp":5.7,"walter":17,"tier":"Elite"},{"name":"Jonathan Taylor","pos":"RB","team":"IND","adp":8.7,"espn":7,"sleeper":7.7,"fp":11.4,"walter":9,"tier":"Elite"},{"name":"CeeDee Lamb","pos":"WR","team":"DAL","adp":9.4,"espn":9,"sleeper":10.6,"fp":8.7,"walter":20,"tier":"Elite"},{"name":"Justin Jefferson","pos":"WR","team":"MIN","adp":11.0,"espn":11,"sleeper":12.4,"fp":9.7,"walter":19,"tier":"Elite"},{"name":"Drake London","pos":"WR","team":"ATL","adp":13.5,"espn":14,"sleeper":14.1,"fp":12.4,"walter":23,"tier":"Tier 2"},{"name":"De'Von Achane","pos":"RB","team":"MIA","adp":14.3,"espn":10,"sleeper":12.5,"fp":20.5,"walter":8,"tier":"Tier 2"},{"name":"James Cook","pos":"RB","team":"BUF","adp":14.3,"espn":12,"sleeper":12.7,"fp":18.3,"walter":4,"tier":"Tier 2"},{"name":"Ashton Jeanty","pos":"RB","team":"LV","adp":16.0,"espn":15,"sleeper":15.4,"fp":17.4,"walter":6,"tier":"Tier 2"},{"name":"Trey McBride","pos":"TE","team":"ARI","adp":18.3,"espn":17,"sleeper":18.7,"fp":19.2,"walter":30,"tier":"Tier 2"},{"name":"Chase Brown","pos":"RB","team":"CIN","adp":19.2,"espn":21,"sleeper":19.0,"fp":17.6,"walter":11,"tier":"Tier 2"},{"name":"Rashee Rice","pos":"WR","team":"KC","adp":20.2,"espn":16,"sleeper":22.7,"fp":22.0,"walter":56,"tier":"Tier 2"},{"name":"A.J. Brown","pos":"WR","team":"NE","adp":20.5,"espn":27,"sleeper":19.4,"fp":15.1,"walter":14,"tier":"Tier 2"},{"name":"Saquon Barkley","pos":"RB","team":"PHI","adp":20.7,"espn":19,"sleeper":16.6,"fp":26.5,"walter":7,"tier":"Tier 2"},{"name":"Omarion Hampton","pos":"RB","team":"LAC","adp":20.7,"espn":18,"sleeper":18.8,"fp":25.4,"walter":5,"tier":"Tier 2"},{"name":"Brock Bowers","pos":"TE","team":"LV","adp":21.6,"espn":24,"sleeper":20.2,"fp":20.6,"walter":29,"tier":"Tier 2"},{"name":"Nico Collins","pos":"WR","team":"HOU","adp":22.2,"espn":25,"sleeper":25.2,"fp":16.5,"walter":22,"tier":"Tier 2"},{"name":"George Pickens","pos":"WR","team":"DAL","adp":23.9,"espn":29,"sleeper":23.1,"fp":19.7,"walter":39,"tier":"Tier 2"},{"name":"Kenneth Walker III","pos":"RB","team":"KC","adp":24.8,"espn":22,"sleeper":22.9,"fp":29.4,"walter":13,"tier":"Tier 2"},{"name":"Chris Olave","pos":"WR","team":"NO","adp":24.9,"espn":28,"sleeper":26.4,"fp":20.4,"walter":43,"tier":"Tier 2"},{"name":"Derrick Henry","pos":"RB","team":"BAL","adp":27.4,"espn":20,"sleeper":24.6,"fp":37.7,"walter":24,"tier":"Tier 3"},{"name":"Jeremiyah Love","pos":"RB","team":"ARI","adp":28.7,"espn":999,"sleeper":19.7,"fp":37.8,"walter":32,"tier":"Tier 3"},{"name":"Malik Nabers","pos":"WR","team":"NYG","adp":28.8,"espn":32,"sleeper":25.2,"fp":29.1,"walter":45,"tier":"Tier 3"},{"name":"Josh Allen","pos":"QB","team":"BUF","adp":30.0,"espn":36,"sleeper":28.2,"fp":25.9,"walter":44,"tier":"Tier 3"},{"name":"Josh Jacobs","pos":"RB","team":"GB","adp":31.5,"espn":23,"sleeper":27.6,"fp":43.9,"walter":50,"tier":"Tier 3"},{"name":"Garrett Wilson","pos":"WR","team":"NYJ","adp":32.4,"espn":26,"sleeper":40.9,"fp":30.4,"walter":40,"tier":"Tier 3"},{"name":"Breece Hall","pos":"RB","team":"NYJ","adp":34.4,"espn":30,"sleeper":32.3,"fp":40.8,"walter":18,"tier":"Tier 3"},{"name":"Tetairoa McMillan","pos":"WR","team":"CAR","adp":34.5,"espn":33,"sleeper":37.3,"fp":33.3,"walter":65,"tier":"Tier 3"},{"name":"DeVonta Smith","pos":"WR","team":"PHI","adp":34.7,"espn":35,"sleeper":44.9,"fp":24.3,"walter":36,"tier":"Tier 3"},{"name":"Zay Flowers","pos":"WR","team":"BAL","adp":35.9,"espn":34,"sleeper":43.8,"fp":29.8,"walter":54,"tier":"Tier 3"},{"name":"Javonte Williams","pos":"RB","team":"DAL","adp":38.2,"espn":31,"sleeper":38.3,"fp":45.4,"walter":21,"tier":"Tier 3"},{"name":"Kyren Williams","pos":"RB","team":"LAR","adp":47.7,"espn":69,"sleeper":32.2,"fp":42.0,"walter":27,"tier":"Tier 4"},{"name":"Tee Higgins","pos":"WR","team":"CIN","adp":49.4,"espn":78,"sleeper":35.5,"fp":34.6,"walter":41,"tier":"Tier 4"},{"name":"Ladd McConkey","pos":"WR","team":"LAC","adp":51.2,"espn":76,"sleeper":41.9,"fp":35.8,"walter":37,"tier":"Tier 4"},{"name":"Colston Loveland","pos":"TE","team":"CHI","adp":52.2,"espn":81,"sleeper":38.3,"fp":37.4,"walter":31,"tier":"Tier 4"},{"name":"Emeka Egbuka","pos":"WR","team":"TB","adp":52.3,"espn":74,"sleeper":45.8,"fp":37.1,"walter":26,"tier":"Tier 4"},{"name":"Lamar Jackson","pos":"QB","team":"BAL","adp":52.9,"espn":88,"sleeper":37.9,"fp":32.7,"walter":51,"tier":"Tier 4"},{"name":"Travis Etienne Jr.","pos":"RB","team":"NO","adp":54.3,"espn":70,"sleeper":42.2,"fp":50.8,"walter":38,"tier":"Tier 4"},{"name":"Jaylen Waddle","pos":"WR","team":"DEN","adp":54.4,"espn":79,"sleeper":46.2,"fp":37.9,"walter":77,"tier":"Tier 4"},{"name":"Bucky Irving","pos":"RB","team":"TB","adp":55.2,"espn":73,"sleeper":34.4,"fp":58.3,"walter":35,"tier":"Tier 4"},{"name":"Luther Burden III","pos":"WR","team":"CHI","adp":57.2,"espn":85,"sleeper":41.1,"fp":45.6,"walter":42,"tier":"Tier 4"},{"name":"Davante Adams","pos":"WR","team":"LAR","adp":57.4,"espn":75,"sleeper":46.9,"fp":50.4,"walter":58,"tier":"Tier 4"},{"name":"Cam Skattebo","pos":"RB","team":"NYG","adp":58.3,"espn":71,"sleeper":48.7,"fp":55.1,"walter":15,"tier":"Tier 4"},{"name":"Terry McLaurin","pos":"WR","team":"WSH","adp":59.4,"espn":77,"sleeper":56.6,"fp":44.5,"walter":53,"tier":"Tier 4"},{"name":"Drake Maye","pos":"QB","team":"NE","adp":59.7,"espn":89,"sleeper":51.2,"fp":38.9,"walter":55,"tier":"Tier 4"},{"name":"Tyler Warren","pos":"TE","team":"IND","adp":61.8,"espn":82,"sleeper":50.1,"fp":53.1,"walter":59,"tier":"Tier 4"},{"name":"Jameson Williams","pos":"WR","team":"DET","adp":62.6,"espn":80,"sleeper":51.6,"fp":56.3,"walter":48,"tier":"Tier 5"},{"name":"Quinshon Judkins","pos":"RB","team":"CLE","adp":62.8,"espn":72,"sleeper":55.0,"fp":61.3,"walter":28,"tier":"Tier 5"},{"name":"DJ Moore","pos":"WR","team":"BUF","adp":65.9,"espn":86,"sleeper":59.3,"fp":52.3,"walter":46,"tier":"Tier 5"},{"name":"Jayden Daniels","pos":"QB","team":"WSH","adp":66.6,"espn":87,"sleeper":62.1,"fp":50.6,"walter":64,"tier":"Tier 5"},{"name":"TreVeyon Henderson","pos":"RB","team":"NE","adp":67.5,"espn":91,"sleeper":47.8,"fp":63.7,"walter":69,"tier":"Tier 5"},{"name":"Rome Odunze","pos":"WR","team":"CHI","adp":69.0,"espn":84,"sleeper":64.2,"fp":58.9,"walter":75,"tier":"Tier 5"},{"name":"Joe Burrow","pos":"QB","team":"CIN","adp":69.7,"espn":108,"sleeper":55.5,"fp":45.5,"walter":62,"tier":"Tier 5"},{"name":"David Montgomery","pos":"RB","team":"HOU","adp":71.0,"espn":95,"sleeper":56.3,"fp":61.6,"walter":25,"tier":"Tier 5"},{"name":"Jalen Hurts","pos":"QB","team":"PHI","adp":71.4,"espn":90,"sleeper":67.2,"fp":57.0,"walter":88,"tier":"Tier 5"},{"name":"D'Andre Swift","pos":"RB","team":"CHI","adp":72.8,"espn":94,"sleeper":65.1,"fp":59.4,"walter":34,"tier":"Tier 5"},{"name":"Mike Evans","pos":"WR","team":"SF","adp":74.6,"espn":112,"sleeper":57.8,"fp":54.0,"walter":73,"tier":"Tier 5"},{"name":"Harold Fannin Jr.","pos":"TE","team":"CLE","adp":81.4,"espn":106,"sleeper":62.6,"fp":75.6,"walter":66,"tier":"Tier 6"},{"name":"Marvin Harrison Jr.","pos":"WR","team":"ARI","adp":82.5,"espn":102,"sleeper":75.8,"fp":69.7,"walter":134,"tier":"Tier 6"},{"name":"DK Metcalf","pos":"WR","team":"PIT","adp":85.1,"espn":103,"sleeper":74.4,"fp":78.0,"walter":116,"tier":"Tier 6"},{"name":"Kyle Pitts","pos":"TE","team":"ATL","adp":86.2,"espn":105,"sleeper":71.3,"fp":82.2,"walter":97,"tier":"Tier 6"},{"name":"Courtland Sutton","pos":"WR","team":"DEN","adp":87.3,"espn":99,"sleeper":77.9,"fp":85.0,"walter":87,"tier":"Tier 6"},{"name":"Tony Pollard","pos":"RB","team":"TEN","adp":88.2,"espn":97,"sleeper":85.6,"fp":82.0,"walter":68,"tier":"Tier 6"},{"name":"Brian Thomas Jr.","pos":"WR","team":"JAX","adp":88.6,"espn":117,"sleeper":69.6,"fp":79.3,"walter":81,"tier":"Tier 6"},{"name":"Sam LaPorta","pos":"TE","team":"DET","adp":88.9,"espn":107,"sleeper":76.4,"fp":83.2,"walter":91,"tier":"Tier 6"},{"name":"Caleb Williams","pos":"QB","team":"CHI","adp":91.8,"espn":124,"sleeper":82.9,"fp":68.5,"walter":105,"tier":"Tier 6"},{"name":"Tucker Kraft","pos":"TE","team":"GB","adp":94.0,"espn":142,"sleeper":67.3,"fp":72.5,"walter":92,"tier":"Tier 6"},{"name":"Justin Herbert","pos":"QB","team":"LAC","adp":94.9,"espn":131,"sleeper":83.7,"fp":70.1,"walter":89,"tier":"Tier 6"},{"name":"Trevor Lawrence","pos":"QB","team":"JAX","adp":96.5,"espn":118,"sleeper":92.3,"fp":79.2,"walter":96,"tier":"Tier 6"},{"name":"George Kittle","pos":"TE","team":"SF","adp":115.2,"espn":141,"sleeper":97.4,"fp":107.2,"walter":183,"tier":"Late"},{"name":"Travis Kelce","pos":"TE","team":"KC","adp":116.9,"espn":144,"sleeper":107.1,"fp":99.6,"walter":202,"tier":"Late"},{"name":"Dalton Kincaid","pos":"TE","team":"BUF","adp":125.2,"espn":164,"sleeper":97.1,"fp":114.5,"walter":117,"tier":"Late"},{"name":"Brandon Aubrey","pos":"K","team":"DAL","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":118,"tier":"K"},{"name":"Baker Mayfield","pos":"QB","team":"TB","adp":98.0,"espn":120,"sleeper":90.5,"fp":72.0,"walter":110,"tier":"Tier 6"},{"name":"Matthew Stafford","pos":"QB","team":"LAR","adp":101.5,"espn":126,"sleeper":95.0,"fp":76.5,"walter":120,"tier":"Tier 6"},{"name":"Kyler Murray","pos":"QB","team":"ARI","adp":104.0,"espn":130,"sleeper":99.0,"fp":80.0,"walter":128,"tier":"Tier 6"},{"name":"Bo Nix","pos":"QB","team":"DEN","adp":108.0,"espn":138,"sleeper":102.0,"fp":84.0,"walter":140,"tier":"Tier 6"},{"name":"Evan Engram","pos":"TE","team":"DEN","adp":128.0,"espn":168,"sleeper":110.0,"fp":118.0,"walter":150,"tier":"Late"},{"name":"Mark Andrews","pos":"TE","team":"BAL","adp":131.0,"espn":172,"sleeper":115.0,"fp":121.0,"walter":158,"tier":"Late"},{"name":"Dallas Goedert","pos":"TE","team":"PHI","adp":134.0,"espn":176,"sleeper":119.0,"fp":124.0,"walter":165,"tier":"Late"},{"name":"Justin Tucker","pos":"K","team":"BAL","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":170,"tier":"K"},{"name":"Harrison Butker","pos":"K","team":"KC","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":174,"tier":"K"},{"name":"Jake Moody","pos":"K","team":"SF","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":178,"tier":"K"},{"name":"Chris Boswell","pos":"K","team":"PIT","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":182,"tier":"K"},{"name":"Younghoe Koo","pos":"K","team":"ATL","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":186,"tier":"K"},{"name":"Cameron Dicker","pos":"K","team":"LAC","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":190,"tier":"K"},{"name":"Jason Sanders","pos":"K","team":"MIA","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":194,"tier":"K"},{"name":"Brandon McManus","pos":"K","team":"GB","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":198,"tier":"K"},{"name":"Matt Gay","pos":"K","team":"IND","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":202,"tier":"K"},{"name":"Wil Lutz","pos":"K","team":"DEN","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":206,"tier":"K"},{"name":"Joey Slye","pos":"K","team":"NE","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":210,"tier":"K"},{"name":"Cairo Santos","pos":"K","team":"CHI","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":214,"tier":"K"},{"name":"C.J. Stroud","pos":"QB","team":"HOU","adp":138,"espn":186,"sleeper":127,"fp":135,"walter":159,"tier":"Bench"},{"name":"Anthony Richardson","pos":"QB","team":"IND","adp":144,"espn":194,"sleeper":132,"fp":141,"walter":166,"tier":"Bench"},{"name":"Jared Goff","pos":"QB","team":"DET","adp":150,"espn":202,"sleeper":138,"fp":147,"walter":172,"tier":"Bench"},{"name":"Sam Darnold","pos":"QB","team":"SEA","adp":156,"espn":211,"sleeper":144,"fp":153,"walter":179,"tier":"Bench"},{"name":"Geno Smith","pos":"QB","team":"LV","adp":162,"espn":219,"sleeper":149,"fp":159,"walter":186,"tier":"Bench"},{"name":"Dak Prescott","pos":"QB","team":"DAL","adp":168,"espn":227,"sleeper":155,"fp":165,"walter":193,"tier":"Bench"},{"name":"Tua Tagovailoa","pos":"QB","team":"MIA","adp":174,"espn":235,"sleeper":160,"fp":171,"walter":200,"tier":"Bench"},{"name":"Brock Purdy","pos":"QB","team":"SF","adp":180,"espn":243,"sleeper":166,"fp":176,"walter":207,"tier":"Bench"},{"name":"Aaron Rodgers","pos":"QB","team":"PIT","adp":186,"espn":251,"sleeper":171,"fp":182,"walter":214,"tier":"Bench"},{"name":"Jordan Love","pos":"QB","team":"GB","adp":198,"espn":267,"sleeper":182,"fp":194,"walter":228,"tier":"Bench"},{"name":"Justice Hill","pos":"RB","team":"BAL","adp":95,"espn":128,"sleeper":87,"fp":93,"walter":109,"tier":"Bench"},{"name":"Jaylen Warren","pos":"RB","team":"PIT","adp":101.2,"espn":137,"sleeper":93,"fp":99,"walter":116,"tier":"Bench"},{"name":"Tyler Allgeier","pos":"RB","team":"ATL","adp":107.4,"espn":145,"sleeper":99,"fp":105,"walter":124,"tier":"Bench"},{"name":"Alexander Mattison","pos":"RB","team":"MIA","adp":113.6,"espn":153,"sleeper":105,"fp":111,"walter":131,"tier":"Bench"},{"name":"Rachaad White","pos":"RB","team":"TB","adp":119.8,"espn":162,"sleeper":110,"fp":117,"walter":138,"tier":"Bench"},{"name":"Zack Moss","pos":"RB","team":"CIN","adp":126.0,"espn":170,"sleeper":116,"fp":123,"walter":145,"tier":"Bench"},{"name":"Chuba Hubbard","pos":"RB","team":"CAR","adp":132.2,"espn":178,"sleeper":122,"fp":130,"walter":152,"tier":"Bench"},{"name":"Braelon Allen","pos":"RB","team":"NYJ","adp":138.4,"espn":187,"sleeper":127,"fp":136,"walter":159,"tier":"Bench"},{"name":"Ray Davis","pos":"RB","team":"BUF","adp":144.6,"espn":195,"sleeper":133,"fp":142,"walter":166,"tier":"Bench"},{"name":"Jerome Ford","pos":"RB","team":"CLE","adp":150.8,"espn":204,"sleeper":139,"fp":148,"walter":173,"tier":"Bench"},{"name":"Tyjae Spears","pos":"RB","team":"TEN","adp":157.0,"espn":212,"sleeper":144,"fp":154,"walter":181,"tier":"Bench"},{"name":"Zamir White","pos":"RB","team":"LV","adp":163.2,"espn":220,"sleeper":150,"fp":160,"walter":188,"tier":"Bench"},{"name":"Roschon Johnson","pos":"RB","team":"CHI","adp":169.4,"espn":229,"sleeper":156,"fp":166,"walter":195,"tier":"Bench"},{"name":"Antonio Gibson","pos":"RB","team":"NE","adp":175.6,"espn":237,"sleeper":162,"fp":172,"walter":202,"tier":"Bench"},{"name":"Miles Sanders","pos":"RB","team":"DAL","adp":181.8,"espn":245,"sleeper":167,"fp":178,"walter":209,"tier":"Bench"},{"name":"Ty Chandler","pos":"RB","team":"MIN","adp":188.0,"espn":254,"sleeper":173,"fp":184,"walter":216,"tier":"Bench"},{"name":"Elijah Mitchell","pos":"RB","team":"SF","adp":194.2,"espn":262,"sleeper":179,"fp":190,"walter":223,"tier":"Bench"},{"name":"Jaylen Wright","pos":"RB","team":"MIA","adp":200.4,"espn":271,"sleeper":184,"fp":196,"walter":230,"tier":"Bench"},{"name":"Blake Corum","pos":"RB","team":"LAR","adp":206.6,"espn":279,"sleeper":190,"fp":202,"walter":238,"tier":"Bench"},{"name":"MarShawn Lloyd","pos":"RB","team":"GB","adp":212.8,"espn":287,"sleeper":196,"fp":209,"walter":245,"tier":"Bench"},{"name":"Isaac Guerendo","pos":"RB","team":"SF","adp":219.0,"espn":296,"sleeper":201,"fp":215,"walter":252,"tier":"Bench"},{"name":"Devin Singletary","pos":"RB","team":"NYG","adp":225.2,"espn":304,"sleeper":207,"fp":221,"walter":259,"tier":"Bench"},{"name":"Rico Dowdle","pos":"RB","team":"CAR","adp":231.4,"espn":312,"sleeper":213,"fp":227,"walter":266,"tier":"Bench"},{"name":"Jerry Jeudy","pos":"WR","team":"CLE","adp":95,"espn":128,"sleeper":87,"fp":93,"walter":109,"tier":"Bench"},{"name":"Christian Kirk","pos":"WR","team":"HOU","adp":100.6,"espn":136,"sleeper":93,"fp":99,"walter":116,"tier":"Bench"},{"name":"Diontae Johnson","pos":"WR","team":"CLE","adp":106.2,"espn":143,"sleeper":98,"fp":104,"walter":122,"tier":"Bench"},{"name":"Calvin Ridley","pos":"WR","team":"TEN","adp":111.8,"espn":151,"sleeper":103,"fp":110,"walter":129,"tier":"Bench"},{"name":"Keenan Allen","pos":"WR","team":"IND","adp":117.4,"espn":158,"sleeper":108,"fp":115,"walter":135,"tier":"Bench"},{"name":"Michael Pittman Jr.","pos":"WR","team":"IND","adp":128.6,"espn":174,"sleeper":118,"fp":126,"walter":148,"tier":"Bench"},{"name":"Jakobi Meyers","pos":"WR","team":"JAX","adp":134.2,"espn":181,"sleeper":123,"fp":132,"walter":154,"tier":"Bench"},{"name":"Jauan Jennings","pos":"WR","team":"SF","adp":139.8,"espn":189,"sleeper":129,"fp":137,"walter":161,"tier":"Bench"},{"name":"Xavier Worthy","pos":"WR","team":"KC","adp":145.4,"espn":196,"sleeper":134,"fp":142,"walter":167,"tier":"Bench"},{"name":"Ricky Pearsall","pos":"WR","team":"SF","adp":151.0,"espn":204,"sleeper":139,"fp":148,"walter":174,"tier":"Bench"},{"name":"Rashid Shaheed","pos":"WR","team":"NO","adp":156.6,"espn":211,"sleeper":144,"fp":153,"walter":180,"tier":"Bench"},{"name":"Josh Downs","pos":"WR","team":"IND","adp":162.2,"espn":219,"sleeper":149,"fp":159,"walter":187,"tier":"Bench"},{"name":"Wan'Dale Robinson","pos":"WR","team":"NYG","adp":167.8,"espn":227,"sleeper":154,"fp":164,"walter":193,"tier":"Bench"},{"name":"Khalil Shakir","pos":"WR","team":"BUF","adp":173.4,"espn":234,"sleeper":160,"fp":170,"walter":199,"tier":"Bench"},{"name":"Romeo Doubs","pos":"WR","team":"GB","adp":179.0,"espn":242,"sleeper":165,"fp":175,"walter":206,"tier":"Bench"},{"name":"Christian Watson","pos":"WR","team":"GB","adp":184.6,"espn":249,"sleeper":170,"fp":181,"walter":212,"tier":"Bench"},{"name":"Jayden Reed","pos":"WR","team":"GB","adp":190.2,"espn":257,"sleeper":175,"fp":186,"walter":219,"tier":"Bench"},{"name":"Jordan Addison","pos":"WR","team":"MIN","adp":195.8,"espn":264,"sleeper":180,"fp":192,"walter":225,"tier":"Bench"},{"name":"Marquise Brown","pos":"WR","team":"KC","adp":201.4,"espn":272,"sleeper":185,"fp":197,"walter":232,"tier":"Bench"},{"name":"Curtis Samuel","pos":"WR","team":"BUF","adp":207.0,"espn":279,"sleeper":190,"fp":203,"walter":238,"tier":"Bench"},{"name":"Darnell Mooney","pos":"WR","team":"ATL","adp":212.6,"espn":287,"sleeper":196,"fp":208,"walter":244,"tier":"Bench"},{"name":"Elijah Moore","pos":"WR","team":"CLE","adp":218.2,"espn":295,"sleeper":201,"fp":214,"walter":251,"tier":"Bench"},{"name":"Demario Douglas","pos":"WR","team":"NE","adp":223.8,"espn":302,"sleeper":206,"fp":219,"walter":257,"tier":"Bench"},{"name":"Skyy Moore","pos":"WR","team":"KC","adp":229.4,"espn":310,"sleeper":211,"fp":225,"walter":264,"tier":"Bench"},{"name":"Dontayvion Wicks","pos":"WR","team":"GB","adp":235.0,"espn":317,"sleeper":216,"fp":230,"walter":270,"tier":"Bench"},{"name":"Alec Pierce","pos":"WR","team":"IND","adp":240.6,"espn":325,"sleeper":221,"fp":236,"walter":277,"tier":"Bench"},{"name":"Michael Wilson","pos":"WR","team":"ARI","adp":246.2,"espn":332,"sleeper":227,"fp":241,"walter":283,"tier":"Bench"},{"name":"Cole Kmet","pos":"TE","team":"CHI","adp":158,"espn":213,"sleeper":145,"fp":155,"walter":182,"tier":"Bench"},{"name":"David Njoku","pos":"TE","team":"CLE","adp":166,"espn":224,"sleeper":153,"fp":163,"walter":191,"tier":"Bench"},{"name":"Pat Freiermuth","pos":"TE","team":"PIT","adp":174,"espn":235,"sleeper":160,"fp":171,"walter":200,"tier":"Bench"},{"name":"Jake Ferguson","pos":"TE","team":"DAL","adp":182,"espn":246,"sleeper":167,"fp":178,"walter":209,"tier":"Bench"},{"name":"Hunter Henry","pos":"TE","team":"NE","adp":190,"espn":256,"sleeper":175,"fp":186,"walter":218,"tier":"Bench"},{"name":"Isaiah Likely","pos":"TE","team":"BAL","adp":198,"espn":267,"sleeper":182,"fp":194,"walter":228,"tier":"Bench"},{"name":"Juwan Johnson","pos":"TE","team":"NO","adp":206,"espn":278,"sleeper":190,"fp":202,"walter":237,"tier":"Bench"},{"name":"Noah Fant","pos":"TE","team":"CIN","adp":214,"espn":289,"sleeper":197,"fp":210,"walter":246,"tier":"Bench"},{"name":"Cade Otton","pos":"TE","team":"TB","adp":222,"espn":300,"sleeper":204,"fp":218,"walter":255,"tier":"Bench"},{"name":"Tutu Atwell","pos":"WR","team":"LAR","adp":250,"espn":330,"sleeper":225,"fp":242,"walter":280,"tier":"Waiver"},{"name":"Josh Palmer","pos":"WR","team":"LAC","adp":255.6,"espn":337,"sleeper":230,"fp":248,"walter":286,"tier":"Waiver"},{"name":"Kendrick Bourne","pos":"WR","team":"SF","adp":261.2,"espn":345,"sleeper":235,"fp":253,"walter":293,"tier":"Waiver"},{"name":"Tyler Lockett","pos":"WR","team":"LV","adp":266.8,"espn":352,"sleeper":240,"fp":259,"walter":299,"tier":"Waiver"},{"name":"Mecole Hardman Jr.","pos":"WR","team":"BUF","adp":278.00000000000006,"espn":367,"sleeper":250,"fp":270,"walter":311,"tier":"Waiver"},{"name":"Allen Lazard","pos":"WR","team":"NYJ","adp":289.2000000000001,"espn":382,"sleeper":260,"fp":281,"walter":324,"tier":"Waiver"},{"name":"Tim Patrick","pos":"WR","team":"DET","adp":294.8000000000001,"espn":389,"sleeper":265,"fp":286,"walter":330,"tier":"Waiver"},{"name":"Nelson Agholor","pos":"WR","team":"BAL","adp":300.40000000000015,"espn":397,"sleeper":270,"fp":291,"walter":336,"tier":"Waiver"},{"name":"Andrei Iosivas","pos":"WR","team":"CIN","adp":306.00000000000017,"espn":404,"sleeper":275,"fp":297,"walter":343,"tier":"Waiver"},{"name":"Jalen Tolbert","pos":"WR","team":"DAL","adp":311.6000000000002,"espn":411,"sleeper":280,"fp":302,"walter":349,"tier":"Waiver"},{"name":"KaVontae Turpin","pos":"WR","team":"DAL","adp":317.2000000000002,"espn":419,"sleeper":285,"fp":308,"walter":355,"tier":"Waiver"},{"name":"Kalif Raymond","pos":"WR","team":"DET","adp":322.80000000000024,"espn":426,"sleeper":291,"fp":313,"walter":362,"tier":"Waiver"},{"name":"Trey Palmer","pos":"WR","team":"TB","adp":328.40000000000026,"espn":433,"sleeper":296,"fp":319,"walter":368,"tier":"Waiver"},{"name":"Jalen Coker","pos":"WR","team":"CAR","adp":334.0000000000003,"espn":441,"sleeper":301,"fp":324,"walter":374,"tier":"Waiver"},{"name":"Xavier Legette","pos":"WR","team":"CAR","adp":339.6000000000003,"espn":448,"sleeper":306,"fp":329,"walter":380,"tier":"Waiver"},{"name":"Ja'Lynn Polk","pos":"WR","team":"NE","adp":345.20000000000033,"espn":456,"sleeper":311,"fp":335,"walter":387,"tier":"Waiver"},{"name":"Malachi Corley","pos":"WR","team":"NYJ","adp":350.80000000000035,"espn":463,"sleeper":316,"fp":340,"walter":393,"tier":"Waiver"},{"name":"Adonai Mitchell","pos":"WR","team":"IND","adp":356.4000000000004,"espn":470,"sleeper":321,"fp":346,"walter":399,"tier":"Waiver"},{"name":"Samaje Perine","pos":"RB","team":"KC","adp":241.2,"espn":318,"sleeper":217,"fp":234,"walter":270,"tier":"Waiver"},{"name":"Cam Akers","pos":"RB","team":"MIN","adp":247.39999999999998,"espn":327,"sleeper":223,"fp":240,"walter":277,"tier":"Waiver"},{"name":"Gus Edwards","pos":"RB","team":"LAC","adp":253.59999999999997,"espn":335,"sleeper":228,"fp":246,"walter":284,"tier":"Waiver"},{"name":"AJ Dillon","pos":"RB","team":"PHI","adp":259.79999999999995,"espn":343,"sleeper":234,"fp":252,"walter":291,"tier":"Waiver"},{"name":"Ameer Abdullah","pos":"RB","team":"LV","adp":265.99999999999994,"espn":351,"sleeper":239,"fp":258,"walter":298,"tier":"Waiver"},{"name":"Kenneth Gainwell","pos":"RB","team":"TB","adp":272.19999999999993,"espn":359,"sleeper":245,"fp":264,"walter":305,"tier":"Waiver"},{"name":"Tyler Badie","pos":"RB","team":"DEN","adp":278.3999999999999,"espn":367,"sleeper":251,"fp":270,"walter":312,"tier":"Waiver"},{"name":"Emari Demercado","pos":"RB","team":"ARI","adp":284.5999999999999,"espn":376,"sleeper":256,"fp":276,"walter":319,"tier":"Waiver"},{"name":"Sean Tucker","pos":"RB","team":"TB","adp":290.7999999999999,"espn":384,"sleeper":262,"fp":282,"walter":326,"tier":"Waiver"},{"name":"Michael Penix Jr.","pos":"QB","team":"ATL","adp":205,"espn":271,"sleeper":184,"fp":199,"walter":230,"tier":"Waiver"},{"name":"J.J. McCarthy","pos":"QB","team":"MIN","adp":211,"espn":279,"sleeper":190,"fp":205,"walter":236,"tier":"Waiver"},{"name":"Cameron Ward","pos":"QB","team":"TEN","adp":217,"espn":286,"sleeper":195,"fp":210,"walter":243,"tier":"Waiver"},{"name":"Will Levis","pos":"QB","team":"TEN","adp":223,"espn":294,"sleeper":201,"fp":216,"walter":250,"tier":"Waiver"},{"name":"Tyler Shough","pos":"QB","team":"NO","adp":229,"espn":302,"sleeper":206,"fp":222,"walter":256,"tier":"Waiver"},{"name":"Theo Johnson","pos":"TE","team":"NYG","adp":230,"espn":304,"sleeper":207,"fp":223,"walter":258,"tier":"Waiver"},{"name":"Ben Sinnott","pos":"TE","team":"WSH","adp":238,"espn":314,"sleeper":214,"fp":231,"walter":267,"tier":"Waiver"},{"name":"Brenton Strange","pos":"TE","team":"JAX","adp":246,"espn":325,"sleeper":221,"fp":239,"walter":276,"tier":"Waiver"},{"name":"Luke Musgrave","pos":"TE","team":"GB","adp":254,"espn":335,"sleeper":229,"fp":246,"walter":284,"tier":"Waiver"},{"name":"Chig Okonkwo","pos":"TE","team":"TEN","adp":262,"espn":346,"sleeper":236,"fp":254,"walter":293,"tier":"Waiver"},{"name":"Broncos D/ST","pos":"DEF","team":"DEN","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":215,"tier":"DEF"},{"name":"Eagles D/ST","pos":"DEF","team":"PHI","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":218,"tier":"DEF"},{"name":"Steelers D/ST","pos":"DEF","team":"PIT","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":222,"tier":"DEF"},{"name":"Vikings D/ST","pos":"DEF","team":"MIN","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":226,"tier":"DEF"},{"name":"Texans D/ST","pos":"DEF","team":"HOU","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":229,"tier":"DEF"},{"name":"Ravens D/ST","pos":"DEF","team":"BAL","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":233,"tier":"DEF"},{"name":"Chargers D/ST","pos":"DEF","team":"LAC","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":237,"tier":"DEF"},{"name":"Packers D/ST","pos":"DEF","team":"GB","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":241,"tier":"DEF"},{"name":"Lions D/ST","pos":"DEF","team":"DET","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":244,"tier":"DEF"},{"name":"49ers D/ST","pos":"DEF","team":"SF","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":248,"tier":"DEF"},{"name":"Chiefs D/ST","pos":"DEF","team":"KC","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":252,"tier":"DEF"},{"name":"Bills D/ST","pos":"DEF","team":"BUF","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":256,"tier":"DEF"},{"name":"Seahawks D/ST","pos":"DEF","team":"SEA","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":259,"tier":"DEF"},{"name":"Jets D/ST","pos":"DEF","team":"NYJ","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":263,"tier":"DEF"},{"name":"Colts D/ST","pos":"DEF","team":"IND","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":267,"tier":"DEF"},{"name":"Bengals D/ST","pos":"DEF","team":"CIN","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":271,"tier":"DEF"},{"name":"Buccaneers D/ST","pos":"DEF","team":"TB","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":274,"tier":"DEF"},{"name":"Cardinals D/ST","pos":"DEF","team":"ARI","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":278,"tier":"DEF"},{"name":"Browns D/ST","pos":"DEF","team":"CLE","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":282,"tier":"DEF"},{"name":"Rams D/ST","pos":"DEF","team":"LAR","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":286,"tier":"DEF"},{"name":"Cowboys D/ST","pos":"DEF","team":"DAL","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":289,"tier":"DEF"},{"name":"Falcons D/ST","pos":"DEF","team":"ATL","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":293,"tier":"DEF"},{"name":"Commanders D/ST","pos":"DEF","team":"WSH","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":297,"tier":"DEF"},{"name":"Patriots D/ST","pos":"DEF","team":"NE","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":301,"tier":"DEF"},{"name":"Dolphins D/ST","pos":"DEF","team":"MIA","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":304,"tier":"DEF"},{"name":"Bears D/ST","pos":"DEF","team":"CHI","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":308,"tier":"DEF"},{"name":"Saints D/ST","pos":"DEF","team":"NO","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":312,"tier":"DEF"},{"name":"Jaguars D/ST","pos":"DEF","team":"JAX","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":315,"tier":"DEF"},{"name":"Panthers D/ST","pos":"DEF","team":"CAR","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":319,"tier":"DEF"},{"name":"Giants D/ST","pos":"DEF","team":"NYG","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":323,"tier":"DEF"},{"name":"Titans D/ST","pos":"DEF","team":"TEN","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":327,"tier":"DEF"},{"name":"Raiders D/ST","pos":"DEF","team":"LV","adp":null,"espn":999,"sleeper":999,"fp":999,"walter":330,"tier":"DEF"}];
 
@@ -681,6 +544,7 @@ function weekMatchupLabel(p,week){
 }
 
 function projPts(p){
+  const meta=DATA.find(x=>normalizeName(x.name)===normalizeName(p?.name||""))||{};
   if(Number.isFinite(Number(p?.fpProj))&&p?.fpProjectionWeek===plannerWeek&&p?.fpProjectionSource==="FantasyPros")return Number(p.fpProj);
   const base={QB:20.0,RB:18.5,WR:17.5,TE:14.0,DEF:7.0,K:9.0}[p.pos]||10;
   // Fallback must use embedded expert ranks when available. The prior v25 fallback treated roster
@@ -2710,13 +2574,12 @@ if('serviceWorker' in navigator && location.protocol.startsWith('http')){
   window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=29.0',{scope:'./'}).catch(()=>{}));
 }
 </script>
-
 <script id="dcc-v25-core">
 /* Draft Command Center v25.2 — Ultimate Fantasy Football Toolkit
    Manual league-of-record. FantasyPros is projection/expert layer. No ESPN dependency. */
-const DCC_V25_VERSION="34.0";
+const DCC_V25_VERSION="35.0";
 const DCC_FLEX_ELIGIBLE=["RB","WR","TE"];
-const DCC_STATE_VERSION=253;
+const DCC_STATE_VERSION=254;
 const DCC_PROJECTION_MAX_AGE_MS=6*60*60*1000;
 const DCC_HEALTH_KEY="dcc_v25_health";
 const DCC_SNAPSHOT_KEY="dcc_v25_snapshots";
@@ -2819,7 +2682,6 @@ function dccInit(){dccLoadConfig();dccApplyConfigToRuntime();const raw=localStor
 const _oldRenderV25=window.render;window.render=function(){_oldRenderV25?.apply(this,arguments);try{renderManager();renderRosters();renderPlanner();renderMatchup();renderLeagueAnalyzer();renderSuggestedTrades();renderTierList();renderWaivers();dccRenderHealth();setTimeout(dccAddDetailButtons,0)}catch(e){console.warn("v25 render",e)}};
 setTimeout(dccInit,50);
 </script>
-
 <script id="dcc-v25-polish">
 /* v25 polish: migration, transaction audit, no fake fantasy schedule, mobile-safe error/update banner */
 function dccMigrateLegacy(){
@@ -2849,14 +2711,14 @@ function dccBoot(){
 }
 setTimeout(dccBoot,120);
 </script>
-<script id="dcc-v34-live-engine">
-/* DCC v34 Mobile-First Live Data Engine — free-first, mobile/GitHub Pages friendly.
+<script id="dcc-v35-live-engine">
+/* DCC v35 Mobile-First Live Data Engine — free-first, mobile/GitHub Pages friendly.
    Sources: Sleeper public API for player/team/injury/trending data; ESPN public
    fantasy API for league state + weekly projections/live scoring when accessible.
    FantasyPros remains optional last-resort only. */
 (function(){
-  const KEY="dcc_v34_live_engine";
-  const VERSION="34.0.0";
+  const KEY="dcc_v35_live_engine";
+  const VERSION="35.0.0";
   const SLEEPER_BASE="https://api.sleeper.app/v1";
   const ESPN_BASE="https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/segments/0/leagues";
   const AUTO_MS=10*60*1000; // retained for optional manual user-enabled refresh
@@ -2869,7 +2731,7 @@ setTimeout(dccBoot,120);
     sleeper:{status:"never"},espn:{status:"never"},projection:{},liveScoring:{},
     currentWeek:null,autoRefresh:false,lastError:""
   },stored);
-  // v34 deliberately disables background ESPN polling after upgrading from older builds.
+  // v35 deliberately disables background ESPN polling after upgrading from older builds.
   // A user can re-enable Auto Refresh manually; bridge sync itself is always explicit.
   if(String(stored.version||"")!==VERSION){state.autoRefresh=false;state.version=VERSION;try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
   let timer=null, busy=false;
@@ -2900,26 +2762,10 @@ setTimeout(dccBoot,120);
     const settings=document.getElementById("dccLeagueConfigCard");
     if(settings&&!document.getElementById("dccLiveEngineCard")){
       const card=document.createElement("div");card.className="card setting";card.id="dccLiveEngineCard";card.style.gridColumn="1/-1";
-      card.innerHTML=`<div class="sectionhead"><div><h2>⚡ Live Data Engine <span class="dcc-source">FREE-FIRST</span></h2><p>DCC now prioritizes free/public live sources. FantasyPros API is not required and is intentionally kept as a last resort.</p></div><button class="primary" id="dccRefreshAll">REFRESH ALL</button></div>
-      <div class="dcc-alert good" id="dccLiveSummary">Loading live-data status…</div>
-      <div class="dcc-grid2" style="margin-top:10px">
-        <div class="dcc-alert"><b>🏈 Sleeper public data</b><br><span class="dcc-small">Active NFL player/team assignments, injury status, trending adds/drops. No login or API key.</span><div class="persistbar"><button class="secondary" id="dccSleeperSync">SYNC SLEEPER</button><span class="dcc-pill" id="dccSleeperStatus">Never</span></div></div>
-        <div class="dcc-alert"><b>📊 ESPN league data</b><br><span class="dcc-small">DCC attempts the ESPN read APIs directly from this device using the browser session. No desktop bridge or extension is required.</span><div class="formrow"><label>ESPN League ID</label><input class="input" id="dccEspnLeagueId" placeholder="e.g. 1770371260"></div><div class="formrow"><label>Your ESPN Team ID</label><input class="input" id="dccEspnTeamId" placeholder="e.g. 1"></div><div class="formrow"><label>ESPN League URL (optional)</label><input class="input" id="dccEspnLeagueUrl" placeholder="Paste ESPN league URL"></div><div class="persistbar"><button class="secondary" id="dccEspnSync">SYNC ESPN</button><span class="dcc-pill" id="dccEspnStatus">Never</span></div><p class="dcc-small" style="margin-top:8px">DCC never asks you to paste your ESPN password or session cookies. The app uses the browser session when the mobile browser permits authenticated ESPN requests.</p></div>
-      </div>
-      <div class="dcc-grid2" style="margin-top:10px">
-        <div class="dcc-alert"><b>🎯 Weekly projections</b><br><span class="dcc-small">Priority: ESPN weekly PPR projections → DCC estimate. A projection is never labeled LIVE unless a fresh ESPN feed actually supplied it.</span><div class="persistbar"><span class="dcc-pill" id="dccProjectionStatus">No live projection cache</span></div></div>
-        <div class="dcc-alert"><b>🔴 Live scoring</b><br><span class="dcc-small">During active games, ESPN live scoring can refresh current points and live projected totals when league data is available.</span><div class="persistbar"><span class="dcc-pill" id="dccLiveScoreStatus">Never</span></div></div>
-      </div>
-      <div class="persistbar" style="margin-top:10px"><label class="dcc-pill"><input type="checkbox" id="dccAutoRefresh" style="margin-right:6px"> Auto-refresh while app is open</label><span class="dcc-small">Normal refresh: 10 min · live scoring: up to 60 sec · refreshes again when app returns to foreground.</span></div>
-      <div class="dcc-small" style="margin-top:8px">If ESPN returns 401/403, the browser is not permitting the authenticated session to be reused by the GitHub Pages app. DCC keeps working from its last local snapshot and clearly marks the ESPN feed as unavailable.</div>`;
-      settings.parentNode.insertBefore(card,settings.nextSibling);
+      card.innerHTML=`<div class="sectionhead"><div><h2>🔗 ESPN Connection</h2><p>Sync your signed-in ESPN league through the Orion Bridge. DCC stores the latest league snapshot locally on this device.</p></div><button class="primary" id="dccBridgeRefresh">SYNC ESPN</button></div><div class="dcc-alert good" id="dccLiveSummary">ESPN Bridge ready.</div><div class="dcc-grid3" style="margin-top:10px"><div class="dcc-alert"><b>League</b><br><span id="dccEspnStatus">Not synced</span></div><div class="dcc-alert"><b>Rosters</b><br><span id="dccRosterSyncStatus">Waiting</span></div><div class="dcc-alert"><b>Projections</b><br><span id="dccProjectionStatus">ESPN when supplied</span></div></div>`;settings.parentNode.insertBefore(card,settings.nextSibling);
     }
-    const mgr=document.getElementById("page-manager");
-    if(mgr&&!document.getElementById("dccLiveStrip")){
-      const strip=document.createElement("div");strip.id="dccLiveStrip";strip.className="sync-strip";strip.style.marginTop="10px";
-      strip.innerHTML=`<div><b id="dccLiveStripTitle">⚡ LIVE DATA ENGINE</b><span id="dccLiveStripText">Checking current data sources…</span></div><button class="secondary btnsm" id="dccManagerRefresh">REFRESH</button>`;
-      const first=mgr.querySelector(".sync-strip");if(first)first.insertAdjacentElement("afterend",strip);else mgr.insertBefore(strip,mgr.firstChild);
-    }
+    const b=document.getElementById("dccBridgeRefresh"); if(b&&!b.__bound){b.__bound=true;b.onclick=()=>{window.postMessage({source:"DCC_ESPN_BRIDGE_V35",type:"ESPN_SYNC_REQUEST"},"*");showToast("ESPN sync requested");};}
+    const mgr=document.getElementById("page-manager"); if(mgr&&!document.getElementById("dccLiveStrip")){const strip=document.createElement("div");strip.id="dccLiveStrip";strip.className="sync-strip";strip.style.marginTop="10px";strip.innerHTML=`<div><b>⚡ ESPN DATA</b><span id="dccLiveStripText">Waiting for ESPN sync</span></div><button class="secondary btnsm">SYNC ESPN</button>`;mgr.insertBefore(strip,mgr.firstChild);strip.querySelector("button").onclick=()=>window.postMessage({source:"DCC_ESPN_BRIDGE_V35",type:"ESPN_SYNC_REQUEST"},"*");}
   }
   function renderUI(){
     injectUI();updateUrlFields();
@@ -2983,6 +2829,21 @@ setTimeout(dccBoot,120);
     const out={pointsByName:{},projectedByName:{},teams:{}};const sched=payload?.schedule||[];
     sched.forEach(m=>[m.home,m.away].forEach(side=>{if(!side)return;const tid=Number(side.teamId);if(Number.isInteger(tid))out.teams[tid]={points:Number(side.totalPoints)||0,projected:Number(side.totalProjectedPointsLive)||0};(side.rosterForCurrentScoringPeriod?.entries||[]).forEach(en=>{const p=en.playerPoolEntry?.player||en.player;const name=p?.fullName||[p?.firstName,p?.lastName].filter(Boolean).join(" ");if(!name)return;const actual=Number(en.appliedStatTotal??en.playerPoolEntry?.appliedStatTotal);if(Number.isFinite(actual))out.pointsByName[normalizeName(name)]=actual;const stats=en.playerPoolEntry?.stats||[];const proj=stats.find(s=>Number(s.statTypeId)===2&&Number(s.scoringPeriodId)===getWeek());if(Number.isFinite(Number(proj?.appliedTotal)))out.projectedByName[normalizeName(name)]=Number(proj.appliedTotal)})}));return out;
   }
+  window.__dccApplyESPNBridgePayload=function(n){
+    try{
+      const week=Math.max(1,Math.min(18,Number(n?.scoringPeriodId||n?.league?.scoringPeriodId||plannerWeek||1)));
+      const lg=n?.league||{}; const incoming=Array.isArray(lg.teams)?lg.teams:[];
+      if(!incoming.length)throw new Error("ESPN bridge payload contains no teams");
+      const raw={teams:incoming.map((t,i)=>({id:Number(t.espnId??t.id??i+1),name:t.name||t.abbrev||`Team ${i+1}`,abbrev:t.abbrev||"",record:t.record?{overall:t.record}:null,roster:{entries:(t.roster||[]).map(p=>({playerId:p.espnId??p.id??null,lineupSlotId:p.lineupSlotId??p.slot??null,playerPoolEntry:{player:{id:p.espnId??p.id??null,fullName:p.name||p.fullName||"Unknown",defaultPositionId:p.positionId??null,defaultPositionText:p.pos||"",proTeamId:p.proTeamId??null,injuryStatus:p.status||""},stats:p.weeklyProj!=null?[{statTypeId:2,scoringPeriodId:week,appliedTotal:Number(p.weeklyProj)}]:[]}}))}})),schedule:Array.isArray(lg.schedule)?lg.schedule:[]};
+      normalizeESPNTeamData(raw,week);
+      const byName={},byId={}; let pc=0;
+      incoming.forEach(t=>(t.roster||[]).forEach(p=>{const v=Number(p.weeklyProj);if(!Number.isFinite(v))return;const nm=normalizeName(p.name||p.fullName||"");if(nm){byName[nm]=v;pc++;}if(p.espnId!=null)byId[String(p.espnId)]=v;}));
+      const now=new Date().toISOString();
+      if(pc>=10){weeklyProjectionData[week]={byName,byId,count:pc,week,scoring:"PPR",source:"ESPN",engine:VERSION,timestamp:now};projectionCacheMeta[week]={source:"ESPN",scoring:"PPR",week,engine:VERSION,timestamp:now};state.projection[week]=projectionCacheMeta[week];state[`projectionData_${week}`]=weeklyProjectionData[week];state.lastProjection=now;}
+      state.currentWeek=week; plannerWeek=week; state.leagueId=String(lg.id||n.leagueId||state.leagueId||""); state.lastESPN=now; state.lastAll=now; state.espn={status:"done",timestamp:now,week,teams:incoming.length,projectionCount:pc,via:"orion-bridge"};
+      save(); render(); renderUI(); return {teams:incoming.length,players:incoming.reduce((a,t)=>a+(t.roster||[]).length,0),projectionCount:pc};
+    }catch(e){console.error("DCC ESPN bridge apply failed",e);throw e;}
+  };
   async function syncESPN({live=false}={}){
     const id=leagueId(); if(!id) throw new Error("Enter your ESPN League ID first.");
     const week=getWeek(); state.currentWeek=week;
@@ -3014,18 +2875,11 @@ setTimeout(dccBoot,120);
   function auto(){if(timer)clearInterval(timer);if(!state.autoRefresh)return;timer=setInterval(()=>{if(document.visibilityState!=="hidden")syncAll(false)},AUTO_MS)}
   document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"){renderUI();}});
   function bind(){
-    injectUI();updateUrlFields();
-    document.getElementById("dccRefreshAll")?.addEventListener("click",()=>syncAll(true));
-    document.getElementById("dccManagerRefresh")?.addEventListener("click",()=>syncAll(true));
-    document.getElementById("dccSleeperSync")?.addEventListener("click",async()=>{try{await syncSleeper();render();renderUI();showToast("Sleeper player/injury data refreshed")}catch(e){showToast(`Sleeper sync failed: ${e.message}`)}});
-    document.getElementById("dccEspnSync")?.addEventListener("click",async()=>{state.leagueId=document.getElementById("dccEspnLeagueId")?.value?.trim()||state.leagueId;state.teamId=document.getElementById("dccEspnTeamId")?.value?.trim()||state.teamId;state.espnLeagueUrl=document.getElementById("dccEspnLeagueUrl")?.value?.trim()||state.espnLeagueUrl;save();try{await syncESPN({live:true});render();renderUI();showToast("ESPN data refreshed") }catch(e){state.espn={status:"error",timestamp:new Date().toISOString(),error:e.message};save();renderUI();showToast(`ESPN sync failed: ${e.message}`)}});
-    ["dccEspnLeagueId","dccEspnTeamId","dccEspnLeagueUrl"].forEach(id=>document.getElementById(id)?.addEventListener("change",()=>{state.leagueId=document.getElementById("dccEspnLeagueId")?.value?.trim()||state.leagueId;state.teamId=document.getElementById("dccEspnTeamId")?.value?.trim()||state.teamId;state.espnLeagueUrl=document.getElementById("dccEspnLeagueUrl")?.value?.trim()||state.espnLeagueUrl;save()}));
-    const ar=document.getElementById("dccAutoRefresh");if(ar){ar.checked=state.autoRefresh!==false;ar.onchange=()=>{state.autoRefresh=ar.checked;save();auto()}}
-    renderUI();auto();
+    injectUI();updateUrlFields();renderUI();
   }
   // Expose a narrow bridge-import hook. It updates the v29 live-data heartbeat
   // without exposing the private ESPN session or the internal state object.
-  window.__dccV34SetESPNBridgeState=function(n,teamCount,playerCount){
+  window.__dccV35SetESPNBridgeState=function(n,teamCount,playerCount){
     try{
       const ts=new Date().toISOString();
       state.lastESPN=ts; state.lastAll=ts;
@@ -3059,9 +2913,8 @@ setTimeout(dccBoot,120);
 })();
 
 </script>
-
 <script id="dcc-v30-espn-bridge-compat">
-/* DCC v34 — ESPN Bridge compatibility layer
+/* DCC v35 — ESPN Bridge compatibility layer
    Accepts the authenticated Orion/Chrome extension's normalized snapshot and
    feeds it into the existing v29 ESPN state pipeline. The bridge never needs
    ESPN cookies in the GitHub Pages app. */
@@ -3072,7 +2925,7 @@ setTimeout(dccBoot,120);
     "DCC_ESPN_BRIDGE_V25",
     "DCC_ESPN_BRIDGE_V30",
     "DCC_ESPN_BRIDGE_V33",
-    "DCC_ESPN_BRIDGE_V34"
+    "DCC_ESPN_BRIDGE_V34","DCC_ESPN_BRIDGE_V35"
   ]);
   let lastReceived=0;
   let lastPayloadFingerprint="";
@@ -3121,31 +2974,21 @@ setTimeout(dccBoot,120);
     }
   }
   function handle(payload){
-    if(!payload)return false;
-    const n=payload.payload&&payload.schema?payload.payload:payload;
-    if(!n?.league?.teams?.length)return false;
-    if(n.schema&&!String(n.schema).toLowerCase().includes("dcc-espn-bridge"))return false;
-    const now=Date.now(); const fp=String(n.fetchedAt||n.lastSync||"")+"|"+String(n.league?.id||n.leagueId||""); if(fp && fp===lastPayloadFingerprint)return true; if(now-lastReceived<500)return true; lastReceived=now; if(fp)lastPayloadFingerprint=fp;
     try{
-      const raw=normalizedToEspnPayload(n);
-      if(typeof normalizeESPNTeamData!="function")throw new Error("DCC ESPN import pipeline is unavailable");
-      const week=Number(n.scoringPeriodId||n.league?.scoringPeriodId||plannerWeek||1);
-      normalizeESPNTeamData(raw,week);
-      try{if(typeof leagueConfig!=="undefined"){leagueConfig.espnTransactions=Array.isArray(n?.league?.transactions)?n.league.transactions:[];}}catch(e){}
-      const teamsLoaded=raw.teams.length;
-      const playersLoaded=raw.teams.reduce((a,t)=>a+(t.roster?.entries?.length||0),0);
-      if(typeof window.__dccV34SetESPNBridgeState==="function")window.__dccV34SetESPNBridgeState(n,teamsLoaded,playersLoaded);
-      if(typeof saveState==="function")saveState();
-      if(typeof render==="function")render();
-      if(typeof renderUI==="function")renderUI();
-      updateBridgeUI(n,teamsLoaded,playersLoaded);
-      toast(`ESPN Bridge sync received — ${teamsLoaded} teams / ${playersLoaded} players`);
+      const parsed=typeof payload==="string"?JSON.parse(payload):payload;
+      const n=parsed?.payload&&parsed?.schema?parsed.payload:parsed;
+      if(!n?.league?.teams?.length)return false;
+      const fp=String(n.fetchedAt||n.lastSync||"")+"|"+String(n.league?.id||n.leagueId||"");
+      if(fp&&fp===lastPayloadFingerprint)return true;
+      lastPayloadFingerprint=fp;
+      if(typeof window.__dccApplyESPNBridgePayload!=="function")throw new Error("DCC ESPN engine not ready");
+      const result=window.__dccApplyESPNBridgePayload(n);
+      const msg=`✓ ESPN Bridge received ${result.teams||0} teams · ${result.players||0} roster players · ${new Date().toLocaleTimeString()}`;
+      ["dccEspnStatus","espnBridgeDiagnosticsV23","espnBridgeDiagnosticsV25"].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=msg});
+      const rs=document.getElementById("dccRosterSyncStatus");if(rs)rs.textContent=`✓ ${result.players||0} players across ${result.teams||0} teams`;
+      const summary=document.getElementById("dccLiveSummary");if(summary)summary.innerHTML=`<b>ESPN synced:</b> ${msg}`;
       return true;
-    }catch(e){
-      console.error("DCC ESPN Bridge import failed",e);
-      toast(`ESPN Bridge import failed: ${e.message||e}`);
-      return false;
-    }
+    }catch(e){console.error("DCC ESPN Bridge import failed",e);toast(`ESPN Bridge import failed: ${e.message||e}`);return false;}
   }
   window.addEventListener("message",e=>{
     if(e.source!==window)return;
@@ -3160,17 +3003,16 @@ setTimeout(dccBoot,120);
     }
   });
   window.addEventListener("load",()=>{
-    window.postMessage({source:"DCC_ESPN_PAGE_V34",type:"ESPN_BRIDGE_READY",requestId:Date.now()},"*");
+    window.postMessage({source:"DCC_ESPN_PAGE_V35",type:"ESPN_BRIDGE_READY",requestId:Date.now()},"*");
   });
 })();
 </script>
-
-<script id="dcc-v34-local-backend">
-/* DCC v34 Local-First Backend
+<script id="dcc-v35-local-backend">
+/* DCC v35 Local-First Backend
    IndexedDB is the durable application store. localStorage remains as a fast
    compatibility cache so older DCC snapshots migrate without losing state. */
 (function(){
-  const DB_NAME="dcc_v34_local_db", STORE="snapshots", VERSION=1;
+  const DB_NAME="dcc_v35_local_db", STORE="snapshots", VERSION=1;
   let dbPromise=null;
   function openDB(){
     if(dbPromise)return dbPromise;
@@ -3187,10 +3029,10 @@ setTimeout(dccBoot,120);
   function readLocal(){try{const raw=localStorage.getItem(STORAGE_KEY);return raw?JSON.parse(raw):null}catch(e){return null}}
   function saveLocalState(){try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)put(JSON.parse(raw));}catch(e){}}
   function hydrate(){get().then(rec=>{if(!rec?.state)return;const local=readLocal();const dbTime=Number(rec.savedAt||0), localTime=Number(local?.savedAt||0);if(dbTime>localTime && typeof applyState==="function"){try{applyState(rec.state);localStorage.setItem(STORAGE_KEY,JSON.stringify(rec.state));render?.();showToast?.("Restored latest local dashboard snapshot");}catch(e){console.warn("DCC DB restore",e)}}}).catch(()=>{});}
-  const boot=()=>{saveLocalState();setTimeout(hydrate,450);};
+  const boot=()=>{setTimeout(hydrate,450);};
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot,{once:true});else boot();
-  setTimeout(()=>{if(typeof window.saveState==="function"&&!window.__dccV34SaveWrapped){const original=window.saveState;window.saveState=function(){try{const r=original.apply(this,arguments);saveLocalState();return r;}catch(e){return original.apply(this,arguments)}};window.__dccV34SaveWrapped=true;}},700);
+  setTimeout(()=>{if(typeof window.saveState==="function"&&!window.__dccV35SaveWrapped){const original=window.saveState;window.saveState=function(){try{const r=original.apply(this,arguments);saveLocalState();return r;}catch(e){return original.apply(this,arguments)}};window.__dccV35SaveWrapped=true;}},700);
 })();
 </script>
-</body>
+<script id="dcc-v35-cache-guard">(()=>{try{if("serviceWorker" in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>{if(r.scope.includes("/draft-command-center/")){r.update().catch(()=>{})}})).catch(()=>{});}if(window.caches)caches.keys().then(keys=>keys.filter(k=>/^dcc-v(2[0-9]|3[0-4])/.test(k)).forEach(k=>caches.delete(k))).catch(()=>{});}catch(e){}})();</script></body>
 </html>
