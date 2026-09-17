@@ -2850,24 +2850,28 @@ function dccBoot(){
 setTimeout(dccBoot,120);
 </script>
 <script id="dcc-v29-live-engine">
-/* DCC v30 Mobile-First Live Data Engine — free-first, mobile/GitHub Pages friendly.
+/* DCC v34 Mobile-First Live Data Engine — free-first, mobile/GitHub Pages friendly.
    Sources: Sleeper public API for player/team/injury/trending data; ESPN public
    fantasy API for league state + weekly projections/live scoring when accessible.
    FantasyPros remains optional last-resort only. */
 (function(){
   const KEY="dcc_v29_live_engine";
-  const VERSION="30.0.0";
+  const VERSION="34.0.0";
   const SLEEPER_BASE="https://api.sleeper.app/v1";
   const ESPN_BASE="https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/segments/0/leagues";
-  const AUTO_MS=10*60*1000;
+  const AUTO_MS=10*60*1000; // retained for optional manual user-enabled refresh
   const LIVE_MS=60*1000;
   const PLAYER_REFRESH_MS=12*60*60*1000;
+  const stored=(()=>{try{return JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){return {}}})();
   const state=Object.assign({
-    version:VERSION, leagueId:"1770371260", teamId:"1", espnLeagueUrl:"",
+    version:VERSION, leagueId:"", teamId:"1", espnLeagueUrl:"",
     lastAll:null,lastSleeper:null,lastESPN:null,lastProjection:null,lastLiveScoring:null,
     sleeper:{status:"never"},espn:{status:"never"},projection:{},liveScoring:{},
-    currentWeek:null,autoRefresh:true,lastError:""
-  },(()=>{try{return JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){return {}}})());
+    currentWeek:null,autoRefresh:false,lastError:""
+  },stored);
+  // v34 deliberately disables background ESPN polling after upgrading from older builds.
+  // A user can re-enable Auto Refresh manually; bridge sync itself is always explicit.
+  if(String(stored.version||"")!==VERSION){state.autoRefresh=false;state.version=VERSION;try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
   let timer=null, busy=false;
 
   function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
@@ -3008,7 +3012,7 @@ setTimeout(dccBoot,120);
     }finally{busy=false;renderUI()}
   }
   function auto(){if(timer)clearInterval(timer);if(!state.autoRefresh)return;timer=setInterval(()=>{if(document.visibilityState!=="hidden")syncAll(false)},AUTO_MS)}
-  document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"){renderUI();syncAll(false)}});
+  document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"){renderUI();}});
   function bind(){
     injectUI();updateUrlFields();
     document.getElementById("dccRefreshAll")?.addEventListener("click",()=>syncAll(true));
@@ -3057,7 +3061,7 @@ setTimeout(dccBoot,120);
 </script>
 
 <script id="dcc-v30-espn-bridge-compat">
-/* DCC v30 — ESPN Bridge compatibility layer
+/* DCC v34 — ESPN Bridge compatibility layer
    Accepts the authenticated Orion/Chrome extension's normalized snapshot and
    feeds it into the existing v29 ESPN state pipeline. The bridge never needs
    ESPN cookies in the GitHub Pages app. */
@@ -3066,9 +3070,12 @@ setTimeout(dccBoot,120);
     "DCC_ESPN_BRIDGE_PAYLOAD",
     "DCC_ESPN_BRIDGE_V23",
     "DCC_ESPN_BRIDGE_V25",
-    "DCC_ESPN_BRIDGE_V30"
+    "DCC_ESPN_BRIDGE_V30",
+    "DCC_ESPN_BRIDGE_V33",
+    "DCC_ESPN_BRIDGE_V34"
   ]);
   let lastReceived=0;
+  let lastPayloadFingerprint="";
   function toast(msg){try{if(typeof showToast==='function')showToast(msg)}catch(e){}}
   function normalizePos(id,text){
     const m={1:"QB",2:"RB",3:"WR",4:"TE",5:"K",16:"DEF"};
@@ -3118,7 +3125,7 @@ setTimeout(dccBoot,120);
     const n=payload.payload&&payload.schema?payload.payload:payload;
     if(!n?.league?.teams?.length)return false;
     if(n.schema&&!String(n.schema).toLowerCase().includes("dcc-espn-bridge"))return false;
-    const now=Date.now(); if(now-lastReceived<500)return true; lastReceived=now;
+    const now=Date.now(); const fp=String(n.fetchedAt||n.lastSync||"")+"|"+String(n.league?.id||n.leagueId||""); if(fp && fp===lastPayloadFingerprint)return true; if(now-lastReceived<500)return true; lastReceived=now; if(fp)lastPayloadFingerprint=fp;
     try{
       const raw=normalizedToEspnPayload(n);
       if(typeof normalizeESPNTeamData!="function")throw new Error("DCC ESPN import pipeline is unavailable");
@@ -3153,13 +3160,13 @@ setTimeout(dccBoot,120);
     }
   });
   window.addEventListener("load",()=>{
-    window.postMessage({source:"DCC_ESPN_PAGE_V30",type:"ESPN_BRIDGE_READY",requestId:Date.now()},"*");
+    window.postMessage({source:"DCC_ESPN_PAGE_V34",type:"ESPN_BRIDGE_READY",requestId:Date.now()},"*");
   });
 })();
 </script>
 
 <script id="dcc-v29-local-backend">
-/* DCC v29 Local-First Backend
+/* DCC v34 Local-First Backend
    IndexedDB is the durable application store. localStorage remains as a fast
    compatibility cache so older DCC snapshots migrate without losing state. */
 (function(){
