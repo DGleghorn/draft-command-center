@@ -8,7 +8,7 @@
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
 <meta content="yes" name="mobile-web-app-capable"/>
 <meta content="#0b1020" name="theme-color"/>
-<title>Draft Command Center v35.0 — Mobile-First Weekly Manager</title>
+<title>Draft Command Center v36.0 — Mobile-First Weekly Manager</title>
 <style>
 :root{--bg:#090d17;--panel:#111827;--panel2:#151e2f;--line:#263249;--text:#f4f7fb;--muted:#91a0b7;--blue:#6d6aff;--cyan:#4dd7ff;--green:#28d7a1;--red:#ff6475;--amber:#f6b94a;--shadow:0 14px 45px rgba(0,0,0,.22)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior-x:none}body{min-width:0}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}input,select,textarea{font-size:16px}
@@ -112,7 +112,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 <div class="app">
 <header class="top">
 <div class="toprow">
-<div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v35.0</span></h1></div></div>
+<div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v36.0</span></h1></div></div>
 <div class="status"><div class="live" title="Mobile Team Manager is fully manual and local-first"><i class="pulse"></i><span id="syncText">MOBILE TEAM MANAGER</span></div></div>
 </div>
 <nav class="nav" id="nav">
@@ -2577,7 +2577,7 @@ if('serviceWorker' in navigator && location.protocol.startsWith('http')){
 <script id="dcc-v25-core">
 /* Draft Command Center v25.2 — Ultimate Fantasy Football Toolkit
    Manual league-of-record. FantasyPros is projection/expert layer. No ESPN dependency. */
-const DCC_V25_VERSION="35.0";
+const DCC_V25_VERSION="36.0";
 const DCC_FLEX_ELIGIBLE=["RB","WR","TE"];
 const DCC_STATE_VERSION=254;
 const DCC_PROJECTION_MAX_AGE_MS=6*60*60*1000;
@@ -2711,14 +2711,14 @@ function dccBoot(){
 }
 setTimeout(dccBoot,120);
 </script>
-<script id="dcc-v35-live-engine">
-/* DCC v35 Mobile-First Live Data Engine — free-first, mobile/GitHub Pages friendly.
+<script id="dcc-v36-live-engine">
+/* DCC v36 Mobile-First Live Data Engine — free-first, mobile/GitHub Pages friendly.
    Sources: Sleeper public API for player/team/injury/trending data; ESPN public
    fantasy API for league state + weekly projections/live scoring when accessible.
    FantasyPros remains optional last-resort only. */
 (function(){
-  const KEY="dcc_v35_live_engine";
-  const VERSION="35.0.0";
+  const KEY="dcc_v36_live_engine";
+  const VERSION="36.0.0";
   const SLEEPER_BASE="https://api.sleeper.app/v1";
   const ESPN_BASE="https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/segments/0/leagues";
   const AUTO_MS=10*60*1000; // retained for optional manual user-enabled refresh
@@ -2841,7 +2841,9 @@ setTimeout(dccBoot,120);
       const now=new Date().toISOString();
       if(pc>=10){weeklyProjectionData[week]={byName,byId,count:pc,week,scoring:"PPR",source:"ESPN",engine:VERSION,timestamp:now};projectionCacheMeta[week]={source:"ESPN",scoring:"PPR",week,engine:VERSION,timestamp:now};state.projection[week]=projectionCacheMeta[week];state[`projectionData_${week}`]=weeklyProjectionData[week];state.lastProjection=now;}
       state.currentWeek=week; plannerWeek=week; state.leagueId=String(lg.id||n.leagueId||state.leagueId||""); state.lastESPN=now; state.lastAll=now; state.espn={status:"done",timestamp:now,week,teams:incoming.length,projectionCount:pc,via:"orion-bridge"};
-      save(); render(); renderUI(); return {teams:incoming.length,players:incoming.reduce((a,t)=>a+(t.roster||[]).length,0),projectionCount:pc};
+      save();
+      try{ if(typeof saveState==="function") saveState(); }catch(e){ console.warn("DCC main state save after ESPN bridge",e); }
+      render(); renderUI(); return {teams:incoming.length,players:incoming.reduce((a,t)=>a+(t.roster||[]).length,0),projectionCount:pc};
     }catch(e){console.error("DCC ESPN bridge apply failed",e);throw e;}
   };
   async function syncESPN({live=false}={}){
@@ -2909,12 +2911,25 @@ setTimeout(dccBoot,120);
   const oldSave=window.saveState;
   window.saveState=function(){try{Object.keys(weeklyProjectionData||{}).forEach(w=>{if(state.projection?.[w]?.source==="ESPN")state[`projectionData_${w}`]=weeklyProjectionData[w]});save()}catch(e){}if(typeof oldSave==="function")oldSave.apply(this,arguments)};
   // The legacy save wrapper above cannot affect the already-initialized v25 boot, so boot this patch after it.
-  setTimeout(()=>{injectUI();bind();renderUI();},180);
+  setTimeout(()=>{
+    try{
+      const raw=localStorage.getItem("dcc_espn_v35_snapshot");
+      if(raw && typeof window.__dccApplyESPNBridgePayload==="function"){
+        const parsed=typeof raw==="string"?JSON.parse(raw):raw;
+        const ageMs=Date.now()-Number(parsed?.fetchedAt||0);
+        if(Number.isFinite(ageMs) && ageMs<24*60*60*1000){
+          window.__dccApplyESPNBridgePayload(parsed);
+          showToast?.("Restored latest ESPN league data");
+        }
+      }
+    }catch(e){console.warn("DCC cached ESPN restore",e)}
+    injectUI();bind();renderUI();
+  },180);
 })();
 
 </script>
-<script id="dcc-v30-espn-bridge-compat">
-/* DCC v35 — ESPN Bridge compatibility layer
+<script id="dcc-v36-espn-bridge-compat">
+/* DCC v36 — ESPN Bridge compatibility layer
    Accepts the authenticated Orion/Chrome extension's normalized snapshot and
    feeds it into the existing v29 ESPN state pipeline. The bridge never needs
    ESPN cookies in the GitHub Pages app. */
@@ -2976,7 +2991,12 @@ setTimeout(dccBoot,120);
   function handle(payload){
     try{
       const parsed=typeof payload==="string"?JSON.parse(payload):payload;
-      const n=parsed?.payload&&parsed?.schema?parsed.payload:parsed;
+      let n=parsed?.payload&&parsed?.schema?parsed.payload:parsed;
+      // Orion v35 sends {league:{id,name}, teams:[...]}; older DCC builds expected teams inside league.
+      // Normalize both shapes here so the dashboard accepts the already-working extension without another extension upload.
+      if(n?.league && !Array.isArray(n.league.teams) && Array.isArray(n.teams)){
+        n={...n,league:{...n.league,teams:n.teams,schedule:n.schedule||n.league.schedule||[],settings:n.settings||n.league.settings||null,transactions:n.transactions||n.league.transactions||[]}};
+      }
       if(!n?.league?.teams?.length)return false;
       const fp=String(n.fetchedAt||n.lastSync||"")+"|"+String(n.league?.id||n.leagueId||"");
       if(fp&&fp===lastPayloadFingerprint)return true;
@@ -3007,12 +3027,12 @@ setTimeout(dccBoot,120);
   });
 })();
 </script>
-<script id="dcc-v35-local-backend">
-/* DCC v35 Local-First Backend
+<script id="dcc-v36-local-backend">
+/* DCC v36 Local-First Backend
    IndexedDB is the durable application store. localStorage remains as a fast
    compatibility cache so older DCC snapshots migrate without losing state. */
 (function(){
-  const DB_NAME="dcc_v35_local_db", STORE="snapshots", VERSION=1;
+  const DB_NAME="dcc_v36_local_db", STORE="snapshots", VERSION=1;
   let dbPromise=null;
   function openDB(){
     if(dbPromise)return dbPromise;
@@ -3034,5 +3054,5 @@ setTimeout(dccBoot,120);
   setTimeout(()=>{if(typeof window.saveState==="function"&&!window.__dccV35SaveWrapped){const original=window.saveState;window.saveState=function(){try{const r=original.apply(this,arguments);saveLocalState();return r;}catch(e){return original.apply(this,arguments)}};window.__dccV35SaveWrapped=true;}},700);
 })();
 </script>
-<script id="dcc-v35-cache-guard">(()=>{try{if("serviceWorker" in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>{if(r.scope.includes("/draft-command-center/")){r.update().catch(()=>{})}})).catch(()=>{});}if(window.caches)caches.keys().then(keys=>keys.filter(k=>/^dcc-v(2[0-9]|3[0-4])/.test(k)).forEach(k=>caches.delete(k))).catch(()=>{});}catch(e){}})();</script></body>
+<script id="dcc-v36-cache-guard">(()=>{try{if("serviceWorker" in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>{if(r.scope.includes("/draft-command-center/")){r.update().catch(()=>{})}})).catch(()=>{});}if(window.caches)caches.keys().then(keys=>keys.filter(k=>/^dcc-v(2[0-9]|3[0-5])/.test(k)).forEach(k=>caches.delete(k))).catch(()=>{});}catch(e){}})();</script></body>
 </html>
