@@ -1,11 +1,12 @@
 {
-  "name": "Draft Command Center v23 \u2014 ESPN Live League Integration",
-  "short_name": "Draft CC v23",
+  "name": "Draft Command Center v30.0 \u2014 Mobile-First Weekly Manager",
+  "short_name": "Draft Command Center",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#080d17",
   "theme_color": "#080d17",
+  "description": "Mobile-first weekly fantasy football manager with ESPN Bridge support.",
   "icons": [
     {
       "src": "./icon-192.png",
