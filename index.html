@@ -8,7 +8,7 @@
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
 <meta content="yes" name="mobile-web-app-capable"/>
 <meta content="#0b1020" name="theme-color"/>
-<title>Draft Command Center v38.0 — Mobile-First Weekly Manager</title>
+<title>Draft Command Center v39.0 — Fantasy Manager Core</title>
 <style>
 :root{--bg:#090d17;--panel:#111827;--panel2:#151e2f;--line:#263249;--text:#f4f7fb;--muted:#91a0b7;--blue:#6d6aff;--cyan:#4dd7ff;--green:#28d7a1;--red:#ff6475;--amber:#f6b94a;--shadow:0 14px 45px rgba(0,0,0,.22)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior-x:none}body{min-width:0}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}input,select,textarea{font-size:16px}
@@ -116,7 +116,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 <div class="status"><div class="live" title="Mobile Team Manager is fully manual and local-first"><i class="pulse"></i><span id="syncText">MOBILE TEAM MANAGER</span></div></div>
 </div>
 <nav class="nav" id="nav">
-<button class="active" data-page="manager">Manager</button><button data-page="rosters">Rosters</button><button data-page="planner">Matchups</button><button data-page="waivers">Waivers</button><button data-page="trade">Trades</button><button data-page="league">Team Analytics</button><button data-page="league-analyzer">League Analyzer</button><button data-page="settings">Settings</button>
+<button class="active" data-page="manager">Home</button><button data-page="rosters">My Team</button><button data-page="planner">Matchup</button><button data-page="waivers">Waivers</button><button data-page="trade">Trades</button><button data-page="league">League</button><button data-page="settings">More</button>
 </nav>
 <div class="stickyclock" id="stickyClock"><span id="stickyClockText">Pick 1 · Round 1</span><div class="stickybar"><i id="stickyClockFill"></i></div></div>
 </header>
@@ -155,29 +155,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 </div>
 <div class="card manager-card section"><div class="sectionhead"><div><h2>🛡️ Toolkit Health</h2><p>Live projection coverage, lineup completeness, injury/bye pressure and league data quality.</p></div></div><div id="mgrHealth"></div></div>
 </section>
-<section id="page-rosters" style="display:none">
-<div class="card panelpad">
-<div class="sectionhead"><div><h2>👥 League Rosters</h2><p>Manage every roster from one screen. Add/drop players throughout the season, rename teams, and keep the manual league record in sync.</p></div><div class="team-switch"><select class="select" id="rosterTeamSelect"></select></div></div>
-<div class="builder-banner"><b>Manual league mode is the source of truth.</b><span>Use the selected team's roster below for waiver adds, drops and ongoing league activity. Every move is logged automatically.</span></div>
-<div class="formrow"><label>Team name</label><input class="input" id="builderTeamName" placeholder="Team name"/><button class="secondary" id="builderTeamNameSave">SAVE TEAM NAME</button></div>
-<div class="builder-search-grid">
-<input autocomplete="off" class="input" id="builderPlayerSearch" placeholder="Search player to add…"/>
-<select class="select" id="builderPlayerPos"><option value="ALL">All positions</option><option value="QB">QB</option><option value="RB">RB</option><option value="WR">WR</option><option value="TE">TE</option><option value="K">K</option><option value="DEF">DEF</option></select>
-</div>
-<div class="builder-results" id="builderPlayerResults"></div>
-</div>
-<div class="card panelpad section">
-<div class="sectionhead"><div><h2 id="builderRosterTitle">Current roster</h2><p>Remove a player to create a waiver/free-agent opening. Add a player above to record a new roster move.</p></div><button class="ghost" id="builderClearTeam">CLEAR TEAM</button></div>
-<div class="builder-roster-grid" id="builderRosterGrid"></div>
-</div>
-<div class="card panelpad section">
-<div class="sectionhead"><div><h2>➕ Add missing/custom player</h2><p>Use this only when the player is not in the current pool.</p></div></div>
-<div class="builder-custom-grid"><input class="input" id="customPlayerName" placeholder="Player name"/><select class="select" id="customPlayerPos"><option>QB</option><option>RB</option><option>WR</option><option>TE</option><option>K</option><option>DEF</option></select><input class="input" id="customPlayerTeam" placeholder="NFL team (e.g. DAL)"/><button class="secondary" id="customPlayerAdd">ADD CUSTOM</button></div>
-</div>
-<div class="card panelpad section"><div class="sectionhead"><div><h2>League completion</h2><p>Track how much of the league you've entered manually.</p></div></div><div id="builderLeagueProgress"></div></div>
-<div class="card panelpad section"><div class="sectionhead"><div><h2>League activity</h2><p>Recent manual adds, drops and team changes.</p></div></div><div id="leagueActivitySummary"></div><div id="leagueActivityLog" style="margin-top:10px"></div></div>
-<div class="card panelpad section"><div class="sectionhead"><div><h2>League roster status</h2><p>Players with injuries, byes or missing data get surfaced here.</p></div></div><div id="rosterAlerts"></div></div>
-</section>
+<section id="page-rosters" style="display:none"><div class="card panelpad"><div class="sectionhead"><div><h2>👥 My Team</h2><p>ESPN is the source of truth for your roster. DCC analyzes the roster; it does not require manual player entry.</p></div><button class="primary" id="myTeamRefresh" type="button">REFRESH ESPN</button></div><div id="myTeamSyncBanner" class="dcc-alert good">ESPN roster sync status will appear here.</div><div class="grid2" style="margin-top:12px"><div><div class="smallcaps" style="margin-bottom:6px">Starting lineup</div><div id="myTeamStarters"></div></div><div><div class="smallcaps" style="margin-bottom:6px">Bench</div><div id="myTeamBench"></div></div></div></div><div class="card panelpad section"><div class="sectionhead"><div><h2>🎯 Team Needs &amp; Decisions</h2><p>Roster construction, injuries, bye weeks and positional depth drive these recommendations.</p></div></div><div id="myTeamNeeds"></div></div><div class="card panelpad section"><div class="sectionhead"><div><h2>📊 Roster Snapshot</h2><p>Projected starter strength and depth by position.</p></div></div><div id="myTeamPositions" class="grid2"></div></div></section>
 <section id="page-trade" style="display:none">
 <div class="card panelpad">
 <div class="sectionhead"><div><h2>🤝 Trade Manager &amp; Analyzer</h2><p>Select players from each roster to compare trade value and get a grade.</p></div></div>
@@ -235,7 +213,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 <section id="page-league" style="display:none">
 <div class="card panelpad">
 <div class="sectionhead">
-<div><h2>📊 Team Analytics</h2><p>Power-rank every roster, identify positional edges, and surface trade/waiver pressure. Your manually entered rosters are the league source of truth; live projections improve confidence but never block the analyzer.</p></div>
+<div><h2>📊 Team Analytics</h2><p>Power-rank every roster, identify positional edges, and surface trade/waiver pressure. ESPN-synced rosters are the league source of truth. Manual roster editing is intentionally disabled; DCC focuses on analysis and decisions.</p></div>
 <div class="team-switch"><select class="select" id="leagueAnalyzerWeek" style="width:110px"></select><button class="ghost" id="leagueAnalyzerRefresh">REFRESH</button></div>
 </div>
 <div class="league-confidence" id="leagueAnalyzerConfidence"></div>
@@ -272,8 +250,8 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 <div class="leaguegrid" id="leagueRoomGrid"></div>
 </div>
 <div class="card panelpad section">
-<div class="sectionhead"><div><h2>📸 League Activity &amp; Snapshots</h2><p>Every manual add/drop and team rename is timestamped. Export a full league snapshot before and after roster changes to preserve a point-in-time record.</p></div></div>
-<div class="persistbar"><button class="secondary" id="exportLeagueSnapshot">EXPORT LEAGUE SNAPSHOT</button><label class="secondary" for="importLeagueSnapshot" style="display:inline-flex;align-items:center">IMPORT LEAGUE SNAPSHOT</label><input accept=".json,application/json" id="importLeagueSnapshot" style="display:none" type="file"/><button class="ghost" id="clearActivityLog">CLEAR ACTIVITY LOG</button></div>
+<div class="sectionhead"><div><h2>📸 League Activity &amp; Snapshots</h2><p>ESPN transaction data is the source for league activity. DCC analyzes adds, drops and trades without requiring manual roster entry.</p></div></div>
+<div class="persistbar"><span class="dcc-pill">ESPN activity feed</span></div>
 <div id="leagueActivitySummary" style="margin-top:10px"></div><div id="leagueActivityLog" style="margin-top:10px"></div>
 </div>
 <div class="card panelpad section">
@@ -318,13 +296,13 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 </div>
 <div class="persistbar"><button class="primary" id="dccSaveConfig">SAVE LEAGUE CONFIG</button><span class="dcc-pill" id="dccConfigSummary">12 teams · PPR · QB1/RB2/WR2/TE1/FLEX1/K1/DEF1 · 16 roster</span></div>
 </div>
-<div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🎯 Scoring &amp; Projection Contract</h2><p>ESPN weekly PPR projections are preferred when available. DCC only falls back to estimates when a live source is unavailable.</p></div></div>
+<div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🎯 Scoring &amp; Projection Contract</h2><p>DCC combines independent projection sources when available. ESPN is a league-data source, not the sole projection authority.</p></div></div>
 <div class="dcc-grid2">
 <div class="formrow"><label>Receptions</label><input class="input" id="scoreRec" step="0.1" type="number" value="1"/></div><div class="formrow"><label>Passing TD</label><input class="input" id="scorePassTD" step="0.5" type="number" value="4"/></div>
 <div class="formrow"><label>Passing yards / pt</label><input class="input" id="scorePassYd" step="0.01" type="number" value="25"/></div><div class="formrow"><label>Rush/receive yards / pt</label><input class="input" id="scoreRushYd" step="0.01" type="number" value="10"/></div>
 <div class="formrow"><label>Rush/receive TD</label><input class="input" id="scoreTD" step="0.5" type="number" value="6"/></div><div class="formrow"><label>INT / lost fumble</label><input class="input" id="scoreTurnover" step="0.5" type="number" value="-2"/></div>
 </div>
-<p class="dcc-small">Important: ESPN weekly projections are treated as PPR source data. If your league uses custom scoring, DCC will flag the source instead of pretending the projection is exact.</p>
+<p class="dcc-small">Projection values are built from an ensemble of available sources (FantasyPros, Sleeper, ESPN) with explicit freshness/source tracking. Custom league scoring is applied only where the source supports it.</p>
 </div>
 <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>🗓️ Fantasy Matchup Schedule</h2><p>Set the actual fantasy opponent for each team. The app will never silently call a round-robin opponent your real opponent.</p></div><select class="select" id="dccScheduleWeek" style="width:120px"></select></div><div id="dccScheduleEditor"></div><div class="persistbar"><button class="primary" id="dccSaveSchedule">SAVE WEEKLY MATCHUPS</button><button class="ghost" id="dccSeedSchedule">SEED ROUND-ROBIN</button></div></div>
 <div class="card setting" style="grid-column:1/-1"><div class="sectionhead"><div><h2>📋 League Standings &amp; Records</h2><p>Manual record/PF/PA entry drives power rankings and season outlook without an ESPN dependency.</p></div></div><div class="dcc-scroll"><table class="dcc-table"><thead><tr><th>Team</th><th>W</th><th>L</th><th>T</th><th>PF</th><th>PA</th></tr></thead><tbody id="dccStandingsEditor"></tbody></table></div><div class="persistbar"><button class="primary" id="dccSaveStandings">SAVE STANDINGS</button></div></div>
@@ -501,7 +479,7 @@ let liveSyncState=null;
 let weeklyProjectionData={};
 let projectionSyncState=null;
 let projectionCacheMeta={};
-const PROJECTION_ENGINE_VERSION="28.0-espn-ppr";
+const PROJECTION_ENGINE_VERSION="39.0-multi-source";
 const STATUS_ORDER=["healthy","questionable","doubtful","out","ir"];
 const STATUS_META={healthy:{label:"",short:"",cls:""},questionable:{label:"Questionable",short:"Q",cls:"stat-q"},doubtful:{label:"Doubtful",short:"D",cls:"stat-d"},out:{label:"Out",short:"O",cls:"stat-o"},ir:{label:"IR",short:"IR",cls:"stat-ir"}};
 let waiverQuery="", waiverPos="ALL", plannerWeek=1;
@@ -2573,15 +2551,15 @@ if(location.protocol.startsWith("http")){setTimeout(()=>syncNFLSchedule(true),30
 </script>
 <script>
 if('serviceWorker' in navigator && location.protocol.startsWith('http')){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=38.0',{scope:'./'}).catch(()=>{}));
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=39.0',{scope:'./'}).catch(()=>{}));
 }
 </script>
 <script id="dcc-v25-core">
 /* Draft Command Center v25.2 — Ultimate Fantasy Football Toolkit
-   Manual league-of-record. FantasyPros is projection/expert layer. No ESPN dependency. */
-const DCC_V25_VERSION="38.0";
+   ESPN league data is authoritative for roster/league state; independent sources feed projections, market context and player intelligence. */
+const DCC_V25_VERSION="39.0";
 const DCC_FLEX_ELIGIBLE=["RB","WR","TE"];
-const DCC_STATE_VERSION=254;
+const DCC_STATE_VERSION=390;
 const DCC_PROJECTION_MAX_AGE_MS=6*60*60*1000;
 const DCC_HEALTH_KEY="dcc_v25_health";
 const DCC_SNAPSHOT_KEY="dcc_v25_snapshots";
@@ -2766,8 +2744,8 @@ setTimeout(dccBoot,120);
       const card=document.createElement("div");card.className="card setting";card.id="dccLiveEngineCard";card.style.gridColumn="1/-1";
       card.innerHTML=`<div class="sectionhead"><div><h2>🔗 ESPN Connection</h2><p>Sync your signed-in ESPN league through the Orion Bridge. DCC stores the latest league snapshot locally on this device.</p></div><button class="primary" id="dccBridgeRefresh">SYNC ESPN</button></div><div class="dcc-alert good" id="dccLiveSummary">ESPN Bridge ready.</div><div class="dcc-grid3" style="margin-top:10px"><div class="dcc-alert"><b>League</b><br><span id="dccEspnStatus">Not synced</span></div><div class="dcc-alert"><b>Rosters</b><br><span id="dccRosterSyncStatus">Waiting</span></div><div class="dcc-alert"><b>Projections</b><br><span id="dccProjectionStatus">ESPN when supplied</span></div></div>`;settings.parentNode.insertBefore(card,settings.nextSibling);
     }
-    const b=document.getElementById("dccBridgeRefresh"); if(b&&!b.__bound){b.__bound=true;b.onclick=()=>{window.postMessage({source:"DCC_ESPN_BRIDGE_V35",type:"ESPN_SYNC_REQUEST"},"*");showToast("ESPN sync requested");};}
-    const mgr=document.getElementById("page-manager"); if(mgr&&!document.getElementById("dccLiveStrip")){const strip=document.createElement("div");strip.id="dccLiveStrip";strip.className="sync-strip";strip.style.marginTop="10px";strip.innerHTML=`<div><b>⚡ ESPN DATA</b><span id="dccLiveStripText">Waiting for ESPN sync</span></div><button class="secondary btnsm">SYNC ESPN</button>`;mgr.insertBefore(strip,mgr.firstChild);strip.querySelector("button").onclick=()=>window.postMessage({source:"DCC_ESPN_BRIDGE_V35",type:"ESPN_SYNC_REQUEST"},"*");}
+    const b=document.getElementById("dccBridgeRefresh"); if(b&&!b.__bound){b.__bound=true;b.onclick=()=>{window.postMessage({source:"DCC_ESPN_BRIDGE_V38",type:"ESPN_SYNC_REQUEST"},"*");showToast("ESPN sync requested");};}
+    const mgr=document.getElementById("page-manager"); if(mgr&&!document.getElementById("dccLiveStrip")){const strip=document.createElement("div");strip.id="dccLiveStrip";strip.className="sync-strip";strip.style.marginTop="10px";strip.innerHTML=`<div><b>⚡ ESPN DATA</b><span id="dccLiveStripText">Waiting for ESPN sync</span></div><button class="secondary btnsm">SYNC ESPN</button>`;mgr.insertBefore(strip,mgr.firstChild);strip.querySelector("button").onclick=()=>window.postMessage({source:"DCC_ESPN_BRIDGE_V38",type:"ESPN_SYNC_REQUEST"},"*");}
   }
   function renderUI(){
     injectUI();updateUrlFields();
@@ -2940,7 +2918,7 @@ setTimeout(dccBoot,120);
 (function(){
   const BRIDGE_SOURCES=new Set([
     "DCC_ESPN_BRIDGE_PAYLOAD","DCC_ESPN_BRIDGE_V23","DCC_ESPN_BRIDGE_V25",
-    "DCC_ESPN_BRIDGE_V30","DCC_ESPN_BRIDGE_V33","DCC_ESPN_BRIDGE_V34","DCC_ESPN_BRIDGE_V35","DCC_ESPN_BRIDGE_V37"
+    "DCC_ESPN_BRIDGE_V30","DCC_ESPN_BRIDGE_V33","DCC_ESPN_BRIDGE_V34","DCC_ESPN_BRIDGE_V38","DCC_ESPN_BRIDGE_V37"
   ]);
   let lastFingerprint="";
   const posById={1:"QB",2:"RB",3:"WR",4:"TE",5:"K",16:"DEF"};
@@ -3047,5 +3025,44 @@ setTimeout(dccBoot,120);
   setTimeout(()=>{if(typeof window.saveState==="function"&&!window.__dccV35SaveWrapped){const original=window.saveState;window.saveState=function(){try{const r=original.apply(this,arguments);saveLocalState();return r;}catch(e){return original.apply(this,arguments)}};window.__dccV35SaveWrapped=true;}},700);
 })();
 </script>
-<script id="dcc-v36-cache-guard">(()=>{try{if("serviceWorker" in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>{if(r.scope.includes("/draft-command-center/")){r.update().catch(()=>{})}})).catch(()=>{});}if(window.caches)caches.keys().then(keys=>keys.filter(k=>/^dcc-v(2[0-9]|3[0-5])/.test(k)).forEach(k=>caches.delete(k))).catch(()=>{});}catch(e){}})();</script></body>
+<script id="dcc-v36-cache-guard">(()=>{try{if("serviceWorker" in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>{if(r.scope.includes("/draft-command-center/")){r.update().catch(()=>{})}})).catch(()=>{});}if(window.caches)caches.keys().then(keys=>keys.filter(k=>/^dcc-v(2[0-9]|3[0-5])/.test(k)).forEach(k=>caches.delete(k))).catch(()=>{});}catch(e){}})();</script><script id="dcc-v39-runtime">
+(function(){
+  const V39="39.0", BRIDGE_MIN=37;
+  const SRC_WEIGHTS={FantasyPros:0.40,Sleeper:0.35,ESPN:0.25};
+  window.__dccProjectionSources=window.__dccProjectionSources||{};
+  window.__dccProjectionAudit=window.__dccProjectionAudit||{};
+  function fresh(ts,max=6*60*60*1000){return !!ts&&Number.isFinite(Date.parse(ts))&&Date.now()-Date.parse(ts)<=max}
+  function putSource(week,source,data){if(!data?.byName)return;const w=Number(week)||plannerWeek||1;window.__dccProjectionSources[w]=window.__dccProjectionSources[w]||{};window.__dccProjectionSources[w][source]={...data,source,timestamp:data.timestamp||new Date().toISOString()}}
+  function hydrateSourcesFromLegacy(){Object.keys(projectionCacheMeta||{}).forEach(w=>{const m=projectionCacheMeta[w],d=weeklyProjectionData?.[w];if(m?.source&&d?.byName&&fresh(m.timestamp))putSource(Number(w),m.source.includes("FantasyPros")?"FantasyPros":m.source,d)});try{const st=window.__dccLiveState;if(st?.projection)Object.keys(st.projection).forEach(w=>{const m=st.projection[w],d=st[`projectionData_${w}`];if(m?.source&&d?.byName)putSource(Number(w),m.source,d)})}catch(e){}}
+  hydrateSourcesFromLegacy();
+  function sourceValues(p,week){const out=[],w=window.__dccProjectionSources?.[week]||{},keys=typeof projectionKeysForPlayer==='function'?projectionKeysForPlayer(p):[projectionKey(p.name)];Object.entries(w).forEach(([source,d])=>{if(!d||!fresh(d.timestamp))return;let v=null;if(p?.espnId&&d.byId?.[String(p.espnId)]!=null)v=Number(d.byId[String(p.espnId)]);if(v==null&&p?.fpId&&d.byId?.[String(p.fpId)]!=null)v=Number(d.byId[String(p.fpId)]);if(v==null)for(const k of keys){const x=d.byName?.[k]??d[k];if(Number.isFinite(Number(x))){v=Number(x);break}}if(Number.isFinite(v)&&v>=0)out.push({source,value:v,timestamp:d.timestamp})});return out}
+  function ensemble(p,week){if(byeWeek(p?.team)===week||isInjuredOut(p?.name))return{value:0,source:"Availability",state:"OUT/BYE",sources:[]};const vals=sourceValues(p,week);if(vals.length>=2){let sw=0,total=0;vals.forEach(x=>{const wt=SRC_WEIGHTS[x.source]||0.15;total+=x.value*wt;sw+=wt});return{value:+(total/Math.max(sw,.0001)).toFixed(1),source:`Ensemble · ${vals.map(x=>x.source).join(" + ")}`,state:"ENSEMBLE",sources:vals}}return{value:+projPts(p).toFixed(1),source:vals.length===1?`DCC estimate · ${vals[0].source} available as secondary reference`:"DCC estimate",state:"EST",sources:vals}}
+  window.dccEnsembleProjection=ensemble;window.dccProjectionSources=()=>window.__dccProjectionSources;
+  window.dccProjectionSourceSummary=w=>Object.entries(window.__dccProjectionSources?.[w]||{}).filter(([,d])=>fresh(d?.timestamp)).map(([s,d])=>`${s} (${d.count||Object.keys(d.byName||{}).length})`).join(" · ")||"DCC estimate only";
+  window.projectionSourceIsLive=w=>Object.values(window.__dccProjectionSources?.[w]||{}).filter(d=>fresh(d?.timestamp)).length>=2;
+  window.syncedWeeklyProj=(p,w)=>{const e=ensemble(p,w);return e.state==="ENSEMBLE"?e.value:null};
+  window.dccProjection=(p,w)=>ensemble(p,w);window.weeklyProj=(p,w)=>ensemble(p,w).value;
+  window.dccProjectionLabel=w=>{const active=Object.entries(window.__dccProjectionSources?.[w]||{}).filter(([,d])=>fresh(d?.timestamp)).map(([s])=>s);if(active.length>1)return `<span class="dcc-source">LIVE ENSEMBLE · ${active.join(" + ")} · Wk ${w}</span>`;if(active.length===1)return `<span class="dcc-source est">1 live source · secondary only (${active[0]}) · DCC model remains primary · Wk ${w}</span>`;return `<span class="dcc-source est">EST · DCC model · Wk ${w}</span>`};
+  const oldApply=window.__dccApplyESPNBridgePayload;if(oldApply)window.__dccApplyESPNBridgePayload=function(n){const result=oldApply.apply(this,arguments);try{const week=Number(n?.scoringPeriodId||n?.league?.scoringPeriodId||plannerWeek||1),teams=Array.isArray(n?.league?.teams)?n.league.teams:Array.isArray(n?.teams)?n.teams:[],byName={},byId={};let count=0;teams.forEach(t=>(t.roster||[]).forEach(p=>{const v=Number(p.weeklyProj??p.projectedPoints??p.projPts),name=p.name||p.fullName;if(!name||!Number.isFinite(v))return;byName[projectionKey(name)]=v;if(p.espnId!=null)byId[String(p.espnId)]=v;count++}));if(count>=10)putSource(week,"ESPN",{byName,byId,count,week,scoring:"PPR",timestamp:new Date().toISOString()});window.__dccProjectionAudit.lastESPN={week,count,timestamp:new Date().toISOString()};setTimeout(()=>syncSleeperProjections().then(()=>{window.__dccRenderV39Sources?.();render?.()}),100)}catch(e){console.warn("v39 ESPN projection capture",e)}return result};
+  function captureExistingESPN(){try{const st=window.__dccLiveState;Object.keys(st?.projection||{}).forEach(w=>{const m=st.projection[w],d=st[`projectionData_${w}`];if(m?.source==="ESPN"&&d?.byName)putSource(Number(w),"ESPN",d)})}catch(e){}}
+  async function syncSleeperProjections(){try{if(!/^https?:$/.test(location.protocol))return 0;const season=2026,week=Number(plannerWeek||1),res=await fetch(`https://api.sleeper.com/projections/nfl/${season}/${week}?season_type=regular`,{cache:"no-store"});if(!res.ok)throw new Error(`Sleeper projections HTTP ${res.status}`);const json=await res.json(),rows=Array.isArray(json)?json:Object.entries(json||{}).map(([player_id,v])=>({...v,player_id})),byId={},byName={};let count=0;const bySleeper=new Map(DATA.map(p=>[String(p.sleeperId||""),p]));rows.forEach(r=>{const st=r.stats||r,v=Number(st.pts_ppr??st.fpts_ppr??st.fantasy_points_ppr??st.pts);if(!Number.isFinite(v))return;const id=r.player_id??r.playerId;if(id!=null)byId[String(id)]=v;const p=id!=null?bySleeper.get(String(id)):null;const nm=p?.name||(r.first_name||r.last_name?`${r.first_name||""} ${r.last_name||""}`.trim():"");if(nm)byName[projectionKey(nm)]=v;count++});if(count>=20)putSource(week,"Sleeper",{byName,byId,count,week,scoring:"PPR",timestamp:new Date().toISOString()});window.__dccProjectionAudit.sleeper={week,count,timestamp:new Date().toISOString()};return count}catch(e){window.__dccProjectionAudit.sleeper={error:e.message,timestamp:new Date().toISOString()};return 0}}
+  window.syncSleeperProjections=syncSleeperProjections;
+  window.renderRosters=function(){const team=typeof myTeam==='function'?myTeam():teams?.[draftPos-1];if(!team)return;const week=plannerWeek||1,split=typeof getStarterSplit==='function'?getStarterSplit(team):{starters:[],bench:team.roster||[]},row=({pos,p})=>p?`<div class="lineuprow" onclick="dccPlayerDetail('${esc(p.name)}')"><div class="lp-pos">${pos}</div><div class="lp-name"><b>${escHtml(p.name)}</b><span>${p.pos} · ${p.team} · ${weekMatchupLabel(p,week)}</span></div><div class="lp-pts">${ensemble(p,week).value.toFixed(1)}</div></div>`:`<div class="lineuprow"><div class="lp-pos">${pos}</div><div class="lp-name"><b class="need">OPEN</b></div></div>`;const starters=document.getElementById("myTeamStarters"),bench=document.getElementById("myTeamBench");if(starters)starters.innerHTML=split.starters.map(row).join("")||`<div class="mini">ESPN roster has not synced yet.</div>`;if(bench)bench.innerHTML=(split.bench||[]).map(p=>row({pos:p.pos,p})).join("")||`<div class="mini">No bench players returned by ESPN.</div>`;const banner=document.getElementById("myTeamSyncBanner"),es=window.__dccLiveState?.espn||window.__dccESPNState;if(banner){banner.textContent=es?.timestamp?`🟢 ESPN roster synced ${age(es.timestamp)} · ${team.roster?.length||0} players`:`🟠 Waiting for ESPN roster sync — use Refresh ESPN.`;banner.className=`dcc-alert ${es?.timestamp?'good':''}`};const needs=document.getElementById("myTeamNeeds");if(needs){const counts={};(team.roster||[]).forEach(p=>counts[p.pos]=(counts[p.pos]||0)+1);needs.innerHTML=["QB","RB","WR","TE","FLEX","DEF","K"].map(pos=>{const n=counts[pos]||0,t=leagueConfig.starters[pos]||0;return `<div class="action-item ${n>=t?'manager-good':''}"><div class="ai-icon">${n>=t?'✓':'!'}</div><div><b>${pos}</b><span>${n} rostered · ${t} starter slot${t===1?'':'s'}${n<t?' · needs depth':' · covered'}</span></div></div>`}).join("")};const posEl=document.getElementById("myTeamPositions");if(posEl)posEl.innerHTML=["QB","RB","WR","TE","FLEX","DEF","K"].map(pos=>{const ps=(team.roster||[]).filter(p=>p.pos===pos),vals=ps.map(p=>ensemble(p,week).value).sort((a,b)=>b-a);return `<div class="dcc-alert"><b>${pos}</b><br>${ps.length} players · ${vals.slice(0,leagueConfig.starters[pos]||1).reduce((a,b)=>a+b,0).toFixed(1)} starter projection<br><span class="dcc-small">${ps.slice(0,5).map(p=>escHtml(p.name)).join(" · ")||"None"}</span></div>`}).join("")};
+  function mergeLeagueRoom(){const src=document.getElementById("page-league-analyzer"),dst=document.getElementById("page-league");if(src&&dst&&!src.dataset.merged){while(src.firstChild)dst.appendChild(src.firstChild);src.dataset.merged="1";src.style.display="none"}}
+  function bindNavigation(){const nav=document.getElementById("nav");if(!nav)return;nav.querySelectorAll("button").forEach(b=>b.onclick=()=>{page=b.dataset.page;nav.querySelectorAll("button").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll("main>section").forEach(s=>s.style.display=s.id===`page-${page}`?"block":"none");if(page==="league")renderLeagueAnalyzer?.();if(page==="settings"){renderTeamNames?.();dccRenderSettings?.()}renderTop?.();if(page==="rosters")renderRosters()})}
+  function addSourceStatus(){const host=document.getElementById("projectionSyncStatus")||document.getElementById("dccLiveSummary");if(!host||host.dataset.v39)return;host.dataset.v39="1";const box=document.createElement("div");box.id="v39SourceSummary";box.className="dcc-alert";box.style.marginTop="8px";host.parentNode?.appendChild(box);const render=()=>{const w=plannerWeek||1;box.innerHTML=`<b>Projection engine</b><br>${dccProjectionLabel(w)}<br><span class="dcc-small">Sources: ${dccProjectionSourceSummary(w)} · ESPN is not used as a sole projection authority.</span>`};render();window.__dccRenderV39Sources=render;setInterval(render,15000)}
+  function hideManualUI(){['#builderPlayerSearch','#builderPlayerPos','#builderPlayerResults','#builderRosterGrid','#customPlayerName','#customPlayerPos','#customPlayerTeam','#customPlayerAdd','#builderClearTeam','#builderTeamName','#builderTeamNameSave','#dccSaveSchedule','#dccSeedSchedule','#dccSaveStandings','#dccStandingsEditor','#dccLeagueConfigCard'].forEach(sel=>{const e=document.querySelector(sel);if(e){const card=e.closest('.card');(card||e).style.display='none'}});document.getElementById("projectionSyncBtn")?.remove()}
+  const oldSyncAll=window.syncAll;if(oldSyncAll)window.syncAll=async function(manual=true){const r=await oldSyncAll.apply(this,arguments);await syncSleeperProjections();hydrateSourcesFromLegacy();window.__dccRenderV39Sources?.();render?.();return r};
+  setTimeout(async()=>{mergeLeagueRoom();bindNavigation();hideManualUI();addSourceStatus();captureExistingESPN();await syncSleeperProjections();window.__dccRenderV39Sources?.();renderRosters()},800);
+  setTimeout(()=>{captureExistingESPN();syncSleeperProjections().then(()=>{window.__dccRenderV39Sources?.();render?.()})},3500);
+  document.getElementById("myTeamRefresh")?.addEventListener("click",()=>{window.postMessage({source:"DCC_ESPN_BRIDGE_V38",type:"ESPN_SYNC_REQUEST"},"*");showToast("ESPN sync requested")});
+  window.dccV39Health=w=>{const src=window.__dccProjectionSources?.[w||plannerWeek]||{};return{version:V39,bridgeMin:BRIDGE_MIN,sources:Object.fromEntries(Object.entries(src).map(([k,v])=>[k,{fresh:fresh(v.timestamp),count:v.count||Object.keys(v.byName||{}).length,timestamp:v.timestamp}])),espnAuthoritativeOnly:false}};
+  // Multi-source trade value: market consensus + embedded expert consensus + current-week ensemble, never ESPN-only.
+  window.dccTradeValue=function(p){const adp=Number(p?.adp),marketRank=Number.isFinite(adp)&&adp<900?adp:180;const ecrs=[p?.fp,p?.sleeper,p?.walter,p?.espn].map(Number).filter(x=>Number.isFinite(x)&&x<900);const consensus=ecrs.length?ecrs.reduce((a,b)=>a+b,0)/ecrs.length:marketRank;const marketScore=Math.max(0,100-(marketRank-1)*0.42);const expertScore=Math.max(0,100-(consensus-1)*0.42);const wk=ensemble(p,plannerWeek);const posBase={QB:20,RB:22,WR:20,TE:16,DEF:7,K:9}[p?.pos]||10;const weeklyScore=Math.max(0,Math.min(100,(wk.value/posBase)*55));return Math.round(Math.max(5,marketScore*.35+expertScore*.45+weeklyScore*.20));};
+  window.dccRenderHealth=function(){const w=plannerWeek||1,a=dccV39Health(w),total=teams.reduce((n,t)=>n+(t.roster||[]).length,0),sources=Object.entries(a.sources).filter(([,x])=>x.fresh);const el=document.getElementById("dccHealth"),tbl=document.getElementById("dccAuditTable");if(el)el.innerHTML=`<div class="dcc-health"><div class="hbox"><span>League rosters</span><b class="dcc-good">${teams.length} teams · ${total} players</b></div><div class="hbox"><span>Projection sources</span><b class="${sources.length>=2?'dcc-good':'dcc-warn'}">${sources.length>=2?sources.map(([s])=>s).join(' + '):sources.length?'1 source':'DCC model'}</b></div><div class="hbox"><span>Projection authority</span><b class="dcc-good">MULTI-SOURCE</b></div><div class="hbox"><span>ESPN-only mode</span><b class="dcc-good">OFF</b></div></div>`;if(tbl)tbl.innerHTML=`<div class="dcc-small">DCC uses ESPN for league/roster state. Projection decisions require at least two fresh independent sources before live ensemble values are used. A single source is shown as secondary reference only; the DCC model remains the primary estimate.</div>`};
+  window.renderWaivers=function(){const a=available().filter(p=>(waiverPos==="ALL"||p.pos===waiverPos)&&(`${p.name} ${p.team} ${p.pos}`.toLowerCase().includes(waiverQuery.toLowerCase()))).sort((x,y)=>dccProjection(y,plannerWeek).value-dccProjection(x,plannerWeek).value||dccTradeValue(y)-dccTradeValue(x)).slice(0,60),el=document.getElementById("waiverRows");if(!el)return;const team=myTeam();el.innerHTML=a.map(p=>{const pr=dccProjection(p,plannerWeek),replace=team.roster.slice().sort((x,y)=>dccProjection(x,plannerWeek).value-dccProjection(y,plannerWeek).value)[0],fit=replace?pr.value-dccProjection(replace,plannerWeek).value:pr.value;return `<tr><td><div class="player">${escHtml(p.name)}</div><small>${p.tier||"—"}</small></td><td>${p.pos}</td><td>${p.team}</td><td>${p.adp??"—"}</td><td>${pr.value.toFixed(1)} <span class="dcc-source ${pr.state!=="ENSEMBLE"?"est":""}">${pr.state}</span></td><td>${fit>=0?"+":""}${fit.toFixed(1)} fit</td><td><button class="draftbtn" onclick="toggleWatch('${esc(p.name)}');renderWaivers()">${watchlist.has(p.name)?"TARGETED":"TARGET"}</button></td></tr>`}).join("")||`<tr><td colspan="7" class="mini">No matching waiver players.</td></tr>`};
+})();
+</script>
+
+</body>
 </html>
