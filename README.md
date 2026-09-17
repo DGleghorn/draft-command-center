@@ -1,8 +1,8 @@
-# Draft Command Center v30.0 — Mobile-First Weekly Manager
+# Draft Command Center v34.0 — Mobile-First Weekly Manager
 
-DCC v30 is a mobile-first, local-first fantasy football manager for iPhone/iPad.
+DCC v34 is a mobile-first, local-first fantasy football manager for iPhone/iPad.
 
-## What changed in v30
+## What changed in v34
 - Fixed the missing ESPN Bridge handoff: the GitHub Pages dashboard now accepts the normalized payload emitted by the DCC ESPN browser extension.
 - Preserves the existing mobile-first direct ESPN path as a fallback.
 - Stores bridge-delivered league/roster state in the existing DCC local persistence flow.
@@ -18,7 +18,7 @@ Upload the **contents** of this ZIP to the repository root:
 - `icon-512.png`
 - `README.md`
 
-Do not upload the ZIP itself as `index.html`, and do not place these files inside an extra `v30` folder.
+Do not upload the ZIP itself as `index.html`, and do not place these files inside an extra `v34` folder.
 
 ## ESPN Bridge
 The companion extension reads the authenticated ESPN session in the browser and sends a normalized snapshot to the open DCC GitHub Pages tab. DCC never asks for ESPN passwords or session cookies.

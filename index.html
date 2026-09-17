@@ -111,7 +111,7 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 <div class="app">
 <header class="top">
   <div class="toprow">
-    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v29.0</span></h1></div></div>
+    <div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v34.0</span></h1></div></div>
     <div class="status"><div class="live" title="Mobile Team Manager is fully manual and local-first"><i class="pulse"></i><span id="syncText">MOBILE TEAM MANAGER</span></div></div>
   </div>
   <nav class="nav" id="nav">
@@ -2714,7 +2714,7 @@ if('serviceWorker' in navigator && location.protocol.startsWith('http')){
 <script id="dcc-v25-core">
 /* Draft Command Center v25.2 — Ultimate Fantasy Football Toolkit
    Manual league-of-record. FantasyPros is projection/expert layer. No ESPN dependency. */
-const DCC_V25_VERSION="29.0";
+const DCC_V25_VERSION="34.0";
 const DCC_FLEX_ELIGIBLE=["RB","WR","TE"];
 const DCC_STATE_VERSION=253;
 const DCC_PROJECTION_MAX_AGE_MS=6*60*60*1000;
@@ -2835,7 +2835,7 @@ function dccEnhanceTransactionLog(){
  }
 }
 function dccUpdateBanner(){
- if(document.getElementById("dccUpdateBanner"))return;const b=document.createElement("div");b.id="dccUpdateBanner";b.style.cssText="display:none;position:fixed;left:10px;right:10px;bottom:12px;z-index:999;background:#111b2e;border:1px solid rgba(93,224,183,.35);border-radius:12px;padding:10px;box-shadow:0 10px 40px rgba(0,0,0,.35);font-size:10px;align-items:center;justify-content:space-between;gap:8px";b.innerHTML='<span><b>Draft Command Center updated.</b> Reload to use the newest version.</span><button class="primary btnsm" id="dccReload">RELOAD</button>';document.body.appendChild(b);document.getElementById("dccReload").onclick=()=>location.reload();
+ if(document.getElementById("dccUpdateBanner"))return;const b=document.createElement("div");b.id="dccUpdateBanner";b.style.cssText="display:none;position:fixed;left:10px;right:10px;bottom:12px;z-index:999;background:#111b2e;border:1px solid rgba(93,224,183,.35);border-radius:12px;padding:10px;box-shadow:0 10px 40px rgba(0,0,0,.35);font-size:10px;align-items:center;justify-content:space-between;gap:8px";b.innerHTML='<span><b>Draft Command Center updated.</b> Reload to use the newest version.</span><button class="primary btnsm" id="dccReload">RELOAD</button>';document.body.appendChild(b);document.getElementById("dccReload").onclick=()=>window.location.reload();
  if("serviceWorker" in navigator)navigator.serviceWorker.addEventListener("message",e=>{if(e.data?.type==="DCC_UPDATE")b.style.display="flex"});
 }
 const _v25BaseRender=window.render;
@@ -2849,13 +2849,13 @@ function dccBoot(){
 }
 setTimeout(dccBoot,120);
 </script>
-<script id="dcc-v29-live-engine">
+<script id="dcc-v34-live-engine">
 /* DCC v34 Mobile-First Live Data Engine — free-first, mobile/GitHub Pages friendly.
    Sources: Sleeper public API for player/team/injury/trending data; ESPN public
    fantasy API for league state + weekly projections/live scoring when accessible.
    FantasyPros remains optional last-resort only. */
 (function(){
-  const KEY="dcc_v29_live_engine";
+  const KEY="dcc_v34_live_engine";
   const VERSION="34.0.0";
   const SLEEPER_BASE="https://api.sleeper.app/v1";
   const ESPN_BASE="https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2026/segments/0/leagues";
@@ -3025,7 +3025,7 @@ setTimeout(dccBoot,120);
   }
   // Expose a narrow bridge-import hook. It updates the v29 live-data heartbeat
   // without exposing the private ESPN session or the internal state object.
-  window.__dccV29SetESPNBridgeState=function(n,teamCount,playerCount){
+  window.__dccV34SetESPNBridgeState=function(n,teamCount,playerCount){
     try{
       const ts=new Date().toISOString();
       state.lastESPN=ts; state.lastAll=ts;
@@ -3134,7 +3134,7 @@ setTimeout(dccBoot,120);
       try{if(typeof leagueConfig!=="undefined"){leagueConfig.espnTransactions=Array.isArray(n?.league?.transactions)?n.league.transactions:[];}}catch(e){}
       const teamsLoaded=raw.teams.length;
       const playersLoaded=raw.teams.reduce((a,t)=>a+(t.roster?.entries?.length||0),0);
-      if(typeof window.__dccV29SetESPNBridgeState==="function")window.__dccV29SetESPNBridgeState(n,teamsLoaded,playersLoaded);
+      if(typeof window.__dccV34SetESPNBridgeState==="function")window.__dccV34SetESPNBridgeState(n,teamsLoaded,playersLoaded);
       if(typeof saveState==="function")saveState();
       if(typeof render==="function")render();
       if(typeof renderUI==="function")renderUI();
@@ -3165,12 +3165,12 @@ setTimeout(dccBoot,120);
 })();
 </script>
 
-<script id="dcc-v29-local-backend">
+<script id="dcc-v34-local-backend">
 /* DCC v34 Local-First Backend
    IndexedDB is the durable application store. localStorage remains as a fast
    compatibility cache so older DCC snapshots migrate without losing state. */
 (function(){
-  const DB_NAME="dcc_v29_local_db", STORE="snapshots", VERSION=1;
+  const DB_NAME="dcc_v34_local_db", STORE="snapshots", VERSION=1;
   let dbPromise=null;
   function openDB(){
     if(dbPromise)return dbPromise;
@@ -3189,7 +3189,7 @@ setTimeout(dccBoot,120);
   function hydrate(){get().then(rec=>{if(!rec?.state)return;const local=readLocal();const dbTime=Number(rec.savedAt||0), localTime=Number(local?.savedAt||0);if(dbTime>localTime && typeof applyState==="function"){try{applyState(rec.state);localStorage.setItem(STORAGE_KEY,JSON.stringify(rec.state));render?.();showToast?.("Restored latest local dashboard snapshot");}catch(e){console.warn("DCC DB restore",e)}}}).catch(()=>{});}
   const boot=()=>{saveLocalState();setTimeout(hydrate,450);};
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot,{once:true});else boot();
-  setTimeout(()=>{if(typeof window.saveState==="function"&&!window.__dccV29SaveWrapped){const original=window.saveState;window.saveState=function(){try{const r=original.apply(this,arguments);saveLocalState();return r;}catch(e){return original.apply(this,arguments)}};window.__dccV29SaveWrapped=true;}},700);
+  setTimeout(()=>{if(typeof window.saveState==="function"&&!window.__dccV34SaveWrapped){const original=window.saveState;window.saveState=function(){try{const r=original.apply(this,arguments);saveLocalState();return r;}catch(e){return original.apply(this,arguments)}};window.__dccV34SaveWrapped=true;}},700);
 })();
 </script>
 </body>
