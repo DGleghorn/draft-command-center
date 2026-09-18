@@ -8,7 +8,7 @@
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
 <meta content="yes" name="mobile-web-app-capable"/>
 <meta content="#0b1020" name="theme-color"/>
-<title>Draft Command Center v40.0 — In-Season Manager</title>
+<title>Draft Command Center — Fantasy Manager</title>
 <style>
 :root{--bg:#090d17;--panel:#111827;--panel2:#151e2f;--line:#263249;--text:#f4f7fb;--muted:#91a0b7;--blue:#6d6aff;--cyan:#4dd7ff;--green:#28d7a1;--red:#ff6475;--amber:#f6b94a;--shadow:0 14px 45px rgba(0,0,0,.22)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior-x:none}body{min-width:0}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}input,select,textarea{font-size:16px}
@@ -98,7 +98,24 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 <link href="./icon-192.png" rel="apple-touch-icon"/>
 <style id="v21-style">
 .v21-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;margin:12px 0}.v24-card{grid-column:span 6;background:linear-gradient(180deg,rgba(20,29,45,.96),rgba(12,18,29,.96));border:1px solid #26344b;border-radius:14px;padding:15px}.v24-card.wide{grid-column:span 12}.v24-card h3{margin:0 0 6px;font-size:15px}.v24-muted{color:#91a0b7;font-size:12px}.v21-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.v21-kpi{background:#0a111d;border:1px solid #223049;border-radius:10px;padding:10px}.v21-kpi b{display:block;font-size:20px}.v21-kpi span{font-size:10px;text-transform:uppercase;color:#7f8ea7}.v21-row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #1e2a3c}.v21-row:last-child{border-bottom:0}.v21-badge{display:inline-flex;padding:3px 7px;border-radius:999px;font-size:10px;font-weight:700;background:#172338;color:#b9c7dc}.v21-good{color:#78dca5}.v21-warn{color:#f2c66d}.v21-bad{color:#ff8f8f}.v24-btn{border:1px solid #33435c;background:#101a2a;color:#dce6f5;border-radius:8px;padding:8px 10px;cursor:pointer}.v24-btn:hover{background:#17243a}.v21-action{margin-top:8px;padding:10px;border-left:3px solid #4f7cff;background:#0b1422;border-radius:7px}.v21-table{width:100%;border-collapse:collapse;font-size:12px}.v21-table th,.v21-table td{text-align:left;padding:8px;border-bottom:1px solid #202d42}.v21-table th{color:#8190a8;font-size:10px;text-transform:uppercase}.v21-progress{height:7px;background:#101a28;border-radius:99px;overflow:hidden}.v21-progress i{display:block;height:100%;background:#5d84ff}.v22-source{font-size:11px;color:#8291a9;margin-top:8px}@media(max-width:760px){.v24-card,.v24-card.wide{grid-column:span 12}.v21-kpis{grid-template-columns:repeat(2,1fr)}}
-</style></head>
+</style>
+<style id="dcc-v45-theme">
+:root{--bg:#080b14;--panel:#101625;--panel2:#151d2d;--line:#263149;--text:#f6f8fc;--muted:#91a0b8;--blue:#756cff;--cyan:#42d9ff;--green:#31d6a3;--red:#ff6679;--amber:#f7bd52;--shadow:0 18px 50px rgba(0,0,0,.28)}
+html{background:var(--bg)} body{background:radial-gradient(circle at 50% -10%,rgba(111,102,255,.13),transparent 34%),var(--bg)}
+.top{background:rgba(8,11,20,.78);border-bottom:1px solid rgba(93,110,145,.24);box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.logo{background:linear-gradient(135deg,#766cff,#35d7ff);box-shadow:0 10px 30px rgba(100,94,255,.28)}
+.brand-version{display:inline-flex;align-items:center;margin-left:5px;padding:3px 6px;border:1px solid #303b57;border-radius:6px;background:#141c2d;color:#8291aa;font-size:9px;letter-spacing:.5px;vertical-align:middle}
+.nav{padding-bottom:2px}.nav button{transition:background .18s ease,color .18s ease,transform .18s ease}.nav button.active{background:linear-gradient(135deg,#282d52,#1d2942);box-shadow:inset 0 0 0 1px #3b4770,0 5px 18px rgba(0,0,0,.16);color:#fff}.nav button:active{transform:scale(.97)}
+.card{background:linear-gradient(145deg,rgba(18,27,43,.96),rgba(12,18,30,.98));border-color:rgba(70,87,120,.42);box-shadow:var(--shadow);transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}.card:hover{border-color:rgba(101,114,157,.55)}
+.primary{background:linear-gradient(135deg,#776dff,#5d55e8);box-shadow:0 8px 22px rgba(102,92,255,.22)}.secondary,.ghost,.topbtn{background:rgba(15,22,36,.82);border-color:#2a3650}.tag{background:#0b1220;border-color:#293650}.statbox,.tnw-box,.slot{background:linear-gradient(145deg,#111a2a,#0c1320)}
+.sectionhead h2{letter-spacing:-.2px}.sectionhead p{line-height:1.4}.manager-kpis .mkpi{background:linear-gradient(145deg,#131c2d,#0d1422);border:1px solid rgba(69,85,117,.4);box-shadow:0 12px 32px rgba(0,0,0,.18)}
+.dcc-boot{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#080b14;transition:opacity .24s ease,visibility .24s ease}.dcc-boot.is-hidden{opacity:0;visibility:hidden;pointer-events:none}.dcc-boot-card{text-align:center;width:min(290px,80vw)}.dcc-boot-mark{width:54px;height:54px;margin:0 auto 13px;border-radius:16px;display:grid;place-items:center;font-size:16px;font-weight:950;background:linear-gradient(135deg,#776dff,#35d7ff);box-shadow:0 14px 35px rgba(93,85,232,.28)}.dcc-boot-title{font-size:17px;font-weight:900;letter-spacing:-.3px}.dcc-boot-sub{margin-top:5px;color:#8492aa;font-size:11px}.dcc-boot-bar{height:4px;margin:17px 18px 0;border-radius:99px;overflow:hidden;background:#1b2538}.dcc-boot-bar i{display:block;width:38%;height:100%;border-radius:99px;background:linear-gradient(90deg,#756cff,#42d9ff);animation:dccboot 1s ease-in-out infinite}@keyframes dccboot{0%{transform:translateX(-120%)}100%{transform:translateX(320%)}}
+@media(max-width:760px){
+  .top{padding:11px 12px 9px}.toprow{gap:8px}.brand{gap:9px}.logo{width:38px;height:38px;border-radius:12px}.eyebrow{font-size:8px;letter-spacing:1.1px}.brand h1{font-size:16px}.status .live{padding:7px 8px;font-size:9px}.nav{margin-top:9px;gap:4px}.nav button{padding:8px 10px;font-size:11px}.wrap{padding:12px}.card{border-radius:14px}.section{margin-top:12px}.sectionhead{margin-bottom:8px}.sectionhead h2{font-size:14px}.sectionhead p{font-size:10px}.primary,.secondary{padding:9px 11px}.grid2,.hero{grid-template-columns:1fr}.grid3{grid-template-columns:1fr 1fr}.manager-kpis{gap:7px!important}.manager-kpis .mkpi{padding:11px!important;border-radius:12px}.manager-kpis .mkpi b{font-size:18px!important}.rec,.roster,.panelpad{padding:13px}.rec-name{font-size:21px}.bigpick{font-size:27px}.status{min-width:0}.live span{max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+}
+@media(max-width:420px){.grid3{grid-template-columns:1fr 1fr}.status .live{display:none}.brand-version{font-size:8px}.wrap{padding:10px}.nav button{padding:7px 9px}}
+</style>
+</head>
 <body>
 <div id="iosFileNotice" style="display:none;position:fixed;inset:0;z-index:999;background:#090d17;color:#f4f7fb;padding:24px;align-items:center;justify-content:center;text-align:center;font-family:system-ui,-apple-system,sans-serif">
 <div style="max-width:430px">
@@ -109,10 +126,11 @@ button,.draftbtn,.iconbtn,.roundhead,.chips button{min-height:40px}
 <p style="color:#6d7d95;font-size:12px;line-height:1.5">If you are already in Safari and see this message, the file is being loaded with <code>file://</code>. It needs to be served from a web address.</p>
 </div>
 </div>
+<div id="dccBootScreen" class="dcc-boot" aria-live="polite"><div class="dcc-boot-card"><div class="dcc-boot-mark">DC</div><div class="dcc-boot-title">Draft Command Center</div><div class="dcc-boot-sub">Loading your team...</div><div class="dcc-boot-bar"><i></i></div></div></div>
 <div class="app">
 <header class="top">
 <div class="toprow">
-<div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span style="color:#687792">v40.0</span></h1></div></div>
+<div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span class="brand-version">v45</span></h1></div></div>
 <div class="status"><div class="live" title="Mobile Team Manager is fully manual and local-first"><i class="pulse"></i><span id="syncText">MOBILE TEAM MANAGER</span></div></div>
 </div>
 <nav class="nav" id="nav">
@@ -2551,13 +2569,13 @@ if(location.protocol.startsWith("http")){setTimeout(()=>syncNFLSchedule(true),30
 </script>
 <script>
 if('serviceWorker' in navigator && location.protocol.startsWith('http')){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=41.0',{scope:'./'}).catch(()=>{}));
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=45.0',{scope:'./'}).catch(()=>{}));
 }
 </script>
 <script id="dcc-v25-core">
 /* Draft Command Center v25.2 — Ultimate Fantasy Football Toolkit
    ESPN league data is authoritative for roster/league state; independent sources feed projections, market context and player intelligence. */
-const DCC_V25_VERSION="39.0";
+const DCC_V25_VERSION="45.0";
 const DCC_FLEX_ELIGIBLE=["RB","WR","TE"];
 const DCC_STATE_VERSION=390;
 const DCC_PROJECTION_MAX_AGE_MS=6*60*60*1000;
@@ -3020,12 +3038,29 @@ setTimeout(dccBoot,120);
   function readLocal(){try{const raw=localStorage.getItem(STORAGE_KEY);return raw?JSON.parse(raw):null}catch(e){return null}}
   function saveLocalState(){try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)put(JSON.parse(raw));}catch(e){}}
   function hydrate(){get().then(rec=>{if(!rec?.state)return;const local=readLocal();const dbTime=Number(rec.savedAt||0), localTime=Number(local?.savedAt||0);if(dbTime>localTime && typeof applyState==="function"){try{applyState(rec.state);localStorage.setItem(STORAGE_KEY,JSON.stringify(rec.state));render?.();showToast?.("Restored latest local dashboard snapshot");}catch(e){console.warn("DCC DB restore",e)}}}).catch(()=>{});}
-  const boot=()=>{setTimeout(hydrate,450);};
+  const boot=()=>{setTimeout(hydrate,60);};
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot,{once:true});else boot();
   setTimeout(()=>{if(typeof window.saveState==="function"&&!window.__dccV35SaveWrapped){const original=window.saveState;window.saveState=function(){try{const r=original.apply(this,arguments);saveLocalState();return r;}catch(e){return original.apply(this,arguments)}};window.__dccV35SaveWrapped=true;}},700);
 })();
 </script>
-<script id="dcc-v36-cache-guard">(()=>{try{if("serviceWorker" in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>{if(r.scope.includes("/draft-command-center/")){r.update().catch(()=>{})}})).catch(()=>{});}if(window.caches)caches.keys().then(keys=>keys.filter(k=>/^dcc-v(2[0-9]|3[0-5])/.test(k)).forEach(k=>caches.delete(k))).catch(()=>{});}catch(e){}})();</script><script id="dcc-v39-runtime">
+
+<script id="dcc-v45-runtime">
+(()=>{
+  const started=performance.now();
+  const hide=()=>{const el=document.getElementById('dccBootScreen');if(el){el.classList.add('is-hidden');setTimeout(()=>el.remove(),280);}};
+  const boot=()=>{requestAnimationFrame(()=>{requestAnimationFrame(hide);});};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+  setTimeout(hide,1800);
+  window.addEventListener('error',e=>{
+    console.error('DCC runtime error',e.error||e.message);
+    const el=document.getElementById('dccBootScreen');
+    if(el && !el.classList.contains('is-hidden')){el.querySelector('.dcc-boot-sub').textContent='Starting with saved data…';setTimeout(hide,250);}
+  });
+  window.addEventListener('unhandledrejection',e=>console.warn('DCC promise rejection',e.reason));
+  window.__dccBootMs=()=>Math.round(performance.now()-started);
+})();
+</script>
+<script id="dcc-v44-1-cache-guard">(()=>{try{if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.update().catch(()=>{}))).catch(()=>{}));}if(window.caches){caches.keys().then(keys=>keys.filter(k=>/^dcc-v(3[0-9]|40|41|42|43|44-0)/.test(k)&&k!=="dcc-v44-1").forEach(k=>caches.delete(k))).catch(()=>{});}}catch(e){console.warn("DCC cache guard",e);}})();</script><script id="dcc-v36-cache-guard">(()=>{try{if("serviceWorker" in navigator){navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>{if(r.scope.includes("/draft-command-center/")){r.update().catch(()=>{})}})).catch(()=>{});}if(window.caches)caches.keys().then(keys=>keys.filter(k=>/^dcc-v(2[0-9]|3[0-5])/.test(k)).forEach(k=>caches.delete(k))).catch(()=>{});}catch(e){}})();</script><script id="dcc-v39-runtime">
 (function(){
   const V39="39.0", BRIDGE_MIN=37;
   const SRC_WEIGHTS={FantasyPros:0.40,Sleeper:0.35,ESPN:0.25};
@@ -3167,7 +3202,7 @@ setTimeout(dccBoot,120);
   }
   const oldRenderTop=window.renderTop;window.renderTop=function(){try{oldRenderTop?.apply(this,arguments)}catch(e){}renderHomeAudit()};
   const oldRenderLeague=window.renderLeagueAnalyzer;window.renderLeagueAnalyzer=function(){renderLeagueV40()};
-  setTimeout(()=>{cleanupLegacy();bindV40Nav();renderMoreV40();renderMoreHealth();renderLeagueV40();renderHomeAudit();},850);
+  setTimeout(()=>{cleanupLegacy();bindV40Nav();renderMoreV40();renderMoreHealth();renderLeagueV40();renderHomeAudit();},90);
   // v43: disabled legacy UI polling; rendering is event-driven to prevent refresh loops.
 
 })();
@@ -3349,7 +3384,7 @@ setTimeout(dccBoot,120);
   window.addEventListener('message',e=>{if(e.source!==window)return;const d=e.data||{};if(d.source===BRIDGE&&d.type==='ESPN_LEAGUE_SYNC'){try{captureESPN43(d.payload);if(typeof window.__dccApplyESPNBridgePayload==='function')window.__dccApplyESPNBridgePayload(typeof d.payload==='string'?JSON.parse(d.payload):d.payload);hide43();home43();if(page==='league')leaguePower43();if(page==='planner')matchup43();if(page==='rosters')myTeam43Render();}catch(err){console.error('DCC v43 ESPN apply',err)}}if(d.source===BRIDGE&&d.type==='ESPN_SYNC_RESULT'){if(d.result?.ok)showToast('ESPN sync complete');else showToast(`ESPN sync failed: ${d.result?.error||'unknown bridge error'}`)}});
   function bindRefresh(){document.getElementById('myTeamRefresh')?.addEventListener('click',()=>{window.postMessage({source:BRIDGE,type:'ESPN_SYNC_REQUEST'},'*');showToast('ESPN sync requested')});}
   // Disable legacy source polling hooks by replacing only their interval side effects is done above; no v43 polling is installed.
-  setTimeout(()=>{nav43();hide43();captureLegacy43();syncStatuses43();home43();bindRefresh();},900);
+  setTimeout(()=>{nav43();hide43();captureLegacy43();syncStatuses43();home43();bindRefresh();},110);
 })();
 </script>
 <style id="dcc-v43-css">
