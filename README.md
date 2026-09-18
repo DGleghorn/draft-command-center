@@ -1,21 +1,14 @@
-# Draft Command Center v41.0 — Fantasy Manager Core
+# Draft Command Center v42.0
 
-Dashboard-only release. The Orion ESPN Bridge v38 remains compatible and does not need to be replaced for this dashboard update.
+In-season cleanup and game-plan build.
 
-## What changed
-- Reworked primary navigation around Home, My Team, Matchup, Waivers, Trades, League, and More.
-- Removed manual roster-builder workflow from the primary manager experience.
-- ESPN is the source of truth for league/team/roster state.
-- Merged League Analyzer / League Room into the League destination.
-- Added read-only My Team roster analysis and team-needs view.
-- Reworked projections into a multi-source ensemble.
-- ESPN is never treated as the sole projection authority.
-- Sleeper weekly PPR projections are fetched automatically when available.
-- FantasyPros remains an optional independent projection source through the existing import/cache workflow.
-- A live ensemble requires at least two fresh independent sources; a single source is secondary reference only and DCC falls back to its model.
-- Trade value now blends market ADP, multi-site expert consensus, and current-week projection context.
-- Waiver actions are recommendation/target actions rather than manual roster mutations.
-- Updated service worker/cache to v41.
+## Dashboard
+- Home: Team Suggestions; redundant Team Snapshot/Recommended Moves removed.
+- My Team: skill-player roster snapshot only; Team Needs & Decisions removed.
+- Matchup: true side-by-side H2H, actual NFL player matchups, injury-aware flags, redundant roster card removed.
+- Waivers: excludes every player currently rostered by any ESPN league team.
+- League: scoring-led power ranking adjusted for current-week projection, matchup and roster health.
+- More: Manager Mode removed; projection-source health made explicit.
 
-## Extension
-Use the existing **DCC ESPN Orion Bridge v38**. A new extension is not required for dashboard-only updates. The extension should only be updated when ESPN acquisition/parsing, permissions, or the bridge contract changes.
+## ESPN Bridge
+Compatible with the existing DCC ESPN bridge protocol. No extension change is required for these dashboard-side fixes.
