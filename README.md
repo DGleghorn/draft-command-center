@@ -1,4 +1,4 @@
-# Draft Command Center v39.0 — Fantasy Manager Core
+# Draft Command Center v40.0 — Fantasy Manager Core
 
 Dashboard-only release. The Orion ESPN Bridge v38 remains compatible and does not need to be replaced for this dashboard update.
 
@@ -15,7 +15,7 @@ Dashboard-only release. The Orion ESPN Bridge v38 remains compatible and does no
 - A live ensemble requires at least two fresh independent sources; a single source is secondary reference only and DCC falls back to its model.
 - Trade value now blends market ADP, multi-site expert consensus, and current-week projection context.
 - Waiver actions are recommendation/target actions rather than manual roster mutations.
-- Updated service worker/cache to v39.
+- Updated service worker/cache to v40.
 
 ## Extension
 Use the existing **DCC ESPN Orion Bridge v38**. A new extension is not required for dashboard-only updates. The extension should only be updated when ESPN acquisition/parsing, permissions, or the bridge contract changes.
