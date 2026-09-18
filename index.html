@@ -2551,7 +2551,7 @@ if(location.protocol.startsWith("http")){setTimeout(()=>syncNFLSchedule(true),30
 </script>
 <script>
 if('serviceWorker' in navigator && location.protocol.startsWith('http')){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=39.0',{scope:'./'}).catch(()=>{}));
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=41.0',{scope:'./'}).catch(()=>{}));
 }
 </script>
 <script id="dcc-v25-core">
@@ -3066,13 +3066,13 @@ setTimeout(dccBoot,120);
 
 
 <style id="dcc-v40-style">
-/* DCC v40 — in-season manager cleanup */
+/* DCC v41 — in-season manager cleanup */
 .sync-strip,.stickyclock{display:none!important}
 #page-league .sectionhead p{max-width:760px}
 .v40-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.v40-card{border:1px solid var(--line);border-radius:12px;background:#0d1421;padding:12px}.v40-card b{font-size:12px}.v40-card .v40-big{font-size:20px;font-weight:900;margin-top:5px}.v40-muted{font-size:10px;color:#718099;margin-top:4px}.v40-table{width:100%;border-collapse:collapse;min-width:680px}.v40-table th{font-size:9px;text-transform:uppercase;color:#738199;text-align:left;padding:8px;border-bottom:1px solid var(--line);background:#111827}.v40-table td{padding:9px 8px;border-bottom:1px solid #202a3a;font-size:11px}.v40-pill{display:inline-block;padding:3px 6px;border-radius:6px;background:#172237;color:#9fb2cc;font-size:9px;font-weight:800}.v40-good{color:#5de0b7}.v40-warn{color:#f5c566}.v40-bad{color:#ff8190}.v40-empty{padding:16px;border:1px dashed var(--line);border-radius:12px;color:#718099}.v40-toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.v40-toolbar .select{width:auto;min-width:110px}.v40-source{font-size:9px;color:#718099;margin-top:6px}@media(max-width:700px){.v40-grid{grid-template-columns:1fr 1fr}.v40-table{min-width:620px}}@media(max-width:450px){.v40-grid{grid-template-columns:1fr}}
 </style>
 <script id="dcc-v40-runtime">
-/* DCC v40 — in-season functionality audit and cleanup.
+/* DCC v41 — in-season functionality audit and cleanup.
    ESPN = league truth. Independent sources = player evaluation. DCC = decision engine. */
 (function(){
   const V40='40.0.0';
@@ -3100,7 +3100,7 @@ setTimeout(dccBoot,120);
       window.__dccESPNTransactions=Array.isArray(n?.transactions)?n.transactions:(Array.isArray(n?.recentActivity)?n.recentActivity:[]);
       window.__dccESPNMatchups=sched; window.__dccLeagueMetaAudit={mapped,matches:sched.length,transactions:window.__dccESPNTransactions.length,timestamp:new Date().toISOString()};
       if(mapped||incoming.length)saveState?.('espn-meta');
-    }catch(e){console.warn('DCC v40 league meta',e)}
+    }catch(e){console.warn('DCC v41 league meta',e)}
   }
   function applyEspnSettings(st){
     try{
@@ -3149,7 +3149,7 @@ setTimeout(dccBoot,120);
 
   function renderMoreV40(){
     const page=document.getElementById('page-settings');if(!page)return;if(page.dataset.v40)return;
-    page.innerHTML=`<div class="settings"><div class="card setting"><div class="sectionhead"><div><h2>🔗 ESPN Connection</h2><p>ESPN is the authoritative source for your league, rosters, standings, matchups and transactions. DCC does not require manual roster editing.</p></div><button class="primary" id="v40EspnSync">SYNC ESPN</button></div><div id="v40EspnStatus" class="dcc-alert good">Ready for ESPN sync.</div></div><div class="card setting"><div class="sectionhead"><div><h2>📊 Projection Sources</h2><p>DCC uses independent sources for player evaluation. ESPN cannot be the sole live projection authority.</p></div></div><div id="v40ProjectionHealth"></div></div><div class="card setting"><div class="sectionhead"><div><h2>🩺 Data Health</h2><p>Diagnostics for league, roster, matchup and projection coverage.</p></div></div><div id="v40DataHealth"></div></div><div class="card setting"><div class="sectionhead"><div><h2>🧹 Manager Mode</h2><p>Manual draft-era controls, roster builders, standings editors and schedule editors have been removed from the normal workflow.</p></div></div><div class="v40-muted">ESPN → League State · Independent Sources → Player Evaluation · DCC → Decisions</div></div></div>`;
+    page.innerHTML=`<div class="settings"><div class="card setting"><div class="sectionhead"><div><h2>🔗 ESPN Connection</h2><p>ESPN is the authoritative source for your league, rosters, standings, matchups and transactions. DCC does not require manual roster editing.</p></div><button class="primary" id="v40EspnSync">SYNC ESPN</button></div><div id="v40EspnStatus" class="dcc-alert good">Ready for ESPN sync.</div></div><div class="card setting"><div class="sectionhead"><div><h2>📊 Projection Sources</h2><p>DCC uses independent sources for player evaluation. ESPN cannot be the sole live projection authority.</p></div></div><div id="v40ProjectionHealth"></div></div><div class="card setting"><div class="sectionhead"><div><h2>🩺 Data Health</h2><p>Diagnostics for league, roster, matchup and projection coverage.</p></div></div><div id="v40DataHealth"></div></div></div>`;
     page.dataset.v40='1';
     document.getElementById('v40EspnSync')?.addEventListener('click',()=>{window.postMessage({source:'DCC_ESPN_BRIDGE_V38',type:'ESPN_SYNC_REQUEST'},'*');showToast('ESPN sync requested')});
   }
@@ -3169,6 +3169,97 @@ setTimeout(dccBoot,120);
   const oldRenderLeague=window.renderLeagueAnalyzer;window.renderLeagueAnalyzer=function(){renderLeagueV40()};
   setTimeout(()=>{cleanupLegacy();bindV40Nav();renderMoreV40();renderMoreHealth();renderLeagueV40();renderHomeAudit();},850);
   setInterval(()=>{try{renderHomeAudit();if(page==='league')renderLeagueV40();if(page==='settings')renderMoreHealth()}catch(e){}},15000);
+})();
+</script>
+
+
+<script id="dcc-v41-runtime">
+(function(){
+  const V41='41.0';
+  function statusPenalty(p){return ({healthy:0,questionable:5,doubtful:12,out:35,ir:35}[getStatus(p?.name)]||0)}
+  function teamInjuryDrag(t,w){
+    const roster=t?.roster||[], starters=weeklyStarterSplit(t,w).starters.filter(x=>x.p);
+    return starters.reduce((n,x)=>n+statusPenalty(x.p),0);
+  }
+  function seasonPF(i){const r=dccStand(i);return Number(r.pf||0)}
+  function power41(i,w){
+    const t=teams[i]; if(!t) return {score:0};
+    const pf=seasonPF(i), pfVals=teams.map((_,j)=>seasonPF(j)), maxPF=Math.max(...pfVals,1);
+    const proj=teamProjTotal(t,w), projVals=teams.map(x=>teamProjTotal(x,w)), maxProj=Math.max(...projVals,1);
+    const opp=currentOpponentFor(i,w), oppProj=opp!=null?teamProjTotal(teams[opp],w):0;
+    const margin=proj-oppProj;
+    const injury=teamInjuryDrag(t,w);
+    const rec=dccStand(i), games=Number(rec.w||0)+Number(rec.l||0)+Number(rec.t||0), winPct=games?((Number(rec.w||0)+.5*Number(rec.t||0))/games):.5;
+    const pfComponent=(pf/maxPF)*100;
+    const projComponent=(proj/maxProj)*100;
+    const matchupComponent=Math.max(0,Math.min(100,50+margin*2.2));
+    const recordComponent=winPct*100;
+    const injuryComponent=Math.max(0,100-injury);
+    const score=pfComponent*.35+projComponent*.30+matchupComponent*.15+recordComponent*.10+injuryComponent*.10;
+    return {score,proj,pf,margin,injury,opp,winPct};
+  }
+  function currentOpponentFor(idx,w){const s=leagueConfig.schedule?.[w];const oi=s?Number(s[String(idx)]):null;return Number.isInteger(oi)&&teams[oi]?oi:null}
+
+  function renderProjectionHealth41(){
+    try{ captureExistingESPN?.(); }catch(e){}
+    const w=plannerWeek||2;
+    // Try the public Sleeper projection feed whenever More is opened. It is independent of ESPN.
+    if(typeof syncSleeperProjections==='function' && !window.__dccV41SleeperKick){window.__dccV41SleeperKick=true;syncSleeperProjections().then(()=>{window.__dccV41SleeperKick=false;renderProjectionHealth41()}).catch(()=>{window.__dccV41SleeperKick=false})}
+    // Re-hydrate any legacy FP cache into the independent-source store.
+    try{hydrateSourcesFromLegacy?.()}catch(e){}
+    const a=window.dccV39Health?.(w)||{sources:{}};
+    const names=['FantasyPros','Sleeper','ESPN'];
+    const h=document.getElementById('v40ProjectionHealth'); if(!h)return;
+    h.innerHTML=`<div class="v40-grid">${names.map(n=>{const v=a.sources?.[n];const state=v?.fresh?'LIVE':'NOT LOADED';const cls=v?.fresh?'v40-good':'v40-warn';return `<div class="v40-card"><b>${n}</b><div class="v40-big ${cls}">${state}</div><div class="v40-muted">${v?.count||0} players${v?.timestamp?' · '+new Date(v.timestamp).toLocaleTimeString():''}</div></div>`}).join('')}</div><div class="v40-source">${Object.values(a.sources||{}).filter(v=>v?.fresh).length>=2?'LIVE ENSEMBLE AVAILABLE':'No live multi-source ensemble yet'} · At least 2 fresh independent sources are required. ESPN can never be the sole authority.</div><button class="ghost" id="v41RefreshSources" style="margin-top:10px">REFRESH PROJECTION SOURCES</button>`;
+    document.getElementById('v41RefreshSources')?.addEventListener('click',()=>{window.__dccV41SleeperKick=false;try{captureExistingESPN?.()}catch(e){};syncSleeperProjections?.().then(()=>{renderProjectionHealth41();render?.()})});
+  }
+
+  function renderTeamSuggestions41(){
+    const home=document.getElementById('page-manager'); if(!home)return;
+    let card=document.getElementById('v41TeamSuggestions');
+    if(!card){card=document.createElement('div');card.id='v41TeamSuggestions';card.className='card manager-card section';home.appendChild(card)}
+    const me=typeof myTeam==='function'?myTeam():teams[draftPos-1], w=plannerWeek||2, opp=currentOpponentFor(draftPos-1,w);
+    if(!me){card.innerHTML='<div class="sectionhead"><div><h2>🧭 Team Suggestions</h2><p>Sync ESPN to generate your weekly game plan.</p></div></div>';return}
+    const suggestions=[];
+    const lineup=weeklyStarterSplit(me,w);
+    // Start/sit edges: compare bench players against current starters at eligible positions.
+    const starterNames=new Set(lineup.starters.filter(x=>x.p).map(x=>x.p.name));
+    const bench=(lineup.bench||[]).filter(p=>byeWeek(p.team)!==w && !isInjuredOut(p.name));
+    bench.forEach(b=>{
+      const bp=dccProjection(b,w).value;
+      lineup.starters.filter(x=>x.p && DCC_FLEX_ELIGIBLE.includes(x.p.pos) && DCC_FLEX_ELIGIBLE.includes(b.pos)).forEach(x=>{
+        const sp=dccProjection(x.p,w).value,edge=bp-sp;
+        if(edge>1.0) suggestions.push({priority:edge>=3?'HIGH':'MED',title:`Consider ${b.name} over ${x.p.name}`,body:`${b.pos} · +${edge.toFixed(1)} projected points · ${weekMatchupLabel(b,w)} vs ${weekMatchupLabel(x.p,w)}`,score:edge+3});
+      });
+    });
+    // Injury / availability warnings.
+    lineup.starters.forEach(x=>{if(!x.p)return;const st=getStatus(x.p.name);if(['questionable','doubtful','out','ir'].includes(st))suggestions.push({priority:st==='out'||st==='ir'?'URGENT':'HIGH',title:`Backup plan for ${x.p.name}`,body:`${STATUS_META[st]?.label||st} · keep an eligible replacement ready before kickoff.`,score:st==='out'||st==='ir'?20:10})});
+    // Matchup leverage.
+    if(opp!=null){const mine=teamProjTotal(me,w), theirs=teamProjTotal(teams[opp],w),margin=mine-theirs;suggestions.push({priority:Math.abs(margin)>=15?'HIGH':'MED',title:margin>=0?'Protect your projection edge':'Look for upside',body:`Projected ${mine.toFixed(1)} vs ${theirs.toFixed(1)} against ${teams[opp].name} · ${margin>=0?`you have a ${margin.toFixed(1)}-point edge`:`you trail by ${Math.abs(margin).toFixed(1)} points`}.`,score:Math.abs(margin)/4+2})}
+    // Waiver targets: only surface actual available players with meaningful value over replacement.
+    const needs=teamNeeds(me), avail=available().filter(p=>p.active!==false && !['K','DEF'].includes(p.pos)).filter(p=>needs.includes(p.pos)||needs.includes('FLEX_DEPTH')).sort((a,b)=>dccProjection(b,w).value-dccProjection(a,w).value).slice(0,3);
+    if(avail.length)suggestions.push({priority:'MED',title:`Monitor ${avail[0].name}`,body:`${avail[0].pos} waiver target · ${dccProjection(avail[0],w).value.toFixed(1)} projected · ${needs.length?`addresses ${needs.join(', ')}`:'adds depth'}.`,score:dccProjection(avail[0],w).value/3});
+    // If nothing is urgent, provide a useful routine rather than an empty card.
+    suggestions.sort((a,b)=>b.score-a.score);
+    card.innerHTML=`<div class="sectionhead"><div><h2>🧭 Team Suggestions</h2><p>Weekly game-plan recommendations using your roster, opponent, availability, matchup and multi-source projections.</p></div></div>${suggestions.slice(0,5).map(x=>`<div class="action-item ${x.priority==='URGENT'?'manager-bad':x.priority==='HIGH'?'manager-alert':'manager-good'}"><div class="ai-icon">${x.priority==='URGENT'?'🚨':x.priority==='HIGH'?'⚠️':'🎯'}</div><div><b>${escHtml(x.title)}</b><span>${escHtml(x.body)}</span></div></div>`).join('')||'<div class="v40-empty">No major adjustments detected. Recheck before each player kickoff.</div>'}`;
+  }
+
+  function renderLeague41(){
+    const body=document.getElementById('v40LeagueStandings'); if(!body)return;
+    const w=plannerWeek||2;
+    const rows=teams.map((t,i)=>({i,t,...power41(i,w),record:record(i)})).sort((a,b)=>b.score-a.score);
+    body.innerHTML=rows.map((x,i)=>{const opp=x.opp!=null?teams[x.opp]?.name:'—';return `<tr><td>${i+1}</td><td><b>${escH(x.t.name)}</b>${x.i===draftPos-1?' <span class="v40-pill">YOU</span>':''}</td><td>${x.record}</td><td>${x.pf.toFixed(1)}</td><td>${Number(dccStand(x.i).pa||0).toFixed(1)}</td><td>${x.proj.toFixed(1)}</td><td>${escH(opp)}</td></tr>`}).join('')||'<tr><td colspan="7"><div class="v40-empty">No league teams returned yet. Sync ESPN.</div></td></tr>';
+    const hdr=document.querySelector('#page-league #v40LeagueStandings')?.closest('table')?.querySelector('thead');
+    if(hdr)hdr.innerHTML='<tr><th>#</th><th>Team</th><th>Record</th><th>PF</th><th>PA</th><th>Wk Proj</th><th>Opponent</th></tr>';
+    const desc=document.querySelector('#page-league .section h2')?.parentElement?.querySelector('p');
+    if(desc)desc.textContent='Power ranking: season scoring remains the anchor, adjusted for current roster health, Week 2 projection and opponent strength. This is not a simple points-scored table.';
+  }
+
+  const oldMore=window.renderMoreHealth; window.renderMoreHealth=function(){try{oldMore?.apply(this,arguments)}catch(e){}renderProjectionHealth41()};
+  const oldLeague=window.renderLeagueV40; window.renderLeagueV40=function(){try{oldLeague?.apply(this,arguments)}catch(e){}setTimeout(renderLeague41,0)};
+  const oldHome=window.renderHomeAudit; window.renderHomeAudit=function(){try{oldHome?.apply(this,arguments)}catch(e){}renderTeamSuggestions41()};
+  setTimeout(()=>{renderProjectionHealth41();renderTeamSuggestions41();renderLeague41()},1100);
+  setInterval(()=>{try{renderProjectionHealth41();renderTeamSuggestions41();if(page==='league')renderLeague41()}catch(e){}},30000);
 })();
 </script>
 
