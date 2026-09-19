@@ -116,11 +116,14 @@ html{background:var(--bg)} body{background:radial-gradient(circle at 50% -10%,rg
 @media(max-width:420px){.grid3{grid-template-columns:1fr 1fr}.status .live{display:none}.brand-version{font-size:8px}.wrap{padding:10px}.nav button{padding:7px 9px}}
 </style>
 
-<style id="dcc-v46-fixes">
-#v46MyTeamHealth{margin-bottom:12px}
-#v46MyTeamHealth .action-item{margin-top:8px}
-.v46-loading{font-size:11px;opacity:.75}
-.v46-score{font-weight:800}
+<style id="dcc-v47-fixes">
+#v47MyTeamHealth{margin-bottom:12px}
+#v47MyTeamHealth .action-item{margin-top:8px}
+.v47-loading{font-size:11px;opacity:.75}
+.v47-score{font-weight:800}
+</style>
+<style id="dcc-v47-fixes">
+.v47-health-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.v47-health{padding:10px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.025);display:flex;flex-direction:column;gap:5px}.v47-health span{font-size:10px;font-weight:800}.v47-health .good{color:#31d6a3}.v47-health .warn{color:#f6b94a}.dcc-v47-ready #dccBootScreen{display:none!important}@media(max-width:520px){.v47-health-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -137,7 +140,7 @@ html{background:var(--bg)} body{background:radial-gradient(circle at 50% -10%,rg
 <div class="app">
 <header class="top">
 <div class="toprow">
-<div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span class="brand-version">v45</span></h1></div></div>
+<div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center <span class="brand-version">v47.0.0</span></h1></div></div>
 <div class="status"><div class="live" title="Mobile Team Manager is fully manual and local-first"><i class="pulse"></i><span id="syncText">MOBILE TEAM MANAGER</span></div></div>
 </div>
 <nav class="nav" id="nav">
@@ -2565,15 +2568,15 @@ if(location.protocol.startsWith("http")){setTimeout(()=>syncNFLSchedule(true),30
 </script>
 <script>
 if('serviceWorker' in navigator && location.protocol.startsWith('http')){
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=46.0',{scope:'./'}).catch(()=>{}));
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=47.0.0',{scope:'./'}).catch(()=>{}));
 }
 </script>
 <script id="dcc-v25-core">
 /* Draft Command Center v26.0 — App polish, weekly intelligence and data-integrity fixes
    ESPN league data is authoritative for roster/league state; independent sources feed projections, market context and player intelligence. */
-const DCC_V25_VERSION="46.0";
+const DCC_V25_VERSION="47.0.0";
 const DCC_FLEX_ELIGIBLE=["RB","WR","TE"];
-const DCC_STATE_VERSION=390;
+const DCC_STATE_VERSION=470;
 const DCC_PROJECTION_MAX_AGE_MS=6*60*60*1000;
 const DCC_HEALTH_KEY="dcc_v25_health";
 const DCC_SNAPSHOT_KEY="dcc_v25_snapshots";
@@ -3348,7 +3351,7 @@ setTimeout(dccBoot,120);
   function home43(){syncStatuses43();const host=document.getElementById('page-manager');if(!host)return;document.getElementById('mgrSnapshot')?.closest('.card')?.remove();document.getElementById('mgrMoves')?.closest('.card')?.remove();let card=document.getElementById('v43TeamSuggestions');if(!card){card=document.createElement('div');card.id='v43TeamSuggestions';card.className='card manager-card section';host.appendChild(card)}const me=myTeam43(),w=Number(plannerWeek||2),oi=opp43(draftPos-1,w);if(!me){card.innerHTML='<div class="sectionhead"><div><h2>🧭 Team Suggestions</h2><p>Waiting for the latest ESPN roster snapshot. DCC will refresh it automatically when the bridge is available.</p></div></div>';return}const suggestions=[];const ls=lineup43(me,w);ls.starters.forEach(x=>{if(!x.p)return;const st=status43(x.p);if(st==='out'||st==='ir')suggestions.push({score:100,icon:'🚨',title:`Replace ${x.p.name}`,body:`${st==='ir'?'IR':'OUT'} — unavailable. Do not start this player.`});else if(st==='doubtful')suggestions.push({score:60,icon:'⚠️',title:`Backup plan: ${x.p.name}`,body:'Doubtful — keep an eligible same-position replacement ready.'})});const bench=(ls.bench||[]).filter(p=>!['out','ir'].includes(status43(p))&&byeWeek(p.team)!==w);bench.forEach(b=>{if(!SKILL.includes(b.pos))return;const bp=ensemble43(b,w).value;ls.starters.filter(x=>x.p&&x.p.pos===b.pos&&!['out','ir'].includes(status43(x.p))).forEach(x=>{const edge=bp-ensemble43(x.p,w).value;if(edge>=2)suggestions.push({score:50+edge,icon:'🔁',title:`Consider ${b.name} over ${x.p.name}`,body:`${edge>0?'+':''}${edge.toFixed(1)} projected PPR edge; both players are currently eligible.`})})});if(oi!=null){const mep=teamProjTotal(me,w),op=teamProjTotal(teams[oi],w),d=mep-op;suggestions.push({score:30+Math.min(15,Math.abs(d)),icon:d>=0?'🛡️':'🔥',title:d>=0?'Protect your weekly edge':'Add upside this week',body:`Projected ${mep.toFixed(1)}–${op.toFixed(1)} vs ${esc43(teams[oi].name)}. ${d>=0?'Prefer stability unless an upgrade is clear.':'Prioritize healthy upside and avoid unnecessary risk.'}`});const taken=rosteredSet43(),needs=typeof teamNeeds==='function'?teamNeeds(me):[];const wa=(typeof available==='function'?available():[]).filter(p=>!taken.has(norm43(p.name))&&SKILL.includes(p.pos)&&!['out','ir'].includes(status43(p))).filter(p=>needs.includes(p.pos)||needs.includes('FLEX_DEPTH')).sort((a,b)=>ensemble43(b,w).value-ensemble43(a,w).value).slice(0,2);if(wa.length)suggestions.push({score:20,icon:'🎯',title:`Monitor ${wa[0].name}`,body:`${wa[0].pos} waiver target · ${ensemble43(wa[0],w).value.toFixed(1)} PPR projection · addresses a roster need.`});suggestions.sort((a,b)=>b.score-a.score);card.innerHTML=`<div class="sectionhead"><div><h2>🧭 Team Suggestions</h2><p>Actionable weekly game-plan ideas using roster status, matchup context and the DCC multi-source model.</p></div></div>${suggestions.slice(0,5).map(x=>`<div class="action-item ${x.score>=80?'manager-bad':x.score>=45?'manager-alert':'manager-good'}"><div class="ai-icon">${x.icon}</div><div><b>${esc43(x.title)}</b><span>${esc43(x.body)}</span></div></div>`).join('')||'<div class="v40-empty">No major adjustments detected. Recheck before kickoff.</div>'}`}
   }
   function matchup43(){syncStatuses43();const el=document.getElementById('matchupBody');if(!el)return;const w=Number(plannerWeek||2),oi=opp43(draftPos-1,w);if(oi==null){el.innerHTML=`<div class="dcc-alert">ESPN has not supplied a Week ${w} fantasy matchup yet. Sync ESPN.</div>`;return}const me=teams[draftPos-1],opp=teams[oi],ml=lineup43(me,w),ol=lineup43(opp,w),mt=teamProjTotal(me,w),ot=teamProjTotal(opp,w);const row=x=>{const p=x.p;if(!p)return `<div class="lineuprow"><div class="lp-pos">${x.slot}</div><div class="lp-name"><b>OPEN</b></div><div class="lp-pts">—</div></div>`;const label=weekMatchupLabel(p,w);return `<div class="lineuprow"><div class="lp-pos">${x.slot}</div><div class="lp-name"><b>${esc43(p.name)} ${statusBadge(p.name)}</b><span>${esc43(p.team)}${label&&label!=='Unknown'?' · '+esc43(label==='Schedule unavailable'?'NFL matchup loading…':label):''}</span></div><div class="lp-pts ${['out','ir'].includes(status43(p))?'negative':''}">${ensemble43(p,w).value.toFixed(1)}</div></div>`};el.innerHTML=`<div class="matchup-head"><div class="matchup-team"><b>${esc43(me.name)} <span class="youpill">YOU</span></b><div class="mscore ${mt>=ot?'positive':'negative'}">${mt.toFixed(1)}</div></div><div class="matchup-vs">WK ${w}<br>VS<div class="mini" style="margin-top:4px">HEAD-TO-HEAD</div></div><div class="matchup-team"><b>${esc43(opp.name)}</b><div class="mscore ${ot>mt?'positive':'negative'}">${ot.toFixed(1)}</div></div></div><div class="matchup-cols v43-h2h"><div><div class="matchup-col-head">${esc43(me.name)}</div>${ml.starters.map(row).join('')}</div><div><div class="matchup-col-head">${esc43(opp.name)}</div>${ol.starters.map(row).join('')}</div></div><div class="dcc-small" style="margin-top:10px">${dccProjectionLabel(w)} · Projected margin ${(mt-ot).toFixed(1)}.</div>`;document.getElementById('lineupStarters')?.closest('.section.card')?.remove();const f=document.getElementById('plannerFlags');if(f){const a=[];ml.starters.forEach(x=>{if(!x.p)return;const st=status43(x.p);if(st==='out'||st==='ir')a.push(`<div class="action-item manager-bad"><div class="ai-icon">🚨</div><div><b>Replace ${esc43(x.p.name)}</b><span>${st==='ir'?'IR':'OUT'} — unavailable for Week ${w}.</span></div></div>`);else if(st==='doubtful')a.push(`<div class="action-item manager-alert"><div class="ai-icon">⚠️</div><div><b>Backup plan for ${esc43(x.p.name)}</b><span>Doubtful — keep an eligible replacement ready.</span></div></div>`)});f.innerHTML=a.join('')||`<div class="mini">No urgent injury or availability flags for Week ${w}.</div>`}}
-  function myTeam43Render(){syncStatuses43();const team=myTeam43(),w=Number(plannerWeek||2);if(!team)return;const host=document.getElementById('page-rosters');if(host){let hc=document.getElementById('v46MyTeamHealth');if(!hc){hc=document.createElement('div');hc.id='v46MyTeamHealth';hc.className='card panelpad section';const first=host.querySelector('.card');first?.before(hc)}const hurt=(team.roster||[]).filter(p=>['out','ir','doubtful','questionable'].includes(status43(p)));hc.innerHTML=hurt.length?`<div class="sectionhead"><div><h2>🩺 Player Health</h2><p>${hurt.length} player${hurt.length===1?'':'s'} on your roster currently carrying an injury/availability flag.</p></div></div>${hurt.map(p=>`<div class="action-item ${['out','ir'].includes(status43(p))?'manager-bad':'manager-alert'}"><div class="ai-icon">${status43(p)==='ir'?'🚑':'⚠️'}</div><div><b>${esc43(p.name)} · ${String(status43(p)).toUpperCase()}</b><span>${esc43(p.pos)} · ${esc43(p.team)} · Review before kickoff.</span></div></div>`).join('')}`:`<div class="sectionhead"><div><h2>🩺 Player Health</h2><p>No current injury/availability flags on your roster.</p></div></div>`;}const split=lineup43(team,w),row=({pos,p})=>p?`<div class="lineuprow"><div class="lp-pos">${esc43(pos)}</div><div class="lp-name"><b>${esc43(p.name)} ${statusBadge(p.name)}</b><span>${esc43(p.pos)} · ${esc43(p.team)} · ${weekMatchupLabel(p,w)==='Schedule unavailable'?'NFL matchup loading…':esc43(weekMatchupLabel(p,w))}</span></div><div class="lp-pts">${ensemble43(p,w).value.toFixed(1)}</div></div>`:`<div class="lineuprow"><div class="lp-pos">${esc43(pos)}</div><div class="lp-name"><b class="need">OPEN</b></div></div>`;document.getElementById('myTeamStarters')&&(document.getElementById('myTeamStarters').innerHTML=split.starters.map(row).join('')||'<div class="mini">ESPN roster has not synced yet.</div>');document.getElementById('myTeamBench')&&(document.getElementById('myTeamBench').innerHTML=(split.bench||[]).map(p=>row({pos:p.pos,p})).join('')||'<div class="mini">No bench players returned by ESPN.</div>');const pe=document.getElementById('myTeamPositions');if(pe)pe.innerHTML=SKILL.map(pos=>{const ps=(team.roster||[]).filter(p=>p.pos===pos),vals=ps.map(p=>ensemble43(p,w).value).sort((a,b)=>b-a),slots=Number(leagueConfig?.starters?.[pos]||1);return `<div class="dcc-alert"><b>${pos}</b><br>${ps.length} players · ${vals.slice(0,slots).reduce((a,b)=>a+b,0).toFixed(1)} starter projection<br><span class="dcc-small">${ps.slice(0,5).map(p=>esc43(p.name)).join(' · ')||'None'}</span></div>`}).join('');document.getElementById('myTeamNeeds')?.closest('.card')?.remove()}
+  function myTeam43Render(){syncStatuses43();const team=myTeam43(),w=Number(plannerWeek||2);if(!team)return;const host=document.getElementById('page-rosters');if(host){let hc=document.getElementById('v47MyTeamHealth');if(!hc){hc=document.createElement('div');hc.id='v47MyTeamHealth';hc.className='card panelpad section';const first=host.querySelector('.card');first?.before(hc)}const hurt=(team.roster||[]).filter(p=>['out','ir','doubtful','questionable'].includes(status43(p)));hc.innerHTML=hurt.length?`<div class="sectionhead"><div><h2>🩺 Player Health</h2><p>${hurt.length} player${hurt.length===1?'':'s'} on your roster currently carrying an injury/availability flag.</p></div></div>${hurt.map(p=>`<div class="action-item ${['out','ir'].includes(status43(p))?'manager-bad':'manager-alert'}"><div class="ai-icon">${status43(p)==='ir'?'🚑':'⚠️'}</div><div><b>${esc43(p.name)} · ${String(status43(p)).toUpperCase()}</b><span>${esc43(p.pos)} · ${esc43(p.team)} · Review before kickoff.</span></div></div>`).join('')}`:`<div class="sectionhead"><div><h2>🩺 Player Health</h2><p>No current injury/availability flags on your roster.</p></div></div>`;}const split=lineup43(team,w),row=({pos,p})=>p?`<div class="lineuprow"><div class="lp-pos">${esc43(pos)}</div><div class="lp-name"><b>${esc43(p.name)} ${statusBadge(p.name)}</b><span>${esc43(p.pos)} · ${esc43(p.team)} · ${weekMatchupLabel(p,w)==='Schedule unavailable'?'NFL matchup loading…':esc43(weekMatchupLabel(p,w))}</span></div><div class="lp-pts">${ensemble43(p,w).value.toFixed(1)}</div></div>`:`<div class="lineuprow"><div class="lp-pos">${esc43(pos)}</div><div class="lp-name"><b class="need">OPEN</b></div></div>`;document.getElementById('myTeamStarters')&&(document.getElementById('myTeamStarters').innerHTML=split.starters.map(row).join('')||'<div class="mini">ESPN roster has not synced yet.</div>');document.getElementById('myTeamBench')&&(document.getElementById('myTeamBench').innerHTML=(split.bench||[]).map(p=>row({pos:p.pos,p})).join('')||'<div class="mini">No bench players returned by ESPN.</div>');const pe=document.getElementById('myTeamPositions');if(pe)pe.innerHTML=SKILL.map(pos=>{const ps=(team.roster||[]).filter(p=>p.pos===pos),vals=ps.map(p=>ensemble43(p,w).value).sort((a,b)=>b-a),slots=Number(leagueConfig?.starters?.[pos]||1);return `<div class="dcc-alert"><b>${pos}</b><br>${ps.length} players · ${vals.slice(0,slots).reduce((a,b)=>a+b,0).toFixed(1)} starter projection<br><span class="dcc-small">${ps.slice(0,5).map(p=>esc43(p.name)).join(' · ')||'None'}</span></div>`}).join('');document.getElementById('myTeamNeeds')?.closest('.card')?.remove()}
   function dccRoast43(x,w,rank,total){
     const t=x.t, r=typeof dccStand==='function'?dccStand(x.i):{}, wins=Number(r.w||0), losses=Number(r.l||0), ties=Number(r.t||0);
     const roster=t.roster||[], health=roster.filter(p=>['out','ir','doubtful'].includes(status43(p)));
@@ -3392,6 +3395,158 @@ setTimeout(dccBoot,120);
 #v43CommissionerCallouts{margin-top:12px}
 @media(max-width:760px){.v43-roast-grid{grid-template-columns:1fr}.v43-roast-copy{font-size:12px}.v43-h2h{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7px}.v43-h2h .lineuprow{padding-left:6px;padding-right:6px}.v43-h2h .lp-name{font-size:10px}.v43-h2h .lp-pos{font-size:8px}.v43-h2h .lp-pts{font-size:10px}}
 </style>
+
+
+<script id="dcc-v47-product-layer">
+(()=>{
+  const BUILD='47.0.0', BRIDGE='DCC_ESPN_BRIDGE_V43';
+  window.__DCC_BUILD__={version:BUILD,bridge:BRIDGE,release:'consolidated-app-baseline',builtAt:'2026-09-18'};
+  const SKILL47=['QB','RB','WR','TE'];
+  const esc47=v=>{try{return escHtml(String(v??''))}catch(e){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}};
+  const text47=v=>String(v??'').replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim();
+  const status47=p=>{try{return typeof status43==='function'?status43(p):String(p?.status||p?.injuryStatus||'healthy').toLowerCase()}catch(e){return String(p?.status||'healthy').toLowerCase()}};
+  const team47=()=>{try{return typeof myTeam43==='function'?myTeam43():teams?.[draftPos-1]}catch(e){return teams?.[draftPos-1]}};
+  const week47=()=>Number(window.plannerWeek||plannerWeek||1);
+
+  function cleanLegacyLeague(){
+    const page=document.getElementById('page-league'); if(!page)return;
+    page.querySelectorAll('h1,h2,h3,h4').forEach(h=>{
+      const title=text47(h.textContent);
+      if(/^(?:🏆\s*)?League Analyzer$/i.test(title)||/League Room Integrity/i.test(title)){
+        const card=h.closest('.card,.panelpad,.section'); if(card)card.remove();
+      }
+    });
+    // Remove obsolete manual-analysis controls that survived older releases.
+    page.querySelectorAll('button').forEach(b=>{if(/^(?:REFRESH)$/i.test(text47(b.textContent)) && /Analyzer/i.test(b.closest('.card')?.textContent||'')) b.closest('.card')?.remove();});
+  }
+
+  function normalizeRankings(){
+    const body=document.getElementById('v40PlayerRankings'); if(!body)return;
+    const rows=[...body.querySelectorAll('tr')]; rows.slice(10).forEach(r=>r.remove());
+    const table=body.closest('table'); const h=table?.previousElementSibling?.querySelector('h2');
+    if(h)h.textContent='📈 Top 10 Player Rankings';
+    const p=h?.parentElement?.querySelector('p'); if(p)p.textContent='Top 10 in-season PPR player rankings using DCC projections, consensus context and roster status.';
+  }
+
+  function renderLeagueActivity47(){
+    const page=document.getElementById('page-league'); if(!page)return;
+    let card=document.getElementById('dccLeagueActivity47');
+    if(!card){card=document.createElement('div');card.id='dccLeagueActivity47';card.className='card panelpad section';page.appendChild(card)}
+    const tx=Array.isArray(window.__dccESPNTransactions)?window.__dccESPNTransactions:[];
+    const log=Array.isArray(window.activityLog)?window.activityLog:[];
+    const audit=window.__dccLeagueMetaAudit||{};
+    let items=tx;
+    if(!items.length && log.length) items=log;
+    const fmt=x=>{
+      const type=String(x?.type||x?.transactionType||x?.typeId||'ACTIVITY').toUpperCase();
+      const team=x?.teamName||x?.team?.name||x?.team||x?.member?.displayName||'League';
+      const player=x?.playerName||x?.player?.fullName||x?.player?.name||x?.player?.nameFull||'';
+      const time=x?.timestamp||x?.date||x?.createdAt||x?.executionDate||x?.proposedDate;
+      return `<div class="action-item manager-good"><div class="ai-icon">${/DROP|RELEASE/.test(type)?'➖':/ADD|ACQUIRE/.test(type)?'➕':/TRADE/.test(type)?'🔄':'📌'}</div><div><b>${esc47(team)} · ${esc47(type)}</b><span>${esc47(player||'League transaction/activity')} ${time?`· ${esc47(new Date(Number(time)<1e12?Number(time)*1000:Number(time)).toLocaleString())}`:''}</span></div></div>`;
+    };
+    card.innerHTML=`<div class="sectionhead"><div><h2>📸 League Activity</h2><p>ESPN transaction/activity records are shown here when the authenticated bridge snapshot provides them.</p></div><button class="ghost" id="dccActivityRefresh47">REFRESH ESPN</button></div>${items.length?items.slice(0,12).map(fmt).join(''):`<div class="dcc-alert"><b>ℹ️ No transaction records in the latest ESPN snapshot.</b><span style="display:block;margin-top:4px">The bridge is connected, but ESPN did not return transaction/activity rows in this snapshot. This is a data-availability state, not a dashboard error.</span></div>`}<div class="mini" style="margin-top:8px">Snapshot transaction count: ${tx.length} · mapped matchup records: ${Number(audit.matches||0)}</div>`;
+    document.getElementById('dccActivityRefresh47')?.addEventListener('click',()=>{window.postMessage({source:BRIDGE,type:'ESPN_SYNC_REQUEST'},'*');showToast?.('ESPN activity refresh requested')});
+  }
+
+  function projectionHealth47(){
+    const w=week47();
+    let active=[];
+    try{const bucket=window.__dccProjectionSources?.[w]||{};active=Object.entries(bucket).filter(([,v])=>v?.timestamp&&Date.now()-Date.parse(v.timestamp)<6*60*60*1000).map(([k])=>k)}catch(e){}
+    return {week:w,active};
+  }
+
+  function patchProjectionMarkup(){
+    document.querySelectorAll('*').forEach(el=>{
+      if(el.children.length===0 && /<span\s+class=["']dcc-source/i.test(el.textContent||'')){
+        el.textContent=text47(el.textContent);
+      }
+    });
+    // Replace old FantasyPros-only warning language with the actual DCC model contract.
+    const replacements=[
+      [/Projection data needs refresh\.?/gi,'Projection confidence'],
+      [/Week \d+ is using EST values\. Sync FantasyPros PPR before trusting small start\/sit or waiver edges/gi,'DCC model is active; live supplemental sources improve confidence when available.'],
+      [/Sync FantasyPros PPR before trusting small start\/sit or waiver edges/gi,'Live supplemental sources improve confidence for close decisions.'],
+      [/ESPN-only authority:\s*OFF/gi,'ESPN is league-data authority; DCC is decision-model authority.'],
+      [/1 LIVE SOURCE\s*[·•]\s*/gi,'1 live source · ']
+    ];
+    document.querySelectorAll('.card,.dcc-alert,.v40-source').forEach(el=>{
+      let html=el.innerHTML;
+      let changed=false; replacements.forEach(([re,to])=>{const n=html.replace(re,to);if(n!==html){html=n;changed=true;}}); if(changed)el.innerHTML=html;
+    });
+  }
+
+  function patchScheduleEngine47(){
+    const codeMap={JAC:'JAX',WAS:'WSH',LA:'LAR',STL:'LAR',SD:'LAC',OAK:'LV'};
+    const norm=x=>codeMap[String(x||'').toUpperCase()]||String(x||'').toUpperCase();
+    const oldWeekGame=window.weekGame;
+    window.weekGame=function(p,w){
+      const t=norm(p?.team); const map=window.nflScheduleByTeamWeek||nflScheduleByTeamWeek||{};
+      const g=map[t]||map[String(p?.team||'').toUpperCase()]; if(g?.[w])return g[w];
+      const b=window.REAL_BYE_WEEKS_2026?.[t];
+      if(b===w)return {bye:true,week:w};
+      return oldWeekGame?oldWeekGame(p,w):null;
+    };
+    // Use the authenticated ESPN fantasy schedule first for fantasy matchup context.
+    const espnOpp=(idx,w)=>{
+      const ts=window.__dccESPNMatchups||[]; const me=teams?.[idx]; const id=String(me?.espnTeamId??me?.id??idx+1);
+      for(const g of ts){
+        const gw=Number(g?.matchupPeriodId??g?.scoringPeriodId??g?.week); if(gw!==w)continue;
+        const a=g?.home?.teamId??g?.homeTeamId??g?.home?.id??g?.homeTeam?.id;
+        const b=g?.away?.teamId??g?.awayTeamId??g?.away?.id??g?.awayTeam?.id;
+        if(String(a)===id && b!=null){const j=(teams||[]).findIndex(t=>String(t?.espnTeamId??t?.id)===String(b));if(j>=0)return j;}
+        if(String(b)===id && a!=null){const j=(teams||[]).findIndex(t=>String(t?.espnTeamId??t?.id)===String(a));if(j>=0)return j;}
+      }
+      const cfg=leagueConfig?.schedule?.[w]; const j=cfg?Number(cfg[String(idx)]):null; return Number.isInteger(j)&&teams?.[j]?j:null;
+    };
+    window.dccOpponent=espnOpp;
+    window.currentOpponent=()=>espnOpp((window.draftPos||draftPos)-1,week47());
+  }
+
+  function healthCard47(){
+    const page=document.getElementById('page-settings'); if(!page)return;
+    let card=document.getElementById('dccHealth47');
+    if(!card){card=document.createElement('div');card.id='dccHealth47';card.className='card setting';page.appendChild(card)}
+    const w=week47(), t=team47(), roster=Array.isArray(t?.roster)?t.roster:[];
+    const tx=Array.isArray(window.__dccESPNTransactions)?window.__dccESPNTransactions:[];
+    const espn=window.__dccLiveState?.espn||window.__dccESPNState;
+    const ph=projectionHealth47();
+    const scheduleReady=!!Object.keys(window.nflScheduleByTeamWeek||nflScheduleByTeamWeek||{}).length;
+    const checks=[
+      ['ESPN bridge',espn?.timestamp?'CONNECTED':'WAITING',!!espn?.timestamp],
+      ['League teams',`${teams?.length||0}/12`,(teams?.length||0)===12],
+      ['My roster',`${roster.length} players`,roster.length>0],
+      ['NFL schedule',scheduleReady?'LOADED':'LOADING / NOT LOADED',scheduleReady],
+      ['Transactions',`${tx.length} rows`,tx.length>0],
+      ['Projection inputs',ph.active.length?ph.active.join(' + '):'DCC model',ph.active.length>0]
+    ];
+    card.innerHTML=`<div class="sectionhead"><div><h2>🩺 DCC Data Health</h2><p>One place to see whether the data feeding DCC is current, partial or unavailable.</p></div></div><div class="v47-health-grid">${checks.map(x=>`<div class="v47-health"><b>${esc47(x[0])}</b><span class="${x[2]?'good':'warn'}">${x[2]?'●':'●'} ${esc47(x[1])}</span></div>`).join('')}</div><div class="mini" style="margin-top:10px">Build ${BUILD} · Bridge ${BRIDGE} · Week ${w}. DCC will preserve the last successful snapshot when a live source is unavailable.</div>`;
+  }
+
+  function trimPOCText47(){
+    document.querySelectorAll('button').forEach(b=>{if(/EXECUTE TRADE \(DEMO\)/i.test(b.textContent||'')){b.textContent='TRADE PLAN';b.disabled=true;b.title='ESPN remains the transaction authority; DCC does not execute league transactions.';}});
+    document.querySelectorAll('.card,.setting').forEach(c=>{
+      if(/Executed demo trades this session/i.test(c.textContent||'')){
+        const p=[...c.querySelectorAll('p')].find(x=>/Executed demo trades/i.test(x.textContent||''));if(p)p.textContent='Trade analysis history from this DCC session.';
+      }
+    });
+  }
+
+  function refresh47(){
+    try{cleanLegacyLeague();normalizeRankings();renderLeagueActivity47();healthCard47();patchProjectionMarkup();trimPOCText47();patchScheduleEngine47();}
+    catch(e){console.warn('DCC v47 product layer',e)}
+  }
+  function requestEspn47(){try{window.postMessage({source:BRIDGE,type:'ESPN_SYNC_REQUEST'},'*')}catch(e){}}
+
+  // Fast cached-first startup: never wait for ESPN before exposing the app.
+  const boot=()=>{try{document.body?.classList.add('dcc-v47-ready');document.getElementById('dccBootScreen')?.classList.add('is-hidden')}catch(e){} refresh47();};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+  window.addEventListener('load',()=>{refresh47();requestEspn47();});
+  document.getElementById('nav')?.addEventListener('click',()=>setTimeout(refresh47,30));
+  window.addEventListener('message',e=>{if(e.source!==window)return;const d=e.data||{};if(d.source===BRIDGE||d.type==='DCC_ESPN_BRIDGE_PAYLOAD'||d.type==='DCC_ESPN_BRIDGE_STATUS'){setTimeout(refresh47,40);}});
+  // One short post-render pass catches the v43 event-driven render without introducing polling.
+  setTimeout(refresh47,250);
+})();
+</script>
 
 </body>
 </html>
