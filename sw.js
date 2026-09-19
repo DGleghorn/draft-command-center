@@ -1,4 +1,4 @@
-const CACHE='dcc-v45-0';
+const CACHE='dcc-v46-0';
 const CORE=['./','./index.html','./manifest.json','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('dcc-v')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
