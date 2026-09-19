@@ -8,3 +8,7 @@ Clean mobile-first in-season fantasy manager baseline.
 - No FantasyPros API dependency
 - Cached-first mobile PWA behavior
 - No manual league configuration or demo trade execution UI
+
+
+## v48.1.0
+Data-plumbing repair: ESPN roster entries are normalized to player objects, lineup slots are decoded, weekly projections/status are preserved, and standings/record parsing is corrected.

@@ -1,7 +1,7 @@
 {
-  "version": "48.0.0",
+  "version": "48.1.0",
   "bridge": "DCC_ESPN_BRIDGE_V43",
-  "release": "clean-mobile-first-rebaseline",
+  "release": "data-plumbing-repair",
   "builtAt": "2026-09-19",
   "sourceOfTruth": "index.html"
 }
