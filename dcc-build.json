@@ -1,7 +1,7 @@
 {
-  "version": "49.2.0",
-  "bridge": "DCC_ESPN_BRIDGE_V43",
-  "release": "espn-handshake-roster-hotfix",
-  "builtAt": "2026-09-24",
-  "sourceOfTruth": "index.html"
+  "app":"Draft Command Center",
+  "build":"49.3.0",
+  "bridge":"DCC_ESPN_BRIDGE_V43",
+  "storage":"dcc_v49_3_state",
+  "cache":"dcc-v49-3"
 }

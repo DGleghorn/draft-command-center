@@ -1,24 +1,21 @@
-# Draft Command Center v49.2.0
+# Draft Command Center v49.3.0
 
 Mobile-first fantasy football manager for ESPN leagues.
 
-## v49.2 hotfix
-- Fixes the dashboard/bridge response-envelope mismatch: `ESPN_SYNC_RESULT` is now read from either `payload` or `result`.
-- Real bridge error messages are surfaced instead of the generic “unknown error.”
-- Successful bridge acknowledgements no longer masquerade as a completed snapshot; the dashboard waits for the actual ESPN snapshot.
-- Uses a fresh `dcc_v49_2_state` storage namespace and `dcc-v49-2` service-worker cache.
+## v49.3 dashboard/bridge reliability hotfix
+- Keeps ESPN Bridge V43 unchanged.
+- Reconciles `ESPN_SYNC_RESULT` from either `payload` or `result`.
+- If a valid ESPN snapshot arrives, a later bridge error cannot overwrite or falsely replace the successful sync state.
+- Adds a short race-protection window so a stale “open your ESPN fantasy league page first” error does not mask a snapshot that was already delivered.
+- Stores the ESPN player pool in DCC state when supplied by the bridge so Opportunities/Waivers can use the same authoritative player universe.
+- Sleeper remains supplemental and cannot override ESPN ownership.
+- Fresh `dcc_v49_3_state` storage namespace and `dcc-v49-3` service-worker cache.
+- Build/version references are synchronized to v49.3.0.
 
-## v49 priorities
-- ESPN Bridge V43 compatibility preserved.
-- ESPN roster/ownership authority with sync-lock protection.
-- No silent first-team fallback.
-- Player grades: current/week/ROS, trend, confidence and opportunity.
-- ESPN-authoritative availability pool when bridge supplies it; Sleeper is supplemental only.
-- Personalized waiver categories and roster upgrade paths.
-- Trade Builder with team selector, two-sided player selection, before/after projection, depth, replacement value, partner fit and six-week outlook.
-- League PowerScore, injury intelligence, trade map and commissioner callouts.
-- Data Health, diagnostics, timestamps and decision log.
-- Cache/version consistency: v49.2.0 and service-worker cache dcc-v49-2.
+## Deployment
+Upload the contents of this ZIP to the root of the GitHub Pages repository and replace the existing files. Keep the existing ESPN Orion Bridge V43 installed.
 
-## Deploy
-Upload the contents of this ZIP to the root of the GitHub Pages repository. Keep the existing ESPN Orion Bridge V43 installed; v49 does not require a new bridge unless a future bridge protocol change is explicitly announced.
+After publishing, open:
+`https://dgleghorn.github.io/draft-command-center/?v4930`
+
+Confirm the header reads `v49.3.0 · ESPN Bridge V43` before testing sync.
