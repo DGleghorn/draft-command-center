@@ -11,7 +11,7 @@
 </style>
 </head>
 <body>
-<header class="top"><div class="toprow"><div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center</h1><div class="status" id="buildStatus">v49.1.0 · ESPN Bridge V43</div></div></div><button class="btn primary" id="syncBtn">SYNC ESPN</button></div><nav class="nav" id="nav"></nav></header>
+<header class="top"><div class="toprow"><div class="brand"><div class="logo">DC</div><div><div class="eyebrow">2026 FANTASY FOOTBALL</div><h1>Draft Command Center</h1><div class="status" id="buildStatus">v49.2.0 · ESPN Bridge V43</div></div></div><button class="btn primary" id="syncBtn">SYNC ESPN</button></div><nav class="nav" id="nav"></nav></header>
 <main class="wrap">
 <section id="home" class="page active"><div class="card hero"><div class="row"><div><div class="label">My Team</div><div class="big" id="homeTeam">Waiting for ESPN</div><div class="muted small" id="homeRecord">League sync required</div></div><div style="text-align:right"><div class="label">Week</div><div class="big" id="homeWeek">—</div></div></div></div>
 <div class="grid g4" style="margin-top:10px"><div class="metric"><span>PowerScore</span><b id="homePower">—</b></div><div class="metric"><span>Week Projection</span><b id="homeProj">—</b></div><div class="metric"><span>Opponent</span><b id="homeOpp">—</b></div><div class="metric"><span>Roster Grade</span><b id="homeGrade">—</b></div></div>
@@ -26,7 +26,7 @@
 </main>
 <script>
 'use strict';
-const BUILD='49.1.0',BRIDGE='DCC_ESPN_BRIDGE_V43',STORAGE='dcc_v49_1_state';
+const BUILD='49.2.0',BRIDGE='DCC_ESPN_BRIDGE_V43',STORAGE='dcc_v49_2_state';
 const NAV=[['home','Home'],['myteam','My Team'],['matchup','Matchup'],['waivers','Waivers'],['trades','Trades'],['league','League'],['more','More']];
 const POS={0:'QB',1:'QB',2:'RB',3:'WR',4:'WR',5:'TE',6:'TE',7:'TE',16:'DEF',17:'K',20:'BENCH',21:'IR',23:'FLEX'};
 const STARTER_SLOTS=new Set([0,2,4,6,16,17,23]);
@@ -116,9 +116,13 @@ function applyPayload(raw){
 window.addEventListener('message',e=>{
   if(e.source!==window)return;
   const d=e.data||{};
-  if(d.type==='DCC_ESPN_BRIDGE_PAYLOAD')applyPayload(d.payload);
-  if(d.source===BRIDGE&&d.type==='ESPN_LEAGUE_SYNC')applyPayload(d.payload);
-  if(d.source===BRIDGE&&d.type==='ESPN_SYNC_RESULT'&&!d.result?.ok)toast('ESPN sync failed: '+(d.result?.error||'unknown error'));
+  if(d.type==='DCC_ESPN_BRIDGE_PAYLOAD'){applyPayload(d.payload);return;}
+  if(d.source===BRIDGE&&d.type==='ESPN_LEAGUE_SYNC'){applyPayload(d.payload);return;}
+  if(d.source===BRIDGE&&d.type==='ESPN_SYNC_RESULT'){
+    const r=d.payload??d.result??{};
+    if(r&&r.ok===false)toast('ESPN sync failed: '+(r.error||'Bridge returned an error.'));
+    else if(r&&r.ok===true)toast('ESPN bridge accepted sync · waiting for snapshot…');
+  }
 });
 
 function teamId(t){return num(t?.id??t?.teamId??t?.roster?.teamId)} function teamName(t){if(!t)return'Unknown Team';if(t.name)return t.name;if(t.teamName)return t.teamName;const n=`${t.location||''} ${t.nickname||''}`.trim();return n||`Team ${teamId(t)||'?'}`}

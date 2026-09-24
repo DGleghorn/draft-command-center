@@ -1,7 +1,7 @@
 {
-  "version": "49.1.0",
+  "version": "49.2.0",
   "bridge": "DCC_ESPN_BRIDGE_V43",
   "release": "espn-handshake-roster-hotfix",
-  "builtAt": "2026-09-23",
+  "builtAt": "2026-09-24",
   "sourceOfTruth": "index.html"
 }
