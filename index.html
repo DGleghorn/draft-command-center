@@ -26,7 +26,7 @@
 </main>
 <script>
 'use strict';
-const BUILD='49.0.0',BRIDGE='DCC_ESPN_BRIDGE_V43',STORAGE='dcc_v49_state';
+const BUILD='49.1.0',BRIDGE='DCC_ESPN_BRIDGE_V43',STORAGE='dcc_v49_1_state';
 const NAV=[['home','Home'],['myteam','My Team'],['matchup','Matchup'],['waivers','Waivers'],['trades','Trades'],['league','League'],['more','More']];
 const POS={0:'QB',1:'QB',2:'RB',3:'WR',4:'WR',5:'TE',6:'TE',7:'TE',16:'DEF',17:'K',20:'BENCH',21:'IR',23:'FLEX'};
 const STARTER_SLOTS=new Set([0,2,4,6,16,17,23]);
@@ -38,19 +38,96 @@ function post(type,payload){window.postMessage({source:BRIDGE,type,payload},'*')
 function toast(msg){let x=document.getElementById('toast');if(!x){x=document.createElement('div');x.id='toast';x.style='position:fixed;left:12px;right:12px;bottom:18px;z-index:99;padding:11px 13px;background:#171f31;border:1px solid #34425d;border-radius:10px;font-size:11px;text-align:center;box-shadow:0 10px 30px #0008';document.body.appendChild(x)}x.textContent=msg;clearTimeout(window.__t);window.__t=setTimeout(()=>x.remove(),2200)}
 function setupNav(){const n=document.getElementById('nav');n.innerHTML=NAV.map(([id,label])=>`<button data-page="${id}">${label}</button>`).join('');n.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;state.active=b.dataset.page;render();save()})}
 function status(p){return String(p?.status||p?.injuryStatus||p?.injury||p?.player?.injuryStatus||'healthy').toLowerCase()}
-function playerFromEntry(entry,playerPool){const pp=entry?.playerPoolEntry||{};const pl=pp.player||entry?.player||{};const id=num(entry?.playerId??pp.id??pl.id);const stats=Array.isArray(pl.stats)?pl.stats:(Array.isArray(pp.stats)?pp.stats:[]);let proj=null,actual=num(pp.appliedStatTotal??entry?.appliedStatTotal);for(const st of stats){if(num(st.scoringPeriodId)===state.week&&(num(st.statSourceId)===1||num(st.statTypeId)===2)){proj=num(st.appliedTotal??st.appliedStats?.appliedTotal);if(proj!=null)break}}const pool=playerPool?.get?.(String(id))||{};const p2=pool.player||{};if(proj==null)proj=num(pool.proj??pool.projectedPoints??p2.projectedPoints);const slotId=num(entry?.lineupSlotId);const pos=POS[num(pl.defaultPositionId??p2.defaultPositionId)]||'WR';return{id,name:pl.fullName||pl.name||p2.fullName||p2.name||`Player ${id||''}`.trim(),pos,position:pos,positionId:num(pl.defaultPositionId??p2.defaultPositionId),team:pl.proTeamId??p2.proTeamId??'FA',proTeamId:pl.proTeamId??p2.proTeamId??null,status:pl.injuryStatus||p2.injuryStatus||entry?.injuryStatus||'ACTIVE',injuryStatus:pl.injuryStatus||p2.injuryStatus||entry?.injuryStatus||'ACTIVE',lineupSlotId:slotId,isStarter:STARTER_SLOTS.has(slotId),starter:STARTER_SLOTS.has(slotId),proj,projectedPoints:proj,points:actual,playerPoolEntry:pp,rawEntry:entry};}
-function normalizeTeams(league,pool){return(league.teams||[]).map(t=>{const entries=Array.isArray(t?.roster?.entries)?t.roster.entries:[];const flat=entries.map(e=>playerFromEntry(e,pool));return{...t,roster:{...t.roster,entries,players:flat},players:flat}})}
-function applyPayload(raw){try{const p=typeof raw==='string'?JSON.parse(raw):raw||{};const league=p.league||p.data?.league||p;const poolArr=Array.isArray(league.players)?league.players:[];const pool=new Map(poolArr.map(x=>[String(x.id??x.player?.id),x]));const teams=normalizeTeams(league,pool);if(!Array.isArray(teams)||!teams.length)throw new Error('No league teams returned by ESPN bridge');
-const incoming={...p,league:{...league,teams}};const teamHint=num(p.teamId??p.myTeamId??p.userTeamId);const named=incoming.myTeamName||p.teamName||p.userTeamName;const exact=teams.find(t=>teamHint!=null&&teamId(t)===teamHint)||teams.find(t=>named&&norm(teamName(t))===norm(named))||teams.find(t=>t.isMyTeam===true||t.isOwnedByUser===true);if(teamHint!=null&&!exact)throw new Error('ESPN sync did not identify the configured team; existing data preserved.');
-if(state.espn&&teams.length<1)throw new Error('Incomplete ESPN snapshot; existing data preserved.');state.espn=incoming;state.lastSync=Date.now();if(exact)state.espn.teamId=teamId(exact);if(num(p.week))state.week=num(p.week);else if(num(league.scoringPeriodId))state.week=num(league.scoringPeriodId);else if(num(p.matchup?.matchupPeriodId))state.week=num(p.matchup.matchupPeriodId);save();render();toast(`ESPN snapshot applied · ${teams.length} teams`)}catch(e){toast('ESPN sync rejected: '+e.message)}}
-window.addEventListener('message',e=>{if(e.source!==window)return;const d=e.data||{};if(d.type==='DCC_ESPN_BRIDGE_PAYLOAD')applyPayload(d.payload);if(d.source===BRIDGE&&d.type==='ESPN_LEAGUE_SYNC')applyPayload(d.payload);if(d.source===BRIDGE&&d.type==='ESPN_SYNC_RESULT'&&!d.result?.ok)toast('ESPN sync failed: '+(d.result?.error||'unknown error'))});
+function decodeSlot(v){
+  if(v==null)return null;
+  const n=num(v); if(n!=null)return n;
+  const s=String(v).trim().toUpperCase().replace(/\s+/g,'_');
+  const map={QB:0,RB:2,WR:4,TE:6,DEF:16,'D/ST':16,DST:16,K:17,BENCH:20,IR:21,FLEX:23,STARTER:0};
+  return Object.prototype.hasOwnProperty.call(map,s)?map[s]:null;
+}
+function playerFromEntry(entry,playerPool){
+  const e=entry||{},pp=e.playerPoolEntry||{};
+  const pl=pp.player||e.player||e||{};
+  const id=num(e.playerId??e.id??pp.id??pl.id);
+  const stats=Array.isArray(pl.stats)?pl.stats:(Array.isArray(pp.stats)?pp.stats:[]);
+  let proj=num(e.proj??e.projectedPoints??e.weekProjection??pp.projectedPoints??pp.proj);
+  let actual=num(e.points??e.appliedStatTotal??pp.appliedStatTotal);
+  for(const st of stats){
+    if(num(st.scoringPeriodId)===state.week&&(num(st.statSourceId)===1||num(st.statTypeId)===2)){
+      const x=num(st.appliedTotal??st.appliedStats?.appliedTotal);
+      if(x!=null){proj=x;break;}
+    }
+  }
+  const pool=playerPool?.get?.(String(id))||{}; const p2=pool.player||{};
+  if(proj==null)proj=num(pool.proj??pool.projectedPoints??p2.projectedPoints);
+  const slotId=decodeSlot(e.lineupSlotId??e.lineupSlot??e.slotId??e.slot??e.rosterSlot);
+  const positionId=num(e.positionId??e.defaultPositionId??pl.defaultPositionId??p2.defaultPositionId);
+  const pos=String(e.pos??e.position??POS[positionId]??'WR').toUpperCase();
+  const team=e.team??e.proTeam??e.proTeamAbbrev??pl.proTeamId??p2.proTeamId??'FA';
+  const name=e.name||e.fullName||pl.fullName||pl.name||p2.fullName||p2.name||`Player ${id||''}`.trim();
+  const st=e.status??e.injuryStatus??e.injury??pl.injuryStatus??p2.injuryStatus??'ACTIVE';
+  const isStarter=e.isStarter===true||e.starter===true||String(e.slot||'').toUpperCase()==='STARTER'||[0,2,4,6,23].includes(slotId);
+  return {id,name,pos,position:pos,positionId,team,proTeamId:team,status:st,injuryStatus:st,lineupSlotId:slotId,isStarter,starter:isStarter,slot:slotId!=null?(Object.entries(POS).find(([k,v])=>Number(k)===slotId)?.[1]||'BENCH'):'BENCH',proj,projectedPoints:proj,points:actual,playerPoolEntry:pp,rawEntry:e};
+}
+function normalizeTeams(league,pool){
+  return (league.teams||[]).map(t=>{
+    const rawRoster=Array.isArray(t?.roster)?t.roster:(Array.isArray(t?.roster?.entries)?t.roster.entries:(Array.isArray(t?.players)?t.players:[]));
+    const flat=rawRoster.map(e=>playerFromEntry(e,pool)).filter(p=>p&&p.name);
+    const rosterObj=Array.isArray(t?.roster)?{entries:rawRoster,players:flat}:{...(t?.roster||{}),entries:rawRoster,players:flat};
+    return {...t,roster:rosterObj,players:flat};
+  });
+}
+function unwrapBridgePayload(raw){
+  let p=typeof raw==='string'?JSON.parse(raw):raw||{};
+  for(let i=0;i<4&&p;i++){
+    if(p.league||Array.isArray(p.teams))break;
+    if(p.payload&&typeof p.payload==='object'){p=p.payload;continue;}
+    if(p.data&&typeof p.data==='object'){p=p.data;continue;}
+    if(p.result&&typeof p.result==='object'){p=p.result;continue;}
+    if(p.snapshot&&typeof p.snapshot==='object'){p=p.snapshot;continue;}
+    break;
+  }
+  return p||{};
+}
+function applyPayload(raw){
+  try{
+    const p=unwrapBridgePayload(raw);
+    const league=p.league||p.data?.league||p;
+    const poolArr=Array.isArray(league.players)?league.players:(Array.isArray(p.players)?p.players:[]);
+    const pool=new Map(poolArr.map(x=>[String(x.id??x.playerId??x.player?.id),x]));
+    const teams=normalizeTeams(league,pool);
+    if(!Array.isArray(teams)||!teams.length)throw new Error('No league teams returned by ESPN bridge');
+    const incoming={...p,league:{...league,teams}};
+    const teamHint=num(p.teamId??p.myTeamId??p.userTeamId??p.user?.teamId);
+    const named=p.myTeamName||p.teamName||p.userTeamName||p.user?.teamName;
+    const exact=teams.find(t=>teamHint!=null&&teamId(t)===teamHint)||teams.find(t=>named&&norm(teamName(t))===norm(named))||teams.find(t=>t.isMyTeam===true||t.isOwnedByUser===true);
+    if(teamHint!=null&&!exact)throw new Error('ESPN sync did not identify the configured team; existing data preserved.');
+    const rosterCount=teams.reduce((n,t)=>n+roster(t).length,0);
+    if(state.espn&&teams.length<1)throw new Error('Incomplete ESPN snapshot; existing data preserved.');
+    if(state.espn&&rosterCount===0)throw new Error('ESPN sync returned league teams but no roster players; existing data preserved.');
+    state.espn=incoming; state.lastSync=Date.now();
+    if(exact)state.espn.teamId=teamId(exact);
+    if(num(p.week))state.week=num(p.week); else if(num(league.scoringPeriodId))state.week=num(league.scoringPeriodId); else if(num(p.matchup?.matchupPeriodId))state.week=num(p.matchup.matchupPeriodId);
+    save(); render();
+    const starterCount=teams.reduce((n,t)=>n+starters(t).length,0);
+    toast(`ESPN snapshot applied · ${teams.length} teams · ${rosterCount} players · ${starterCount} starters`);
+  }catch(e){toast('ESPN sync rejected: '+e.message)}
+}
+window.addEventListener('message',e=>{
+  if(e.source!==window)return;
+  const d=e.data||{};
+  if(d.type==='DCC_ESPN_BRIDGE_PAYLOAD')applyPayload(d.payload);
+  if(d.source===BRIDGE&&d.type==='ESPN_LEAGUE_SYNC')applyPayload(d.payload);
+  if(d.source===BRIDGE&&d.type==='ESPN_SYNC_RESULT'&&!d.result?.ok)toast('ESPN sync failed: '+(d.result?.error||'unknown error'));
+});
+
 function teamId(t){return num(t?.id??t?.teamId??t?.roster?.teamId)} function teamName(t){if(!t)return'Unknown Team';if(t.name)return t.name;if(t.teamName)return t.teamName;const n=`${t.location||''} ${t.nickname||''}`.trim();return n||`Team ${teamId(t)||'?'}`}
-function roster(t){if(!t)return[];if(Array.isArray(t.players))return t.players;if(Array.isArray(t.roster?.players))return t.roster.players;if(Array.isArray(t.roster?.entries))return t.roster.entries.map(e=>playerFromEntry(e));return Array.isArray(t.roster)?t.roster:[]}
+function roster(t){if(!t)return[];if(Array.isArray(t.players)&&t.players.length)return t.players;if(Array.isArray(t.roster?.players)&&t.roster.players.length)return t.roster.players;if(Array.isArray(t.roster?.entries))return t.roster.entries.map(e=>playerFromEntry(e));if(Array.isArray(t.roster))return t.roster.map(e=>playerFromEntry(e));return[]}
 function playerName(p){return p?.name||p?.fullName||p?.player?.fullName||p?.player?.name||`Player ${p?.id??p?.playerId??''}`.trim()} function playerPos(p){return String(p?.pos||p?.position||POS[num(p?.positionId??p?.defaultPositionId??p?.player?.defaultPositionId)]||'WR').toUpperCase()} function playerProj(p){return num(p?.proj??p?.projectedPoints??p?.pointsProjected??p?.weekProjection??p?.player?.projectedPoints??p?.playerPoolEntry?.projectedPoints)}
 function myTeam(){const teams=state.espn?.league?.teams||[];const wanted=num(state.espn?.teamId??state.espn?.myTeamId??state.espn?.userTeamId);if(wanted!=null){const t=teams.find(x=>teamId(x)===wanted);if(t)return t}const t=teams.find(x=>x.isMyTeam===true||x.isOwnedByUser===true);return t||null}
 function opponent(){const me=myTeam();const m=state.espn?.matchup||state.espn?.currentMatchup||state.espn?.data?.matchup;if(!me||!m)return null;const id=teamId(me),oid=num(m.opponentTeamId??m.opponentId??(m.home?.teamId===id?m.away?.teamId:m.away?.teamId===id?m.home?.teamId:null));return(state.espn.league.teams||[]).find(t=>teamId(t)===oid)||m.opponent||null}
 function records(t){const r=t?.record?.overall||t?.record||{};return{w:num(r.wins??t?.wins)||0,l:num(r.losses??t?.losses)||0,t:num(r.ties??t?.ties)||0,pf:num(r.pointsFor??t?.pointsFor??t?.pf)||0,pa:num(r.pointsAgainst??t?.pointsAgainst)||0}}
-function starters(t){return roster(t).filter(p=>p.isStarter||p.starter||p.slot==='STARTER'||[0,2,4,6,23].includes(num(p.lineupSlotId))).filter(p=>['QB','RB','WR','TE','FLEX'].includes(playerPos(p)))}
+function starters(t){return roster(t).filter(p=>p.isStarter===true||p.starter===true||String(p.slot||'').toUpperCase()==='STARTER'||[0,2,4,6,23].includes(num(p.lineupSlotId))).filter(p=>['QB','RB','WR','TE','FLEX'].includes(playerPos(p)))}
 function grade(p,ros=false){const proj=playerProj(p)||0,pos=playerPos(p),inj=status(p);let s=58+Math.min(22,proj*1.7);if(['RB','WR'].includes(pos))s+=4;if(pos==='QB')s+=Math.min(6,proj*.25);if(pos==='TE')s+=Math.min(4,proj*.18);if(/out|ir|reserve/.test(inj))s-=18;else if(/doubtful/.test(inj))s-=10;else if(/questionable/.test(inj))s-=4;if(ros)s+=Math.min(8,proj*.12);return Math.max(35,Math.min(98,Math.round(s)))}
 function letter(s){return s>=93?'A+':s>=90?'A':s>=87?'A−':s>=83?'B+':s>=80?'B':s>=77?'B−':s>=73?'C+':s>=70?'C':s>=67?'C−':s>=63?'D+':s>=60?'D':'F'}
 function trend(p){const s=status(p),pr=playerProj(p)||0;if(/out|ir|reserve/.test(s))return'Falling';if(/questionable|doubtful/.test(s))return'Falling';return pr>=18?'Rising':pr>=10?'Stable':'Watch'}
