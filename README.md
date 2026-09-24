@@ -1,14 +1,18 @@
-# Draft Command Center v48.0.0
+# Draft Command Center v49.0.0
 
-Clean mobile-first in-season fantasy manager baseline.
+Mobile-first fantasy football manager for ESPN leagues.
 
-- ESPN authenticated league/roster/matchup data via `DCC_ESPN_BRIDGE_V43`
-- DCC analysis layer for lineup, waiver, trade and league decisions
-- Sleeper public player feed as a free supplemental source
-- No FantasyPros API dependency
-- Cached-first mobile PWA behavior
-- No manual league configuration or demo trade execution UI
+## v49 priorities
+- ESPN Bridge V43 compatibility preserved.
+- ESPN roster/ownership authority with sync-lock protection.
+- No silent first-team fallback.
+- Player grades: current/week/ROS, trend, confidence and opportunity.
+- ESPN-authoritative availability pool when bridge supplies it; Sleeper is supplemental only.
+- Personalized waiver categories and roster upgrade paths.
+- Trade Builder with team selector, two-sided player selection, before/after projection, depth, replacement value, partner fit and six-week outlook.
+- League PowerScore, injury intelligence, trade map and commissioner callouts.
+- Data Health, diagnostics, timestamps and decision log.
+- Cache/version consistency: v49.0.0 and service-worker cache dcc-v49-0.
 
-
-## v48.1.0
-Data-plumbing repair: ESPN roster entries are normalized to player objects, lineup slots are decoded, weekly projections/status are preserved, and standings/record parsing is corrected.
+## Deploy
+Upload the contents of this ZIP to the root of the GitHub Pages repository. Keep the existing ESPN Orion Bridge V43 installed; v49 does not require a new bridge unless a future bridge protocol change is explicitly announced.
