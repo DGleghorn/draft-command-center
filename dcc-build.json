@@ -1,7 +1,1 @@
-{
-  "app":"Draft Command Center",
-  "build":"49.3.0",
-  "bridge":"DCC_ESPN_BRIDGE_V43",
-  "storage":"dcc_v49_3_state",
-  "cache":"dcc-v49-3"
-}
+{"app":"Draft Command Center","build":"50.0.0","bridge":"DCC_ESPN_BRIDGE_V43","storage":"dcc_v50_state","cache":"dcc-v50-0","architecture":"passive-validated-ESPN-snapshot"}

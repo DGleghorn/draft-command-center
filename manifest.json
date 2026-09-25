@@ -1,9 +1,1 @@
-{
-  "name":"Draft Command Center",
-  "short_name":"DCC",
-  "start_url":"./",
-  "display":"standalone",
-  "background_color":"#090d17",
-  "theme_color":"#090d17",
-  "icons":[]
-}
+{"name":"Draft Command Center","short_name":"DCC","start_url":"./","display":"standalone","background_color":"#090d17","theme_color":"#090d17","icons":[]}
