@@ -1,21 +1,13 @@
-# Draft Command Center v50.1.0
-Production stabilization build for iPhone/iPad + Orion + GitHub Pages.
+# Draft Command Center v50.2.0
 
-## Upload to GitHub Pages
-Upload these four files to the repository root, replacing the prior dashboard files:
-- index.html
-- manifest.json
-- sw.js
-- dcc-build.json
+Customer-facing stabilization release.
 
-The ESPN Orion Bridge remains V43 and does not need to be replaced for this release.
-
-## v50.1 priorities
-- Simplified 7-tab weekly workflow
-- Last-known-good ESPN snapshot protection
-- Rejects invalid season/league payloads before replacing good data
-- V43 bridge compatibility
+## Highlights
+- Adaptive legacy ESPN Bridge V43 migration for `dcc_v49_3_state`
+- Validation occurs after legacy normalization
+- Last-known-good snapshot protection
+- Simplified customer-facing More/Status experience
+- Technical diagnostics hidden under Troubleshooting
 - Ownership-safe waiver behavior
-- Condensed mobile-first UI
-- Data Health watchdog and diagnostics
-- Network-first navigation/service-worker cache cleanup
+
+Upload `index.html`, `manifest.json`, `sw.js`, and `dcc-build.json` to the GitHub Pages repository root. The Orion Bridge V43 extension does not need to change.
