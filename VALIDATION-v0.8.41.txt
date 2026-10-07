@@ -1,0 +1,16 @@
+D.I.L.D.O. v0.8.41 — Betslip Context
+
+PASS — dashboard JavaScript syntax
+PASS — Cloudflare Worker JavaScript syntax
+PASS — 8/8 protected model functions byte-identical to v0.8.40
+PASS — Official Card carries matchup from the wager's exact gameId
+PASS — Official Card displays local kickoff when valid
+PASS — missing game/kickoff context degrades safely
+PASS — renderSnapshots regression remains absent
+PASS — v0.8.40 lazy Props / More performance behavior preserved
+PASS — PGA remains SHADOW and unchanged
+PASS — v0.8.41 index/manifest/service-worker identifiers aligned
+
+Scope:
+- User-facing change only: matchup + kickoff context on each Betslip Official Card wager.
+- No recommendation, threshold, AI, Props, settlement, or PGA model logic changed.
