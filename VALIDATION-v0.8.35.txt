@@ -1,0 +1,38 @@
+Degenerate's Advisor v0.8.35 — Production Cleanup + Props Endpoint Recovery
+Validation date: 2026-10-03
+
+RELEASE / PACKAGING
+PASS — Visible version, dashboard VERSION, manifest start URL, service-worker registration and cache are v0.8.35.
+PASS — Worker version is dcc-ai-worker-v0.8.35-props-endpoint-recovery.
+PASS — Dashboard JavaScript syntax.
+PASS — Cloudflare Worker JavaScript syntax.
+PASS — No SGO or Parlay API secret values embedded in package.
+
+PROPS ENDPOINT RECOVERY
+PASS — Production Props endpoint self-heals to the known Cloudflare Worker outside Developer Mode; stale saved propEndpoint cannot own normal production routing.
+PASS — NFL /nfl-props and CFB /cfb-props routing remains explicit.
+PASS — /binding-check preflight is called before Props fetch and records Worker version + boolean SGO_API_KEY presence without exposing the secret.
+PASS — SGO authentication trims secret and uses x-api-key server-side.
+PASS — SGO request uses current v2 /events endpoint, bookmakerID=draftkings, oddsAvailable=true, full-game parser and no alt lines.
+PASS — SGO team mapper supports current teams.{home,away}.names.{long,medium,short} schema.
+PASS — SGO player mapper supports current Event.players and names variants.
+PASS — DraftKings byBookmaker availability, line, price and lastUpdatedAt validation retained.
+PASS — Primary ParlayAPI remains first; SGO is fallback only; cache/unavailable state retained.
+
+UI CLEANUP
+PASS — Market Movement section hidden and no longer rendered.
+PASS — Snapshot display renders only the most recent snapshot for active sport.
+PASS — Diagnostics separate Worker reachability, primary provider, fallback configured/active, and DraftKings feed health.
+
+REGRESSION LOCK
+PASS — quantFair byte-identical to v0.8.34.
+PASS — verifiedQuantEdge byte-identical to v0.8.34.
+PASS — deterministicCandidate byte-identical to v0.8.34.
+PASS — deterministicClass byte-identical to v0.8.34.
+PASS — deterministicSlate byte-identical to v0.8.34.
+PASS — playableLine byte-identical to v0.8.34.
+PASS — settleRecord byte-identical to v0.8.34.
+PASS — pgaHistoricalStrength byte-identical to v0.8.34.
+
+LIMITATION
+Sandbox cannot read the private Cloudflare SGO_API_KEY or execute inside the user's Cloudflare runtime. Live authentication/coverage therefore requires deployed acceptance. The package now exposes Worker/key detection explicitly so that acceptance test is diagnostic rather than speculative.

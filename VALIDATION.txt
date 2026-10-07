@@ -1,0 +1,34 @@
+D.I.L.D.O. v0.8.40 — Hotfix + Performance Validation
+Build: 0839-HOTFIX-PERFORMANCE-20261004
+
+HOTFIX
+PASS — Removed orphaned renderSnapshots() call from renderAll().
+PASS — Removed orphaned renderSnapshots() call from Clear Cache handler.
+PASS — No renderSnapshots references remain in index.html.
+
+PERFORMANCE
+PASS — Deterministic PLAY/LEAN/WATCH/STAY OFF card renders from verified market data without waiting for AI.
+PASS — Games classifications render without waiting for AI.
+PASS — Official Betslip eligibility no longer waits for AI context.
+PASS — Props enrichment remains background work and no longer blocks AI start.
+PASS — Removed redundant AI post_probe from every normal analysis run.
+PASS — AI batches use bounded concurrency of 2 instead of four sequential requests.
+PASS — Failed AI batches retain one bounded recovery retry; no recursive whole-slate retry.
+PASS — AI remains contextual only; deterministic engine remains authoritative.
+
+REGRESSION
+PASS — quantFair byte-identical to v0.8.38.
+PASS — verifiedQuantEdge byte-identical to v0.8.38.
+PASS — deterministicCandidate byte-identical to v0.8.38.
+PASS — deterministicClass byte-identical to v0.8.38.
+PASS — deterministicSlate byte-identical to v0.8.38.
+PASS — playableLine byte-identical to v0.8.38.
+PASS — settleRecord byte-identical to v0.8.38.
+PASS — pgaHistoricalStrength byte-identical to v0.8.38.
+PASS — Dashboard JavaScript syntax.
+PASS — Cloudflare Worker JavaScript syntax.
+PASS — v0.8.40 manifest/start URL.
+PASS — v0.8.40 service-worker cache key and core assets.
+
+NOTE
+Live network latency still depends on ESPN/DraftKings source responses and Cloudflare Workers AI. v0.8.40 improves perceived and actual analysis latency by making deterministic picks independent of those background AI/context tasks.

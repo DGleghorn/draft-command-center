@@ -1,0 +1,27 @@
+D.I.L.D.O. v0.8.36 — Branding Release Validation
+
+Purpose: branding-only release over v0.8.35.
+
+PASS — Dashboard inline JavaScript syntax
+PASS — Cloudflare Worker JavaScript syntax
+PASS — Version constant = 0.8.36
+PASS — Build fingerprint = 0836-DILDO-BRAND-20261003
+PASS — Service-worker registration/cache = 0.8.36
+PASS — Manifest start_url = 0.8.36
+PASS — Manifest brand = D.I.L.D.O.
+PASS — Header brand = D.I.L.D.O.
+PASS — Full product name present
+PASS — Tagline present
+PASS — Legacy visible header removed
+PASS — quantFair byte-identical to v0.8.35
+PASS — verifiedQuantEdge byte-identical to v0.8.35
+PASS — deterministicCandidate byte-identical to v0.8.35
+PASS — deterministicClass byte-identical to v0.8.35
+PASS — deterministicSlate byte-identical to v0.8.35
+PASS — playableLine byte-identical to v0.8.35
+PASS — settleRecord byte-identical to v0.8.35
+PASS — pgaHistoricalStrength byte-identical to v0.8.35
+PASS — Props recovery Worker preserved from v0.8.35
+PASS — No API credentials added to client package
+
+Result: PASS — branding-only release is deployment-ready subject to normal live-device acceptance.

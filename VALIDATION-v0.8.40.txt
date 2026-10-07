@@ -1,0 +1,27 @@
+D.I.L.D.O. v0.8.40 — Lean Production + Learning Foundation
+
+PASS — dashboard JavaScript syntax
+PASS — Cloudflare Worker JavaScript syntax
+PASS — 8/8 protected model functions byte-identical to v0.8.39
+PASS — renderSnapshots regression remains absent
+PASS — More-only analytics/diagnostics deferred until More is opened
+PASS — Props feed deferred until Props is opened
+PASS — deterministic card remains first-class and AI context remains non-blocking
+PASS — Recent Bets initial view reduced to 3 rows
+PASS — Model Health learning foundation added without autonomous threshold changes
+PASS — PGA historical-strength model remains SHADOW and unchanged
+PASS — v0.8.40 build/version/cache identifiers aligned
+PASS — NFL/CFB frozen model identifiers preserved
+
+Performance design:
+- Primary refresh no longer starts the Props provider unless the Props tab is active.
+- More-tab ledger/performance/diagnostics/prompt rendering is skipped during normal Today/Games refreshes.
+- Cached/market deterministic recommendations remain visible before AI completion.
+
+Learning design:
+- Existing immutable official recommendation ledger remains the source of performance evidence.
+- Model Health exposes sample maturity and research retention.
+- No automatic/self-modifying threshold behavior was introduced.
+
+PGA:
+- Remains SHADOW for fall validation. No wagering promotion in this release.

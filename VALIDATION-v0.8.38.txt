@@ -1,0 +1,13 @@
+D.I.L.D.O. v0.8.38 — Production Refinement
+PASS — dashboard JavaScript syntax
+PASS — Cloudflare Worker JavaScript syntax
+PASS — Market Movement UI/header removed
+PASS — AI Analyst contrast/readability override added
+PASS — Pick Logic / thresholds / controlled-learning card added
+PASS — Recent Bets condensed to five visible rows + expandable history
+PASS — Season Performance retained
+PASS — PWA manifest/service-worker version updated
+PASS — all 8 protected model functions byte-identical to v0.8.37
+PASS — Props provider/fallback worker retained unchanged
+
+Learning policy: Results are retained/exportable for calibration analysis. There is no autonomous online retraining or silent threshold mutation. Future model changes require persistent evidence and regression validation.

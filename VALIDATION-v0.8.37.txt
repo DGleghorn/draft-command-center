@@ -1,0 +1,36 @@
+D.I.L.D.O. v0.8.37 — Product Polish Validation
+
+OVERALL RESULT: PASS
+
+UX acceptance
+- Today ranks qualified plays strongest-first: PASS
+- Best Bet / Strong Play hierarchy: PASS
+- Betslip is D.I.L.D.O.’s Final Card: PASS
+- Final Card includes rationale, risk and playable line: PASS
+- No-action state recommends no wager: PASS
+- Season Performance moved to More: PASS
+- Recent Bets moved to More: PASS
+- Market Movement remains hidden: PASS
+- Latest Snapshot remains latest/current-sport only: PASS
+
+Production/regression
+- Dashboard JavaScript syntax: PASS
+- Worker JavaScript syntax: PASS
+- Manifest start_url v0.8.37: PASS
+- Service-worker cache/version v0.8.37: PASS
+- Build fingerprint v0.8.37: PASS
+- Dynamic NFL/CFB Props routing retained: PASS
+- SGO fallback binding/diagnostics retained: PASS
+- ZIP integrity: PASS
+
+Protected functions byte-identical to v0.8.36
+- quantFair: PASS
+- verifiedQuantEdge: PASS
+- deterministicCandidate: PASS
+- deterministicClass: PASS
+- deterministicSlate: PASS
+- playableLine: PASS
+- settleRecord: PASS
+- pgaHistoricalStrength: PASS
+
+No betting mathematics, thresholds, provider credentials, or settlement logic changed.
