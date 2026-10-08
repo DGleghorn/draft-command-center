@@ -1,7 +1,7 @@
 {
-  "name": "D.I.L.D.O. \u2014 Dalton\u2019s Intelligent Learning Dashboard Optimizer",
+  "name": "D.I.L.D.O. — Dalton’s Intelligent Learning Dashboard Optimizer",
   "short_name": "D.I.L.D.O.",
-  "start_url": "./?v=0.8.41",
+  "start_url": "./?v=0.8.42",
   "display": "standalone",
   "background_color": "#123b1f",
   "theme_color": "#123b1f",

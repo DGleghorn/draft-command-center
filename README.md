@@ -1,4 +1,4 @@
-# D.I.L.D.O. v0.8.41 — Dalton’s Intelligent Learning Dashboard Optimizer
+# D.I.L.D.O. v0.8.42 — Dalton’s Intelligent Learning Dashboard Optimizer
 
 Production release candidate focused exclusively on Props data-source resilience.
 
@@ -60,7 +60,7 @@ The fallback provider is optional. Without `SGO_API_KEY`, v0.8.40 still runs saf
 - All protected betting/model functions remain unchanged from v0.8.38.
 
 
-## v0.8.41 Betslip Context
+## v0.8.42 Production Betslip
 - Official Card cards now display the verified game matchup and local kickoff directly above each wager.
 - Context is carried from the same game record used to generate the wager; no team-to-game inference is performed afterward.
 - Missing kickoff metadata degrades safely to matchup-only context.
