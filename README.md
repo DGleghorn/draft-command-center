@@ -1,2 +1,1 @@
-# Draft Command Center v50.4.1
-Upload index.html, sw.js, manifest.json and dcc-build.json to the root of the existing GitHub Pages repository. Pair with DCC ESPN Bridge V44.3. Reload the dashboard to replace the prior cached app.
+DCC v50.4.2 dashboard-only storage hotfix. Keep ESPN Bridge V44.3. Upload index.html, manifest.json, sw.js and dcc-build.json to the GitHub Pages root. Full snapshots persist in IndexedDB; localStorage stores only diagnostics. Live Orion testing remains required.
