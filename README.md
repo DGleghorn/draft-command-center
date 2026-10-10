@@ -1,5 +1,2 @@
-# Draft Command Center v50.4.0
-Matched production release for ESPN Bridge V44.
-
-Upload index.html, manifest.json, sw.js, and dcc-build.json to the GitHub Pages repository root.
-Replace the Orion V43 extension with the separate V44 extension package.
+# Draft Command Center v50.4.1
+Upload index.html, sw.js, manifest.json and dcc-build.json to the root of the existing GitHub Pages repository. Pair with DCC ESPN Bridge V44.3. Reload the dashboard to replace the prior cached app.
