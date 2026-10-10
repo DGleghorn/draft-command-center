@@ -1,15 +1,8 @@
 {
-  "name": "D.I.L.D.O. — Dalton’s Intelligent Learning Dashboard Optimizer",
-  "short_name": "D.I.L.D.O.",
-  "start_url": "./?v=0.8.42",
+  "name": "Draft Command Center v50.4",
+  "short_name": "DCC",
+  "start_url": "./",
   "display": "standalone",
-  "background_color": "#123b1f",
-  "theme_color": "#123b1f",
-  "icons": [
-    {
-      "src": "icon.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+  "background_color": "#08111f",
+  "theme_color": "#101827"
 }
