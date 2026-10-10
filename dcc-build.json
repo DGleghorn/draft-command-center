@@ -1,1 +1,9 @@
-{"version": "50.4.2", "channel": "production", "bridge": "V44.3", "schema": 9, "cache": "dcc-v50-4-2", "season": 2026, "protocol": "DCC_V44"}
+{
+  "version": "50.5.0",
+  "channel": "performance",
+  "bridge": "V44.3",
+  "schema": 10,
+  "cache": "dcc-v50-5",
+  "season": 2026,
+  "protocol": "DCC_V44"
+}

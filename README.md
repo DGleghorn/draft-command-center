@@ -1,1 +1,1 @@
-DCC v50.4.2 dashboard-only storage hotfix. Keep ESPN Bridge V44.3. Upload index.html, manifest.json, sw.js and dcc-build.json to the GitHub Pages root. Full snapshots persist in IndexedDB; localStorage stores only diagnostics. Live Orion testing remains required.
+DCC v50.5.0 performance release. Upload index.html, manifest.json, sw.js and dcc-build.json to GitHub Pages root. Keep Orion Bridge V44.3. No browser data clearing needed. Static/simulated tests do not establish Orion end-to-end success. Snapshot storage is compacted and older IndexedDB snapshots remain readable.
