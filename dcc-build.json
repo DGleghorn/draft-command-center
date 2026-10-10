@@ -1,9 +1,6 @@
 {
-  "version": "50.5.0",
-  "channel": "performance",
-  "bridge": "V44.3",
-  "schema": 10,
-  "cache": "dcc-v50-5",
-  "season": 2026,
-  "protocol": "DCC_V44"
+  "version": "50.6.0",
+  "bridgeCompatibility": "V44.3",
+  "release": "manual-sync-gate",
+  "schema": 10
 }
