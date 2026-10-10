@@ -1,6 +1,6 @@
 {
-  "version": "50.7.0",
-  "bridgeCompatibility": "V44.3",
-  "release": "extension-initiated-ack-compat",
-  "schema": 11
+  "version": "50.8.0",
+  "bridge": "45.0",
+  "release": "on-demand-bridge",
+  "date": "2026-10-10"
 }

@@ -1,7 +1,5 @@
-# Draft Command Center v50.7.0 — Bridge ACK compatibility
+# Draft Command Center v50.8
+Dashboard-side v45 bridge protocol support and fixed build metadata. Manual sync; saved snapshot preserved. Deploy the five files in this ZIP to the GitHub Pages repository root. Do not upload the bridge files to GitHub.
 
-Dashboard-side patch for extension-initiated syncs. V50.6 ignored payloads unless the dashboard initiated the request; v50.7 accepts extension-initiated V44 messages, validates and writes the snapshot to IndexedDB, verifies the readback, then emits `DCC_V44_ACK` and `DCC_ACK` and saves ACK metadata. Includes a single-ingest lock and short unsolicited push throttle.
-
-**Limitations:** The v44.3 extension source was unavailable. Its exact acknowledgment schema and storage location cannot be confirmed, so this is a compatibility attempt, not a verified end-to-end fix. iOS Orion testing is required.
-
-Upload the five files to the GitHub Pages repo root. Confirm the About panel says v50.7.0 before testing.
+## Limitations
+The V45 bridge is a newly reconstructed extension, not recovered V44.3 source. Orion iOS and authenticated ESPN access could not be tested in this environment. A snapshot may contain teams without identifying the user's specific team, leaving My Team status CHECK; this is intentional rather than guessing. No live sync success is claimed.

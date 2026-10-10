@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101827"><link rel="manifest" href="manifest.json"><title>Draft Command Center</title><style>
 :root{--bg:#08111f;--card:#111d2e;--soft:#17263b;--text:#f4f7fb;--muted:#94a3b8;--good:#35d07f;--warn:#f4b740;--bad:#f06464;--accent:#5ba7ff}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px system-ui,-apple-system,sans-serif;padding-bottom:76px}header{padding:18px 16px 10px;position:sticky;top:0;background:rgba(8,17,31,.96);z-index:3;border-bottom:1px solid #203047}.eyebrow{font-size:11px;color:var(--muted);font-weight:800;letter-spacing:.12em}.title{font-size:23px;font-weight:900;margin:4px 0}.sub{color:var(--muted);font-size:12px}.wrap{max-width:900px;margin:auto;padding:12px}.card{background:var(--card);border:1px solid #203047;border-radius:16px;padding:14px;margin-bottom:12px}.hero{background:linear-gradient(135deg,#13243a,#101b2c)}.row{display:flex;gap:10px;align-items:center;justify-content:space-between}.team{font-size:20px;font-weight:900}.pill{padding:5px 8px;border-radius:99px;background:#18324b;color:#9ed0ff;font-size:11px;font-weight:800}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:12px}.metric{background:var(--soft);padding:10px;border-radius:12px}.metric b{font-size:18px;display:block}.metric span,.muted{color:var(--muted);font-size:12px}.section-title{font-size:16px;font-weight:900;margin-bottom:10px}.action{padding:11px 0;border-top:1px solid #223249}.action:first-of-type{border-top:0}.action b{display:block}.tag{font-size:10px;font-weight:900;margin-right:6px}.good{color:var(--good)}.warn{color:var(--warn)}.bad{color:var(--bad)}button{border:0;border-radius:11px;padding:10px 12px;background:var(--accent);color:#07111f;font-weight:900}.secondary{background:#223249;color:var(--text)}select,input{width:100%;padding:11px;border-radius:10px;border:1px solid #30445f;background:#0c1727;color:white;margin:5px 0}.tabs{position:fixed;bottom:0;left:0;right:0;display:flex;overflow-x:auto;background:#0c1727;border-top:1px solid #25364d;z-index:5;padding-bottom:env(safe-area-inset-bottom)}.tabs button{flex:1;min-width:65px;background:transparent;color:var(--muted);padding:12px 5px 9px;font-size:10px}.tabs button.active{color:white}.page{display:none}.page.active{display:block}.health{display:grid;grid-template-columns:1fr auto;gap:8px;padding:8px 0;border-bottom:1px solid #223249}.dot{font-weight:900}.empty{text-align:center;padding:18px;color:var(--muted)}table{width:100%;border-collapse:collapse;font-size:12px}th,td{text-align:left;padding:8px 4px;border-bottom:1px solid #223249}th{color:var(--muted)}details{background:var(--soft);border-radius:10px;padding:10px;margin-top:8px}summary{font-weight:800}.notice{font-size:12px;padding:9px;border-radius:10px;background:#122a3d;color:#b9dcff;margin-top:10px}@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}.tabs{position:sticky;top:83px;margin:auto;max-width:900px;border:1px solid #25364d;border-radius:12px}.wrap{padding-top:16px}}
-</style></head><body><header><div class="eyebrow">2026 FANTASY FOOTBALL</div><div class="title">Draft Command Center</div><div class="sub">v50.7.0 · Performance · ESPN Bridge V44.3</div></header><main class="wrap">
+</style></head><body><header><div class="eyebrow">2026 FANTASY FOOTBALL</div><div class="title">Draft Command Center</div><div class="sub">v50.8.0 · Performance · ESPN Bridge V45.0</div></header><main class="wrap">
 <section id="home" class="page active"><div class="card hero"><div class="row"><div><div class="team" id="teamName">Devo’s Revenge</div><div class="muted" id="syncLine">No validated ESPN snapshot loaded</div></div><span class="pill" id="snapshotPill">WAITING</span></div><div class="grid"><div class="metric"><b id="week">—</b><span>Week</span></div><div class="metric"><b id="power">—</b><span>PowerScore</span></div><div class="metric"><b id="projection">—</b><span>Projection</span></div><div class="metric"><b id="opponent">—</b><span>Opponent</span></div></div><div class="notice">Your latest validated ESPN league data stays available between syncs.</div><p><button onclick="requestBridgeSync()">REFRESH ESPN DATA</button> <button class="secondary" onclick="showPage('more')">STATUS</button></p></div>
 <div class="card"><div class="section-title">🎯 Start / Sit</div><div id="startSit" class="empty">Load ESPN to evaluate only meaningful lineup decisions.</div></div><div class="card"><div class="section-title">🚨 Do This Now</div><div id="actions" class="empty">No urgent actions until league data is validated.</div></div><div class="card"><div class="section-title">💡 Best Opportunity</div><div id="opportunity" class="empty">Waiver and trade opportunities will appear here when actionable.</div></div></section>
 <section id="team" class="page"><div class="card"><div class="section-title">👥 My Team</div><div id="roster" class="empty">No validated roster loaded.</div></div><div class="card"><div class="section-title">Player Grades</div><table><thead><tr><th>Player</th><th>Pos</th><th>Week</th><th>ROS</th><th>Trend</th></tr></thead><tbody id="grades"></tbody></table></div></section>
@@ -8,9 +8,9 @@
 <section id="waivers" class="page"><div class="card"><div class="section-title">💰 Waivers</div><input id="waiverSearch" placeholder="Search available players" oninput="renderWaivers()"><div id="waiverBody" class="empty">No validated free-agent pool.</div></div></section>
 <section id="trades" class="page"><div class="card"><div class="section-title">🤝 Trades</div><div class="muted">Find realistic deals that improve both rosters.</div><select id="tradeTeam"><option>Select a team</option></select><div id="tradeBody" class="empty">Load all league rosters to identify realistic trade targets.</div></div></section>
 <section id="league" class="page"><div class="card"><div class="section-title">🏆 Power Rankings</div><div id="leagueBody" class="empty">No validated standings loaded.</div></div><div class="card"><div class="section-title">🗣️ Commissioner Callouts</div><div id="callouts" class="empty">Weekly callouts appear after league validation.</div></div></section>
-<section id="more" class="page"><div class="card"><div class="section-title">Data Status</div><div id="health"></div><p><button onclick="requestBridgeSync()">REFRESH ESPN DATA</button></p></div><div class="card"><div class="section-title">About</div><div class="health"><span>Dashboard</span><b>v50.7.0</b></div><div class="health"><span>ESPN Bridge</span><b>V44.3</b></div><div class="health"><span>Season</span><b>2026</b></div><details><summary>Troubleshooting</summary><pre id="diag" style="white-space:pre-wrap;color:#b7c7dc;font-size:11px"></pre><button class="secondary" onclick="clearBadCandidate()">RESET FAILED SYNC</button></details></div></section>
+<section id="more" class="page"><div class="card"><div class="section-title">Data Status</div><div id="health"></div><p><button onclick="requestBridgeSync()">REFRESH ESPN DATA</button></p></div><div class="card"><div class="section-title">About</div><div class="health"><span>Dashboard</span><b>v50.8.0</b></div><div class="health"><span>ESPN Bridge</span><b>V45.0</b></div><div class="health"><span>Season</span><b>2026</b></div><details><summary>Troubleshooting</summary><pre id="diag" style="white-space:pre-wrap;color:#b7c7dc;font-size:11px"></pre><button class="secondary" onclick="clearBadCandidate()">RESET FAILED SYNC</button></details></div></section>
 </main><nav class="tabs" id="tabs"></nav><script>
-const BUILD={version:'50.6.0',bridge:'V44.3',schema:10,storage:'dcc_v50_5_state'}; const PAGES=[['home','Home'],['team','Team'],['matchup','Matchup'],['waivers','Waivers'],['trades','Trades'],['league','League'],['more','More']]; let state={snapshot:null,lastGood:null,candidate:null,validation:null};
+const BUILD={version:'50.8.0',bridge:'V45.0',schema:10,storage:'dcc_v50_5_state'}; const PAGES=[['home','Home'],['team','Team'],['matchup','Matchup'],['waivers','Waivers'],['trades','Trades'],['league','League'],['more','More']]; let state={snapshot:null,lastGood:null,candidate:null,validation:null};
 function safeParse(s){try{return JSON.parse(s)}catch{return null}} function first(...v){return v.find(x=>x!==undefined&&x!==null&&x!=='')}
 function isObj(x){return x&&typeof x==='object'}
 function walk(root,maxDepth=8){const out=[];const seen=new Set();function go(x,path,d){if(!isObj(x)||seen.has(x)||d>maxDepth)return;seen.add(x);out.push({x,path,d});if(Array.isArray(x)){x.slice(0,80).forEach((v,i)=>go(v,path+'['+i+']',d+1))}else Object.entries(x).slice(0,120).forEach(([k,v])=>go(v,path+'.'+k,d+1))}go(root,'$',0);return out}
@@ -50,6 +50,8 @@ async function ingestV44(raw,meta={}){const started=tick();state.candidate={sour
 // v50.7: accept extension-initiated V44.3 syncs; serialize and acknowledge persistence.
 let activeSync=null, ingestBusy=false, syncDeadline=0, lastAcceptedAt=0;
 const SYNC_TIMEOUT_MS=30000, MIN_PUSH_GAP_MS=1500;
+const seenRequests=new Map();
+function rememberRequest(id,ack){if(!id)return;seenRequests.set(id,ack);if(seenRequests.size>12)seenRequests.delete(seenRequests.keys().next().value)}
 function requestBridgeSync(){
  if(ingestBusy||(activeSync&&Date.now()<syncDeadline))return;
  const requestId='dcc-'+Date.now();activeSync=requestId;syncDeadline=Date.now()+SYNC_TIMEOUT_MS;
@@ -64,19 +66,21 @@ function emitBridgeAck(ack,id){
  window.postMessage({type:'DCC_V44_ACK',...payload},location.origin);
  // Legacy listeners may use the generic ACK event name.
  window.postMessage({type:'DCC_ACK',...payload},location.origin);
- try{localStorage.setItem('DCC_ACK',JSON.stringify(payload));localStorage.setItem('dcc_v44_ack',JSON.stringify(payload))}catch(e){console.warn('ACK metadata not persisted',String(e))}
+ window.postMessage({type:'DCC_V45_ACK',...payload},location.origin);
+ try{localStorage.setItem('DCC_ACK',JSON.stringify(payload));localStorage.setItem('dcc_v44_ack',JSON.stringify(payload));localStorage.setItem('dcc_v45_ack',JSON.stringify(payload))}catch(e){console.warn('ACK metadata not persisted',String(e))}
 }
 async function handleBridgePayload(d,legacy=false){
  const id=d.requestId||d.id||null;
  const manual=!!activeSync&&Date.now()<=syncDeadline;
- if(ingestBusy){return;}
+ if(id&&seenRequests.has(id)){emitBridgeAck(seenRequests.get(id),id);return;}
+ if(ingestBusy){emitBridgeAck({ok:false,error:'Dashboard busy; retry sync'},id);return;}
  if(manual&&id&&id!==activeSync)return;
- if(!manual&&Date.now()-lastAcceptedAt<MIN_PUSH_GAP_MS)return;
+ if(!manual&&!id&&Date.now()-lastAcceptedAt<MIN_PUSH_GAP_MS)return;
  const raw=legacy?d:(d.snapshot||d.payload||d.data);
  if(!raw||typeof raw!=='object')return;
  const requestedId=manual?activeSync:id;
  activeSync=null;ingestBusy=true;lastAcceptedAt=Date.now();
- try{const ack=await ingestV44(raw,{requestId:requestedId});emitBridgeAck(ack,requestedId)}
+ try{const ack=await ingestV44(raw,{requestId:requestedId});rememberRequest(requestedId,ack);emitBridgeAck(ack,requestedId)}
  catch(err){state.candidate={source:'Bridge V44',stage:'ingest-error',error:String(err)};save();render();emitBridgeAck({ok:false,error:String(err)},requestedId)}
  finally{ingestBusy=false}
 }
@@ -90,7 +94,7 @@ function showPage(id){document.querySelectorAll('.page').forEach(x=>x.classList.
 document.getElementById('tabs').innerHTML=PAGES.map(([id,n])=>`<button data-id="${id}" onclick="showPage('${id}')">${n}</button>`).join('');document.querySelector('.tabs button').classList.add('active'); window.addEventListener('message',e=>{
  if(e.source!==window||e.origin!==location.origin)return;
  const d=e.data||{};
- if((d.type==='DCC_V44_PAYLOAD'||d.type==='DCC_V44_SNAPSHOT'||d.type==='DCC_ESPN_SNAPSHOT')&&(d.protocol==='DCC_V44'||d.type==='DCC_ESPN_SNAPSHOT'))void handleBridgePayload(d,false);
+ if((d.type==='DCC_V44_PAYLOAD'||d.type==='DCC_V44_SNAPSHOT'||d.type==='DCC_ESPN_SNAPSHOT'||d.type==='DCC_V45_PAYLOAD')&&(d.protocol==='DCC_V44'||d.protocol==='DCC_V45'||d.type==='DCC_ESPN_SNAPSHOT'))void handleBridgePayload(d,false);
  else if(d.type==='DCC_ESPN_BRIDGE_V43'||d.protocol==='DCC_ESPN_BRIDGE_V43')void handleBridgePayload(d,true);
 }); render();setTimeout(()=>{PERF.startupMs=Math.round(tick());restore()},0);if('serviceWorker'in navigator)requestAnimationFrame(()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 </script></body></html>
